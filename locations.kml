@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+	<Document>
+		<name>Every day, ExpressDecor becomes the one-stop-shop for homeowners, contractors and even local vendors looking for simple and affordable solutions for their remodeling projects. If you are a do-it-yourself kind of person, in ExpressDecor you will find everything you will need to complete your project. </name>
+		<atom:author>
+			<atom:name>sinks, faucets, bathroom, kitchen, vanities, faucet,  sink, toilet, toilets, bathtub, bathtubs, hardware</atom:name>
+		</atom:author>
+		<atom:link rel="related" href="http://www.expressdecor.com" />
+		<Folder>
+			<Placemark>
+				<name><![CDATA[ExpressDecor ]]></name>
+				<address><![CDATA[207 Mineola Ave , Roslyn Heights, NY, 11577, United States]]></address>
+				<description><![CDATA[<div><br />
+	<a href="http://www.expressdecor.com"><strong>ExpressDecor </strong></a><br><br />
+	207 Mineola Ave <br><br />
+	Roslyn Heights, NY 11577<br><br />
+	866-507-2725<br><br />
+	US<br />
+</div>]]></description>
+				<Point>
+					<coordinates>-73.6491689,40.7860664,0</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+	</Document>
+</kml>

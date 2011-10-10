@@ -1,0 +1,59 @@
+<table cellspacing="0" cellpadding="0" border="0" width="650" style="border:1px solid #EAEAEA;">
+    <thead>
+        <tr>
+            <th align="left" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px">Item</th>
+            <th align="left" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px">Sku</th>
+            <th align="center" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px">Qty</th>
+            <th align="right" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px">Subtotal</th>
+        </tr>
+    </thead>
+
+            <tbody bgcolor="#F6F6F6">
+        <tr>
+    <td align="left" valign="top" style="font-size:11px; padding:3px 9px; border-bottom:1px dotted #CCCCCC;">
+        <strong style="font-size:11px;">Kraus KBU14-KPF2220-KSD30 30 inch Undermount Single Bowl Stainless Steel Kitchen Sink with Kitchen Faucet and Soap Dispenser</strong>
+                <dl style="margin:0; padding:0;">
+                        <dt><strong><em>Finish</em></strong></dt>
+            <dd style="margin:0; padding:0 0 0 9px;">Satin Nickel</dd>
+                    </dl>
+                    </td>
+    <td align="left" valign="top" style="font-size:11px; padding:3px 9px; border-bottom:1px dotted #CCCCCC;">KBU14-KPF2220-KSD30-SN</td>
+    <td align="center" valign="top" style="font-size:11px; padding:3px 9px; border-bottom:1px dotted #CCCCCC;">1</td>
+    <td align="right" valign="top" style="font-size:11px; padding:3px 9px; border-bottom:1px dotted #CCCCCC;">
+                                                <span class="price">$360.00</span>            
+
+                    
+
+            </td>
+</tr>
+    </tbody>
+    
+    <tbody>
+                <tr class="subtotal">
+        <td colspan="3" align="right" style="padding:3px 9px">
+                        Subtotal                    </td>
+        <td align="right" style="padding:3px 9px">
+                        <span class="price">$360.00</span>                    </td>
+    </tr>
+            <tr class="shipping">
+        <td colspan="3" align="right" style="padding:3px 9px">
+                        Shipping & Handling                    </td>
+        <td align="right" style="padding:3px 9px">
+                        <span class="price">$0.00</span>                    </td>
+    </tr>
+            <tr class="discount">
+        <td colspan="3" align="right" style="padding:3px 9px">
+                        Discount (KRAUS10)                    </td>
+        <td align="right" style="padding:3px 9px">
+                        <span class="price">-$36.00</span>                    </td>
+    </tr>
+                            <tr class="grand_total">
+        <td colspan="3" align="right" style="padding:3px 9px">
+                        <strong>Grand Total</strong>
+                    </td>
+        <td align="right" style="padding:3px 9px">
+                        <strong><span class="price">$324.00</span></strong>
+                    </td>
+    </tr>
+        </tbody>
+</table>

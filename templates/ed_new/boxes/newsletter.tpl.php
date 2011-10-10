@@ -1,0 +1,76 @@
+<?php /* infobox template  */ ?>
+<script language="JavaScript1.2" type="text/javascript">
+        function verify(form)
+        {
+           var passed = false;
+        var blnRetval, intAtSign, intDot, intComma, intSpace, intLastDot, intDomain, intStrLen;
+        if (form.Email){
+                       intAtSign=form.Email.value.indexOf("@");
+                        intDot=form.Email.value.indexOf(".",intAtSign);
+                        intComma=form.Email.value.indexOf(",");
+                        intSpace=form.Email.value.indexOf(" ");
+                        intLastDot=form.Email.value.lastIndexOf(".");
+                        intDomain=intDot-intAtSign;
+                        intStrLen=form.Email.value.length;
+                // *** CHECK FOR BLANK EMAIL VALUE
+                   if (form.Email.value == "" )
+                   {
+                alert("You have not entered an email address.");
+                form.Email.focus();
+                passed = false;
+                }
+                // **** CHECK FOR THE  @ SIGN?
+                else if (intAtSign == -1)
+                {
+
+                alert("Your email address is missing the \"@\".");
+                        form.Email.focus();
+                passed = false;
+
+                }
+                // **** Check for commas ****
+
+                else if (intComma != -1)
+                {
+                alert("Email address cannot contain a comma.");
+                form.Email.focus();
+                passed = false;
+                }
+
+                // **** Check for a space ****
+
+                else if (intSpace != -1)
+                {
+                alert("Email address cannot contain spaces.");
+                form.Email.focus();
+                passed = false;
+                }
+
+                // **** Check for char between the @ and dot, chars between dots, and at least 1 char after the last dot ****
+
+                else if ((intDot <= 2) || (intDomain <= 1)  || (intStrLen-(intLastDot+1) < 2))
+                {
+                alert("Please enter a valid Email address.\n" + form.Email.value + " is invalid.");
+                form.Email.focus();
+                passed = false;
+                }
+                else {
+                        passed = true;
+                }
+        }
+        else    {
+                passed = true;
+        }
+        return passed;
+  }
+        //-->
+</script>
+          <tr>
+            <td>
+			  <table width="100%"  border="0" cellspacing="0" cellpadding="4" class="tm lb">
+		        <tr>
+		          <td valign="top" bgcolor="#f8f8f8" <?php echo $boxContent_attributes; ?>><?php echo $boxContent; ?></td>
+		        </tr>
+              </table>
+            </td>
+          </tr>

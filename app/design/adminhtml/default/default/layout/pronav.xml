@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <pronav_adminhtml_pronav_index>
+        <reference name="content">
+            <block type="pronav/adminhtml_pronav" name="pronav" />
+        </reference>
+    </pronav_adminhtml_pronav_index>
+</layout>

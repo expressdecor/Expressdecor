@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+		<reference name="head">
+			<!-- Remove googleapi.jquery.js  if jQuery has been already loaded -->
+			<action method="addJs">
+				<js>pronav/jquery.1.4.2.js</js>
+			</action>
+			<action method="addJs">
+				<js>pronav/jquery.hover.intent.js</js>
+			</action>
+			<action method="addCss">
+				<stylesheet>pronav/css/pronav.demo.css</stylesheet>
+			</action>
+			<action method="addItem"><type>skin_css</type><name>pronav/css/pronav.patches.ie7.css</name><params/><if>lt IE 7</if></action>
+			<action method="addItem"><type>skin_css</type><name>pronav/css/pronav.patches.ie8.css</name><params/><if>lt IE 8</if></action>
+		</reference>
+		<reference name="top.menu">
+			<remove name="catalog.topnav" />
+			<block type="catalog/navigation" name="pronav.topnav" template="pronav/navigation_top.phtml" />
+		</reference>
+	</default>
+	<pronav_index_index>
+		<reference name="content">
+			<block type="pronav/pronav" name="pronav" template="pronav/pronav.phtml"/>
+		</reference>
+	</pronav_index_index>
+</layout>

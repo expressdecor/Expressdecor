@@ -1,0 +1,593 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn_osnew/!svn/ver/1623/trunk/src/templates/ed_new/content
+END
+popup_search_help.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn_osnew/!svn/ver/642/trunk/src/templates/ed_new/content/popup_search_help.tpl.php
+END
+shopping_cart.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn_osnew/!svn/ver/1450/trunk/src/templates/ed_new/content/shopping_cart.tpl.php
+END
+article_reviews_write.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/article_reviews_write.tpl.php
+END
+checkout_payment.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn_osnew/!svn/ver/965/trunk/src/templates/ed_new/content/checkout_payment.tpl.php
+END
+sitemap.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/sitemap.tpl.php
+END
+gv_faq.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/gv_faq.tpl.php
+END
+checkout.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn_osnew/!svn/ver/1501/trunk/src/templates/ed_new/content/checkout.tpl.php
+END
+admin_list_products.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn_osnew/!svn/ver/318/trunk/src/templates/ed_new/content/admin_list_products.tpl.php
+END
+checkout_payment_address.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/checkout_payment_address.tpl.php
+END
+login.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn_osnew/!svn/ver/745/trunk/src/templates/ed_new/content/login.tpl.php
+END
+index_nested.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn_osnew/!svn/ver/693/trunk/src/templates/ed_new/content/index_nested.tpl.php
+END
+index_default.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn_osnew/!svn/ver/1623/trunk/src/templates/ed_new/content/index_default.tpl.php
+END
+logoff.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn_osnew/!svn/ver/619/trunk/src/templates/ed_new/content/logoff.tpl.php
+END
+wishlist_email.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/wishlist_email.tpl.php
+END
+create_account.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn_osnew/!svn/ver/827/trunk/src/templates/ed_new/content/create_account.tpl.php
+END
+affiliate_payment.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn_osnew/!svn/ver/28/trunk/src/templates/ed_new/content/affiliate_payment.tpl.php
+END
+shipping.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/shipping.tpl.php
+END
+order_info_process.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn_osnew/!svn/ver/128/trunk/src/templates/ed_new/content/order_info_process.tpl.php
+END
+reviews.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn_osnew/!svn/ver/1217/trunk/src/templates/ed_new/content/reviews.tpl.php
+END
+index_info_content_new.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn_osnew/!svn/ver/1094/trunk/src/templates/ed_new/content/index_info_content_new.tpl.php
+END
+order_info.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn_osnew/!svn/ver/128/trunk/src/templates/ed_new/content/order_info.tpl.php
+END
+article_reviews.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/article_reviews.tpl.php
+END
+password_forgotten.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/password_forgotten.tpl.php
+END
+product_info.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn_osnew/!svn/ver/1618/trunk/src/templates/ed_new/content/product_info.tpl.php
+END
+account.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn_osnew/!svn/ver/827/trunk/src/templates/ed_new/content/account.tpl.php
+END
+checkout_success.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn_osnew/!svn/ver/1442/trunk/src/templates/ed_new/content/checkout_success.tpl.php
+END
+address_book_process.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn_osnew/!svn/ver/740/trunk/src/templates/ed_new/content/address_book_process.tpl.php
+END
+article_info.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/article_info.tpl.php
+END
+product_reviews_write.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn_osnew/!svn/ver/619/trunk/src/templates/ed_new/content/product_reviews_write.tpl.php
+END
+address_book.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/address_book.tpl.php
+END
+popup_image.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/popup_image.tpl.php
+END
+create_account_success.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn_osnew/!svn/ver/732/trunk/src/templates/ed_new/content/create_account_success.tpl.php
+END
+affiliate_sales.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/affiliate_sales.tpl.php
+END
+index_info_content.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn_osnew/!svn/ver/1257/trunk/src/templates/ed_new/content/index_info_content.tpl.php
+END
+catalog_products_with_images.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/catalog_products_with_images.tpl.php
+END
+affiliate_logout.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn_osnew/!svn/ver/28/trunk/src/templates/ed_new/content/affiliate_logout.tpl.php
+END
+allprods.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn_osnew/!svn/ver/28/trunk/src/templates/ed_new/content/allprods.tpl.php
+END
+affiliate_affiliate.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn_osnew/!svn/ver/28/trunk/src/templates/ed_new/content/affiliate_affiliate.tpl.php
+END
+account_history_info.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn_osnew/!svn/ver/804/trunk/src/templates/ed_new/content/account_history_info.tpl.php
+END
+affiliate_details.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/affiliate_details.tpl.php
+END
+index_returns.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn_osnew/!svn/ver/48/trunk/src/templates/ed_new/content/index_returns.tpl.php
+END
+index_products.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn_osnew/!svn/ver/1148/trunk/src/templates/ed_new/content/index_products.tpl.php
+END
+account_newsletters.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/account_newsletters.tpl.php
+END
+product_print.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn_osnew/!svn/ver/143/trunk/src/templates/ed_new/content/product_print.tpl.php
+END
+gv_redeem.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/gv_redeem.tpl.php
+END
+affiliate_password_forgotten.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/affiliate_password_forgotten.tpl.php
+END
+index_faq.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn_osnew/!svn/ver/48/trunk/src/templates/ed_new/content/index_faq.tpl.php
+END
+affiliate_terms.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn_osnew/!svn/ver/28/trunk/src/templates/ed_new/content/affiliate_terms.tpl.php
+END
+ssl_check.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/ssl_check.tpl.php
+END
+affiliate_contact.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn_osnew/!svn/ver/28/trunk/src/templates/ed_new/content/affiliate_contact.tpl.php
+END
+product_reviews_info.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn_osnew/!svn/ver/1407/trunk/src/templates/ed_new/content/product_reviews_info.tpl.php
+END
+account_edit.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/account_edit.tpl.php
+END
+contact_us.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/contact_us.tpl.php
+END
+article_reviews_info.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/article_reviews_info.tpl.php
+END
+pollbooth.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn_osnew/!svn/ver/28/trunk/src/templates/ed_new/content/pollbooth.tpl.php
+END
+404page.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn_osnew/!svn/ver/411/trunk/src/templates/ed_new/content/404page.tpl.php
+END
+checkout_shipping.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn_osnew/!svn/ver/320/trunk/src/templates/ed_new/content/checkout_shipping.tpl.php
+END
+wishlist.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn_osnew/!svn/ver/1322/trunk/src/templates/ed_new/content/wishlist.tpl.php
+END
+conditions.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/conditions.tpl.php
+END
+affiliate_signup.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/affiliate_signup.tpl.php
+END
+checkout_shipping_address.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/checkout_shipping_address.tpl.php
+END
+account_history.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/account_history.tpl.php
+END
+account_password.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/account_password.tpl.php
+END
+articles_new.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/articles_new.tpl.php
+END
+my_points.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn_osnew/!svn/ver/642/trunk/src/templates/ed_new/content/my_points.tpl.php
+END
+checkout_confirm.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn_osnew/!svn/ver/143/trunk/src/templates/ed_new/content/checkout_confirm.tpl.php
+END
+affiliate_details_ok.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn_osnew/!svn/ver/28/trunk/src/templates/ed_new/content/affiliate_details_ok.tpl.php
+END
+valuedeals_process.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn_osnew/!svn/ver/143/trunk/src/templates/ed_new/content/valuedeals_process.tpl.php
+END
+wholesale.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn_osnew/!svn/ver/28/trunk/src/templates/ed_new/content/wholesale.tpl.php
+END
+valuedeals.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn_osnew/!svn/ver/393/trunk/src/templates/ed_new/content/valuedeals.tpl.php
+END
+static.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/static.tpl.php
+END
+tell_a_friend.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn_osnew/!svn/ver/1006/trunk/src/templates/ed_new/content/tell_a_friend.tpl.php
+END
+index_2.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn_osnew/!svn/ver/1096/trunk/src/templates/ed_new/content/index_2.tpl.php
+END
+advanced_search_result.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn_osnew/!svn/ver/1308/trunk/src/templates/ed_new/content/advanced_search_result.tpl.php
+END
+admin.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn_osnew/!svn/ver/318/trunk/src/templates/ed_new/content/admin.tpl.php
+END
+index_lottery.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn_osnew/!svn/ver/48/trunk/src/templates/ed_new/content/index_lottery.tpl.php
+END
+my_points_help.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn_osnew/!svn/ver/642/trunk/src/templates/ed_new/content/my_points_help.tpl.php
+END
+advanced_search.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn_osnew/!svn/ver/642/trunk/src/templates/ed_new/content/advanced_search.tpl.php
+END
+affiliate_banners.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn_osnew/!svn/ver/540/trunk/src/templates/ed_new/content/affiliate_banners.tpl.php
+END
+cookie_usage.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/cookie_usage.tpl.php
+END
+survey.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn_osnew/!svn/ver/1327/trunk/src/templates/ed_new/content/survey.tpl.php
+END
+affiliate_info.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/affiliate_info.tpl.php
+END
+index_about.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn_osnew/!svn/ver/48/trunk/src/templates/ed_new/content/index_about.tpl.php
+END
+affiliate_summary.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn_osnew/!svn/ver/28/trunk/src/templates/ed_new/content/affiliate_summary.tpl.php
+END
+affiliate_signup_ok.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn_osnew/!svn/ver/28/trunk/src/templates/ed_new/content/affiliate_signup_ok.tpl.php
+END
+articles.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/articles.tpl.php
+END
+affiliate_faq.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/affiliate_faq.tpl.php
+END
+affiliate_clicks.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn_osnew/!svn/ver/540/trunk/src/templates/ed_new/content/affiliate_clicks.tpl.php
+END
+checkout_confirmation.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn_osnew/!svn/ver/514/trunk/src/templates/ed_new/content/checkout_confirmation.tpl.php
+END
+wishlist_help.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/wishlist_help.tpl.php
+END
+down_for_maintenance.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/down_for_maintenance.tpl.php
+END
+track_fedex.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn_osnew/!svn/ver/252/trunk/src/templates/ed_new/content/track_fedex.tpl.php
+END
+product_reviews.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn_osnew/!svn/ver/1308/trunk/src/templates/ed_new/content/product_reviews.tpl.php
+END
+gv_send.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/gv_send.tpl.php
+END
+account_notifications.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/account_notifications.tpl.php
+END
+information.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn_osnew/!svn/ver/35/trunk/src/templates/ed_new/content/information.tpl.php
+END
+ask_box.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn_osnew/!svn/ver/1005/trunk/src/templates/ed_new/content/ask_box.tpl.php
+END
+return_pol.tpl.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn_osnew/!svn/ver/28/trunk/src/templates/ed_new/content/return_pol.tpl.php
+END

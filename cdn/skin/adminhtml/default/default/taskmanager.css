@@ -1,0 +1,65 @@
+.completed-task td.task,
+.completed-task td.assignedTo {
+    text-decoration: line-through;
+    color: #bbb;
+}
+
+div#user_task_list {
+    background: #FDFAA4 none repeat scroll 0 0;
+    border-top: 1px solid #988753;
+    display: block;
+    left: 0;
+    opacity: 0.85;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+div#user_task_list div#user_task_list_content {    
+    padding: 5px 25px 20px 28px;
+}
+
+div#user_task_list div#user_task_list_content h3 {
+    float: left;
+    color: #EB5E00;
+    width: 65%;
+}
+
+div#user_task_list div#user_task_list_content a#minimise-tasks-list {
+    float: right;
+    display: block
+    width: 25%;
+}
+
+div#user_task_list div#user_task_list_content dl {
+    
+}
+
+div#user_task_list div#user_task_list_content dt {
+    font-weight: bold;
+    font-size: 13px;
+    color: #253033;
+    display: block;
+    clear: left;
+    float: left;
+    width: 150px;
+}
+
+div#user_task_list div#user_task_list_content dd {
+    padding-bottom: 10px;
+    float: left;
+    width: 450px;
+    margin-bottom: 10px;
+    border-bottom: 1px dotted #988753;
+}
+
+div#user_task_list div#user_task_list_content dd ul li.task-completed span.task-content {
+    text-decoration: line-through;
+    color: #999;
+}
+
+
+.adminhtml-taskmanager-index div#user_task_list {
+    display: none;
+}

@@ -1,0 +1,52 @@
+8
+
+dir
+1628
+http://svn.njdb.org/svn_osnew/trunk/src/templates/Closed/boxes
+http://svn.njdb.org/svn_osnew
+
+
+
+2008-09-28T21:06:40.236567Z
+2
+kostya
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+274df288-60bd-4ead-9bba-7f5924a17038
+
+languages.tpl.php
+file
+
+
+
+
+2010-06-04T17:02:30.000000Z
+3dcff58ce4ecc00f17e7686f136f8e6d
+2008-09-28T21:06:40.236567Z
+2
+kostya
+
+box.tpl.php
+file
+
+
+
+
+2010-06-04T17:02:30.000000Z
+72ea84ca0465ec84c11aff764eff3f8b
+2008-09-28T21:06:40.236567Z
+2
+kostya
+

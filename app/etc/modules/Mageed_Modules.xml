@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+     <modules>
+          <Mageed_Catalog>
+               <active>true</active>
+               <codePool>local</codePool>
+          </Mageed_Catalog>          
+    </modules>
+</config>

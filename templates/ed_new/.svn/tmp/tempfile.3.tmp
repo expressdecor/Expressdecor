@@ -1,0 +1,493 @@
+<?php
+header("Pragma: no-cache");
+header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
+if ( (basename($PHP_SELF)=='index.php' && !isset($HTTP_GET_VARS['cPath']) && !isset($HTTP_GET_VARS['manufacturer_id'])) || (basename($PHP_SELF)=='index_2.php' && !isset($HTTP_GET_VARS['cPath']) && !isset($HTTP_GET_VARS['manufacturer_id']))) { //It's homepage
+	$isHomepage = true;
+}
+else {
+	$isHomepage = false;
+}
+
+$showColumns = true;
+if ($content==CONTENT_CHECKOUT && ONEPAGE_SHOW_OSC_COLUMNS == 'false') {
+	$showColumns = false;
+}
+elseif (in_array($content, array(CONTENT_CHECKOUT_SUCCESS, CONTENT_PRODUCT_INFO, CONTENT_ACCOUNT_HISTORY_INFO))) {
+	$showColumns = false;
+}
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <?php require(DIR_WS_INCLUDES . 'meta_tags.php'); ?>
+	<?php /*<base href="<?php echo (($request_type == 'SSL') ? HTTPS_SERVER : HTTP_SERVER) . DIR_WS_CATALOG; ?>" /> */ ?>
+<?php 
+
+if ($isHomepage) {
+?>
+	<title>Kitchen and Bathroom Faucets, Sinks, Vanities &amp; Accessories</title>
+	<meta name="description" content="10-15% OFF + FREE SHIPPING on All Kitchen and Bathroom Faucets, Bathroom Sinks, Stainless Steel Kitchen Sinks, Vanities and Accessories. COUPON INSIDE." />
+	<meta name="keywords" content="Faucet,faucets,bathroom faucets,kitchen faucets,bathroom sinks,kitchen sinks,bathroom accessories,bathroom vanities,showers,stainless steek kitchen sinks,Kraus,fontaine,vigo,giagni" />
+<?php 
+} elseif ((basename($PHP_SELF)=='index.php' && isset($HTTP_GET_VARS['cPath'])) || $page_args['router_type'] == 'Category' || $page_args['router_type'] == 'CategoryAll') {
+	echo ShowMETA('categories', $current_category_id, $languages_id);
+} elseif ((basename($PHP_SELF)=='product_info.php' && isset($HTTP_GET_VARS['products_id'])) || $page_args['router_type'] == 'Product') {
+	echo ShowMETA('product_info', $HTTP_GET_VARS['products_id'], $languages_id);
+} elseif (basename($PHP_SELF)=='product_reviews_info.php' && isset($HTTP_GET_VARS['products_id'])) {
+	echo ShowMETA('product_reviews_info', $HTTP_GET_VARS['products_id'], $languages_id);
+} elseif ($static_page_exists) {
+?>
+	<title><?php echo NAVBAR_TITLE ?></title>
+    <meta name="description" content="<?php echo str_replace('&', '&amp;', META_DESCRIPTION); ?>" />
+    <meta name="keywords" content="<?php echo str_replace('&', '&amp;', META_KEYWORDS); ?>" />
+    <?php  
+} else {
+	if(basename($PHP_SELF)=='advanced_search_result.php') {
+		$title = META_TAG_TITLE;
+		$description = str_replace('&', '&amp;', META_TAG_DESCRIPTION);
+		$keywords = str_replace('&', '&amp;', META_TAG_KEYWORDS);
+		$description = '';
+		$keywords = '';
+
+		$arrSortBy = array();
+		$arrSortBy['1a'] = 'A-Z';
+		$arrSortBy['1d'] = 'Z-A';
+		$arrSortBy['2d'] = 'Price: High-Low';
+		$arrSortBy['3a'] = 'Review Rating: Low-High';
+		$arrSortBy['3d'] = 'Review Rating: High-Low';
+		$arrSortBy['4d'] = 'Best Sellers';
+		$arrSortBy['5d'] = 'New Arrivals';
+
+		$title .= ' '. htmlspecialchars($HTTP_GET_VARS['keywords']);
+
+		if($HTTP_GET_VARS['page'] > 1)  {
+			$title .= " - page".htmlspecialchars($HTTP_GET_VARS['page']);
+			$description = "";
+		}
+
+		if(!empty($HTTP_GET_VARS['sort']) && trim($HTTP_GET_VARS['sort']) != "2a") {
+			$title .= " Sort By ".$arrSortBy[$HTTP_GET_VARS['sort']];
+			$description = "";
+		}
+    ?>
+        <title><?php echo $title ?></title>
+        <meta name="description" content="<?php echo $description?>" />
+        <meta name="keywords" content="<?php echo $keywords?>" />
+    <?php } else if (basename($PHP_SELF)=='reviews.php'){ 
+    	$title = META_TAG_TITLE;
+    	$description = str_replace('&', '&amp;', META_TAG_DESCRIPTION);
+    	$keywords = str_replace('&', '&amp;', META_TAG_KEYWORDS);
+    	$description = '';
+    	$keywords = '';
+    	if($HTTP_GET_VARS['page'] > 1)  {
+    		$title .= " - page".$HTTP_GET_VARS['page'];
+    	}
+        ?>
+        <title><?php echo $title?></title>
+        <meta name="description" content="<?php echo $description?>" />
+        <meta name="keywords" content="<?php echo $keywords?>" />                   
+    <?php } else { ?>
+        <title><?php echo META_TAG_TITLE ?></title>
+        <meta name="description" content="<?php echo str_replace('&', '&amp;', META_TAG_DESCRIPTION); ?>" />
+        <meta name="keywords" content="<?php echo str_replace('&', '&amp;', META_TAG_KEYWORDS); ?>" />        
+    <?php }}?>
+	<link rel="shortcut icon" href="http<?php echo ($request_type == 'SSL'? 's':''); ?>://www.expressdecor.com/images/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="/<?php echo DIR_WS_TEMPLATES; ?>stylesheet.css" />
+	<link rel="stylesheet" type="text/css" href="/<?php echo DIR_WS_TEMPLATES; ?>print.css" media="print" />
+	<!--[if IE]><link rel="stylesheet" href="<?php echo DIR_WS_TEMPLATES; ?>ieonly.css" type="text/css" /><![endif]-->
+  <?php if (isset($pageStyles) && count($pageStyles)) {
+  	foreach ($pageStyles as $script) {
+  		echo '  <link rel="stylesheet" type="text/css" href="/'. $script .'" />'."\n";
+  	}
+  }
+  ?>
+  <?php if (isset($javascript) && file_exists(DIR_WS_JAVASCRIPT . basename($javascript))) { 
+  	require(DIR_WS_JAVASCRIPT . basename($javascript));
+  } ?>
+	<script src="/includes/javascript/jquery-1.4.1.min.js" type="text/javascript"></script>
+	<script src="/includes/javascript/swfobject.js" type="text/javascript"></script>
+	<script src="/includes/javascript/global.js" type="text/javascript"></script>
+  <?php if (isset($pageScripts) && count($pageScripts)) {
+  	foreach ($pageScripts as $script) {
+  		echo '	<script src="/'. $script .'" type="text/javascript"></script>'."\n";
+  	}
+  }
+  ?>
+  
+	<?php if ($_SERVER['HTTP_HOST']=='www.expressdecor.com') { ?>
+	<!-- BEGIN LivePerson Monitor. -->
+	<script type="text/javascript"><!-- 
+	var lpMTagConfig = {'lpServer' : "server.iad.liveperson.net",'lpNumber' : "33660894",'lpProtocol' : "https"}; function lpAddMonitorTag(src){if(typeof(src)=='undefined'||typeof(src)=='object'){src=lpMTagConfig.lpMTagSrc?lpMTagConfig.lpMTagSrc:'/hcp/html/mTag.js';}if(src.indexOf('http')!=0){src=lpMTagConfig.lpProtocol+"://"+lpMTagConfig.lpServer+src+'?site='+lpMTagConfig.lpNumber;}else{if(src.indexOf('site=')<0){if(src.indexOf('?')<0)src=src+'?';else src=src+'&';src=src+'site='+lpMTagConfig.lpNumber;}};var s=document.createElement('script');s.setAttribute('type','text/javascript');s.setAttribute('charset','iso-8859-1');s.setAttribute('src',src);document.getElementsByTagName('head').item(0).appendChild(s);} if (window.attachEvent) window.attachEvent('onload',lpAddMonitorTag); else window.addEventListener("load",lpAddMonitorTag,false);
+	--></script><!-- END LivePerson Monitor. -->
+	<?php } ?>
+
+	<meta name="verify-v1" content="wiBIJLLPNHQ89tGbawQet2wbvEA4soxv4LjXckUCXgA=" /> 
+	<meta name="googlebot" content="NOODP" />
+	<meta name="msvalidate.01" content="BFFD83D308E453B7AD70258F73436269" />
+<?php if (isset($_SESSION['metatags']) && $_SESSION['metatags']==true) { ?>
+	<meta name="googlebot" content="nosnippet" />
+<?php }
+unset($_SESSION['metatags']);?>
+
+</head>
+<body>
+<?php
+if (PROMOTIONAL_BOX_DISPLAY == 'true') {
+	require_once('dropin_contentbox.php');
+}
+?>
+<div id="container">
+<?php if (DOWN_FOR_MAINTENANCE == 'false' || (DOWN_FOR_MAINTENANCE == 'true' && DOWN_FOR_MAINTENANCE_HEADER_OFF == 'false')) { ?>
+	<!--Header-->
+	<div id="header" class="clearfix">
+		<div class="header_content clearfix">
+			<!--/logo/-->
+			<a href="<?php echo HTTP_SERVER; ?>" class="logo" rel="nofollow">&nbsp;</a>
+			<div class="header_text">
+				<div class="live_chat">
+				<?php  
+				echo '<img src="/images/static/header/'. STORE_RROMAN_MODE .'.jpg" alt="" />';
+				?>
+				</div>
+		  </div>
+			<?php if ($_SERVER['HTTP_HOST'] == 'www.expressdecor.com') { ?>
+			<div class="header_secure">
+			<!-- START SCANALERT CODE -->
+			<a href="https://www.mcafeesecure.com/RatingVerify?ref=www.expressdecor.com" rel="nofollow">
+				<img width="94" height="54" src="//images.scanalert.com/meter/www.expressdecor.com/23.gif" alt="McAfee Secure sites help keep you safe from identity theft, credit card fraud, spyware, spam, viruses and online scams" />
+			</a>
+			<!-- END SCANALERT CODE --> 
+			</div>
+			<?php } ?>
+			<div class="header_state">
+				<img src="/images/welcome-geoip.jpg" alt="" />
+			</div>
+		</div>
+		<!--/main menu/-->	
+			<div class="main_menu">
+				<ul class="main_menu_list main_menu_list_left clearfix">
+					<li>
+						<div class="search">
+							<form action="/advanced_search_result.php" method="get">
+								<p>
+								<input type="hidden" value="1" name="search_in_description" />
+								<input class="search_input_text" type="text" style="margin-right: 4px;" maxlength="30" size="15" name="keywords" />
+								<input class="search_input_submit" type="image" src="/templates/ed_new/img/header/search_btn.png" title="Quick Find" />
+								</p>
+							</form>
+						</div>
+						<div class="main_menu_list_rp"> </div>
+					</li>
+					<li>
+						<a href="<?php echo HTTP_SERVER; ?>" class="main_menu_list_cp" rel="nofollow">Home</a>
+						<div class="main_menu_list_rp">&nbsp;</div>
+					</li>
+					<li>
+						<a href="<?php echo HTTP_SERVER; ?>/about.html" class="main_menu_list_cp" rel="nofollow">About us</a>
+						<div class="main_menu_list_rp">&nbsp;</div>
+					</li>
+					<li>
+						<a href="<?php echo HTTP_SERVER; ?>/contact-us.html" class="main_menu_list_cp" rel="nofollow">Contact us</a>
+					</li>
+				</ul>
+				<div class="menu_bg">&nbsp;</div>
+				<ul class="main_menu_list main_menu_list_right clearfix">
+					<li class="no_bg">
+    					<a href="<?php echo HTTP_SERVER; ?>/wishlist.php" class="main_menu_list_cp list_cp_go_left" rel="nofollow">&nbsp;Wish List <?php echo (count($_SESSION['wishlist']->contents)? '('. count($_SESSION['wishlist']->contents) .' item'. (count($_SESSION['wishlist']->contents)>1? 's':'') .')':''); ?></a>
+                        <div class="main_menu_list_rp">&nbsp;</div>
+                    </li>
+					<li>
+<?php 
+if (count($_SESSION['cart']->contents)) {
+	$prodsTotal = 0;
+	foreach ($_SESSION['cart']->contents as $prod) {
+		$prodsTotal += $prod['qty'];
+	}
+	$itemsInCart = '('. $prodsTotal .' item'. ($prodsTotal>1? 's':'') .')';
+}
+else {
+	$itemsInCart = '';
+}
+?>
+						<a href="<?php echo HTTP_SERVER; ?>/shopping_cart.php" class="main_menu_list_cp list_cp_go_left" rel="nofollow">Shopping Cart <?php echo $itemsInCart; ?></a>
+						<div class="main_menu_list_rp">&nbsp;</div>
+					</li>
+					<li>
+						<a href="<?php echo tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'); ?>" class="main_menu_list_cp" rel="nofollow">Checkout</a>
+						<div class="main_menu_list_rp">&nbsp;</div>
+					</li>
+					<li>
+						<a href="<?php echo HTTPS_SERVER; ?>/account.php" class="main_menu_list_cp my_account" rel="nofollow">My Account</a>
+						<div class="main_menu_list_rp">&nbsp;</div>
+					</li>
+					<?php if ($customer_id > 0) { ?>
+					<li>
+						<a href="<?php echo HTTP_SERVER; ?>/logoff.php" class="main_menu_list_cp my_account" rel="nofollow">Logoff</a>
+						<div class="main_menu_list_rp">&nbsp;</div>
+					</li>
+					<?php } ?>
+					<li>
+						<a href="<?php echo HTTP_SERVER; ?>/guest_history_info.php" class="main_menu_list_cp my_account" rel="nofollow">Order Status</a>
+						<div class="main_menu_list_rp">&nbsp;</div>
+					</li>
+				</ul>
+			</div>
+		<!--/-->		
+	</div>
+	<!-- / Header-->
+<?php } 
+//_pre($_SESSION)?>
+
+	<!--Content-->
+<?php if ( (DOWN_FOR_MAINTENANCE == 'false' || (DOWN_FOR_MAINTENANCE == 'true' && DOWN_FOR_MAINTENANCE_COLUMN_LEFT_OFF == 'false')) && $showColumns) { ?>
+    <div id="box_left" class="clearfix">
+      <?php require(bts_select('column', 'column_left.php')); // BTSv1.5 ?>
+      <?php 
+      if (!in_array(basename($PHP_SELF), array(FILENAME_TRACK_FEDEX, FILENAME_ACCOUNT, FILENAME_CREATE_ACCOUNT, FILENAME_CREATE_ACCOUNT_PROCESS, FILENAME_CREATE_ACCOUNT_SUCCESS, FILENAME_LOGIN, FILENAME_LOGOFF, FILENAME_PRODUCT_INFO, 'survey.php', 'ask_a_question.php'))) {
+      	if (basename($PHP_SELF) == 'router.php') {
+      		if (!isset($page_args) || isset($page_args['router_type']) && $page_args['router_type'] != 'Static') {
+      			require('templates/ed_new/boxes/our_guaranties.tpl.php');
+      		}
+      	}
+      	else {
+      		require('templates/ed_new/boxes/our_guaranties.tpl.php');
+      	}
+      }
+      if (basename($PHP_SELF) == FILENAME_DEFAULT) {
+      ?>
+      <div class="" style="text-align:center;margin:10px 0;">
+        <a href="/coupons.html" rel="nofollow"><img src="/templates/ed_new/img/header/25off.jpg" alt="" /></a>
+      </div>
+      <!--div class="border" style="text-align:center;margin:10px 0;">
+        <a href="/survey.php" rel="nofollow"><img src="/templates/ed_new/img/header/win100lrg.png" alt="" /></a>
+      </div-->
+      <?php } ?>
+		</div>
+<?php } ?>
+<?php
+$target_date = '2011-05-31 10:00:00';
+if (isset($product_info['manufacturers_id']) && $product_info['manufacturers_id'] == 3/*Kraus*/ && time() < strtotime($target_date)) {
+//if ($product_info['products_id'] == 1378) {
+	$show_countdown = true;
+}
+else {
+	$show_countdown = false;
+}
+?>
+<?php if ($show_countdown) { ?>
+		<div style="float:left; width: 580px; padding:20px 0 20px 40px;"><img src="/templates/ed_new/img/sale-ends.jpg" alt="" /></div>
+		<!-- Countdown dashboard start -->
+		<div id="countdown_dashboard">
+			<div class="dash weeks_dash" style="display:none;">
+				<span class="dash_title">weeks</span>
+				<div class="digit">0</div>
+				<div class="digit">0</div>
+			</div>
+		
+			<div class="dash days_dash">
+				<span class="dash_title">days</span>
+				<div class="digit">0</div>
+				<div class="digit">0</div>
+			</div>
+		
+			<div class="dash hours_dash">
+				<span class="dash_title">hours</span>
+				<div class="digit">0</div>
+				<div class="digit">0</div>
+			</div>
+		
+			<div class="dash minutes_dash">
+				<span class="dash_title">minutes</span>
+				<div class="digit">0</div>
+				<div class="digit">0</div>
+			</div>
+		
+			<div class="dash seconds_dash">
+				<span class="dash_title">seconds</span>
+				<div class="digit">0</div>
+				<div class="digit">0</div>
+			</div>
+		
+		</div>
+		<div style="clear:both;"></div>
+		<!-- Countdown dashboard end -->
+<?php } ?>
+<?php if (DOWN_FOR_MAINTENANCE == 'false') { ?>
+	<div id="<?php echo $showColumns? 'content':'contentFull'; ?>" class="clearfix content_for_ed">
+    <div id="box_content">
+      <?php 
+      require (bts_select('content')); // BTSv1.5
+      include ('includes/google_conversion.php');
+      ?>
+    </div>
+	</div>	
+	<!-- / Content-->
+  <div style="clear:both;"></div>
+  
+  <?php if ($isHomepage) { ?>
+  
+  <div>
+		<?php require(DIR_WS_BOXES .'reviews.php'); ?>
+		
+		<div class="border helpful_tips">
+			<div>
+				<div style="float:left;"><h2>Helpful Tips:</h2></div>
+				<div style="float:right;"><a href="/rss.php?page=static-related"><img src="/templates/ed_new/img/rss.png" alt="" /></a></div>
+			</div>
+			<div style="clear:both;"></div>
+			<?php
+			$query = 'SELECT t2.page_name, t1.title AS Title FROM static_pages_v2 t1 inner join page t2 ON t1.page_id=t2.page_id ORDER BY t1.dateadded DESC';
+			$res = tep_db_query($query);
+			?>
+			<div>
+				<ul>
+				<?php
+				while ($row = tep_db_fetch_array($res)) {
+				?>
+					<li><a href="<?php echo HTTP_SERVER .'/'. $row['page_name']; ?>"><?php echo $row['Title']; ?></a></li>
+				<?php
+				}
+				?>
+				</ul>
+			</div>
+		</div>
+		<div style="clear:both;"><img style="height: 15px;" alt="" src="/images/x.gif" /></div>
+  </div>
+	
+  
+	<div class="border homepage_manufacturers">
+		<span class="manufacturer"><img src="/images/static/index/kraus.jpg" alt="" /></span>
+		<span class="manufacturer"><a href="<?php echo HTTP_SERVER.'/giagni.html'?>"><img src="/images/static/index/giagni.jpg" alt="" /></a></span>
+		<span class="manufacturer"><a href="<?php echo HTTP_SERVER.'/blomus-bathroom-accessories.html'?>"><img src="/images/static/index/blomus.jpg" alt="" /></a></span>
+		<span class="manufacturer"><a href="<?php echo HTTP_SERVER.'/amba-towel-warmers.html'?>"><img src="/images/static/index/amba.jpg" alt="" /></a></span>
+		<span class="manufacturer"><a href="<?php echo HTTP_SERVER.'/tile-redi.html'?>"><img src="/images/static/index/tile-redi.jpg" alt="" /></a></span>
+		<br />
+		<span class="manufacturer"><a href="<?php echo HTTP_SERVER.'/allied-brass-bathroom-accessories.html'?>"><img src="/images/static/index/allied-brass.jpg" alt="" /></a></span>
+		<span class="manufacturer"><a href="<?php echo HTTP_SERVER.'/toilets.html'?>"><img src="/images/static/index/eago.jpg" alt="" /></a></span>
+		<span class="manufacturer"><img src="/images/static/index/belle-foret.jpg" alt="" /></span>
+		<span class="manufacturer"><img src="/images/static/index/schon.jpg" alt="" /></span>
+		<span class="manufacturer"><img src="/images/static/index/elizabethan-classics.jpg" alt="" /></span>
+	</div>
+	<div><img style="height: 15px;" alt="" src="/images/x.gif" /></div>
+	
+	<div class="border homepage_text">
+		<?php
+		$res = tep_db_query("select * from static_seo where filename='index_default.php'");
+		if (tep_db_num_rows($res)) {
+			$row_static_template = tep_db_fetch_array($res);
+			echo stripslashes($row_static_template['content']);
+		}
+
+		require(DIR_WS_MODULES .'homepage_rotation.php');
+		?>
+	</div>
+  <div style="clear:both;"></div>
+  <?php } ?>
+  
+<?php } ?>
+
+<?php if (DOWN_FOR_MAINTENANCE == 'false' || (DOWN_FOR_MAINTENANCE == 'true' && DOWN_FOR_MAINTENANCE_FOOTER_OFF == 'false')) { ?>
+	<!--Footer-->
+	<?php if (in_array($content, array(CONTENT_CHECKOUT_SUCCESS, CONTENT_CHECKOUT))) { ?>
+	<div id="footer-success" class="border">
+		<img src="/templates/ed_new/img/footer-success-big.png" alt="" />
+	</div>
+	<?php } else { ?>
+	<div id="footer" class="clearfix border">
+		<div class="footer-top">
+		<script type="text/javascript" src="https://seal.buysafe.com/private/rollover/rollover.js"></script>
+		<span id="BuySafeSealSpan"></span>
+		<script type="text/javascript">
+		buySAFE.Hash = 'BmD2giRyWOTG3NJxhQzBulk%2f%2bBRu4B%2fZanaoj%2fcIx36XAGnr6Tj1Dws6Dr5O9SUE0fHdbi59hFTNpkt0PJ%2fzJA%3d%3d'
+		WriteBuySafeSeal('BuySafeSealSpan', 'GuaranteedSeal');
+		</script>
+		</div>
+		<div class="footer-center clearfix">
+		</div>
+		<div class="footer-bottom clearfix">
+			<div class="gray-block" style="width: 215px;">
+				<ul>
+					<li><a href="<?php echo HTTP_SERVER; ?>/about.html" rel="nofollow">About ExpressDecor</a></li>
+					<li><a href="<?php echo HTTP_SERVER; ?>/contact-us.html" rel="nofollow">Contact Us</a></li>
+					<li><a href="<?php echo HTTP_SERVER; ?>/privacy.html" rel="nofollow">Privacy Policy</a></li>
+					<li><a href="<?php echo HTTP_SERVER; ?>/professional-account.html" rel="nofollow">Professional Account</a></li>
+				</ul>
+			</div>
+			<div class="gray-block" style="width: 147px;">
+				<ul>
+					<li><a href="<?php echo HTTP_SERVER; ?>/coupons.html" rel="nofollow">Coupons</a></li>
+					<li><a href="<?php echo HTTP_SERVER; ?>/video-and-documentation-library.html" rel="nofollow">Installation Videos</a></li>
+					<li><a href="<?php echo HTTP_SERVER; ?>/faq.html" rel="nofollow">FAQs</a></li>
+					<li><a href="<?php echo HTTP_SERVER; ?>/sitemap.html">Sitemap</a></li>
+				</ul>
+			</div>
+			<div class="gray-block" style="width: 194px;">
+				<ul>
+					<li><a href="http://www.fedex.com/Tracking?cntry_code=us" rel="nofollow" class="target-blank">Track your order</a></li>
+					<li><a href="<?php echo HTTP_SERVER; ?>/returns.html" rel="nofollow">Return Policy</a></li>
+					<li><a href="<?php echo HTTP_SERVER; ?>/guest_history_info.php" rel="nofollow">Order Status</a></li>
+				</ul>
+			</div>
+			<div class="gray-block" style="width: 471px; text-align: center; padding-top: 10px;">
+				<img src="/templates/ed_new/img/secure_images.png" alt="" />
+				<a class="tf_upfront_badge" href="http://www.thefind.com/store/about-expressdecor" title="TheFind Upfront"><img src="//upfront.thefind.com/images/badges/templates/r_badge.png" alt="ExpressDecor is upfront"/></a>
+  <script src="//upfront.thefind.com/scripts/main/utils-init-ajaxlib/upfront-badgeinit.js" type="text/javascript"></script>
+  <script type="text/javascript">thefind.upfront.init('tf_upfront_badge', '280b1c11851cedf058903542357c6c3f')</script>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<div class="copyright">
+		Copyrights 2004-<?php echo date('Y'); ?>
+		<a href="<?php echo HTTP_SERVER; ?>/" class="copyright" rel="nofollow">Express Decor</a>
+	</div>
+	<div class="w3c-valid" style="margin-top:10px">
+		<a href="http://validator.w3.org/check?uri=referer" class="target-blank" rel="nofollow">
+			<img src="/templates/ed_new/img/valid-xhtml10-blue.png" alt="" />
+		</a>
+	</div>
+	<?php } ?>
+<!-- / Footer-->
+<?php } ?>
+</div>
+<!--Container-->
+<?php if ($_SERVER['HTTP_HOST']=='www.expressdecor.com') { ?>
+  <?php if (basename($PHP_SELF)=='checkout_success.php') { ?>
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	try{
+		var pageTracker = _gat._getTracker("UA-777007-1");
+		pageTracker._initData();
+		pageTracker._trackPageview();
+		<?php include(DIR_WS_MODULES . 'analytics/analytics.php'); ?>
+	} catch(err) {}
+	</script>
+	<!-- BEGIN: buySAFE Guarantee-->
+<script src="https://seal.buysafe.com/private/rollover/rollover.js"></script>
+<span id="BuySafeSealSpan"></span>
+<span id="BuySafeGuaranteeSpan"></span>
+<script type="text/javascript">
+  buySAFE.Hash = "[VAR_BmD2giRyWOTG3NJxhQzBulk%2f%2bBRu4B%2fZanaoj%2fcIx36XAGnr6Tj1Dws6Dr5O9SUE0fHdbi59hFTNpkt0PJ%2fzJA%3d%3d]";
+ WriteBuySafeSeal("BuySafeSealSpan", "GuaranteedSeal");
+ WriteBuySafeGuarantee("JavaScript");
+</script>
+<!-- END: buySAFE Guarantee-->
+	<?php } else { ?>
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	try{
+		var pageTracker = _gat._getTracker("UA-777007-1");
+		pageTracker._trackPageview();
+	} catch(err) {}
+	</script>
+  <?php } ?>
+<?php } ?>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+8
+
+dir
+1628
+http://svn.njdb.org/svn_osnew/trunk/src/templates/ed_new
+http://svn.njdb.org/svn_osnew
+
+
+
+2011-06-01T19:53:02.296673Z
+1627
+kostya
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+274df288-60bd-4ead-9bba-7f5924a17038
+
+boxes
+dir
+
+stylesheet.css
+file
+
+
+
+
+2011-06-01T19:53:04.000000Z
+73f7ed3ccf1c771eb5868a54136eaa39
+2011-06-01T19:53:02.296673Z
+1627
+kostya
+
+print.css
+file
+
+
+
+
+2010-06-04T17:02:30.000000Z
+54a1a044a5386cc0b9ad27dbe98a8a48
+2010-01-15T21:18:00.329534Z
+689
+kostya
+
+main_page.tpl.php
+file
+
+
+
+
+2010-10-12T20:43:34.000000Z
+77ae58fa287cf6dc3402bd5b473557ff
+2011-05-31T15:03:37.244877Z
+1625
+pavel
+
+stylesheet-org.css
+file
+
+
+
+
+2010-06-04T17:02:30.000000Z
+9a3c06bc66a25d391dfad8d89f89f2a6
+2008-12-14T19:20:42.084664Z
+28
+kostya
+
+ieonly.css
+file
+
+
+
+
+2010-06-30T20:52:39.000000Z
+08ce3da8eea50742c72c7c9c988494bf
+2010-06-30T20:11:32.430047Z
+1308
+kostya
+
+popup.tpl.php
+file
+
+
+
+
+2010-06-04T17:02:30.000000Z
+33c4b365cfd6ef12b6359bd8d7eca5e1
+2008-12-14T19:20:42.084664Z
+28
+kostya
+
+css
+dir
+
+content
+dir
+
+ui.all.css
+file
+
+
+
+
+2010-06-04T17:02:30.000000Z
+8c31212f333a5bd490b88cffced296f0
+2009-05-20T01:11:04.403165Z
+110
+dima
+
+img
+dir
+
+jquery.fancybox.css
+file
+
+
+
+
+2010-06-04T17:02:30.000000Z
+643117506619bd27f79cb9de36b819f3
+2009-12-29T20:51:41.361815Z
+613
+kostya
+

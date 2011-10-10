@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Blc_Adminhtml>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Blc_Adminhtml>
+    </modules>
+</config>

@@ -1,0 +1,46 @@
+8
+
+dir
+1628
+http://svn.njdb.org/svn_osnew/trunk/src/templates
+http://svn.njdb.org/svn_osnew
+
+
+
+2011-06-01T19:53:02.296673Z
+1627
+kostya
+has-props
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+274df288-60bd-4ead-9bba-7f5924a17038
+
+ed_new
+dir
+
+Closed
+dir
+
+.htaccess
+file
+
+
+
+
+2010-06-04T17:02:30.000000Z
+d50657e98246a647c3a8a9b7709c7653
+2008-09-28T21:06:40.236567Z
+2
+kostya
+

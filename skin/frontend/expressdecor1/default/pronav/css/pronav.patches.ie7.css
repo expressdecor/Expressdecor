@@ -1,0 +1,116 @@
+.product-view .product-shop .add-to-cart {
+    margin-top: 0px;
+    padding: 2px 15px 10px 0;}
+.stock-container {
+    float: right;
+    margin-bottom: 11px;
+    margin-left: 12px;
+    margin-top: -45px;
+}
+
+.ship-time div#details_in_stock {
+    color: MediumBlue;
+    cursor: pointer;
+    float: right;
+    padding-left: 8px;
+	margin-top: -20px;
+    text-transform: none;
+}
+.calc-tab { display:none;}
+.addto-chat {
+    background-color: #FFFFFF;
+    border-top: 1px solid #CFCFCF;
+    float: right;
+    width: 534px;
+	margin: 0 -10px -20px;
+	
+}
+.product-view {
+    float: left;
+    margin: 0 -10px -20px;
+    width: 938px;
+}
+.product-name h1 {
+    color: #311B02;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 11px -15px 12px;
+}
+
+.product-view .product-shop .add-to-links {    float: none;
+    margin: 10px 0;}
+.addto-chat-elem3 {
+    float: right;
+    padding-left: 403px;
+    position: absolute;
+}
+.addto-bg {
+display: none;
+}
+
+.product-view .product-shop {
+    float: right;
+    margin-top: -16px;
+	margin-right:0px;
+    padding: 0 0px;
+    width: 527px;
+}
+
+.discount-txt {
+    margin: 0px 0 0;
+}
+.product-view .product-shop .product-main-info2 {
+    background-color: #F6F6F6;
+    border: 1px solid #CFCFCF;
+    float: right;
+    padding: 0 0px 0px;
+    padding: 0;
+    width: 527px;
+}
+.product-shop div.product-collection {
+    float: none;
+	position: inherit;
+	margin: 20px 0 0 2px;
+    font-size: 16px;
+    font-weight: bold;
+	
+}
+ul#pronav li .row  {display:none;}
+.products-grid li.item {
+    float: left;
+    margin-right: 10px;
+    width: 165px;
+}
+.subcat-box {
+    margin: 0px 0px 0 0px;
+    width: 13px;
+	padding:0;
+}
+.product-main-info {
+    width: 516px;
+}
+.product-essential {
+    clear: left;
+    float: none;
+}
+.col-main {
+    width: 717px;
+}
+.col-left {
+    width: 179px;
+}
+.sidebar .block .block-content {
+    padding: 10px 9px 9px 0;
+}
+ul#pronav {
+    background: url("../images/nav-bg.gif") no-repeat scroll 0 0 #DEDEDE;
+    height: 55px;
+    width: 931px;
+}
+.top-search {
+background: #ffa103;
+}
+.header-links {
+    width: 147px;
+}

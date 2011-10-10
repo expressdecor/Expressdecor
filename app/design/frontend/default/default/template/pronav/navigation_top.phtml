@@ -1,0 +1,83 @@
+<?php
+if ($this->getNavConfig('pronav_status'))
+{
+   $output = '<ul id="pronav">';
+   $navData = $this->getNavData();
+   foreach ($navData as $data)
+   {
+      $urlKey = strlen($data['url_key']) > 0 && $data['url_key'] ? $data['url_key'] : '#';
+      if ($data['static_block'] == 0 || ! $data['static_block'])
+      {
+         $output .= '<li id="' . $data['li_css_id'] . '" class="' . $data['li_css_class'] . '"><a href="' . $urlKey . '" id="' . $data['css_id'] . '" class="' . $data['css_class'] . '"><span>' . Mage::helper('pronav')->__($data['name']) . '</span></a></li>';
+      } else {
+         // item has static block
+         $output .= '<li id="' . $data['li_css_id'] . '" class="' . $data['li_css_class'] . '"><a href="' . $urlKey . '" id="' . $data['css_id'] . '" class="' . $data['css_class'] . '"><span>' . Mage::helper('pronav')->__($data['name']) . '</span></a>';
+         $output .= '<div class="sub">';
+         $blockIdentifier = $this->getStaticBlockIdentifier($data['static_block']);
+         $output .= $this->getLayout()->createBlock('cms/block')->setBlockId($blockIdentifier)->toHtml();
+         $output .= '</div>';
+         $output .= '</li>';
+      }
+   }
+   $output .= '<div style="clear:both;"></div></ul>';
+   echo $output;
+}
+?>
+<script>
+jQ(function() {
+jQ.fn.calcSubWidth = function() {
+            rowWidth = 0;
+            //Calculate row
+            jQ(this).find("ul").each(function() { //for each ul...
+                rowWidth += jQ(this).width(); //Add each ul's width together
+            });
+        };
+var paddingFix = 0;
+function megaHoverOver(){
+    jQ(this).find(".sub").stop().fadeTo(<?php echo $this->getNavConfig('fadein')?>, 1).show(); //Find sub and fade it in
+     subPaddingLeft = jQ(this).find('.sub').css('padding-right');
+	 subPaddingRight = jQ(this).find('.sub').css('padding-left');
+	 if (subPaddingLeft && subPaddingRight)
+	 {
+		 subPaddingLeft = parseInt(subPaddingRight.replace('px', ''));
+		 subPaddingRight = parseInt(subPaddingRight.replace('px', ''));
+		 paddingFix = subPaddingLeft + subPaddingRight;
+	 }
+    if ( jQ(this).find(".row").length > 0 ) { //If row exists...
+
+        var biggestRow = 0;	
+        jQ(this).find(".row").each(function() {
+            jQ(this).calcSubWidth(); //Call function to calculate width of all ul's
+            //Find biggest row
+            if(rowWidth > biggestRow) {
+                biggestRow = rowWidth;
+            }
+        });
+        jQ(this).find(".sub").css({width : biggestRow + paddingFix}); //Set width
+        jQ(this).find(".row:last").css({'margin':'0'});  //Kill last row's margin
+
+    } else { //If row does not exist...
+        jQ(this).calcSubWidth();  //Call function to calculate width of all ul's
+        jQ(this).find(".sub").css({'width' : rowWidth + paddingFix}); //Set Width
+
+    }
+}
+//On Hover Out
+function megaHoverOut(){
+  jQ(this).find(".sub").fadeTo(<?php echo $this->getNavConfig('fadeout')?>, 0, function() { //Fade to 0 opactiy
+      jQ(this).hide();  //after fading, hide it
+  });
+}
+
+//Set custom configurations
+var config = {
+     sensitivity: <?php echo $this->getNavConfig('sensitivity')?>, // number = sensitivity threshold (must be 1 or higher)
+     interval: <?php echo $this->getNavConfig('interval')?>, // number = milliseconds for onMouseOver polling interval
+     over: megaHoverOver, // function = onMouseOver callback (REQUIRED)
+     timeout: <?php echo $this->getNavConfig('timeout')?>, // number = milliseconds delay before onMouseOut
+     out: megaHoverOut // function = onMouseOut callback (REQUIRED)
+};
+jQ("ul#pronav li .sub").css({'opacity':'0'}); //Fade sub nav to 0 opacity on default
+jQ("ul#pronav li").hoverIntent(config); //Trigger Hover intent with custom configurations
+});
+</script>

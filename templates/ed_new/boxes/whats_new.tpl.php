@@ -1,0 +1,4 @@
+			<div class="simple_block clearfix">
+				<?php echo $boxLink; ?>
+        <?php echo $boxContent; ?>
+			</div>

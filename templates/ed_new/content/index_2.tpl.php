@@ -1,0 +1,54 @@
+<?php
+    $random_select = "select r.reviews_id, r.reviews_rating, rd.reviews_text, p.products_id, p.products_image, pd.products_name, pg.page_name from " . TABLE_REVIEWS . " r, " . TABLE_REVIEWS_DESCRIPTION . " rd, " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, page pg where p.products_status = '1' and r.reviews_status = 0 and p.products_id = r.products_id and p.page_id=pg.page_id and r.reviews_id = rd.reviews_id and rd.languages_id = '" . (int)$languages_id . "' and p.products_id = pd.products_id and pd.language_id = '" . (int)$languages_id . "'";
+    if (isset($HTTP_GET_VARS['products_id'])) {
+      $random_select .= " and p.products_id = '" . (int)$HTTP_GET_VARS['products_id'] . "'";
+    }
+
+    $random_select .= "  order by rand() limit " . (MAX_RANDOM_SELECT_REVIEWS);
+    $result = tep_db_query($random_select);
+    while($random_product = tep_db_fetch_array($result)) {
+      $random_product['reviews_text'] = tep_break_string(tep_output_string_protected($random_product['reviews_text']), 15, '-<br>');
+      $random_products[] = $random_product;
+    }
+?>
+
+
+    <div class="border" style="padding: 12px;">
+    	<img src="/images/static/index_2/top_banner.jpg" alt="Discount Coupons" />
+    </div>
+		<div class="clearfix">&nbsp;</div>
+		<div class="browse_categories">
+			<div class="products_list">
+        <?php include(DIR_WS_MODULES . 'browse_categories.php'); ?>
+      </div>
+    </div>
+		<div class="clearfix" style="height:1px;overflow:hidden;"><img src="/images/x.gif" alt="" /></div>
+		
+		<div class="bestsellers_block border">
+			<div class="border clearfix" style="background-color: #f7f7f7; padding: 5px;">
+				<h1 class="new_reviews_title">Testimonials</h1>
+	      <?php foreach($random_products as $random_product) {?>
+				<div class="brief_info">
+	        <span class="vanity_plus"><a class="vanity_plus" href="<?php echo tep_href_link(FILENAME_PRODUCT_REVIEWS_INFO, 'products_id=' . $random_product['products_id'] . '&reviews_id=' . $random_product['reviews_id']); ?>"><?php echo $random_product['products_name']; ?></a></span>
+	        <span class="ranking"><?php echo tep_image(DIR_WS_IMAGES . 'stars_' . $random_product['reviews_rating'] . '.gif' , sprintf(BOX_REVIEWS_TEXT_OF_5_STARS, $random_product['reviews_rating'])); ?></span><br />
+	        <span class="product_info"><?php echo $random_product['reviews_text']; ?></span>
+	      </div>
+	      <?php } ?>
+	      <div style="float: right;"><a href="<?php echo tep_href_link('reviews.php'); ?>"><img src="/templates/ed_new/img/index2/read_more_btn.jpg" alt="Read More" /></a></div>
+	      <div class="clearfix">&nbsp;</div>
+      </div>
+		</div>
+		
+		<div class="clearfix">&nbsp;</div>
+		
+		<?php
+		$res = tep_db_query("select * from static_seo where filename='index_2.php'");
+		if (tep_db_num_rows($res)) {
+			$row_static_template = tep_db_fetch_array($res);
+			if ($row_static_template['content']) {
+				echo '<div class="border homepage_text" style="width:848px">';
+				echo stripslashes($row_static_template['content']);
+				echo '</div>';
+			}
+		}
+		?>

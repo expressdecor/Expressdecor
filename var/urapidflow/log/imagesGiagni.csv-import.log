@@ -1,0 +1,92 @@
+ACTIVITY,,,"Fetching number of rows"
+ACTIVITY,,,Importing
+ERROR,1,0,"Invalid SKU (sku)"
+WARNING,2,3,"Original file image does not exist"
+WARNING,3,3,"Original file image does not exist"
+WARNING,4,3,"Original file image does not exist"
+WARNING,5,3,"Original file image does not exist"
+WARNING,6,3,"Original file image does not exist"
+WARNING,7,3,"Original file image does not exist"
+WARNING,8,3,"Original file image does not exist"
+WARNING,9,3,"Original file image does not exist"
+WARNING,10,3,"Original file image does not exist"
+WARNING,11,3,"Original file image does not exist"
+WARNING,12,3,"Original file image does not exist"
+WARNING,13,3,"Original file image does not exist"
+WARNING,14,3,"Original file image does not exist"
+WARNING,15,3,"Original file image does not exist"
+WARNING,16,3,"Original file image does not exist"
+WARNING,17,3,"Original file image does not exist"
+WARNING,18,3,"Original file image does not exist"
+SUCCESS,19,3,
+SUCCESS,20,3,
+SUCCESS,21,3,
+SUCCESS,22,3,
+SUCCESS,23,3,
+SUCCESS,24,3,
+SUCCESS,25,3,
+SUCCESS,26,3,
+SUCCESS,27,3,
+SUCCESS,28,3,
+SUCCESS,29,3,
+SUCCESS,30,3,
+SUCCESS,31,3,
+SUCCESS,32,3,
+SUCCESS,33,3,
+SUCCESS,34,3,
+SUCCESS,35,3,
+SUCCESS,36,3,
+SUCCESS,37,3,
+SUCCESS,38,3,
+SUCCESS,39,3,
+SUCCESS,40,3,
+WARNING,41,3,"Original file image does not exist"
+WARNING,42,3,"Original file image does not exist"
+WARNING,43,3,"Original file image does not exist"
+WARNING,44,3,"Original file image does not exist"
+WARNING,45,3,"Original file image does not exist"
+WARNING,46,3,"Original file image does not exist"
+WARNING,47,3,"Original file image does not exist"
+WARNING,48,3,"Original file image does not exist"
+WARNING,49,3,"Original file image does not exist"
+WARNING,50,3,"Original file image does not exist"
+WARNING,51,3,"Original file image does not exist"
+WARNING,52,3,"Original file image does not exist"
+WARNING,53,3,"Original file image does not exist"
+WARNING,54,3,"Original file image does not exist"
+WARNING,55,3,"Original file image does not exist"
+WARNING,56,3,"Original file image does not exist"
+WARNING,57,3,"Original file image does not exist"
+WARNING,58,3,"Original file image does not exist"
+WARNING,59,3,"Original file image does not exist"
+WARNING,60,3,"Original file image does not exist"
+WARNING,61,3,"Original file image does not exist"
+WARNING,62,3,"Original file image does not exist"
+WARNING,63,3,"Original file image does not exist"
+WARNING,64,3,"Original file image does not exist"
+WARNING,65,3,"Original file image does not exist"
+WARNING,66,3,"Original file image does not exist"
+WARNING,67,3,"Original file image does not exist"
+WARNING,68,3,"Original file image does not exist"
+WARNING,69,3,"Original file image does not exist"
+WARNING,70,3,"Original file image does not exist"
+WARNING,71,3,"Original file image does not exist"
+WARNING,72,3,"Original file image does not exist"
+WARNING,73,3,"Original file image does not exist"
+WARNING,74,3,"Original file image does not exist"
+WARNING,75,3,"Original file image does not exist"
+WARNING,76,3,"Original file image does not exist"
+WARNING,77,3,"Original file image does not exist"
+WARNING,78,3,"Original file image does not exist"
+WARNING,79,3,"Original file image does not exist"
+WARNING,80,3,"Original file image does not exist"
+WARNING,81,3,"Original file image does not exist"
+WARNING,82,3,"Original file image does not exist"
+WARNING,83,3,"Original file image does not exist"
+WARNING,84,3,"Original file image does not exist"
+WARNING,85,3,"Original file image does not exist"
+WARNING,86,3,"Original file image does not exist"
+WARNING,87,3,"Original file image does not exist"
+WARNING,88,3,"Original file image does not exist"
+ACTIVITY,,,"Running after import procedures"
+ACTIVITY,,,Done

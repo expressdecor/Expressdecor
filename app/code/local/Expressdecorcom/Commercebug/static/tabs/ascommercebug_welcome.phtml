@@ -1,0 +1,17 @@
+<p> <?php echo $this->__('Information about the current request can be found in the tabs on the right.'); ?></p>
+<p>
+<?php echo $this->__('Use the form below to reload the tabs with information from a different request. (see System -&gt; Configuration -&gt; Commerce Bug)');?>
+</p>
+<p id="ascommercebug_version">
+
+</p>
+<form>
+	<ul>
+		<li>
+		<h2><?php echo $this->__('Paste JSON from log:'); ?></h2>
+		<div id="ascommercebug_results_json"></div>
+		</li>
+		<li><textarea id="ascommercebug_textarea_json"></textarea></li>
+		<li><button id="ascommercebug_button_json" onclick="return false;" class="fg-button ui-state-default ui-corner-all"><?php echo $this->__('Render Into Tabs');?></button></li>
+	</ul>
+</form>

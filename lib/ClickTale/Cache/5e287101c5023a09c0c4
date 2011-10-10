@@ -1,0 +1,602 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Shopping Cart</title>
+<meta name="description" content="Express Decor.com" />
+<meta name="keywords" content="Express Decor.com" />
+<meta name="robots" content="INDEX,FOLLOW" />
+<link rel="icon" href="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/favicon.ico" type="image/x-icon" />
+<meta name="google-site-verification" content="0AdhzanyexvcTjd1QO4TjOK2pMzOYos-Je2Wv689jPc" />
+<!--[if lt IE 7]>
+<script type="text/javascript">
+//<![CDATA[
+    var BLANK_URL = 'http://cdnjs.expressdecor.com/js/blank.html';
+    var BLANK_IMG = 'http://cdnjs.expressdecor.com/js/spacer.gif';
+//]]>
+</script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/css/styles.css" media="all" />
+<link rel="stylesheet" type="text/css" href="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/css/widgets.css" media="all" />
+<link rel="stylesheet" type="text/css" href="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/pronav/css/pronav.demo.css" media="all" />
+<link rel="stylesheet" type="text/css" href="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/css/print.css" media="print" />
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/prototype/prototype.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/lib/ccard.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/prototype/validation.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/scriptaculous/builder.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/scriptaculous/effects.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/scriptaculous/dragdrop.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/scriptaculous/controls.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/scriptaculous/slider.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/varien/js.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/varien/form.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/varien/menu.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/mage/translate.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/mage/cookies.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/ed.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/clicktaleevents.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/pronav/jquery.1.4.2.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/pronav/jquery.hover.intent.js"></script>
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/varien/weee.js"></script>
+<script type="text/javascript" src="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/js/scripts.js"></script>
+<script type="text/javascript" src="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/js/enterprise/catalogevent.js"></script>
+<!--[if lt IE 8]>
+<link rel="stylesheet" type="text/css" href="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/css/styles-ie.css" media="all" />
+<link rel="stylesheet" type="text/css" href="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/pronav/css/pronav.patches.ie8.css" media="all" />
+<![endif]-->
+<!--[if lt IE 7]>
+<link rel="stylesheet" type="text/css" href="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/pronav/css/pronav.patches.ie7.css" media="all" />
+<script type="text/javascript" src="http://cdnjs.expressdecor.com/js/lib/ds-sleight.js"></script>
+<script type="text/javascript" src="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/js/iehover-fix.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+//<![CDATA[
+Mage.Cookies.path     = '/';
+Mage.Cookies.domain   = '.www.expressdecor.com';
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+optionalZipCountries = [];
+//]]>
+</script>
+<script type="text/javascript">var Translator = new Translate({"Please use only letters (a-z or A-Z), numbers (0-9) or underscore(_) in this field, first character should be a letter.":"Please use only letters (a-z or A-Z), numbers (0-9) or underscores (_) in this field, first character must be a letter."});</script>
+
+</head>
+<body class=" checkout-cart-index">
+
+<!-- BEGIN GOOGLE ANALYTICS CODE -->
+<script type="text/javascript">
+//<![CDATA[
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+    })();
+
+    var _gaq = _gaq || [];
+
+_gaq.push(function() {
+    // the global variable is created intentionally
+    pageTracker = _gat._getTracker('UA-777007-1');
+    pageTracker._trackPageview();
+});
+
+
+//]]>
+</script>
+<!-- END GOOGLE ANALYTICS CODE --><div class="wrapper">
+ <div class="header-bg">
+       
+    </div>
+        <noscript>
+        <div class="noscript">
+            <div class="noscript-inner">
+                <p><strong>JavaScript seem to be disabled in your browser.</strong></p>
+                <p>You must have JavaScript enabled in your browser to utilize the functionality of this website.</p>
+            </div>
+        </div>
+    </noscript>
+    <div class="page">
+         <div class="header-panel">
+        <div class="header-phone"><img src="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/images/header-phone.gif"></div><div class="header-livechat"><a onclick="lpButtonCTTUrl = 'https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson&amp;referrer='+escape(document.location); lpButtonCTTUrl = (typeof(lpAppendVisitorCookies) != 'undefined' ? lpAppendVisitorCookies(lpButtonCTTUrl) : lpButtonCTTUrl); lpButtonCTTUrl = ((typeof(lpMTag)!='undefined' &amp;&amp; typeof(lpMTag.addFirstPartyCookies)!='undefined')?lpMTag.addFirstPartyCookies(lpButtonCTTUrl):lpButtonCTTUrl);window.open(lpButtonCTTUrl,'chat33660894','width=475,height=400,resizable=yes');return false;" href="https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;byhref=1&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson"><img src="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/images/live-chat-header.gif"></a></div>
+	<div class="header-links">	
+       <!-- <div class="switches">
+
+</div>-->
+        <p class="welcome-msg"><!--{WELCOME_798effdaa97a5c471f681048ce813b4e}--><!--/{WELCOME_798effdaa97a5c471f681048ce813b4e}--></p>
+        <!--{ACCLINKS_13dd90cfb4977eabd542a34bdb4edc9f}--><ul class="links">
+                        <li class="first" ><a href="https://www.expressdecor.com/customer/account/login/" title="My Account" >My Account</a></li>
+                                <li class=" last" > | <a href="https://www.expressdecor.com/customer/account/create/" title="Register" >Register</a></li>
+            </ul>
+<!--/{ACCLINKS_13dd90cfb4977eabd542a34bdb4edc9f}-->		<!--<ul class="links">
+                        <li class="first last" ><a href="https://www.expressdecor.com/customer/account/" title="My Account" >My Account</a></li>
+            </ul>
+-->
+    </div></div>
+<div class="header-container">
+   
+    <div class="header">
+        <div class="branding">
+                    <a href="http://www.expressdecor.com/" title="Express Decor.com" class="logo"><strong>Express Decor.com</strong><img src="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/images/logo.gif" alt="Express Decor.com" /></a>
+                        <div class="scan">
+<a target="_blank" rel="nofollow" href="https://www.mcafeesecure.com/RatingVerify?ref=www.expressdecor.com"><img width="65" height="37" border="0" src="//images.scanalert.com/meter/www.expressdecor.com/31.gif" alt="HACKER SAFE certified sites prevent over 99.9% of hacker crime." oncontextmenu="alert('Copying Prohibited by Law - HACKER SAFE is a Trademark of ScanAlert'); return false;"></a> 
+
+<div class="top-search">
+<form id="search_mini_form" action="http://www.expressdecor.com/catalogsearch/result/" method="get">
+<div class="form-search">
+    <label for="search">Search site:</label><input id="search" type="text" name="q" value="" class="input-text" />&nbsp;<button type="submit"title="Go" class="button"><span><span>Go</span></span></button><a href="http://www.expressdecor.com/catalogsearch/advanced/">Advanced Search</a>
+    <div id="search_autocomplete" class="search-autocomplete"></div>
+    <script type="text/javascript">
+    //<![CDATA[
+        var searchForm = new Varien.searchForm('search_mini_form', 'search', 'Enter search keyword');
+        searchForm.initAutocomplete('http://www.expressdecor.com/catalogsearch/ajax/suggest/', 'search_autocomplete');
+    //]]>
+    </script>
+</div>
+</form>
+</div>
+</div> <!--<img src="http://cdnskin.expressdecor.com/skin/frontend/expressdecor1/default/images/callouts/header_free_shipping.gif" alt="" class="free-shipping" />-->
+        </div>
+        <div class="quick-access">
+            <!--<div class="checkout-link"><ul class="links">
+                        <li class="first last" ><a href="https://www.expressdecor.com/onestepcheckout/" title="Checkout" class="top-link-onestepcheckout">Checkout</a></li>
+            </ul>
+</div>-->
+            <!--{CART_SIDEBAR_4f4096aa8fcbce7d1db0ffefce0d3a84}-->
+<div class="top-cart">
+        <div class="block-title">
+        <strong id="cartHeader">View Cart <br />(<span>1</span>) Item(s)</strong>
+    </div>
+    <div id="topCartContent" class="block-content" style="display:none">
+        <div class="inner-wrapper">                            <p class="block-subtitle">
+                <span onclick="Enterprise.TopCart.hideCart()" class="close-btn">Close</span>
+                Recently added item(s)            </p>
+            <ol id="mini-cart" class="mini-products-list">
+                            <li class="item">
+            <a href="http://www.expressdecor.com/kraus-kpf-2110-single-lever-stainless-steel-pull-out-kitchen-faucet.html" title="Kraus KPF-2110 Single Lever Stainless Steel Pull Out Kitchen Faucet" class="product-image"><img src="http://cdn.expressdecor.com/media/catalog/product/cache/1/thumbnail/50x/9df78eab33525d08d6e5fb8d27136e95/k/p/kpf2110-2.jpg" alt="Kraus KPF-2110 Single Lever Stainless Steel Pull Out Kitchen Faucet" /></a>
+    
+    <div class="product-details">
+        <p class="product-name">
+                            <a href="http://www.expressdecor.com/kraus-kpf-2110-single-lever-stainless-steel-pull-out-kitchen-faucet.html">Kraus KPF-2110 Single Lever Stainless Steel Pull Out Kitchen Faucet</a>
+                    </p>
+        <table cellpadding="0">
+                    <tr>
+                            <th>Price</th>
+                                        <td><span class="price">$265.00</span></td>
+                        </tr>
+
+                    
+
+
+                    <tr>
+                <th>Qty</th>
+                <td>1</td>
+            </tr>
+        </table>
+                <a href="http://www.expressdecor.com/checkout/cart/delete/id/9031/uenc/aHR0cDovL3d3dy5leHByZXNzZGVjb3IuY29tL2NoZWNrb3V0L2NhcnQv/" onclick="return confirm('Are you sure you would like to remove this item from the shopping cart?');" title="Remove item" class="btn-remove">Remove item</a>
+    </div>
+</li>
+                        </ol>
+            <script type="text/javascript">decorateList('mini-cart', 'none-recursive')</script>
+                            <p class="subtotal">
+                <span class="label">Cart Subtotal:</span> <span class="price">$265.00</span>            </p>
+            <div class="actions">
+                <p class="paypal-logo">
+<a id="ec_shortcut_776ac4d74a2d8e37478a9355f05c6806" href="https://www.expressdecor.com/paypal/express/start/"><img src="https://fpdbs.paypal.com/dynamicimageweb?cmd=_dynamic-image&buttontype=ecshortcut&locale=en_US" alt="Checkout with PayPal" /></a>
+    <span class="paypal-or">-OR-</span>
+</p>
+                <button class="button" type="button" onclick="setLocation('https://www.expressdecor.com/onestepcheckout/')"><span><span>Checkout</span></span></button>
+                <a href="http://www.expressdecor.com/checkout/cart/"><span>Go to Shopping Cart</span></a>
+            </div>
+                </div>
+    </div>
+<script type="text/javascript">
+    Enterprise.TopCart.initialize('topCartContent');
+    // Below can be used to show minicart after item added
+    // Enterprise.TopCart.showCart(7);
+</script>
+</div>
+<!--/{CART_SIDEBAR_4f4096aa8fcbce7d1db0ffefce0d3a84}-->         
+           
+        </div>
+    </div>
+    <ul id="pronav"><li id="" class=""><a href="http://www.expressdecor.com/" id="" class=""><span>Home</span></a></li><li id="cat-kitchen" class="kitchen"><a href="http://www.expressdecor.com/kitchen.html" id="" class=""><span>kitchen</span></a><div class="sub"><div class="row">
+<ul>
+<li class="first"><a href="http://www.expressdecor.com/kitchen-faucets.html">Kitchen Faucets</a></li>
+<li class="first"><a href="http://www.expressdecor.com/kitchen-sinks.html">Kitchen Sinks</a></li>
+<li class="first"><a href="http://www.expressdecor.com/kitchen-sink-and-faucet-combos.html">Kitchen Combo</a></li>
+<li class="first"><a href="http://www.expressdecor.com/kitchen-sink-accessories.html">Kitchen Accessories</a></li>
+</ul>
+<div id="subcat-box-kitchen"><a class="subtext-kitchen" href="http://www.expressdecor.com/kitchen-faucets.html"> Kitchen Faucets</a><a class="subImg" href="http://www.expressdecor.com/kitchen-faucets.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/kitchen/kitchen-faucets.jpg" alt="Kitchen Faucets" /></a></div>
+<div id="subcat-box-kitchen"><a class="subtext-kitchen" href="http://www.expressdecor.com/kitchen-sinks.html"> Kitchen Sinks</a><a class="subImg" href="http://www.expressdecor.com/kitchen-sinks.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/kitchen/kitchen-sinks.jpg" alt="Kitchen Sinks" /></a></div>
+<div id="subcat-box-kitchen"><a class="subtext-kitchen" href="http://www.expressdecor.com/kitchen-sink-and-faucet-combos.html"> Kitchen Combos</a><a class="subImg" href="http://www.expressdecor.com/kitchen-sink-and-faucet-combos.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/kitchen/kitchen-combo.jpg" alt=" Kitchen Combos" /></a></div>
+<div id="subcat-box-kitchen"><a class="subtext-kitchen" href="http://www.expressdecor.com/kitchen-sink-accessories.html"> Kitchen Accessories</a><a class="subImg" href="http://www.expressdecor.com/kitchen-sink-accessories.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/kitchen/kitchen-accessories.jpg" alt="Kitchen Accessories" /></a></div>
+</div></div></li><li id="cat-bathroom" class="bathroom"><a href="http://www.expressdecor.com/bathroom.html" id="" class=""><span>bathroom</span></a><div class="sub"><div class="row">
+<ul>
+<li class="first"><a href="http://www.expressdecor.com/bathroom-sinks.html">Bathroom Sinks</a></li>
+<li class="first"><a href="http://www.expressdecor.com/bathroom-faucets.html">Bathroom Faucets</a></li>
+<li class="first"><a href="http://www.expressdecor.com/bathroom-sink-and-faucet-combos.html">Bathroom Combinations</a></li>
+<li class="first"><a href="http://www.expressdecor.com/bathroom-accessories.html">Bathroom Accessories</a></li>
+<li class="first"><a href="http://www.expressdecor.com/bathtubs.html">Bathtubs</a></li>
+<li class="first"><a href="http://www.expressdecor.com/toilets.html">Toilets</a></li>
+<li class="first"><a href="http://www.expressdecor.com/showers.html">Showers</a></li>
+<li class="first"><a href="http://www.expressdecor.com/bathroom-vanities.html">Vanities</a></li>
+</ul>
+<div style="height: 291px; padding-top: 10px;">
+<div id="subcat-box-bathroom"><a class="subtext-bathroom" href="http://www.expressdecor.com/bathroom-faucets.html"> Bathroom Faucets</a><a class="subImg" href="http://www.expressdecor.com/bathroom-faucets.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/bathroom/bathroom-faucets.jpg" alt="Bathroom Faucets" /></a></div>
+<div id="subcat-box-bathroom"><a class="subtext-bathroom" href="http://www.expressdecor.com/bathroom-sinks.html"> Bathroom Sinks</a><a class="subImg" href="http://www.expressdecor.com/bathroom-sinks.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/bathroom/bathroom-sinks.jpg" alt="Bathroom Sinks" /></a></div>
+<div id="subcat-box-bathroom"><a class="subtext-bathroom" href="http://www.expressdecor.com/bathroom-accessories.html"> Bathroom</a><a class="subImg" href="http://www.expressdecor.com/bathroom-accessories.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/bathroom/bathroom-accessories.jpg" alt="Accessories" /></a></div>
+<div id="subcat-box-bathroom"><a class="subtext-bathroom" href="http://www.expressdecor.com/bathroom-vanities.html"> Bathroom Vanities</a><a class="subImg" href="http://www.expressdecor.com/bathroom-vanities.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/bathroom/vanities.jpg" alt="Bathroom Vanities" /></a></div>
+<div id="subcat-box-bathroom"><a class="subtext-bathroom" href="http://www.expressdecor.com/bathtubs.html"> Bathtubs</a><a class="subImg" href="http://www.expressdecor.com/bathtubs.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/bathroom/bathtubs.jpg" alt=" Bathtubs" /></a></div>
+<div id="subcat-box-bathroom"><a class="subtext-bathroom" href="http://www.expressdecor.com/toilets.html"> Toilets</a><a class="subImg" href="http://www.expressdecor.com/toilets.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/bathroom/toilets.jpg" alt="Toilets" /></a></div>
+<div id="subcat-box-bathroom"><a class="subtext-bathroom" href="http://www.expressdecor.com/showers.html"> Showers</a><a class="subImg" href="http://www.expressdecor.com/showers.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/bathroom/showers.jpg" alt="Showers" /></a></div>
+<div id="subcat-box-bathroom"><a class="subtext-bathroom" href="http://www.expressdecor.com/bathroom-sink-and-faucet-combos.html"> Combinations</a><a class="subImg" href="http://www.expressdecor.com/bathroom-sink-and-faucet-combos.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/bathroom/bathroom-combos.jpg" alt="Combinations" /></a></div>
+</div>
+</div></div></li><li id="cat-faucets" class="faucets"><a href="http://www.expressdecor.com/faucets.html" id="" class=""><span>Faucets</span></a><div class="sub"><div class="row">
+<ul>
+<li class="first"><a href="http://www.expressdecor.com/single-handle-kitchen-faucets.html">Single Handle Faucets</a></li>
+<li class="first"><a href="http://www.expressdecor.com/pullout-kitchen-faucets.html">Pullout Faucets</a></li>
+<li class="first"><a href="http://www.expressdecor.com/bar-faucets.html">Bar Faucets</a></li>
+<li class="first"><a href="http://www.expressdecor.com/bathroom-wall-mount-faucets.html">Wall Mounted Faucets</a></li>
+<li class="first"><a href="http://www.expressdecor.com/waterfall-faucets.html">Waterfall Faucets</a></li>
+<li class="first"><a href="http://www.expressdecor.com/bathtub-faucets.html">Bathtub and Shower Faucets</a></li>
+<li class="first"><a href="http://www.expressdecor.com/faucets-for-vessel-sinks.html">Faucets for Vessel Sinks</a></li>
+<li class="first"><a href="http://www.expressdecor.com/lavatory-faucets.html">Lavatory Faucets</a></li>
+</ul>
+<div style="height: 291px; padding-top: 10px;">
+<div id="subcat-box-faucets"><a class="subtext-faucets" href="http://www.expressdecor.com/single-handle-kitchen-faucets.html">Single Handle Faucets</a><a class="subImg" href="http://www.expressdecor.com/single-handle-kitchen-faucets.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/faucets/single-faucet.jpg" alt="Single Handle Faucets" /></a></div>
+<div id="subcat-box-faucets"><a class="subtext-faucets" href="http://www.expressdecor.com/pullout-kitchen-faucets.html">Pullout Faucets</a><a class="subImg" href="http://www.expressdecor.com/pullout-kitchen-faucets.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/faucets/pullout-faucet.jpg" alt="Pullout Kitchen Faucets" /></a></div>
+<div id="subcat-box-faucets"><a class="subtext-faucets" href="http://www.expressdecor.com/bar-faucets.html">Bar Faucets</a><a class="subImg" href="http://www.expressdecor.com/bar-faucets.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/faucets/bar-faucet.jpg" alt="Bar Faucets" /></a></div>
+<div id="subcat-box-faucets"><a class="subtext-faucets" href="http://www.expressdecor.com/bathroom-wall-mount-faucets.html">Wall Mounted Faucets</a><a class="subImg" href="http://www.expressdecor.com/bathroom-wall-mount-faucets.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/faucets/wall-mount-faucet.jpg" alt="Wall Mounted Faucets" /></a></div>
+<div id="subcat-box-faucets"><a class="subtext-faucets" href="http://www.expressdecor.com/waterfall-faucets.html">Waterfall Faucets</a><a class="subImg" href="http://www.expressdecor.com/waterfall-faucets.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/faucets/water-fall-faucet.jpg" alt=" Waterfall Faucets" /></a></div>
+<div id="subcat-box-faucets"><a class="subtext-faucets" href="http://www.expressdecor.com/bathtub-faucets.html">Bathtub Faucets</a><a class="subImg" href="http://www.expressdecor.com/bathtub-faucets.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/faucets/bathtub-faucets.jpg" alt="Bathtub Faucets" /></a></div>
+<div id="subcat-box-faucets"><a class="subtext-faucets" href="http://www.expressdecor.com/faucets-for-vessel-sinks.html">Faucets for Vessel Sinks</a><a class="subImg" href="http://www.expressdecor.com/faucets-for-vessel-sinks.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/faucets/bathroom-vessel-sink-facuets.jpg" alt="Bathroom Faucets for Vessel Sinks" /></a></div>
+<div id="subcat-box-faucets"><a class="subtext-faucets" href="http://www.expressdecor.com/lavatory-faucets.html">Lavatory Faucets</a><a class="subImg" href="http://www.expressdecor.com/lavatory-faucets.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/faucets/lavatory-facuets.jpg" alt="Lavatory Faucets" /></a></div>
+</div>
+</div></div></li><li id="cat-sinks" class="sinks"><a href="http://www.expressdecor.com/sinks.html" id="" class=""><span>Sinks</span></a><div class="sub"><div class="row">
+<ul>
+<li class="first"><a href="http://www.expressdecor.com/single-bowl-kitchen-sinks.html">Single Bowl Ktichen Sinks</a></li>
+<li class="first"><a href="http://www.expressdecor.com/double-bowl-kitchen-sinks.html">Double Bowl Kitchen Sinks</a></li>
+<li class="first"><a href="http://www.expressdecor.com/apron-farmhouse-kitchen-sinks.html">Apron Farmhouse Kitchen Sinks</a></li>
+<li class="first"><a href="http://www.expressdecor.com/undermount-kitchen-sinks.html">Undermount Kitchen Sinks</a></li>
+<li class="first"><a href="http://www.expressdecor.com/kitchen-sink-and-faucet-combos.html">Ktichen Combos</a></li>
+</ul>
+<ul>
+<li class="first"><a href="http://www.expressdecor.com/glass-vessel-sinks.html">Bathroom Glass Sinks</a></li>
+<li class="first"><a href="http://www.expressdecor.com/ceramic-sinks.html">Bathroom Ceramic Sinks</a></li>
+<li class="first"><a href="http://www.expressdecor.com/stone-sinks.html">Bathroom Stone Sinks</a></li>
+<li class="first"><a href="http://www.expressdecor.com/bathroom-copper-sinks.html">Bathroom Copper Sinks</a></li>
+<li class="first"><a href="http://www.expressdecor.com/bathroom-sink-and-faucet-combos.html">Bathroom Sinks and Faucet Combos</a></li>
+</ul>
+<div style="height: 291px; padding-top: 10px;">
+<div id="subcat-box-sinks"><a class="subImg" href="http://www.expressdecor.com/apron-farmhouse-kitchen-sinks.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/sinks/apron-kitchen-sink.jpg" alt="Apron Farmhouse Kitchen Sinks" /></a></div>
+<div id="subcat-box-sinks"><a class="subImg" href="http://www.expressdecor.com/bathroom-sink-and-faucet-combos.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/sinks/bathroom-combo.jpg" alt="Bathroom Sinks and Faucet Combos " /></a></div>
+<div id="subcat-box-sinks"><a class="subImg" href="http://www.expressdecor.com/ceramic-sinks.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/sinks/ceramic-sink.jpg" alt="Bathroom Ceramic Sinks" /></a></div>
+<div id="subcat-box-sinks"><a class="subImg" href="http://www.expressdecor.com/kitchen-sink-and-faucet-combos.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/sinks/combo-kitchen-sink.jpg" alt="Ktichen Combos" /></a></div>
+<div id="subcat-box-sinks"><a class="subImg" href="http://www.expressdecor.com/bathroom-copper-sinks.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/sinks/copper-sink.jpg" alt=" Bathroom Copper Sinks" /></a></div>
+<div id="subcat-box-sinks"><a class="subImg" href="http://www.expressdecor.com/double-bowl-kitchen-sinks.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/sinks/double-bowl-kitchen-sink.jpg" alt="Double Bowl Kitchen Sinks" /></a></div>
+<div id="subcat-box-sinks"><a class="subImg" href="http://www.expressdecor.com/glass-vessel-sinks.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/sinks/glass-sink.jpg" alt="Bathroom Glass Sinks" /></a></div>
+<div id="subcat-box-sinks"><a class="subImg" href="http://www.expressdecor.com/single-bowl-kitchen-sinks.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/sinks/single-bowl-kitchen-sink.jpg" alt="Single Bowl Ktichen Sinks" /></a></div>
+<div id="subcat-box-sinks"><a class="subImg" href="http://www.expressdecor.com/stone-sinks.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/sinks/stone-sink.jpg" alt="Bathroom Stone Sinks" /></a></div>
+<div id="subcat-box-sinks"><a class="subImg" href="http://www.expressdecor.com/undermount-kitchen-sinks.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/sinks/undermount-kitchen-sink.jpg" alt="Undermount Ktichen Sinks" /></a></div>
+</div>
+</div></div></li><li id="cat-fixtures" class="fixtures"><a href="http://www.expressdecor.com/fixtures.html" id="" class=""><span>Fixtures</span></a><div class="sub"><div class="row">
+<ul>
+<li class="first"><a href="http://www.expressdecor.com/toilets.html">Toilets</a></li>
+<li class="first"><a href="http://www.expressdecor.com/sinks.html">Sinks</a></li>
+<li class="first"><a href="http://www.expressdecor.com/faucets.html">Faucets</a></li>
+<li class="first"><a href="http://www.expressdecor.com/bathtubs.html">Bathtubs</a></li>
+<li class="first"><a href="http://www.expressdecor.com/showers.html">Showers</a></li>
+<li class="first"><a href="http://www.expressdecor.com/bathroom-vanities.html">Vanities</a></li>
+</ul>
+<div style="height: 276px; padding-top: 10px;">
+<div id="subcat-box-fixtures"><a class="subtext-fixtures" href="http://www.expressdecor.com/toilets.html"> Toilets</a><a class="subImg" href="http://www.expressdecor.com/toilets.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/fixtures/toilets.jpg" alt="Toilets" /></a></div>
+<div id="subcat-box-fixtures"><a class="subtext-fixtures" href="http://www.expressdecor.com/sinks.html"> Sinks</a><a class="subImg" href="http://www.expressdecor.com/sinks.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/fixtures/sinks.jpg" alt="Sinks" /></a></div>
+<div id="subcat-box-fixtures"><a class="subtext-fixtures" href="http://www.expressdecor.com/faucets.html"> Faucets</a><a class="subImg" href="http://www.expressdecor.com/faucets.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/fixtures/faucets.jpg" alt="Faucets" /></a></div>
+<div id="subcat-box-fixtures"><a class="subtext-fixtures" href="http://www.expressdecor.com/bathtubs.html"> Bathtubs</a><a class="subImg" href="http://www.expressdecor.com/bathtubs.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/fixtures/bathtubs.jpg" alt=" Bathtubs" /></a></div>
+<div id="subcat-box-fixtures"><a class="subtext-fixtures" href="http://www.expressdecor.com/showers.html"> Showers</a><a class="subImg" href="http://www.expressdecor.com/showers.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/fixtures/showers.jpg" alt="Showers" /></a></div>
+<div id="subcat-box-fixtures"><a class="subtext-fixtures" href="http://www.expressdecor.com/bathroom-vanities.html"> Vanities</a><a class="subImg" href="http://www.expressdecor.com/bathroom-vanities.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/fixtures/vanities.jpg" alt="Vanities" /></a></div>
+</div>
+</div></div></li><li id="cat-accessories" class="accessories"><a href="http://www.expressdecor.com/bathroom-accessories-and-plumbing-parts.html" id="" class=""><span>Accessories</span></a><div class="sub"><div class="row">
+<ul>
+<li class="first"><a href="http://www.expressdecor.com/kitchen-sink-accessories.html">Kitchen Accessories</a></li>
+<li class="first"><a href="http://www.expressdecor.com/bathroom-soap-dispensers.html">Soap Dispensers</a></li>
+<li class="first"><a href="http://www.expressdecor.com/amba-towel-warmers.html">Towel Warmers</a></li>
+<li class="first"><a href="http://www.expressdecor.com/bathroom-mirrors.html">Mirrors</a></li>
+<li class="first"><a href="http://www.expressdecor.com/bathroom-shelves.html">Bathroom Shelves</a></li>
+<li class="first"><a href="http://www.expressdecor.com/toilet-paper-holders.html">Toilet Paper Holders</a></li>
+<li class="first"><a href="http://www.expressdecor.com/towel-bars-and-rings.html">Towel Bars and Rings</a></li>
+<li class="first"><a href="http://www.expressdecor.com/toothbrush-holders.html">Toothbrush Holders</a></li>
+</ul>
+<div style="height: 291px; padding-top: 10px;">
+<div id="subcat-box-accessories"><a class="subtext-accessories" href="http://www.expressdecor.com/kitchen-sink-accessories.html">Kitchen Accessories</a><a class="subImg" href="http://www.expressdecor.com/kitchen-sink-accessories.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/accessories/kitchen-accessories.jpg" alt="Kitchen Accessories" /></a></div>
+
+<div id="subcat-box-accessories"><a class="subtext-accessories" href="http://www.expressdecor.com/bathroom-soap-dispensers.html">Soap Dispensers</a><a class="subImg" href="http://www.expressdecor.com/bathroom-soap-dispensers.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/accessories/soap-dispencer.jpg" alt="Soap Dispensers" /></a></div>
+
+<div id="subcat-box-accessories"><a class="subtext-accessories" href="http://www.expressdecor.com/amba-towel-warmers.html">Towel Warmers</a><a class="subImg" href="http://www.expressdecor.com/amba-towel-warmers.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/accessories/towel-warmers.jpg" alt="Towel Warmers" /></a></div>
+
+<div id="subcat-box-accessories"><a class="subtext-accessories" href="http://www.expressdecor.com/bathroom-mirrors.html">Mirrors</a><a class="subImg" href="http://www.expressdecor.com/bathroom-mirrors.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/accessories/mirrors.jpg" alt="Mirrors" /></a></div>
+
+<div id="subcat-box-accessories"><a class="subtext-accessories" href="http://www.expressdecor.com/bathroom-shelves.html">Bathroom Shelves</a><a class="subImg" href="http://www.expressdecor.com/bathroom-shelves.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/accessories/bathroom-shelves.jpg" alt="Bathroom Shelves" /></a></div>
+
+<div id="subcat-box-accessories"><a class="subtext-accessories" href="http://www.expressdecor.com/toilet-paper-holders.html">Toilet Paper Holders</a><a class="subImg" href="http://www.expressdecor.com/toilet-paper-holders.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/accessories/toilet-paper.jpg" alt="Toilet Paper Holders" /></a></div>
+
+<div id="subcat-box-accessories"><a class="subtext-accessories" href="http://www.expressdecor.com/towel-bars-and-rings.html">Towel Bars and Rings</a><a class="subImg" href="http://www.expressdecor.com/towel-bars-and-rings.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/accessories/towel-bar.jpg" alt="Towel Bars and Rings" /></a></div>
+
+<div id="subcat-box-accessories"><a class="subtext-accessories" href="http://www.expressdecor.com/toothbrush-holders.html">Toothbrush Holders</a><a class="subImg" href="http://www.expressdecor.com/toothbrush-holders.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/accessories/tooth-brush.jpg" alt="Toothbrush Holders" /></a></div>
+</div>
+</div></div></li><li id="cat-parts" class="parts"><a href="http://www.expressdecor.com/sink-and-faucet-parts.html" id="" class=""><span>Parts</span></a></li><li id="cat-brands" class="brands"><a href="/" id="" class=""><span>Brands</span></a><div class="sub"><div class="row">
+<div style="height: 291px; padding-top: 10px;">
+<div id="subcat-box-brands"><a class="subtext-brands" href="http://www.expressdecor.com/allied-brass-bathroom-accessories.html">Allied Brass</a><a class="subImg" href="http://www.expressdecor.com/allied-brass-bathroom-accessories.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/brands/allied-brass.jpg" alt="Allied Brass" /></a></div>
+<div id="subcat-box-brands"><a class="subtext-brands" href="http://www.expressdecor.com/amba-towel-warmers.html">Amba Towel Warmers</a><a class="subImg" href="http://www.expressdecor.com/amba-towel-warmers.html"> <img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/brands/amba.jpg" alt="Amba Towel Warmers" /></a></div>
+<div id="subcat-box-brands"><a class="subtext-brands" href="http://www.expressdecor.com/belle-foret.html">Belle Foret</a><a class="subImg" href="http://www.expressdecor.com/belle-foret.html"> <img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/brands/belle-foret.jpg" alt="Belle Foret" /></a></div>
+<div id="subcat-box-brands"><a class="subtext-brands" href="http://www.expressdecor.com/blomus-bathroom-accessories.html">Blomus</a><a class="subImg" href="http://www.expressdecor.com/blomus-bathroom-accessories.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/brands/blomus.jpg" alt="Blomus" /></a></div>
+<div id="subcat-box-brands"><a class="subtext-brands" href="http://www.expressdecor.com/dreamline.html">DreamLine</a><a class="subImg" href="http://www.expressdecor.com/dreamline.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/brands/dreamline.jpg" alt="DreamLine" /></a></div>
+<div id="subcat-box-brands"><a class="subtext-brands" href="http://www.expressdecor.com/eago.html">Eago</a><a class="subImg" href="http://www.expressdecor.com/eago.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/brands/eago.jpg" alt="Eago" /></a></div>
+<div id="subcat-box-brands"><a class="subtext-brands" href="http://www.expressdecor.com/elizabethan-classics.html">Elizabethan Classics</a><a class="subImg" href="http://www.expressdecor.com/elizabethan-classics.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/brands/elizabethan-classics.jpg" alt="Elizabethan Classics" /></a></div>
+<div id="subcat-box-brands"><a class="subtext-brands" href="http://www.expressdecor.com/fontaine.html">Fontaine</a><a class="subImg" href="http://www.expressdecor.com/fontaine.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/brands/fontaine.jpg" alt="Fontaine" /></a></div>
+<div id="subcat-box-brands"><a class="subtext-brands" href="http://www.expressdecor.com/giagni.html">Giagni</a><a class="subImg" href="http://www.expressdecor.com/giagni.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/brands/giagni.jpg" alt="Giagni" /></a></div>
+<div id="subcat-box-brands"><a class="subtext-brands" href="http://www.expressdecor.com/kraus.html">Kraus</a><a class="subImg" href="http://www.expressdecor.com/kraus.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/brands/kraus.jpg" alt="Kraus" /></a></div>
+<div id="subcat-box-brands"><a class="subtext-brands" href="http://www.expressdecor.com/schon.html">Schon</a><a class="subImg" href="http://www.expressdecor.com/schon.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/brands/schon.jpg" alt="Schon" /></a></div>
+<div id="subcat-box-brands"><a class="subtext-brands" href="http://www.expressdecor.com/tile-redi.html">Tile Redi</a><a class="subImg" href="http://www.expressdecor.com/tile-redi.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/brands/tile-redi.jpg" alt="Tile Redi" /></a></div>
+<div id="subcat-box-brands"><a class="subtext-brands" href="http://www.expressdecor.com/vigo.html">Vigo</a><a class="subImg" href="http://www.expressdecor.com/vigo.html"><img style="vertical-align: middle;" src="http://cdn.expressdecor.com/media/brands/vigo.jpg" alt="Vigo" /></a></div>
+</div>
+</div></div></li><div style="clear:both;"></div></ul><script>
+jQ(function() {
+jQ.fn.calcSubWidth = function() {
+            rowWidth = 0;
+            //Calculate row
+            jQ(this).find("ul").each(function() { //for each ul...
+                rowWidth += jQ(this).width(); //Add each ul's width together
+            });
+        };
+var paddingFix = 0;
+function megaHoverOver(){
+    jQ(this).find(".sub").stop().fadeTo(1, 1).show(); //Find sub and fade it in
+     subPaddingLeft = jQ(this).find('.sub').css('padding-right');
+	 subPaddingRight = jQ(this).find('.sub').css('padding-left');
+	 if (subPaddingLeft && subPaddingRight)
+	 {
+		 subPaddingLeft = parseInt(subPaddingRight.replace('px', ''));
+		 subPaddingRight = parseInt(subPaddingRight.replace('px', ''));
+		 paddingFix = subPaddingLeft + subPaddingRight;
+	 }
+    if ( jQ(this).find(".row").length > 0 ) { //If row exists...
+
+        var biggestRow = 0;	
+        jQ(this).find(".row").each(function() {
+            jQ(this).calcSubWidth(); //Call function to calculate width of all ul's
+            //Find biggest row
+            if(rowWidth > biggestRow) {
+                biggestRow = rowWidth;
+            }
+        });
+        //jQ(this).find(".sub").css({width : biggestRow + paddingFix}); //Set width
+        jQ(this).find(".sub").css({width : 935}); //Set width
+        jQ(this).find(".row:last").css({'margin':'0'});  //Kill last row's margin
+
+    } else { //If row does not exist...
+        jQ(this).calcSubWidth();  //Call function to calculate width of all ul's
+        jQ(this).find(".sub").css({'width' : rowWidth + paddingFix}); //Set Width
+
+    }
+}
+//On Hover Out
+function megaHoverOut(){
+  jQ(this).find(".sub").fadeTo(1, 0, function() { //Fade to 0 opactiy
+      jQ(this).hide();  //after fading, hide it
+  });
+}
+
+//Set custom configurations
+var config = {
+     sensitivity: 1, // number = sensitivity threshold (must be 1 or higher)
+     interval: 25, // number = milliseconds for onMouseOver polling interval
+     over: megaHoverOver, // function = onMouseOver callback (REQUIRED)
+     timeout: 200, // number = milliseconds delay before onMouseOut
+     out: megaHoverOut // function = onMouseOut callback (REQUIRED)
+};
+jQ("ul#pronav li .sub").css({'opacity':'0'}); //Fade sub nav to 0 opacity on default
+jQ("ul#pronav li").hoverIntent(config); //Trigger Hover intent with custom configurations
+});
+</script>    </div>
+                        <div class="main col1-layout">
+            <div class="col-main">
+                <div class="cart">
+    <div class="page-title title-buttons">
+        <h1>Shopping Cart</h1>
+                <ul class="checkout-types">
+                                                    <li><script src="http://checkout.google.com/files/digital/ga_post.js" type="text/javascript"></script><form method="post" action="https://www.expressdecor.com/googlecheckout/redirect/checkout/" onsubmit="setUrchinInputCode(pageTracker);">
+    <fieldset>
+        <input type="hidden" name="analyticsdata" value="" />
+        <input type="image" src="https://checkout.google.com/buttons/checkout.gif?merchant_id=831962095698260&amp;w=180&amp;h=46&amp;style=trans&amp;variant=text&amp;loc=en_US" title="Fast checkout through Google" alt="Fast Checkout through Google" />
+    </fieldset>
+</form>
+</li>
+                                            <li><p class="paypal-logo">
+<a id="ec_shortcut_0ae3fcf6a14280609779d92edf943eb0" href="https://www.expressdecor.com/paypal/express/start/"><img src="https://fpdbs.paypal.com/dynamicimageweb?cmd=_dynamic-image&buttontype=ecshortcut&locale=en_US&ordertotal=265.00&pal=MCPFY9KYPS3BG" alt="Checkout with PayPal" /></a>
+    <span class="paypal-or">-OR-</span>
+</p>
+</li>
+                                            <li>    <button type="button" title="Proceed to Checkout" class="button btn-proceed-checkout btn-checkout" onclick="window.location='https://www.expressdecor.com/onestepcheckout/';"><span><span>Proceed to Checkout</span></span></button>
+</li>
+                            </ul>
+            </div>
+    <ul class="messages"><li class="success-msg"><ul><li>Kraus KPF-2110 Single Lever Stainless Steel Pull Out Kitchen Faucet was added to your shopping cart.</li></ul></li></ul>        <form action="http://www.expressdecor.com/checkout/cart/updatePost/" method="post">
+        <fieldset>
+            <table id="shopping-cart-table" class="data-table cart-table">
+                <col width="1" />
+                <col />
+                                        <col width="1" />
+                                        <col width="1" />
+                            <col width="1" />
+                                        <col width="1" />
+
+                            <thead>
+                    <tr>
+                        <th rowspan="1">&nbsp;</th>
+                        <th rowspan="1"><span class="nobr">Product Name</span></th>
+                                                <th class="a-center" colspan="1"><span class="nobr">Unit Price</span></th>
+                        <th rowspan="1" class="a-center">Qty</th>
+                        <th class="a-center" colspan="1">Subtotal</th>
+                        <th rowspan="1" class="a-center">Remove</th>
+                    </tr>
+                                    </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="50" class="a-right">
+                                                            <button type="button" title="Continue Shopping" class="button btn-continue" onclick="setLocation('http://www.expressdecor.com/kraus-kpf-2110-single-lever-stainless-steel-pull-out-kitchen-faucet.html')"><span><span>Continue Shopping</span></span></button>
+                                                        <button type="submit" title="Update Shopping Cart" class="button btn-update"><span><span>Update Shopping Cart</span></span></button>
+                        </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                                    <tr>
+    <td><a href="http://www.expressdecor.com/kraus-kpf-2110-single-lever-stainless-steel-pull-out-kitchen-faucet.html" title="Kraus KPF-2110 Single Lever Stainless Steel Pull Out Kitchen Faucet" class="product-image"><img src="http://cdn.expressdecor.com/media/catalog/product/cache/1/thumbnail/75x/9df78eab33525d08d6e5fb8d27136e95/k/p/kpf2110-2.jpg" width="75" height="75" alt="Kraus KPF-2110 Single Lever Stainless Steel Pull Out Kitchen Faucet" /></a></td>
+    <td>
+        <h2 class="product-name">
+                    <a href="http://www.expressdecor.com/kraus-kpf-2110-single-lever-stainless-steel-pull-out-kitchen-faucet.html">Kraus KPF-2110 Single Lever Stainless Steel Pull Out Kitchen Faucet</a>
+                </h2>
+                                                </td>
+            <td class="a-right">
+                    <span class="cart-price">
+        
+                            <span class="price">$265.00</span>            
+        </span>
+
+
+            </td>
+            <td class="a-center">
+        <input name="cart[9031][qty]" value="1" size="4" title="Qty" class="input-text qty" maxlength="12" />
+    </td>
+        <td class="a-right">
+                    <span class="cart-price">
+        
+                            <span class="price">$265.00</span>            
+        </span>
+            </td>
+            <td class="a-center"><a href="http://www.expressdecor.com/checkout/cart/delete/id/9031/uenc/aHR0cDovL3d3dy5leHByZXNzZGVjb3IuY29tL2NoZWNrb3V0L2NhcnQv/" title="Remove item" class="btn-remove btn-remove2">Remove item</a></td>
+</tr>
+                                </tbody>
+            </table>
+            <script type="text/javascript">decorateTable('shopping-cart-table')</script>
+        </fieldset>
+    </form>
+    <div class="totals">
+        <table id="shopping-cart-totals-table">
+    <col />
+    <col width="1" />
+    <tfoot>
+        <tr>
+    <td style="" class="a-right" colspan="1">
+        <strong>Grand Total</strong>
+    </td>
+    <td style="" class="a-right">
+        <strong><span class="price">$265.00</span></strong>
+    </td>
+</tr>
+    </tfoot>
+    <tbody>
+        <tr>
+    <td style="" class="a-right" colspan="1">
+        Subtotal    </td>
+    <td style="" class="a-right">
+        <span class="price">$265.00</span>    </td>
+</tr>
+    </tbody>
+</table>
+                <ul class="checkout-types">
+                                                    <li><p class="paypal-logo">
+<a id="ec_shortcut_f3b1f08eda80ae015e07e297b9fe86d9" href="https://www.expressdecor.com/paypal/express/start/"><img src="https://fpdbs.paypal.com/dynamicimageweb?cmd=_dynamic-image&buttontype=ecshortcut&locale=en_US&ordertotal=265.00&pal=MCPFY9KYPS3BG" alt="Checkout with PayPal" /></a>
+    <span class="paypal-or">-OR-</span>
+</p>
+</li>
+                                            <li>    <button type="button" title="Proceed to Checkout" class="button btn-proceed-checkout btn-checkout" onclick="window.location='https://www.expressdecor.com/onestepcheckout/';"><span><span>Proceed to Checkout</span></span></button>
+</li>
+                                                                <li><form method="post" action="https://www.expressdecor.com/googlecheckout/redirect/checkout/" onsubmit="setUrchinInputCode(pageTracker);">
+    <fieldset>
+        <input type="hidden" name="analyticsdata" value="" />
+        <input type="image" src="https://checkout.google.com/buttons/checkout.gif?merchant_id=831962095698260&amp;w=180&amp;h=46&amp;style=trans&amp;variant=text&amp;loc=en_US" title="Fast checkout through Google" alt="Fast Checkout through Google" />
+    </fieldset>
+</form>
+</li>
+                                            <li>
+</li>
+                            </ul>
+            </div>
+    <div class="cart-collaterals">
+                <div class="deals">
+            <div class="discount">
+    <h2>Discount Codes</h2>
+    <form id="discount-coupon-form" action="http://www.expressdecor.com/checkout/cart/couponPost/" method="post">
+        <fieldset>
+            <label for="coupon_code">Enter your coupon code if you have one.</label>
+            <input type="hidden" name="remove" id="remove-coupone" value="0" />
+                        <div class="v-fix"><input class="input-text" id="coupon_code" name="coupon_code" value="" /></div>
+            <button class="button" onclick="discountForm.submit(false)" type="button" value="Apply Coupon"><span><span>Apply Coupon</span></span></button>
+                    </fieldset>
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+    var discountForm = new VarienForm('discount-coupon-form');
+    discountForm.submit = function (isRemove) {
+        if (isRemove) {
+            $('coupon_code').removeClassName('required-entry');
+            $('remove-coupone').value = "1";
+        } else {
+            $('coupon_code').addClassName('required-entry');
+            $('remove-coupone').value = "0";
+        }
+        return VarienForm.prototype.submit.bind(discountForm)();
+    }
+    //]]>
+    </script>
+</div>
+                    </div>
+            </div>
+
+</div>
+            </div>
+        </div>
+                <div class="footer-container">
+    <div class="footer">
+	<!-- BEGIN LivePerson Monitor. -->
+ <script type="text/javascript"><!-- 
+ var lpMTagConfig = {'lpServer' : "server.iad.liveperson.net",'lpNumber' : "33660894",'lpProtocol' : "https"}; function lpAddMonitorTag(src){if(typeof(src)=='undefined'||typeof(src)=='object'){src=lpMTagConfig.lpMTagSrc?lpMTagConfig.lpMTagSrc:'/hcp/html/mTag.js';}if(src.indexOf('http')!=0){src=lpMTagConfig.lpProtocol+"://"+lpMTagConfig.lpServer+src+'?site='+lpMTagConfig.lpNumber;}else{if(src.indexOf('site=')<0){if(src.indexOf('?')<0)src=src+'?';else src=src+'&';src=src+'site='+lpMTagConfig.lpNumber;}};var s=document.createElement('script');s.setAttribute('type','text/javascript');s.setAttribute('charset','iso-8859-1');s.setAttribute('src',src);document.getElementsByTagName('head').item(0).appendChild(s);} if (window.attachEvent) window.attachEvent('onload',lpAddMonitorTag); else window.addEventListener("load",lpAddMonitorTag,false);
+ --></script><!-- END LivePerson Monitor. -->
+<table border="0" cellpadding="0" width="100%">
+<tbody>
+<tr style="font-weight:bold; color:#FFF; font-family:Georgia, 'Times New Roman', Times, serif; text-transform:uppercase;background:url(http://cdn.expressdecor.com/media/b-bg.jpg)">
+<td style="font-weight: bold; line-height: 20px; padding-left: 3px;">Company info</td>
+<td style="font-weight: bold; line-height: 20px;">Helpful Links</td>
+<td style="font-weight: bold; line-height: 20px;">Shipping &amp; returns</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td style="font-size: 9px; text-transform: uppercase; font-weight: bold; padding-top: 9px; padding-left: 5px; padding-bottom: 19px;"><a href="/about.html">About ExpressDecor</a><br /> <a href="/contacts">Contact Us</a><br /> <a href="/privacy.html">Privacy Policy</a><br />
+<td style="font-size: 9px; text-transform: uppercase; font-weight: bold; padding-top: 9px; padding-left: 5px;"><a href="/coupons.html">Coupons</a><br /> <a href="/video-and-documentation-library.html">Installation Videos</a><br /> <a href="/faq.html">FAQs</a><br /> <a href="/catalog/seo_sitemap/category/">Sitemap</a></td>
+<td style="font-size: 9px; text-transform: uppercase; font-weight: bold; padding-top: 9px; padding-left: 5px;" width="170px"><a href="http://www.fedex.com/Tracking?cntry_code=us" target="_blank">Track your order</a><br /> <a href="/returns.html">Return Policy</a><br /> <a href="/customer/account/login/">Order Status</a></td>
+<td width="340px">
+<div class="b-phone"><img src="http://cdn.expressdecor.com/media/b-phone.jpg" alt="" /></div>
+</td>
+</tr>
+<tr>
+<td style="line-height: 45px; background: url(http://cdn.expressdecor.com/media/bottom-bg.jpg) no-repeat scroll 0% 0% transparent;" colspan="4">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align:center; padding-bottom:7px;"><img src="http://cdn.expressdecor.com/media/payment_icons.png" width="524" height="46" /></div>
+<div style="text-align: center;"><img src="//images.scanalert.com/meter/www.expressdecor.com/23.gif" alt="McAfee Secure sites help keep you safe from identity theft, credit card fraud, spyware, spam, viruses and online scams" width="94" height="54" />&nbsp;&nbsp;<a title="Express Decor BBB Business Review" rel="nofollow" href="http://www.bbb.org/new-york-city/business-reviews/kitchen-accessories/express-decor-in-roslyn-heights-ny-100934/#bbbonlineclick" target="_BLANK"><img src="https://ourbbbonline2.bbb.org/NYC/BBBOnlineSeal/100934/H2/1/seal.png" border="0" alt=" Express Decor BBB Business Review" /></a></div>        
+    </div>
+</div>
+<address class="copyright">&copy; 2011 Express Decor.com. All Rights Reserved.</address>
+            </div>
+</div>
+</body>
+</html>

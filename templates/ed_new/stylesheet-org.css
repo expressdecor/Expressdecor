@@ -1,0 +1,19 @@
+/*
+- these stylesheet settings apply to all media
+- for printing styles edit templates/print.css
+- learn more about CSS at http://www.w3schools.com/css/
+- 2003/11/23 PaulM forums.eeweb.nl
+*/
+
+/* replaces old "select width settings" in currencies.php, manufacturers.php box and search.php box */
+.boxText select {
+width: 95%;
+}
+/* set pageheading text (now included in h1 tag) size back to normal size */
+h1 {
+margin-bottom: 20px;
+font-family: Verdana, Arial, sans-serif;
+font-size: 20px;
+font-weight: bold;
+color: #9a9a9a;
+}

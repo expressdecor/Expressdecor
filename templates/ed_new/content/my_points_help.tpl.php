@@ -1,0 +1,63 @@
+<script type="text/javascript"><!--
+window.onload=show;
+
+function show(id) {
+var d = document.getElementById(id);
+	for (var i = 1; i<=20; i++) {
+		if (document.getElementById('answer_q'+i)) {document.getElementById('answer_q'+i).style.display='none';}
+	}
+if (d) {d.style.display='block';}
+}
+//--></script>
+<table cellpadding="0" cellspacing="0" bgcolor="White" width="800px" style="height:200px;">
+	<tr>
+		<td width="17" height="17"><img src="/images/lt.gif"></td>
+		<td width="100%"><img src="/images/x.gif"></td>
+		<td width="17" height="17"><img src="/images/rt.gif"></td>
+	</tr>
+	<tr>
+		<td width="17"><img src="/images/x.gif"></td>
+		<td class="main"><table border="0" width="100%" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
+            <td align="right"><?php// echo tep_image(DIR_WS_IMAGES . 'money.gif', HEADING_TITLE, HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td class="main"><?php echo TEXT_INFORMATION; ?></td>
+      </tr>
+      <tr>
+        <td class="main"><font color="FF0000"><b><?php //echo SUB_HEADING_TITLE; ?></b></font></td>
+      </tr>
+      <tr>
+       <td class="main"><?php //echo SUB_HEADING_TEXT; ?></td>
+      </tr>
+      <tr>
+        <td><?php echo tep_draw_separator('pixel_trans.gif', '100%', '10'); ?></td>
+      </tr>
+      <tr>
+        <td><table border="0" width="100%" cellspacing="1" cellpadding="2" class="infoBox">
+          <tr class="infoBoxContents">
+            <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+              <tr>
+                <td width="10"><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?></td>
+		        <td class="main"><a href="javascript:history.go(-1)"><?php echo tep_image_button('button_back.gif', IMAGE_BUTTON_BACK); ?></a></td>
+        <td align="right" class="main"><?php echo '<a href="' . tep_href_link(FILENAME_DEFAULT, '', 'NONSSL') . '">' . tep_image_button('button_continue.gif', IMAGE_BUTTON_CONTINUE) . '</a>'; ?></td>
+                <td width="10"><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+	</tr>
+	<tr><td height="100%"><img src="/images/x.gif"></td></tr>
+	<tr>
+		<td width="17" height="17"><img src="/images/lb.gif"></td>
+		<td width="100%"><img src="/images/x.gif"></td>
+		<td width="17" height="17"><img src="/images/rb.gif"></td>
+	</tr>
+</table>

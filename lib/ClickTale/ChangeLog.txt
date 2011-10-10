@@ -1,0 +1,23 @@
+release 0.15
+  - fixed a bug in ip authentication. Mask interpretation was corrected
+
+release 0.14
+  - added error handling for the buffer function to prevent cleaning the output when the module fails
+  - added scripts file debugging in the troubleshooting page
+
+release 0.13
+  - fixed a bug which prevented using a series of \ or any single $ followed by a number 
+	in the top or button scripts
+
+release 0.12
+
+  - removed old doc and added a readme.txt file that points to the wiki for new releases and documentation
+
+release 0.11
+  
+  - added support to processed gzipped responses
+  - fixed relative path of config.php loaded in the settings.
+      in some installations caused the module not to function
+  - added output buffer debug logs to make troubleshooting easier
+  - added support for clicktale custom header - no-store to prevent fetching of module's 404 pages
+  - added refreshing of cached pages to update their timestamp

@@ -1,0 +1,8 @@
+ACTIVITY,,,"Retrieving number of rows"
+ACTIVITY,,,"Preparing data"
+WARNING,2,6,"Unknown field, the column will be ignored"
+WARNING,2,8,"Unknown field, the column will be ignored"
+WARNING,2,9,"Unknown field, the column will be ignored"
+WARNING,2,10,"Unknown field, the column will be ignored"
+ACTIVITY,,,Importing
+ACTIVITY,,,"Reindexing: Catalog URL Rewrites"

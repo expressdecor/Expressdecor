@@ -1,0 +1,244 @@
+<?php
+$taskLists = $this->getTaskLists();
+$currentUser = $this->getCurrentUser();
+
+$noTasks = true;
+?>
+<div id="user_task_list_wrapper">
+    <div id="user_task_list">
+        <div id="user_task_list_content">
+            <h3><?php echo $this->__('My Task List'); ?></h3><a href="#" id="minimise-tasks-list"><?php echo $this->__('maximize'); ?></a>
+            <div class="clear"></div>
+                <div style="padding:0 0 10px; text-align: right;">
+                    <?php echo Mage::helper('nicommerce_taskmanager')->__('Filter tasks by priority:'); ?>
+                    <select id="prioritySelectah">
+                        <option value="any"><?php echo Mage::helper('nicommerce_taskmanager')->__('any');?></option>
+                        <?php
+                        for ( $i=1; $i<=5; $i++ ) {
+                            echo '<option value="'.$i.'"';
+                            if ( $i == $this->getPriorityFilter() ) {
+                                echo ' selected ';
+                            }
+                            echo '>'.Mage::helper('nicommerce_taskmanager')->__($i).'</option>';
+                        } ?>
+                    </select>
+                </div>
+            <?php if(!$taskLists->getSize()): ?>
+            <?php echo $this->__('There are no tasks'); ?>
+            <?php else: ?>
+            <dl>
+                <?php foreach($taskLists as $taskList): ?>
+                <?php $userTasks = $taskList->getTasksByUser( $currentUser->getId(), $this->getPriorityFilter() ); ?>
+                <?php if(!$userTasks->getSize()) continue; ?>
+                <dt><?php echo $taskList->getName(); ?> <a href="#" id="toggleTL<?php echo $taskList->getId(); ?>" onclick="collapseExpand('<?php echo $taskList->getId(); ?>'); return false;">(collapse)</a></dt>
+                <dd>
+                    <ul class="tasklist" id="taskList-<?php echo $taskList->getId(); ?>">
+                        <?php foreach($userTasks as $userTask): ?>
+                        <?php $noTasks = false; ?>
+                        <?php $class = ($userTask->getCompletedOn())? ' class="task-completed"': ''; ?>
+                        <?php $checked = ($userTask->getCompletedOn())? ' checked="checked"': ''; ?>
+                        <li<?php echo $class; ?>>
+                            <input type="checkbox" name="mark_as_complete" value="<?php echo $userTask->getId(); ?>"<?php echo $checked; ?> />
+                            <span class="task-content"><?php echo $userTask->getContent(); ?></span>
+                                <?php $comments = $userTask->getComments(); ?>
+                                <?php if( count( $comments ) >0 ): ?>
+                                <a href="#" class="showcomments"><?php echo $this->__('Show comments'); ?></a>
+                                <div style="display:none;" class="comments">
+                                    <table style="border:0;" cell-spacing="0" cell-padding="0" border="0">
+                                    <?php foreach ($comments as $comment): ?>
+                                        <tr>
+                                            <td style="border:0;" width="20%"><em><?php echo $comment->getUser()->getUsername();?></em></td>
+                                            <td style="border:0;" width="80%"><?php echo $comment->getContent();?></td>
+                                        </tr>
+                                    <?php endforeach;?>
+                                    </table>
+                                </div>
+                                <?php endif; ?>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </dd>
+                <?php endforeach; ?>
+            </dl>
+            <?php if($noTasks): ?>
+            <?php echo $this->__('There are no tasks'); ?>
+            <?php endif; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function updateTasks() {
+        var prioValue = $('prioritySelectah').value;
+        var url = "<?php echo Mage::getSingleton('adminhtml/url')->getUrl('taskmanager/adminhtml_taskmanager/getAjaxTasks'); ?>priority/"+prioValue+"/uid/"+<?php echo $currentUser->getId() ?>;
+        
+        new Ajax.Request(url,{
+                method:'get',
+                parameters: {},
+                evalJSON:'force',
+                onSuccess: function(transport){
+                    if(transport.responseJSON && transport.responseJSON.result == 'error') {
+                        var msg = htmlError.replace('{{message}}',transport.responseJSON.response);
+                                $('messages').update(msg);
+                    } else if(transport.responseText) {
+                        //$('user_task_list_wrapper').update('ff');
+                        $('user_task_list_wrapper').update(transport.responseText);
+                        initTaskObservers();
+                    }
+                },
+                onFailure: function(){
+                        var errorMessage = "<?php echo $this->__('Server error'); ?>";
+                        var msg = htmlError.replace('{{message}}',errorMessage);
+                        $('messages').update(msg);
+                }
+            });
+    }
+
+    function initTaskObservers() {
+        $('prioritySelectah').observe('change', function(){
+            updateTasks();
+        });
+
+    $$('.showcomments').each(function(showcommentslnk){
+        showcommentslnk.observe('click',function(event){
+            showcommentslnk.next('.comments').toggle();
+            if ( showcommentslnk.innerHTML == "<?php echo $this->__('Show comments'); ?>" ) {
+                /*addCommentBtn.replace("<a class='add-new-comment-btn' href='#' style='font-size:10px;display:inline;text-decoration:underline;'><?php echo $this->__('Done adding comments'); ?></a>");*/
+                showcommentslnk.innerHTML = "<?php echo $this->__('Hide comments'); ?></a>";
+            }
+            else {
+                showcommentslnk.innerHTML = ("<?php echo $this->__('Show comments'); ?>");
+            }
+            Event.stop(event);
+        });
+    });
+
+        $('minimise-tasks-list').addClassName('minimize');
+        $('minimise-tasks-list').update("<?php echo $this->__('minimize'); ?>");
+        $('minimise-tasks-list').observe('click',function(event){
+            if(this.hasClassName('minimize')){
+                this.removeClassName('minimize');
+                this.addClassName('maximize');
+
+                this.update("<?php echo $this->__('maximize'); ?>");
+
+                $('user_task_list_content').makeClipping().setStyle({height: '10px'});
+            } else {
+                this.removeClassName('maximize');
+                this.addClassName('minimize');
+
+                this.update("<?php echo $this->__('minimize'); ?>");
+                $('user_task_list_content').undoClipping().setStyle({height: 'auto'});
+            }
+            Event.stop(event);
+        });
+
+
+        $$('input[name="mark_as_complete"]').each(function(markCompleteTaskBtn){
+
+            markCompleteTaskBtn.observe('click', function(event){
+                var url = "<?php echo Mage::getSingleton('adminhtml/url')->getUrl('taskmanager/adminhtml_taskmanager/userMarkTask'); ?>";
+
+                var action = (markCompleteTaskBtn.checked)? 'check': 'uncheck';
+
+                new Ajax.Request(url,{
+                        method:'post',
+                        parameters: {task_id: markCompleteTaskBtn.value, action: action},
+                        evalJSON:'force',
+                        onSuccess: function(transport){
+                            if(transport.responseJSON && transport.responseJSON.result == 'error') {
+                                var msg = htmlError.replace('{{message}}',transport.responseJSON.response);
+                                        $('messages').update(msg);
+                                        markCompleteTaskBtn.checked = false;
+                            } else if(transport.responseText) {
+                               $('messages').update('');
+                               if(action == 'uncheck') {
+                                    markCompleteTaskBtn.up('li').removeClassName('task-completed');
+                               } else {
+                                    var list = markCompleteTaskBtn.up('ul');
+                                    //move at the bottom
+                                    //markCompleteTaskBtn.up('li').addClassName('task-completed');
+                                    //var liContent = markCompleteTaskBtn.up('li').innerHTML;
+                                    //markCompleteTaskBtn.up('ul').insert({'bottom':'<li class="task-completed">'+liContent+'</li>'});
+                                    markCompleteTaskBtn.up('li').remove();
+
+                                    // remove empty list
+                                    if(list.childElements().length == 0) {
+                                        list.up('dd').previous('dt').remove();
+                                        list.up('dd').remove();
+                                    }
+                               }
+
+
+                            }
+                        },
+                        onFailure: function(){
+                            markCompleteTaskBtn.checked = false;
+                                var errorMessage = "<?php echo $this->__('Server error'); ?>";
+                                var msg = htmlError.replace('{{message}}',errorMessage);
+                                $('messages').update(msg);
+                        }
+                    });
+                    Event.stop(event);
+            });
+        });
+
+        $$('.tasklist').each(function(s){
+            if ( getCookie( s.getAttribute('id') ) == '(expand)' ) {
+                s.toggle();
+                $( 'toggleTL'+s.getAttribute('id').substr(9) ).update('(expand)');
+            }
+        });
+    }
+
+    $('user_task_list_content').makeClipping().setStyle({height: '10px'});
+     
+    var htmlError = '<ul class="messages">';
+htmlError += '		<li class="error-msg">';
+htmlError += '  			<ul>';
+htmlError += "		 		<li>{{message}}</li>";
+htmlError += ' 			</ul>';
+htmlError += '  		</li>';
+htmlError += '</ul>	';
+
+initTaskObservers();
+$('minimise-tasks-list').removeClassName('minimize');
+$('minimise-tasks-list').addClassName('maximize');
+$('minimise-tasks-list').update("<?php echo $this->__('maximize'); ?>");
+
+function getCookie(c_name)
+{
+if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=");
+  if (c_start!=-1)
+    {
+    c_start=c_start + c_name.length+1;
+    c_end=document.cookie.indexOf(";",c_start);
+    if (c_end==-1) c_end=document.cookie.length;
+    return unescape(document.cookie.substring(c_start,c_end));
+    }
+  }
+return "";
+}
+
+function setCookie(c_name,value,expiredays)
+{
+var exdate=new Date();
+exdate.setDate(exdate.getDate()+expiredays);
+document.cookie=c_name+ "=" +escape(value)+
+((expiredays==null) ? "" : ";expires="+exdate.toUTCString());
+}
+
+function collapseExpand( listId ) {
+    if( $('toggleTL'+listId).innerHTML == '(expand)' ) {
+        $('toggleTL'+listId).update('(collapse)');
+    }
+    else {
+        $('toggleTL'+listId).update('(expand)');
+    }
+    $('taskList-'+listId).toggle();
+
+    setCookie( 'taskList-'+listId, $('toggleTL'+listId).innerHTML, 365 );
+}
+</script>

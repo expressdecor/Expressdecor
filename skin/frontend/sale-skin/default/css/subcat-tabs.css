@@ -1,0 +1,17 @@
+.subcat-box {float:left;
+height:89px;
+margin:3px 16px 0 6px;
+width:164px;}
+.subImg {}
+.subtext {
+color:#333333;
+display:block;
+font-weight:bold;
+height:22px;
+margin:0 10px;
+padding:61px 0 0 11px;
+position:absolute;
+text-align:center;
+text-decoration:none;
+width:149px;}
+.topblock{width:940px;}

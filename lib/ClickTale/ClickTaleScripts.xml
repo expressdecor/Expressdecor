@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<scripts>
+  <script name="Top" DoNotReplaceCondition = "&lt;!-- ClickTale Top part --&gt;">
+    <![CDATA[
+<!-- ClickTale Integration module. Please follow the accompanying documentation to properly configure it. -->
+<!-- ClickTale Top part -->
+<script type="text/javascript">
+var WRInitTime=(new Date()).getTime();
+</script>
+<!-- ClickTale end of Top part -->
+]]>
+  </script>
+  <script name="Bottom" DoNotReplaceCondition="&lt;!-- No ClickTale --&gt;" InsertBefore="&lt;!-- ClickTale Bottom part Here --&gt;|&lt;/body&gt;">
+    <![CDATA[
+<!-- ClickTale Integration module. Please follow the accompanying documentation to properly configure it. -->
+<!-- ClickTale Bottom part -->
+<div id="ClickTaleDiv" style="display: none;"></div>
+<script type='text/javascript'>
+document.write(unescape("%3Cscript%20src='"+
+ (document.location.protocol=='https:'?
+  'https://clicktale.pantherssl.com/':
+  'http://s.clicktale.net/')+
+ "WRc5.js'%20type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var ClickTaleSSL=1;
+ClickTaleFetchFrom="%FetchFromUrl%";
+if(typeof ClickTale=='function') ClickTale(688,1,"www08");
+</script>
+<!-- ClickTale end of Bottom part -->
+]]>
+  </script>
+</scripts>
+
+

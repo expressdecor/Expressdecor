@@ -1,0 +1,9 @@
+ACTIVITY,,,"Fetching number of rows"
+ACTIVITY,,,Importing
+SUCCESS,23,0,
+SUCCESS,118,0,
+SUCCESS,119,0,
+SUCCESS,120,0,
+SUCCESS,121,0,
+ACTIVITY,,,"Running after import procedures"
+ACTIVITY,,,Done

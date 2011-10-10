@@ -1,0 +1,330 @@
+<script type="text/javascript">
+function CVVPopUpWindow(url) {
+	window.open(url,'popupWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=600,height=233,screenX=150,screenY=150,top=150,left=150')
+}
+</script>
+<div id="couponErrorDiv" style="display: none;">
+	<div class="errorHeading">The coupon code you've entered is invalid or has expired.</div>
+	<div style="padding: 10px;">
+		To view all the current coupon codes, please visit the <a href="http://www.expressdecor.com/coupons.php" class="target-blank">"Coupons"</a> section of the website or call our customer service department 866-507-2725 to receive a discount on your order.
+	</div>
+	<div style="text-align: right;padding: 10px;"><input style="border: 1px solid #777;" type="button" name="close" value="Close" onClick="CloseErrorWindow()"></div>
+</div>
+<?php
+//	echo "<pre>"; echo print_r($order); echo "</pre>";
+  if (MODULE_ORDER_TOTAL_INSTALLED) {
+    $order_total_modules->process();
+//    echo $order_total_modules->output();
+  }
+?>
+    <?php echo tep_draw_form('checkout_payment', tep_href_link(FILENAME_CHECKOUT_CONFIRMATION, '', 'SSL'), 'post', 'onsubmit="return check_form();" autocomplete="off" name="checkout_payment"'); ?><table border="0" width="100%" cellspacing="0" cellpadding="0">
+<?php
+  if (isset($HTTP_GET_VARS['payment_error'])) {
+?>
+      <tr>
+        <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+          <tr>
+            <td class="main"><b style="color:red"><?php echo str_replace('+', ' ', $HTTP_GET_VARS['payment_error']); ?></b></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><table border="0" width="100%" cellspacing="1" cellpadding="2" class="infoBoxNotice">
+          <tr class="infoBoxNoticeContents">
+            <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+              <tr>
+                <td><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?></td>
+                <td class="main" width="100%" valign="top"><span style="color:red"><?php echo tep_output_string_protected(str_replace('+', ' ', $HTTP_GET_VARS['payment_errexplain'])); ?></span></td>
+                <td><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><?php echo tep_draw_separator('pixel_trans.gif', '100%', '10'); ?></td>
+      </tr>
+<?php
+  } elseif (isset($HTTP_GET_VARS['error_message']) ) {
+?>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#couponErrorDiv').show();
+	});
+	
+	function CloseErrorWindow() {
+		$('#couponErrorDiv').hide();
+	}
+</script>
+<?php
+  }
+?>
+      <tr>
+        <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+          <tr>
+            <td class="main"><b><?php echo TABLE_HEADING_BILLING_ADDRESS; ?></b></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid #dddddd"><table border="0" width="100%" cellspacing="1" cellpadding="2" class="infoBox">
+          <tr class="infoBoxContents">
+            <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+			  <tr>
+                <td class="main" valign="top" style="padding-left:25px;"><?php echo tep_address_label($customer_id, $billto, true, ' ', '<br>'); ?></td>
+				<td class="main" align="right" valign="bottom" width="40%"><!--<?php echo TEXT_SELECTED_BILLING_DESTINATION . '<br>'?>--><?php echo '<a href="' . tep_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '', 'SSL') . '">' . tep_image_button('button_change_address.gif', IMAGE_BUTTON_CHANGE_ADDRESS) . '</a>';?></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+          <tr>
+            <td class="main"><b><?php echo TABLE_HEADING_PAYMENT_METHOD; ?></b></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><table border="0" width="100%" cellspacing="1" cellpadding="2" class="infoBox">
+          <tr class="infoBoxContents">
+            <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+<?php
+  // ** GOOGLE CHECKOUT **
+  // Skips Google checkout as a payment option on the payments page since that option
+  // is provided in the checkout page
+  
+  $selection = $payment_modules->selection();
+  for($i=0, $n=sizeof($selection); $i<$n; $i++) {
+    if($selection[$i]['id'] == 'googlecheckout') {
+      array_splice($selection, $i, 1);	
+      break;   
+    }
+  }
+  // ** END GOOGLE CHECKOUT **
+
+  if (sizeof($selection) > 1) {
+?>
+              <tr>
+                <td><?php echo tep_draw_separator('pixel_trans.gif', '4', '1'); ?></td>
+                <td class="main" valign="top"><?php echo TEXT_SELECT_PAYMENT_METHOD; ?></td>
+                <td class="main" valign="top" align="right"><b><?php echo TITLE_PLEASE_SELECT; ?></b><br><?php echo tep_image(DIR_WS_IMAGES . 'arrow_east_south.gif'); ?></td>
+                <td><?php echo tep_draw_separator('pixel_trans.gif', '4', '1'); ?></td>
+              </tr>
+<?php
+  } else {
+?>
+              <tr>
+                <td><?php echo tep_draw_separator('pixel_trans.gif', '4', '1'); ?></td>
+                <td class="main" width="100%" colspan="2"><?php echo TEXT_ENTER_PAYMENT_INFORMATION; ?></td>
+                <td><?php echo tep_draw_separator('pixel_trans.gif', '4', '1'); ?></td>
+              </tr>
+<?php
+  }
+
+  $radio_buttons = 0;
+  for ($i=0, $n=sizeof($selection); $i<$n; $i++) {
+?>
+              <tr>
+                <td><?php echo tep_draw_separator('pixel_trans.gif', '4', '1'); ?></td>
+                <td colspan="2"><table border="0" width="100%" cellspacing="0" cellpadding="2" style="border: 1px solid #DDD">
+<?php
+    if ( ($selection[$i]['id'] == $payment) || ($n == 1) ) {
+      echo '                  <tr id="defaultSelected" class="moduleRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectRowEffect(this, ' . $radio_buttons . ')">' . "\n";
+    } else {
+      echo '                  <tr class="moduleRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectRowEffect(this, ' . $radio_buttons . ')">' . "\n";
+    }
+?>
+										<td class="main" style="padding-left: 10px;"><b><?php echo $selection[$i]['module']; ?></b></td>
+										<td class="main" align="right" style="padding-right: 10px;">
+<?php
+		if (sizeof($selection) > 1) {
+			if ($selection[$i]['id'] == "payflowlink") {
+				echo tep_draw_radio_field('payment', $selection[$i]['id'], true);
+			} else {
+				if($order->info['payment_method']=="" && $selection[$i]['id']=='payflowpro'){
+					echo tep_draw_radio_field('payment', $selection[$i]['id'], true);
+				}
+				else {
+					echo tep_draw_radio_field('payment', $selection[$i]['id']);
+				}
+			}
+		} else {
+			echo tep_draw_hidden_field('payment', $selection[$i]['id']);
+		}
+?>
+										</td>
+									</tr>
+<?php
+    if (isset($selection[$i]['error'])) {
+?>
+                  <tr>
+                    <td class="main" colspan="2"><?php echo $selection[$i]['error']; ?></td>
+                  </tr>
+<?php
+    } elseif (isset($selection[$i]['fields']) && is_array($selection[$i]['fields'])) {
+?>
+                  <tr>
+                    <td colspan="3"><table border="0" cellspacing="0" cellpadding="2">
+<?php
+      for ($j=0, $n2=sizeof($selection[$i]['fields']); $j<$n2; $j++) {
+?>
+                      <tr>
+                        <td width="10"><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?></td>
+                        <td class="main" width="150"><?php echo $selection[$i]['fields'][$j]['title']; ?></td>
+                        <td class="main"><?php echo $selection[$i]['fields'][$j]['field']; ?></td>
+                      </tr>
+<?php
+      }
+?>
+                    </table></td>
+                  </tr>
+<?php
+    }
+?>
+                </table></td>
+                <td><?php echo tep_draw_separator('pixel_trans.gif', '4', '1'); ?></td>
+              </tr>
+<?php
+    $radio_buttons++;
+  }
+
+?>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><?php echo tep_draw_separator('pixel_trans.gif', '100%', '10'); ?></td>
+      </tr>
+<?php
+/* kgt - discount coupons */
+	if( MODULE_ORDER_TOTAL_DISCOUNT_COUPON_STATUS == 'true' ) {
+?>
+      <tr>
+        <td style="padding:5px 18px;"><table border="0" width="100%" cellspacing="0" cellpadding="4" style="border: 1px solid #ddd;">
+          <tr>
+            <td class="main"><strong>Extra Savings</strong></td>
+          </tr>
+					<?php 
+						$q = "select coupons_id, coupons_description from discount_coupons where coupons_discount_type='percent' and coupons_for_all_products = 1 and coupons_date_start < '". date('Y-m-d H:i:s') ."' and coupons_date_end > '". date('Y-m-d H:i:s') ."'";
+						$res = tep_db_query($q);
+						if (tep_db_num_rows($res)) {
+							$row = tep_db_fetch_array($res);
+					?>
+					<tr>
+						<td class="main" style="padding-left:5px"><font style="font-size:18px">
+							Please enter the following coupon code <strong style="color:#D94E01;"><?php echo $row['coupons_id']; ?></strong> to receive <strong style="color:#D94E01;"><?php echo $row['coupons_description']; ?>.</strong>
+							</font>
+						</td>
+					</tr>
+					<?php
+						}
+						else {
+					?>
+          <tr>
+            <td class="main"><?php echo TABLE_HEADING_COUPON; ?></td>
+          </tr>
+					<?php
+						}
+					?>
+					<tr>
+            <td><table border="0" cellspacing="0" cellpadding="2">
+              <tr>
+                <td class="main"><?php echo ENTRY_DISCOUNT_COUPON; ?></td>
+                <td><?php echo tep_draw_input_field('coupon', '', 'size="32" maxlength="30" style="background-color:#ffc57a"'); ?></td>
+              </tr>
+              <tr>
+                <td class="main">RCAP:</td>
+                <td><?php echo tep_draw_input_field('rcap', '', 'size="32" maxlength="30"'); ?></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><?php echo tep_draw_separator('pixel_trans.gif', '100%', '10'); ?></td>
+      </tr>
+<?php
+	}
+/* end kgt - discount coupons */
+/* <!-- Points/Rewards Module V2.00 Redeemption box bof --> */
+  if ((USE_POINTS_SYSTEM == 'true') && (USE_REDEEM_SYSTEM == 'true')) {
+    echo points_selection();
+    if (tep_not_null(USE_REFERRAL_SYSTEM)) {
+      echo referral_input();
+    }
+  }
+/* <!-- Points/Rewards Module V2.00 Redeemption box eof --> */
+?>
+      <tr>
+        <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+          <tr>
+            <td class="main"><b><?php echo TABLE_HEADING_COMMENTS; ?></b></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><table border="0" width="100%" cellspacing="1" cellpadding="2" class="infoBox">
+          <tr class="infoBoxContents">
+            <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+              <tr>
+                <td><?php echo tep_draw_textarea_field('comments', 'soft', '60', '5', '', 'style="width:98%"'); ?></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><?php echo tep_draw_separator('pixel_trans.gif', '100%', '10'); ?></td>
+      </tr>
+      <tr>
+        <td><table border="0" width="100%" cellspacing="1" cellpadding="2" class="infoBox">
+          <tr class="infoBoxContents">
+            <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+              <tr>
+                <td width="10"><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?></td>
+                <td class="main"><b><?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '</b><br>' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?></td>
+                <td class="main" align="right"><?php echo tep_image_submit('button_continue.gif', IMAGE_BUTTON_CONTINUE); ?></td>
+                <td width="10"><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><?php echo tep_draw_separator('pixel_trans.gif', '100%', '10'); ?></td>
+      </tr>
+      <tr>
+        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="25%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="50%" align="right"><?php echo tep_draw_separator('pixel_silver.gif', '1', '5'); ?></td>
+                <td width="50%"><?php echo tep_draw_separator('pixel_silver.gif', '100%', '1'); ?></td>
+              </tr>
+            </table></td>
+            <td width="25%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="50%"><?php echo tep_draw_separator('pixel_silver.gif', '100%', '1'); ?></td>
+                <td><?php echo tep_image(DIR_WS_IMAGES . 'checkout_bullet.gif'); ?></td>
+                <td width="50%"><?php echo tep_draw_separator('pixel_silver.gif', '100%', '1'); ?></td>
+              </tr>
+            </table></td>
+            <td width="25%"><?php echo tep_draw_separator('pixel_silver.gif', '100%', '1'); ?></td>
+            <td width="25%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="50%"><?php echo tep_draw_separator('pixel_silver.gif', '100%', '1'); ?></td>
+                <td width="50%"><?php echo tep_draw_separator('pixel_silver.gif', '1', '5'); ?></td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td align="center" width="25%" class="checkoutBarFrom"><?php echo '<a href="' . tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL') . '" class="checkoutBarFrom">' . CHECKOUT_BAR_DELIVERY . '</a>'; ?></td>
+            <td align="center" width="25%" class="checkoutBarCurrent"><?php echo CHECKOUT_BAR_PAYMENT; ?></td>
+            <td align="center" width="25%" class="checkoutBarTo"><?php echo CHECKOUT_BAR_CONFIRMATION; ?></td>
+            <td align="center" width="25%" class="checkoutBarTo"><?php echo CHECKOUT_BAR_FINISHED; ?></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></form>

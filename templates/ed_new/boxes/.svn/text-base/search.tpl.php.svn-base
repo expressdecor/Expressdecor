@@ -1,0 +1,7 @@
+<?php /* infobox template  */ ?>
+			<div class="simple_block clearfix">
+				<h1 class="serch_title">Serch products</h1>
+				<form name="quick_find" action="<?php echo $form_link?>" method="GET" class="simple_form clearfix">
+					<?php echo $boxContent ?>
+				</form>
+			</div>

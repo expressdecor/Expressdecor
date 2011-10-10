@@ -1,0 +1,81 @@
+<script>
+function loadpic(subid, dest) {
+	eval('img'+dest+'.location.href="vd_img.php/products_id/'+subid+'"');
+}
+function frmcheck() {
+	if(frm.ProductID1.value == "" || frm.ProductID2.value == "") {
+		alert("Choose all products please");
+	} else {
+		frm.submit();
+	}
+}
+</script>
+<?php echo tep_draw_form('frm', tep_href_link(FILENAME_VALUEDEALS_PROCESS)); ?>
+<table cellspacing=0 cellpadding=5 width="100%" align="center">
+	<tr bgcolor="white">
+		<td class="pageHeading" align="center" valign="middle">
+			<?php echo HEADING_TEXT; ?>
+		</td>
+	</tr>
+<?php
+  $valuedeals_query_raw = "select v.vd_id, vd_name, vd_price, price_from, price_to, categories_id, categories_name 
+  							from ".TABLE_VALUEDEALS." v
+							left join ".TABLE_VALUEDEALS_ATTR." va on v.vd_id = va.vd_id
+							left join ".TABLE_CATEGORIES_DESCRIPTION." cd on va.category = cd.categories_id
+							where vd_status = 1";
+  $valuedeals_query = tep_db_query($valuedeals_query_raw);
+  $vd_pic_id = 0;
+  $vdID = 0;
+  while ($valuedeals = tep_db_fetch_array($valuedeals_query)) {
+    if ($vdID !=0 && $vdID !=$valuedeals['vd_id']) break; ///////////////added for only one VD
+    $vdID = $valuedeals['vd_id'];
+    $vd_pic_id++;
+    $products_query_raw = "select p.products_id, pd.products_name 
+							from " . TABLE_PRODUCTS . " p 
+							left join " . TABLE_PRODUCTS_DESCRIPTION . " pd on p.products_id = pd.products_id 
+							where products_price > ".$valuedeals['price_from']." 
+							and products_price < ".$valuedeals['price_to']."
+							and p.products_status = '1'
+							and pd.language_id = '" . (int)$languages_id . "'
+							order by pd.products_name";
+	$products_query = tep_db_query($products_query_raw);
+?>
+	<tr>
+		<td valign="middle">
+			Choose a <b><?php echo $valuedeals['categories_name']?></b>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" valign="middle">
+		<select name=ProductID<?php echo $vd_pic_id?> size="10" style="width: 100%; font-size:10px;" onchange="javascript:loadpic(this.value, <?php echo $vd_pic_id?>)">
+<?php 
+    while ($products = tep_db_fetch_array($products_query)) {
+?>
+			<option value="<?php echo $products['products_id']?>" ><?php echo $products['products_name']?></option>
+<?php
+    }
+?>
+		</select>
+		</td>
+	</tr>
+	<tr>
+		<td align="right" valign="middle">
+			<IFRAME style="WIDTH:105px; HEIGHT:105px; border:0px;" name=img<?php echo $vd_pic_id?> src="vd_img.php" frameborder=0></IFRAME>	
+		</td>
+	</tr>
+	<script>
+		img<?php echo $vd_pic_id?>.location.href="vd_img.php/products_id/"+frm.ProductID<?php echo $vd_pic_id?>.value;
+	</script>
+<?php
+  }
+?>
+	<tr>
+		<td>
+			<input type="Button" name="asd" value="Add to cart" onclick="frmcheck();" style="background-color:#d94e01; color:white; font-size:10px; font-family:tahoma,sans">
+			<?php  //echo '<a href="#" onclick="frmcheck();">'.tep_image(tep_output_string(DIR_WS_LANGUAGES . $language . '/images/buttons/button_in_cart.gif'), IMAGE_BUTTON_IN_CART).'</a>' ?>
+		</td>
+	</tr>
+</table>
+<input type="Hidden" name="valuedeals_id" value="<?php echo $vdID?>">
+</form>
+

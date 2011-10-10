@@ -1,0 +1,1453 @@
+<link rel="stylesheet" type="text/css" href="/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="/ext/jQuery/themes/smoothness/ui.all.css">
+<script type="text/javascript" language="javascript" src="/ext/jQuery/jQuery.ajaxq.js"></script>
+<script type="text/javascript" language="javascript" src="/ext/jQuery/jQuery.ui.js"></script>
+
+<style type="text/css">       
+
+
+    .activeField
+    {
+        background-image: none;
+        background-color: #ffffff;
+        border: solid 1px #000;
+        height: 11pt;
+    }
+    .idle
+    {
+        border: solid 1px #000;
+        height: 11pt;   
+    }
+    
+    .activeFieldText
+    {
+        background-image: none;
+        background-color: #ffffff;
+        border: solid 1px #000;
+        height: 70pt;
+        width: 250pt;
+    }
+    .idleText
+    {
+        border: solid 1px #000;
+        height: 70pt;   
+        width: 250pt;
+    }
+    
+    .inputRequirement
+    {
+        color:red;
+        font-size: 12pt; 
+        font-weight: bold;
+    }
+</style>
+    
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+    $("input[type='text'], input[type='password']").addClass("idle");
+        $("input[type='text'], input[type='password']").focus(function(){
+            $(this).addClass("activeField").removeClass("idle");
+    }).blur(function(){
+            $(this).removeClass("activeField").addClass("idle");
+    });
+    
+    $("textarea").addClass("idleText");
+        $("textarea").focus(function(){
+            $(this).addClass("activeFieldText").removeClass("idleText");
+    }).blur(function(){
+            $(this).removeClass("activeFieldText").addClass("idleText");
+    });
+    
+    });
+</script>
+
+
+
+<script language="javascript"><!--
+
+   var ajaxCharset = '<?php echo CHARSET;?>';
+   
+   
+   function showAjaxMessage(message){
+        //$('#checkoutButtonContainer').hide();
+        //$('#ajaxMessages').show().html(message);
+    }
+
+    function hideAjaxMessage(){
+        //$('#checkoutButtonContainer').show();
+        //$('#ajaxMessages').hide();
+    }
+   
+   
+   function queueAjax(o){
+        var options = {
+            url: o.url,
+            cache: o.cache || false,
+            dataType: o.dataType || 'html',
+            type: o.type || 'GET',
+            contentType: o.contentType || 'application/x-www-form-urlencoded; charset=' + ajaxCharset,
+            data: o.data || false,
+            beforeSend: function (){
+                showAjaxMessage(o.beforeSendMsg || 'Please Wait...');
+            },
+            complete: hideAjaxMessage,
+            success: o.success,
+            error: function (){
+                alert(o.errorMsg || 'There was an ajax error, please contact IT Web Experts for support.');
+            }
+        };
+        
+        $.ajaxq('update', options);
+    }
+
+  function updateCartView(){
+      if (<?php echo ($onlyReservations === true ? 'true' : 'false');?> || <?php echo (isset($_SESSION['newRentAccount']) ? 'true' : 'false');?>){
+          return false;
+      }
+      checkoutUpdateCartView({
+          url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=updateCartView', $request_type));?>',
+          eUrl: '<?php echo fixSeoLink(tep_href_link(FILENAME_SHOPPING_CART));?>'
+      });
+  }
+  
+  function updateFinalProductListing(){
+      if (<?php echo ($onlyReservations === true ? 'true' : 'false');?> || <?php echo (isset($_SESSION['newRentAccount']) ? 'true' : 'false');?>){
+          return false;
+      }
+      
+      checkoutUpdateFinalProductListing({
+          url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=getProductsFinal', $request_type));?>'
+      });
+  }
+  
+  function updateOrderTotals(){
+      checkoutUpdateOrderTotals({
+          url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=getOrderTotals', $request_type));?>'
+      });
+  }
+  
+  function updateShippingMethods(){
+      if (<?php echo ($onlyReservations === true ? 'true' : 'false');?> || <?php echo (isset($_SESSION['newRentAccount']) ? 'true' : 'false');?>){
+          return false;
+      }
+      
+      checkoutUpdateShippingMethods({
+          url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=updateShippingMethods', $request_type));?>'
+      });
+  }
+
+  /*
+  function updatePaymentMethods(){
+      checkoutUpdatePaymentMethods({
+          url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=updatePaymentMethods', $request_type));?>'
+      });
+  }
+  */
+  
+  
+  function loadAddressBook($dialog, type){
+      checkoutLoadAddressBook({
+          url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=getAddressBook', $request_type));?>&addressType=' + type,
+          dialog: $dialog
+      });
+  }
+  
+  function addCountryAjax($input, fieldName, stateCol){
+      checkoutAddCountryAjax({
+          url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=countrySelect', $request_type));?>',
+          field: $input,
+          fieldName: fieldName,
+          state_column: stateCol
+      });
+      
+      $input.change();
+  }
+  
+  function updateBillingAddress(){
+      updateAddressHTML({
+          action: 'getBillingAddress',
+          url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=getBillingAddress', $request_type));?>'
+      });           
+      updateOrderTotals();
+  }
+  
+  function updateShippingAddress(){      
+      updateAddressHTML({
+          action: 'getShippingAddress',
+          url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=getShippingAddress', $request_type));?>'
+      }); 
+      //updateOrderTotals();       
+  }
+
+  function setShippingMethod(method){
+      //alert(method);
+      if (<?php echo ($onlyReservations === true ? 'true' : 'false');?> || <?php echo (isset($_SESSION['newRentAccount']) ? 'true' : 'false');?>){
+          return false;
+      }
+
+      
+      checkoutSetShippingMethod({
+          url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=setShippingMethod', $request_type));?>&method=' + method
+      });
+  }
+
+  function setPaymentMethod($element){     
+      //alert($element.val());
+      checkoutSetPaymentMethod({
+          url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=setPaymentMethod', $request_type));?>&method=' + $element.val(),
+          element: $element
+      });
+  }
+  
+  function checkBillingAddress(addErrorClass){
+      /*
+      if ($('#logInRow:visible').size() <= 0){
+          return '';
+      } */
+      
+      var inputFields = [
+          ['billing_firstname',<?php echo ENTRY_FIRST_NAME_MIN_LENGTH;?>,'<?php echo ENTRY_FIRST_NAME_ERROR;?>'],
+          ['billing_lastname',<?php echo ENTRY_LAST_NAME_MIN_LENGTH;?>,'<?php echo ENTRY_LAST_NAME_ERROR;?>'],
+          ['billing_email_address',<?php echo ENTRY_EMAIL_ADDRESS_MIN_LENGTH;?>,'<?php echo ENTRY_EMAIL_ADDRESS_ERROR;?>'],
+          ['billing_street_address',<?php echo ENTRY_STREET_ADDRESS_MIN_LENGTH;?>,'<?php echo ENTRY_STREET_ADDRESS_ERROR;?>'],
+          ['billing_postcode',<?php echo ENTRY_POSTCODE_MIN_LENGTH;?>,'<?php echo ENTRY_POST_CODE_ERROR;?>'],
+          ['billing_city',<?php echo ENTRY_CITY_MIN_LENGTH;?>,'<?php echo ENTRY_CITY_ERROR;?>'],
+          ['billing_dob',<?php echo ENTRY_DOB_MIN_LENGTH;?>,'<?php echo ENTRY_DATE_OF_BIRTH_ERROR;?>'],
+          ['billing_telephone',<?php echo ENTRY_TELEPHONE_MIN_LENGTH;?>,'<?php echo ENTRY_TELEPHONE_NUMBER_ERROR;?>']
+      ];
+      
+      var selectFields = [
+          ['billing_country','<?php echo ENTRY_COUNTRY_ERROR; ?>']
+      ];
+      
+      if ($('select[name="billing_state"]:visible').size() > 0){
+          selectFields.push(['billing_state','<?php echo ENTRY_STATE_ERROR; ?>']);
+      }else{
+          inputFields.push(['billing_state',<?php echo ENTRY_STATE_MIN_LENGTH;?>,'<?php echo ENTRY_STATE_ERROR; ?>']);
+      }
+      
+      
+            
+      var errMessage = checkAddressErrors(inputFields, selectFields, addErrorClass);
+           
+       if ($('input[name="create_account"]').val() == 'yes'){    
+      //if ($('input[name="create_account"]:visible').val() == 'yes' && $('input[name="password"]:visible').size() > 0 && ($('input[name="password"]:visible').val() != '' || <?php echo (isset($_SESSION['newRentAccount']) ? 'true' : 'false');?>)){
+          var hasError = false;
+          if ($('input[name="password"]:visible').val().length < <?php echo ENTRY_PASSWORD_MIN_LENGTH; ?>){
+              errMessage += "<?php echo ENTRY_PASSWORD_ERROR; ?>\n";
+              hasError = true;
+          }else if ($('input[name="password"]:visible').val() != $('input[name="confirmation"]:visible').val()){
+              errMessage += "<?php echo ENTRY_PASSWORD_ERROR_NOT_MATCHING; ?>\n";
+              hasError = true;
+          }
+          
+          if (addErrorClass && hasError){
+              $('input[name="password"]:visible').css(errCSS);
+              $('input[name="confirmation"]:visible').css(errCSS);
+          }
+      }
+      
+      <?php if(!($_SESSION['logged_in'])) { ?>      
+      if(!validateEmail($('input[name="billing_email_address"]').val())) {
+        inputFields.push(['billing_email_address','invalid email address']);
+        errMessage += "invalid email address\n";        
+      }
+      <?php } ?>
+      
+    return errMessage;
+  }
+  
+  function validateEmail(id)  
+  {  
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;  
+    return emailPattern.test(id);  
+  }  
+  
+  function checkPassword(){  
+      var errMessage ='';
+       //alert($("input[name='create_account']:checked").val());       
+       if ($("input[name='create_account']:checked").val() == 'on'){    
+          if ($('input[name="password"]:visible').val().length < <?php echo ENTRY_PASSWORD_MIN_LENGTH; ?>){
+              errMessage += "<?php echo ENTRY_PASSWORD_ERROR; ?>\n";                           
+          }else if ($('input[name="password"]:visible').val() != $('input[name="confirmation"]:visible').val()){
+              errMessage += "<?php echo ENTRY_PASSWORD_ERROR_NOT_MATCHING; ?>\n";              
+          }
+      }
+      
+      return errMessage;  
+  }  
+  
+  function checkShippingAddress(addErrorClass){
+      var inputFields = [
+          ['shipping_firstname',<?php echo ENTRY_FIRST_NAME_MIN_LENGTH;?>,'<?php echo ENTRY_FIRST_NAME_ERROR;?>'],
+          ['shipping_lastname',<?php echo ENTRY_LAST_NAME_MIN_LENGTH;?>,'<?php echo ENTRY_LAST_NAME_ERROR;?>'],
+          ['shipping_street_address',<?php echo ENTRY_STREET_ADDRESS_MIN_LENGTH;?>,'<?php echo ENTRY_STREET_ADDRESS_ERROR;?>'],
+          ['shipping_postcode',<?php echo ENTRY_POSTCODE_MIN_LENGTH;?>,'<?php echo ENTRY_POST_CODE_ERROR;?>'],
+          ['shipping_city',<?php echo ENTRY_CITY_MIN_LENGTH;?>,'<?php echo ENTRY_CITY_ERROR;?>'],
+          ['shipping_telephone',<?php echo ENTRY_TELEPHONE_MIN_LENGTH;?>,'<?php echo ENTRY_TELEPHONE_NUMBER_ERROR;?>']
+      ];
+      
+      var selectFields = [
+          ['shipping_country','<?php echo ENTRY_COUNTRY_ERROR; ?>']
+      ];
+      
+      if ($('select[name="shipping_state"]:visible').size() > 0){
+          selectFields.push(['shipping_state','<?php echo ENTRY_STATE_ERROR; ?>']);
+      }else{
+          inputFields.push(['shipping_state',<?php echo ENTRY_STATE_MIN_LENGTH;?>,'<?php echo ENTRY_STATE_ERROR; ?>']);
+      }
+      
+      var errMessage = checkAddressErrors(inputFields, selectFields, addErrorClass);
+    return errMessage;
+  }
+  
+  function setBillTo(){
+      setCheckoutAddress({
+          action: 'setBillTo', 
+          useShipping: false,
+          success: function (data){
+          },
+          url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=setBillTo', $request_type));?>'
+      })
+  }
+  
+  function setSendTo(useShipping){
+      setCheckoutAddress({
+          action: 'setSendTo', 
+          useShipping: useShipping,
+          success: function (data){
+              updateShippingMethods();
+          },
+          url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=setSendTo', $request_type));?>'
+      })
+  }
+  
+  function addRemoveMethod($element){
+      checkoutAddCartRemoveMethod({
+          noProdURL: '<?php echo fixSeoLink(tep_href_link(FILENAME_SHOPPING_CART, '', $request_type));?>', 
+          element: $element
+      });
+  }
+
+  function clickShippingButton(){ clickButton('shipping'); }
+  function clickPaymentButton(){ clickButton('payment'); }
+
+  function runInit(){
+      <?php if (!isset($_SESSION['customer_id'])){ ?>
+      //$('#shippingAddress').hide();
+      $('#shippingMethods').html('');
+      <?php } ?>
+      
+      
+      $('#checkoutNoScript').remove();
+      $('#checkoutYesScript').show();
+      
+      if (<?php echo ($onlyReservations === true ? 'true' : 'false');?> || <?php echo (isset($_SESSION['newRentAccount']) ? 'true' : 'false');?>){
+          $('#updateCartButton').hide();
+      }
+      
+      $('.removeFromCart').each(function (){
+          addRemoveMethod($(this));
+      });
+      
+      $(':select[name="shipping_country"], :select[name="billing_country"]').each(function (){
+          var $thisName = $(this).attr('name');
+          if ($thisName == 'shipping_country'){
+              addCountryAjax($(this), 'shipping_state', 'stateCol_shipping');
+          }else{
+              addCountryAjax($(this), 'billing_state', 'stateCol_billing');
+          }
+      });
+      
+      
+      if ($('#paymentMethods').is(':visible')){
+          if ($(':radio[name="payment"]').size() <= 0){
+              $('input[name="payment"]').click();
+          }else{
+              $(':radio[name="payment"]:checked').click();
+          }
+      }
+      
+      
+      if ($('#shippingMethods').is(':visible')){
+          clickShippingButton();
+      }
+      
+<?php
+ if (!isset($_SESSION['newRentAccount']) || (isset($_SESSION['newRentAccount']) && $_SESSION['newRentAccount'] === false)){
+?>
+      updateFinalProductListing();
+<?php
+ }
+?>          
+      
+      updateOrderTotals();
+      $('input[name="billing_postcode"]:eq(0)', $('#billingAddress')).each(function (){
+          $(this).blur();
+      });
+  }
+  
+$(document).ready(function (){
+    $('.shippingRow, .paymentRow').each(function (){
+        addRowMethods($(this));
+    });
+    
+    $('#sameShipping').click(function (){
+        if (this.checked){  
+            
+            document.getElementsByName('shipping_firstname')[0].value = document.getElementsByName('billing_firstname')[0].value;
+            document.getElementsByName('shipping_lastname')[0].value = document.getElementsByName('billing_lastname')[0].value;  
+            document.getElementsByName('shipping_company')[0].value = document.getElementsByName('billing_company')[0].value;
+            document.getElementsByName('shipping_street_address')[0].value = document.getElementsByName('billing_street_address')[0].value;
+            document.getElementsByName('shipping_city')[0].value = document.getElementsByName('billing_city')[0].value;
+            document.getElementsByName('shipping_state')[0].value = document.getElementsByName('billing_state')[0].value;
+            document.getElementsByName('shipping_state_text')[0].value = document.getElementsByName('billing_state')[0].value;
+            document.getElementsByName('shipping_postcode')[0].value = document.getElementsByName('billing_postcode')[0].value;
+            document.getElementsByName('shipping_country')[0].value = document.getElementsByName('billing_country')[0].value;
+            
+            setSendTo(true);
+            
+            updateShippingMethods();
+            updateCartView();
+            
+            document.getElementsByName('shipping_firstname')[0].readOnly = true;
+            document.getElementsByName('shipping_lastname')[0].readOnly = true;
+            document.getElementsByName('shipping_company')[0].readOnly = true;
+            document.getElementsByName('shipping_street_address')[0].readOnly = true;
+            document.getElementsByName('shipping_city')[0].readOnly = true;
+            document.getElementsByName('shipping_postcode')[0].readOnly = true;
+            document.getElementsByName('shipping_state')[0].disabled = true;
+            document.getElementsByName('shipping_country')[0].disabled = true;
+            //$('#shippingAddress').show();
+            //$('#shippingMethods').html('');
+            //$('#noShippingAddress').show();
+        }else{
+                       
+            document.getElementsByName('shipping_firstname')[0].readOnly = false;
+            document.getElementsByName('shipping_lastname')[0].readOnly = false;
+            document.getElementsByName('shipping_company')[0].readOnly = false;
+            document.getElementsByName('shipping_street_address')[0].readOnly = false;
+            document.getElementsByName('shipping_city')[0].readOnly = false;
+            document.getElementsByName('shipping_state')[0].disabled = false;
+            document.getElementsByName('shipping_postcode')[0].readOnly = false;
+            document.getElementsByName('shipping_country')[0].disabled   = false;
+            
+            
+            //$('#shippingAddress').hide();
+            var errCheck = checkBillingAddress(false);
+            if (errCheck == ''){
+                $('#noShippingAddress').hide();
+                updateShippingMethods();
+            }else{
+                $('#noShippingAddress').show();
+            } 
+        }
+    });
+    
+    
+    
+    $('input[name="payment"]').each(function (){
+        $(this).click(function (){
+            setPaymentMethod($(this));
+        });
+    });
+    
+    $('input[name="payment"]').click(function (){        
+            setPaymentMethod($(this));                   
+    });
+
+    $('input[name="shipping"]').each(function (){
+        $(this).click(function (){
+            setShippingMethod($(this).val());
+        });
+    });
+    
+    
+    $(':select, :radio, :input', $('#billingAddress')).each(function (){
+        if ($(this).attr('name') != undefined && $(this).attr('type') != 'checkbox'){
+            if ($(this).attr('type') == 'select'){
+                $(this).change(processBillingAddress);
+            }else{
+                $(this).blur(processBillingAddress);
+            }
+        }
+    });
+    
+        
+    $(':select, :radio, :input', $('#shippingAddress')).each(function (){
+        if ($(this).attr('name') != undefined && $(this).attr('type') != 'checkbox'){
+            if ($(this).attr('type') == 'select'){
+                $(this).change(processShippingAddress);
+            }else{
+                $(this).blur(processShippingAddress);
+            }
+            
+            /*
+            $(this).blur(function (){
+                var errCheck = checkShippingAddress(false);
+                if (errCheck == ''){
+                    setSendTo(true);
+                    updateShippingMethods();
+                    updateCartView();
+                }else{
+                    $('#noShippingAddress').show();
+                    $('#shippingMethods').hide();
+                }
+            });
+            */
+        }
+    });
+   
+
+    $('#updateCartButton').click(function (){
+        queueAjax({
+            url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=updateQuantities', $request_type));?>',
+            beforeSendMsg: 'Updating Product Quantities',
+            dataType: 'json',
+            data: $('input', $('#shoppingCart')).serialize(),
+            success: updateCartView,
+            errorMsg: 'There was an error updating shopping cart, please inform IT Web Experts about this error.'
+        });
+      return false;
+    });
+    
+    var loginBoxOpened = false;
+    $('#loginButton').click(function (){
+        if (loginBoxOpened){
+            $('#loginBox').dialog('open');
+            return false;
+        }
+        $('#loginBox').dialog({
+            resizable: false,
+            shadow: false,
+            open: function (){
+                var $dialog = this;
+                $('#loginWindowSubmit', $dialog).hover(function (){
+                    this.style.cursor = 'pointer';
+                }, function (){
+                    this.style.cursor = 'default';
+                }).click(function (){
+                    var $this = $(this);
+                    $this.hide();
+                    var email = $('input[name="email_address"]', $dialog).val();
+                    var pass = $('input[name="password"]', $dialog).val();
+                    queueAjax({
+                        url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=processLogin', $request_type));?>&email=' + email + '&pass=' + pass,
+                        dataType: 'json',
+                        beforeSend: function (){
+                            showAjaxMessage('Refreshing Shopping Cart');
+                            if ($('#loginStatus', $this.parent()).size() <= 0){
+                                $('<div>')
+                                .attr('id', 'loginStatus')
+                                .html('Processing Login')
+                                .attr('align', 'center')
+                                .insertAfter($this);
+                            }
+                        },
+                        success: function (data){
+                            if (data.success == true){
+                                $('#loginStatus', $dialog).html(data.msg);
+                                $('#logInRow').hide();
+                                
+                                $('#changeBillingAddressTable').show();
+                                $('#changeShippingAddressTable').show();
+                                $('#newAccountEmail').remove();
+                                //$('#diffShipping').parent().parent().parent().remove();
+                                
+                                updateBillingAddress();
+                                updateShippingAddress();
+                                
+                                $('#shippingAddress').show();
+                                
+                                updateCartView();
+                                updatePaymentMethods();                                
+                                
+                                if ($(':radio[name="payment"]:checked').size() > 0){
+                                    setPaymentMethod($(':radio[name="payment"]:checked'));
+                                }
+                                if ($(':radio[name="shipping"]:checked').size() > 0){
+                                    setShippingMethod($(':radio[name="shipping"]:checked').val());
+                                }
+                                
+                                $('#loginBox').dialog('destroy');
+                            }else{
+                                $('#logInRow').show();
+                                $('#loggedInRow').hide();
+                                
+                                $('#loginStatus', $dialog).html(data.msg);
+                                setTimeout(function (){
+                                    $('#loginStatus').remove();
+                                    $('#loginWindowSubmit').show();
+                                }, 4000);
+                                setTimeout(function (){
+                                    $('#loginStatus').html('Try again in 3');
+                                }, 1000);
+                                setTimeout(function (){
+                                    $('#loginStatus').html('Try again in 2');
+                                }, 2000);
+                                setTimeout(function (){
+                                    $('#loginStatus').html('Try again in 1');
+                                }, 3000);
+                            }
+                        },
+                        errorMsg: 'There was an error logging in, please inform IT Web Experts about this error.'
+                    });
+                });
+            }
+        });
+        loginBoxOpened = true;
+        return false;
+    });
+    
+     
+    $("input[name='rbExistCustomer']").click(function (){                
+        var objDOMElement = document.getElementById("customerLogin");
+        
+        if($("input[name='rbExistCustomer']:checked").val() == 'ExistCustomer')
+            objDOMElement.style.display = "block";            
+        
+        if($("input[name='rbExistCustomer']:checked").val() == 'notExistCustomer')
+            objDOMElement.style.display = "none";                                
+    });
+        
+    
+    $('#checkoutButton').click(function (){
+        var errMsg = '';
+        var billingError = '';
+        var shippingError = '';
+                
+        billingError = checkBillingAddress();
+        if ( !($('#diffShipping').is(':checked')) ){
+            var shippingError = checkShippingAddress();
+        }
+        
+        if (billingError.length > 0){
+            errMsg += '------------------------------------------------' + "\n" + 
+                      '           Billing Address Errors               ' + "\n" + 
+                      '------------------------------------------------' + "\n" + 
+                      billingError + "\n";
+        }
+         
+        if (shippingError.length > 0){
+            errMsg += '------------------------------------------------' + "\n" + 
+                      '            Shipping Address Errors             ' + "\n" + 
+                      '------------------------------------------------' + "\n" + 
+                      shippingError + "\n";
+        }
+        
+        var passwordError = checkPassword();
+        if (passwordError.length > 0){
+            errMsg += '------------------------------------------------' + "\n" + 
+                      '            New User Password Errors             ' + "\n" + 
+                      '------------------------------------------------' + "\n" + 
+                      passwordError + "\n";
+        }
+        
+        
+        if ($(':radio[name="payment"]:checked').size() >= 0){
+            //if ($(':input[name="payment"]:hidden').size() <= 0){
+                
+                if($(':radio[name="payment"]:checked').val() == 'payflowpro') {
+                    
+                    var errMsgCC = '';
+                    if($(':input[name="payflowpro_cc_owner"]').val() == '')
+                        errMsgCC += ' CC Owner\n';
+                    
+                    if($(':input[name="payflowpro_cc_number"]').val() == '')
+                        errMsgCC += ' CC Number\n';
+                        
+                    if($(':input[name="payflowpro_cc_csc"]').val() == '')
+                        errMsgCC += ' CSC Code\n';                             
+                                        
+                    if(errMsgCC.length > 0) {
+                        errMsg += '------------------------------------------------' + "\n" + 
+                                  '           Payment Selection Error              ' + "\n" + 
+                                  '------------------------------------------------' + "\n" + 
+                                  errMsgCC;                                  
+                    }
+                }
+            //}
+        }
+        
+        /*
+        if (<?php echo ($onlyReservations === true ? 'false' : 'true');?> && <?php echo (isset($_SESSION['newRentAccount']) ? 'false' : 'true');?>){
+            if ($(':radio[name="shipping"]:checked').size() <= 0){
+                if ($(':input[name="shipping"]:hidden').size() <= 0){
+                    errMsg += '------------------------------------------------' + "\n" + 
+                              '           Shipping Selection Error             ' + "\n" + 
+                              '------------------------------------------------' + "\n" + 
+                              'You must select a shipping method.' + "\n";
+                }
+            }
+        }
+        */
+         
+        if (errMsg.length > 0){
+            alert(errMsg);
+            return false;
+        }else{
+            document.getElementsByName('billing_state_text')[0].value = document.getElementsByName('billing_state')[0].value;
+            document.getElementsByName('shipping_state_text')[0].value = document.getElementsByName('shipping_state')[0].value;
+            return true;
+        }
+    });
+    
+    $(':input[name="billing_email_address"]').blur(function (){
+        queueAjax({
+            url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=checkEmailAddress', $request_type));?>&emailAddress=' + $(this).val(),
+            beforeSendMsg: 'Checking Email Address',
+            dataType: 'json',
+            success: function (data){
+                if (data.success == false){
+                    alert('Your email address already exists, please log into your account.');
+                }
+            },
+            errorMsg: 'There was an error checking email address, please inform IT Web Experts about this error.'
+        });
+    });
+    
+    $('#changeBillingAddress, #changeShippingAddress').click(function (){
+        var addressType = 'billing';
+        if ($(this).attr('id') == 'changeShippingAddress'){
+            addressType = 'shipping';
+        }
+        $('#addressBook').clone().show().appendTo(document.body).dialog({
+            shadow: false,
+            width: 550,
+           // height: 450,
+            minWidth: 550,
+            //minHeight: 500,
+            open: function (){
+                loadAddressBook($(this), addressType);
+            },
+            buttons: {
+                'Cancel': function (){
+                    var $this = $(this);
+                    var action = $(':input[name="action"]', $this).val();
+                    //alert($(':input, :select, :radio, :checkbox', this).serialize());
+                    if (action == 'selectAddress'){
+                        $this.dialog('close');
+                    }else if (action == 'addNewAddress' || action == 'saveAddress'){
+                        loadAddressBook($this, addressType);
+                    }
+                },
+                'Continue': function (){
+                    var $this = $(this);
+                    var action = $(':input[name="action"]', $this).val();
+                    //alert($(':input, :select, :radio, :checkbox', this).serialize());
+                    if (action == 'selectAddress'){
+                        queueAjax({
+                            url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=selectAddress', $request_type));?>',
+                            beforeSendMsg: 'Setting Address',
+                            dataType: 'json',
+                            data: $(':input, :radio', this).serialize(),
+                            success: function (data){
+                                $this.dialog('close');
+                                if (addressType == 'shipping'){
+                                    updateShippingAddress();
+                                }else{
+                                    updateBillingAddress();
+                                }
+                            },
+                            errorMsg: 'There was an error saving your address, please inform IT Web Experts about this error.'
+                        });
+                    }else if (action == 'addNewAddress'){
+                        
+                        var errorMsg = "";
+                        if($(':input[name="firstname"]').val() == '') {
+                            errorMsg = "Fill out First Name - required field!";                        
+                        }
+                        if($(':input[name="lastname"]').val() == '') {
+                            errorMsg = "Fill out Last Name - required field!";                        
+                        }
+                        if($(':input[name="street_address"]').val() == '') {
+                            errorMsg = "Fill out Street Address - required field!";                        
+                        }
+                        if($(':input[name="city"]').val() == '') {
+                            errorMsg = "Fill out City - required field!";                        
+                        }
+                        if($(':input[name="postcode"]').val() == '') {
+                            errorMsg = "Fill out Zip Code - required field!";                        
+                        }
+                        
+                        if($(':select[name="country"]').val() == '') {
+                            errorMsg = "Select Country - required field!";                                                    
+                        }
+                        else {
+                            if($(':select[name="country"]').val() == '223') {
+                                if($(':select[name="state"]').val() == '') {
+                                   errorMsg  = "Select State - required field!";  
+                                }
+                            }
+                            else {
+                                if($(':input[name="state"]').val() == '') {
+                                    errorMsg = "Fill out State - required field!";                        
+                                }  
+                                
+                            }
+                        }                        
+                        
+                        if(errorMsg != "") {
+                            alert(errorMsg);
+                        }
+                        else {
+                        queueAjax({
+                            url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=addNewAddress', $request_type));?>',
+                            beforeSendMsg: 'Saving New Address',
+                            dataType: 'json',
+                            data: $(':input, :select, :radio, :checkbox', this).serialize(),
+                            success: function (data){
+                                loadAddressBook($this, addressType);
+                            },
+                            errorMsg: 'There was an error saving your address, please inform IT Web Experts about this error.'
+                        });
+                        }
+                    }else if (action == 'saveAddress'){
+                        queueAjax({
+                            url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=saveAddress', $request_type));?>',
+                            beforeSendMsg: 'Updating Address',
+                            dataType: 'json',
+                            data: $(':input, :select, :radio, :checkbox', this).serialize(),
+                            success: function (data){
+                                loadAddressBook($this, addressType);
+                            },
+                            errorMsg: 'There was an error saving your address, please inform IT Web Experts about this error.'
+                        });
+                    }
+                },
+                'New Address': function (){
+                    var $this = $(this);
+                    queueAjax({
+                        url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=getNewAddressForm', $request_type));?>',
+                        beforeSendMsg: 'Loading New Address Form',
+                        success: function (data){
+                            $this.html(data);
+                            addCountryAjax($(':select[name="country"]', $this), 'state', 'stateCol')
+                        },
+                        errorMsg: 'There was an error loading new address form, please inform IT Web Experts about this error.'
+                    });
+                },
+                'Edit Address': function (){
+                    var $this = $(this);
+                    queueAjax({
+                        url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=getEditAddressForm', $request_type));?>&addressID=' + $(':radio[name="address"]:checked', $this).val(),
+                        beforeSendMsg: 'Loading Edit Address Form',
+                        success: function (data){
+                            $this.html(data);
+                        },
+                        errorMsg: 'There was an error loading edit address form, please inform IT Web Experts about this error.'
+                    });
+                }
+            }
+        });
+       return false;
+    });
+    
+    <?php if (MODULE_ORDER_TOTAL_COUPON_STATUS == 'true'){ ?>
+    $('input[name="gv_redeem_code"]').focus(function (){
+        if ($(this).val() == 'redeem code'){
+            $(this).val('');
+        }
+    });
+    
+    $('#voucherRedeem').click(function (){
+        queueAjax({
+            url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=redeemVoucher', $request_type));?>&code=' + $('input[name="gv_redeem_code"]').val(),
+            beforeSendMsg: 'Validating Coupon',
+            dataType: 'json',
+            success: function (data){
+                if (data.success == false){
+                    alert('Coupon is either invalid or expired.');
+                }
+                updateOrderTotals();
+            },
+            errorMsg: 'There was an error redeeming coupon, please inform IT Web Experts about this error.'
+        });
+      return false;
+    });
+    <?php } ?>    
+    
+    $('.rentalPlans').each(function (){
+        $(this).click(function (){
+            queueAjax({
+                url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=setMembershipPlan', $request_type));?>&planID=' + $(this).val(),
+                beforeSendMsg: 'Setting Membership Plan',
+                dataType: 'json',
+                success: function (data){
+                    updateOrderTotals();
+                },
+                errorMsg: 'There was an error setting membership plan, please inform IT Web Experts about this error.'
+            });
+        });
+        
+        if (this.checked){
+            $(this).click();
+        }
+    });
+    
+    $(':input[name="billing_telephone"]').each(function (){
+        $(this).unbind('blur').blur(function (){                
+            queueAjax({
+                url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=setCustomerTelephone', $request_type));?>&phone_number=' + $(this).val(),
+                beforeSendMsg: 'Setting Telephone Number',
+                dataType: 'json',
+                success: function (data){
+                },
+                errorMsg: 'There was an error setting your telephone number, please inform IT Web Experts about this error.'
+            });
+        });
+    });
+    
+    $(':checkbox[name="billing_newsletter"]').each(function (){
+        $(this).unbind('click').click(function (){
+            queueAjax({
+                url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=setCustomerNewsletter', $request_type));?>&status=' + (this.checked ? 'true' : 'false'),
+                beforeSendMsg: 'Setting Newsletter',
+                dataType: 'json',
+                success: function (data){
+                },
+                errorMsg: 'There was an error (un)setting your newsletter subscription, please inform IT Web Experts about this error.'
+            });
+        });
+    });
+    
+    $(':checkbox[name="signature_confirmation"]').click(function (){
+    
+        queueAjax({
+            url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=setSignatureConfirmation', $request_type));?>&status=' + (this.checked ? 'yes' : 'no'),
+            beforeSendMsg: 'Setting Signature Confirmation',
+            dataType: 'json',
+            success: function (data){
+                updateOrderTotals();
+            },
+            errorMsg: 'There was an error Setting Signature Confirmation.'
+        });
+        
+    });
+    
+    
+    $(':checkbox[name="create_account"]').click(function (){
+    
+        queueAjax({
+            url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=setCreateAccount', $request_type));?>&status=' + (this.checked ? 'yes' : 'no'),
+            beforeSendMsg: 'Setting Create Account',
+            dataType: 'json',
+            success: function (data){
+                updateOrderTotals();
+            },
+            errorMsg: 'There was an error (un)setting your newsletter subscription, please inform IT Web Experts about this error.'
+        });
+        
+    });
+    
+    
+    
+    
+    $(':input[name="billing_dob"]').each(function (){
+        $(this).unbind('blur').blur(function (){
+            queueAjax({
+                url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=setCustomerDateOfBirth', $request_type));?>&dob=' + $(this).val(),
+                beforeSendMsg: 'Setting Date Of Birth',
+                dataType: 'json',
+                success: function (data){
+                },
+                errorMsg: 'There was an error setting your date of birth, please inform IT Web Experts about this error.'
+            });
+        });
+    });
+    
+    $(':input[name="billing_suburb"]').each(function (){
+        $(this).unbind('blur').blur(function (){
+            queueAjax({
+                url: '<?php echo fixSeoLink(tep_href_link(FILENAME_CHECKOUT, 'rType=ajax&action=setSuburb', $request_type));?>&suburb=' + $(this).val(),
+                beforeSendMsg: 'Setting Billing Suburb',
+                dataType: 'json',
+                success: function (data){
+                },
+                errorMsg: 'There was an error setting your billing suburb, please inform IT Web Experts about this error.'
+            });
+        });
+    });
+    
+    runInit();
+});
+//-->
+</script>
+<script type="text/javascript" language="javascript" src="/includes/checkout/checkout.js"></script>
+<?php //echo $payment_modules->javascript_validation(); ?>
+</head>
+<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0">
+<?php 
+//echo MODULE_ORDER_TOTAL_INSTALLED;
+?>
+<!-- body //-->
+ <table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+<!-- body_text // <font style="color: rgb(254, 121, 47); font-size: 24px; font-weight: bold;"><?php echo HEADING_TITLE; ?></font>     -->
+   <td width="100%" valign="top">   
+        <img src="<?php echo HTTPS_SERVER?>/images/checkout-onepage.jpg">
+     </td>
+    </tr>
+<?php
+  if (isset($_GET['payment_error']) && is_object(${$_GET['payment_error']}) && ($error = ${$_GET['payment_error']}->get_error())) {
+?>
+    <tr>
+     <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+      <tr>
+       <td class="main"><b><?php echo tep_output_string_protected($error['title']); ?></b></td>
+      </tr>
+     </table></td>
+    </tr>
+    <tr>
+     <td><table border="0" width="100%" cellspacing="1" cellpadding="2" class="infoBoxNotice">
+      <tr class="infoBoxNoticeContents">
+       <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+        <tr>
+         <td><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?></td>
+         <td class="main" width="100%" valign="top"><span style='color: red;'><?php echo urldecode($error['error']); ?></span></td>
+         <td><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?></td>
+        </tr>
+       </table></td>
+      </tr>
+     </table></td>
+    </tr>
+<?php
+  }
+  else if (!empty($_GET['payment_error']) && !empty($_GET['payment_errexplain'])) {
+?>
+    
+    <tr>
+     <td><table border="0" width="100%" cellspacing="1" cellpadding="2" class="infoBoxNotice">
+      <tr class="infoBoxNoticeContents">
+       <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+        <tr>
+         <td><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?></td>
+         <td class="main" width="100%" valign="top"><span style='color: red;'><?php echo urldecode($_GET['payment_error']). "<BR>Reason: ".urldecode($_GET['payment_errexplain']); ?></span></td>
+         <td><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?></td>
+        </tr>
+       </table></td>
+      </tr>
+     </table></td>
+    </tr>
+<?php
+  }
+?>
+
+<?php
+  if (!empty($_GET['process_error'])) {
+?>
+    
+    <tr>
+     <td><table border="0" width="100%" cellspacing="1" cellpadding="2" class="infoBoxNotice">
+      <tr class="infoBoxNoticeContents">
+       <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+        <tr>
+         <td><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?></td>
+         <td class="main" width="100%" valign="top"><span style='color: red;'><?php echo urldecode($_GET['process_error']); ?></span></td>
+         <td><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?></td>
+        </tr>
+       </table></td>
+      </tr>
+     </table></td>
+    </tr>
+<?php
+  }
+?>
+    <tr>
+     <td class="main" width="50%"><?php
+     
+     /*
+      $header = TABLE_HEADING_PRODUCTS;
+      
+      ob_start();
+      include(DIR_WS_INCLUDES . 'checkout/cart.php');
+      $cartContents = ob_get_contents();
+      ob_end_clean();
+      
+      $cartContents .= '<br><div style="float:right" class="orderTotals">' . 
+      (MODULE_ORDER_TOTAL_INSTALLED ? '<table cellpadding="2" cellspacing="0" border="0">' . $order_total_modules->output() . '</table>' : '') . '</div>';
+      
+      buildInfobox($header, $cartContents);
+      */
+     ?></td>
+    </tr>
+    <tr>
+     <td class="main" style="padding-top:0px;"><table cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+       <td width="45%">
+       
+       <?php if(empty($_SESSION['customer_id'])) {?>
+       <?php echo tep_draw_radio_field('rbExistCustomer','notExistCustomer',true).'<b>Express Checkout (no account needed) </b><br>'?>
+       <?php echo tep_draw_radio_field('rbExistCustomer','ExistCustomer',false).'<b>Existing customer</b><br>'?>
+       <?php 
+           /*$page = array('page' => "checkout.php",
+                         'mode' => $request_type);*/
+           $page = array('page' => "shopping_cart.php",
+                         'mode' => $request_type);
+           $navigation->set_snapshot($page);                
+        ?>
+       <?php } ?>
+       
+       <?php
+            /*,'id="rbExistCustomer"'
+                 echo '<br><table border="0" width="100%" cellspacing="0" cellpadding="2">
+                     <tr id="logInRow"' . (isset($_SESSION['customer_id']) ? ' style="display:none"' : '') . '>
+                      <td class="main" width="36%"><a href="' . fixSeoLink(tep_href_link(FILENAME_LOGIN)) . '" id="loginButton">' . tep_image_button('button_login.gif', IMAGE_LOGIN) . '</a> For existing customer
+                      </td></tr></table>';
+              */        
+         ?>
+         <div id="customerLogin" style="display: none; border: 3px solid rgb(198, 230, 155); padding: 15px 30px 15px 60px; float: left; width: 80%; background-color: rgb(238, 248, 226); margin-right: 40px; position: relative;">
+            <?php echo tep_draw_form('login', tep_href_link(FILENAME_LOGIN, 'action=process', 'SSL'))?>
+            <div id="loginColumn_main" style="position: relative; z-index: 1;">        
+                <h4 style="font-variant: normal; padding-bottom: 5px;">Existing Customer Login</h4>        
+                <dl>
+                    <dt>
+                        <label for="loginId">  Email address </label><BR>
+                        <input id="loginId" type="text" size="45" value="" name="email_address"/>
+                    </dt>                    
+                    <dt>
+                        <label for="password"> Password </label><BR>
+                        <input id="password" type="password" size="45" value="" name="password"/>
+                    </dt>                    
+                </dl>
+                <div>                    
+                    <?php echo tep_image_submit('button_sign-in.gif', IMAGE_BUTTON_LOGIN)?>
+                    <span style="font-size: 95%;">                        
+                        <?php echo '<a href="' . tep_href_link(FILENAME_PASSWORD_FORGOTTEN, '', 'SSL') . '">Password forgotten? Click here.</a>'?>
+                    </span>
+                </div>
+            </div>
+            </form>
+        </div>
+            
+         
+         
+       </td>
+       <?php echo tep_draw_form('checkout2', tep_href_link(FILENAME_CHECKOUT, '', $request_type)) . tep_draw_hidden_field('action', 'process'); ?>
+       <td class="main" width="10%" align="right"><b><!--Make Changes?--></b> <?php //echo tep_image_submit('button_update_cart.gif', IMAGE_UPDATE_CART, 'name="updateQuantities" id="updateCartButton"');?></td>
+      
+       <td class="main" width="25%" align="left"><?php
+       /*
+        if (MODULE_ORDER_TOTAL_COUPON_STATUS == 'true'){
+            echo '<b>Have A Coupon?</b> ' . 
+                 tep_draw_input_field('gv_redeem_code', 'NY15') . '&nbsp;' . 
+                 tep_image_submit('button_redeem.gif', IMAGE_REDEEM_VOUCHER, 'id="voucherRedeem"');
+        }
+         */
+ //Apply coupon automaticly
+        //$onePageCheckout->redeemCoupon("NY15");  
+        
+       ?>
+       
+       
+       </td>
+       <td width="20%" align="right" valign="bottom">
+       <?php
+       //<b><font size="+1">Order Details</font></b>
+       echo '<a href="' . fixSeoLink(tep_href_link(FILENAME_SHOPPING_CART)) . '" ><img src=\''.HTTPS_SERVER.'/images/order-details-onepage.JPG\'></a>';
+       ?>
+    
+       </td>
+      </tr>
+     </table></td>
+    </tr>
+    <tr>
+     <td height="100%">
+     <?php
+/*
+     echo '<table border="0" width="100%" cellspacing="0" cellpadding="2">
+         <tr id="logInRow"' . (isset($_SESSION['customer_id']) ? ' style="display:none"' : '') . '>
+          <td class="main" width="36%"><a href="' . fixSeoLink(tep_href_link(FILENAME_LOGIN)) . '" id="loginButton">' . tep_image_button('button_login.gif', IMAGE_LOGIN) . '</a> For existing customer
+          </td></tr></table>';
+  */        
+     //   if (!isset($_SESSION['customer_id'])){
+       //      echo '<td class="main"> <input type="checkbox" name="diffShipping" id="diffShipping" value="1">Check if Shipping Address different from Billing Address</td>';
+      //  }
+        //echo '</tr></table>';
+          ?>
+          
+     <table border="0" width="100%" cellspacing="0" cellpadding="2">
+      <tr>
+       <td class="main" width="40%" valign="top" height="410" valign="top">
+<table border="0" width="100%" cellspacing="0" cellpadding="2"  class="productListing-heading">
+<tr><td align="center" style="color:#534640;">
+<?php
+echo TABLE_HEADING_BILLING_ADDRESS;
+?>
+</td>
+</tr>
+</table>
+<table border="0" width="100%" cellspacing="0" cellpadding="2"  class="productListing" height="100%" valign="top">
+<tr>       
+<td valign="top" height="100"> 
+       <?php
+        $header = TABLE_HEADING_BILLING_ADDRESS;
+        
+        ob_start();
+        include(DIR_WS_INCLUDES . 'checkout/billing_address.php');
+        $billingAddress = ob_get_contents();
+        ob_end_clean();
+        
+/*        
+        $billingAddress = '<table class="productListing"> <tr><td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+         <tr id="logInRow"' . (isset($_SESSION['customer_id']) ? ' style="display:none"' : '') . '>
+          <td class="main">Already have an account? <a href="' . fixSeoLink(tep_href_link(FILENAME_LOGIN)) . '" id="loginButton">' . tep_image_button('button_login.gif', IMAGE_LOGIN) . '</a></td>
+         </tr>
+        </table>' . $billingAddress.'</td></tr></table>';
+*/
+        
+        //buildInfobox($header, $billingAddress);
+        echo $billingAddress;
+       ?>
+       <table id="changeBillingAddressTable" border="0" width="100%" cellspacing="0" cellpadding="2"<?php echo (isset($_SESSION['customer_id']) ? '' : ' style="display:none"');?>>
+        <tr>
+         <td class="main" align="right"><a id="changeBillingAddress" href="<?php echo tep_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '', $request_type);?>"><?php echo tep_image_button('button_change_address.gif', IMAGE_BUTTON_CHANGE_ADDRESS);?></a></td>
+        </tr>
+       </table>        
+</td>       
+</tr>  
+        <input name="billing_state_text" type="hidden" value="">
+        <input name="shipping_state_text" type="hidden" value="">
+     <tr>
+        <td style="height:12px; line-height: 12px;">
+        
+        
+        <?php
+        /*
+        $header = TABLE_HEADING_PAYMENT_METHOD;
+        
+        $paymentMethod = '';
+        if (isset($_SESSION['customer_id'])){
+            ob_start();
+            include(DIR_WS_INCLUDES . 'checkout/payment_method.php');
+            $paymentMethod = ob_get_contents();
+            ob_end_clean();
+        }
+        
+        $paymentMethod = '<div id="noPaymentAddress" class="main noAddress" align="center" style="font-size:15px;' . (isset($_SESSION['customer_id']) ? 'display:none;' : '') . '">Please fill in your <b>billing address</b> for payment options</div><div id="paymentMethods"' . (!isset($_SESSION['customer_id']) ? ' style="display:none;"' : '') . '>' . $paymentMethod . '</div>';
+        //buildInfobox($header, $paymentMethod);
+        echo $paymentMethod;
+        */
+       include_once(DIR_WS_INCLUDES . 'checkout/payment_method.php')?>
+       </td>
+      </tr>
+
+</table>
+       </td>
+       
+       <td class="main" width="40%" valign="top" height="410">
+<table border="0" width="100%" cellspacing="0" cellpadding="2"  class="productListing-heading" valign="top">
+<tr><td align="center" style="color:#534640;">
+<?php
+echo TABLE_HEADING_SHIPPING_ADDRESS;
+?>
+</td>
+</tr>
+</table>
+       
+<table border="0" width="100%" height="100%" cellspacing="0" cellpadding="2"  class="productListing" valign="top" >
+<tr><td valign="top">
+       
+
+       <?php
+        
+        if (!isset($_SESSION['customer_id'])){
+             echo '<input type="checkbox" name="sameShipping" id="sameShipping" value="1">Check if Same As '.TABLE_HEADING_BILLING_ADDRESS;
+        }
+        $header = TABLE_HEADING_SHIPPING_ADDRESS;
+        
+        ob_start();
+        include(DIR_WS_INCLUDES . 'checkout/shipping_address.php');
+        $shippingAddress = ob_get_contents();
+        ob_end_clean();
+        
+        
+//        buildInfobox($header, $shippingAddress);
+        echo $shippingAddress;
+        
+       ?>
+       
+       <table id="changeShippingAddressTable" border="0" width="100%" cellspacing="0" cellpadding="2" <?php echo (isset($_SESSION['customer_id']) ? '' : ' style="display:none"');?>>
+        <tr>
+         <td class="main" align="right"><a id="changeShippingAddress" href="<?php echo tep_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', $request_type);?>"><?php echo tep_image_button('button_change_address.gif', IMAGE_BUTTON_CHANGE_ADDRESS);?></a></td>
+        </tr>
+       </table>
+       <br>&nbsp;   
+        <?php
+        $header = TABLE_HEADING_COMMENTS;
+        
+        ob_start();
+        include(DIR_WS_INCLUDES . 'checkout/comments.php');
+        $commentBox = ob_get_contents();
+        ob_end_clean();
+        
+        //buildInfobox($header, $commentBox);
+        echo $header.':<br>'.$commentBox;
+       ?>
+       <?php //include(DIR_WS_INCLUDES . 'checkout/shipping_method.php') ?>
+       
+</td>
+</tr>
+</table>
+
+       
+       </td>
+       <td  width="20%" valign="top" height="410">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2"  class="productListing-heading" >
+<tr><td align="center" style="color:#534640;">Order Confirmation</td></tr></table>
+       
+<table class="productListing" height="100%" width="100%" valign="top" cellspacing="0" cellpadding="0" >
+
+
+  <tr>
+  <td valign="top">
+<table  valign="top" width="100%" border="0">
+  <tr>
+  <td valign="middle">  
+  <input type="checkbox" name="signature_confirmation" id="signature_confirmation" <?php echo ($_SESSION['onepage']['info']['signature_confirmation']== 'yes' ? "Checked":"")?> /><lablel for="signature_confirmation">Signature Confirmation</lablel>  
+  <div class="orderTotals">
+  <?php 
+  //echo (MODULE_ORDER_TOTAL_INSTALLED ? '<table cellpadding="2" width="100%" cellspacing="0" border="0">' . $order_total_modules->output_onepage() . '</table>' : '');
+  
+  ?>
+  </div>
+  
+  <div><?php //=$order_total_modules->output_onepage() ?></div>
+  
+  
+
+  </td>
+ </tr>
+ 
+ <tr>
+  <td valign="top" style="height:10px; line-height: 10px;">  
+  <?php if($order && $order->info['total'] > 200) { ?>  
+    <img src="<?php echo HTTPS_SERVER?>/templates/ed_new/img/freegift-big.png">    
+  <?php } ?>
+  </td>
+ </tr>
+ 
+ <tr>
+  <td>
+
+  
+  <table cellpadding="2" cellspacing="0" border="0" width="100%">
+   <tr>
+    <td colspan="2" style="font-size: 12pt;height:12px; line-height: 12px;">Optional</td>
+   </tr> 
+   <?php if(empty($_SESSION['customer_id'])) {?>
+   <tr>
+    <td colspan="2" class="main"><input type="checkbox" name="create_account" id="create_account" <?php echo ($_SESSION['onepage']['info']['create_account']== "yes" ? "Checked":"")?> /><lablel for="signature_confirmation">Create an account for me at ExpressDecor.com</lablel></td>
+   </tr>
+   <tr>
+    <td class="main"  style="text-align: right;"><?php echo ENTRY_PASSWORD; ?>&nbsp;</td>
+    <td class="main"><?php echo tep_draw_password_field('password', '', (isset($_SESSION['newRentAccount']) ? 'class="required" maxlength="40"' : 'maxlength="40"')); ?></td>
+   </tr>
+   <tr>
+    <td class="main" style="text-align: right;">Confirm Password:&nbsp;</td>
+    <td class="main"><?php echo tep_draw_password_field('confirmation', '', (isset($_SESSION['newRentAccount']) ? 'class="required" maxlength="40"' : 'maxlength="40"')); ?></td>
+   </tr>
+   <?php } ?>
+  </table>
+  
+  
+  </td>
+ </tr>
+ 
+ 
+ <tr>
+  <td class="main" style="height:12px; line-height: 12px;vertical-align:text-bottom;">  
+  <?php 
+   echo tep_draw_checkbox_field('billing_newsletter', '1', (isset($_SESSION['onepage']['customer']) && $_SESSION['onepage']['customer']['newsletter'] == '1' ? true : false)); 
+   echo ENTRY_NEWSLETTER; 
+   ?></td>
+ </tr>
+
+ 
+<tr>
+ <td>
+                       
+</td>
+</tr>
+                       
+        </table>
+        
+        <table border="0" width="100%" cellspacing="1" cellpadding="2" class="infoBox" height="30%">
+          <tr class="infoBoxContents" id="checkoutYesScript" style="display:none;">
+            <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2" align="center">
+              <tr>                
+                <td class="main" id="checkoutMessage"><?php //echo '<b>' . TITLE_CONTINUE_CHECKOUT_PROCEDURE . '</b><br>' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?></td>
+                <td class="main" align="center"><div id="ajaxMessages" style="display:none;"></div>
+                <div id="checkoutButtonContainer">
+                <?php echo tep_image_submit('button_placeorder.png', IMAGE_BUTTON_CONTINUE, 'id="checkoutButton" formUrl="' . tep_href_link(FILENAME_CHECKOUT_PROCESS, '', $request_type) . '"'); ?>
+                
+                <input type="hidden" name="formUrl" id="formUrl" value=""></div><div id="paymentHiddenFields" style="display:none;"></div></td>
+                <td width="10"><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?>
+                <br><br></td>
+              </tr>
+            </table></td>
+          </tr>
+
+          <tr class="infoBoxContents" id="checkoutNoScript">
+            <td valign="bottom">
+            <table border="0" width="100%" cellspacing="0" cellpadding="2">
+              <tr>
+                <td width="10"><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?></td>
+                <td class="main"><?php echo '<b>' . TITLE_CONTINUE_CHECKOUT_PROCEDURE . '</b><br>to update/view your order.'; ?></td>
+                <td class="main" align="right"><?php echo tep_image_submit('button_placeorder.png', IMAGE_BUTTON_UPDATE); ?></td>
+                <td width="10"><?php echo tep_draw_separator('pixel_trans.gif', '10', '1'); ?></td>
+              </tr>
+            </table> 
+
+            
+</td>
+</tr>
+
+           
+        </table>
+
+
+        
+</td>
+</tr>
+</table>
+       
+       
+       
+       </td>
+
+
+      </tr>
+     </table></td>
+    </tr>     
+    </table>
+    </td>
+ 
+  </tr>
+  </form>
+</table>
+<?php //echo tep_draw_separator('pixel_trans.gif', '100%', '1'); ?>
+<!-- body_eof //-->
+
+<!-- dialogs_bof //-->
+<div id="loginBox" title="Log Into My Account" style="display:none;"><table cellpadding="2" cellspacing="0" border="0">
+ <tr>
+  <td class="main"><?php echo ENTRY_EMAIL_ADDRESS;?></td>
+  <td><?php echo tep_draw_input_field('email_address');?></td>
+ </tr>
+ <tr>
+  <td class="main"><?php echo ENTRY_PASSWORD;?></td>
+  <td><?php echo tep_draw_password_field('password');?></td>
+ </tr>
+ <tr>
+  <td colspan="2" align="right"><?php echo tep_image_button('button_login.gif', IMAGE_LOGIN, 'id="loginWindowSubmit"');?></td>
+ </tr>
+</table></div>
+<div id="addressBook" title="Address Book" style="display:none"></div>
+<div id="newAddress" title="New Address" style="display:none"></div>
+<!-- dialogs_eof//-->
+
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+	    <Expressdecor_Salesflag>
+			<active>true</active>
+			<codePool>local</codePool>
+		    <depends>
+               <Idev_OneStepCheckout/>
+            </depends>
+	    </Expressdecor_Salesflag>
+	   
+	    <Expressdecor_Adminhtml>
+			<active>true</active>
+			<codePool>local</codePool>
+	    </Expressdecor_Adminhtml>
+	    
+	    <Expressdecor_Sales>
+			<active>true</active>
+			<codePool>local</codePool>
+
+	    </Expressdecor_Sales>
+	    
+	</modules>
+</config>

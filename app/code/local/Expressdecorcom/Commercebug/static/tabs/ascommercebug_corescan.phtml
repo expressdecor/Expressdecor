@@ -1,0 +1,205 @@
+
+<div id="ascommercebug_corescan_results">	
+	<p>
+		<span>Your Magento system reports as version <strong><?php echo $this->getMageVersion(); ?>.</strong></span> 
+		
+		
+		<a href="<?php echo $this->getUrl('commercebug/install/snapshot',array('name'=>$this->getMageVersion()));?>" target="_blank">
+			Click Here to 
+			<?php if(!$this->needsInstallSnapshotLink()):?>re-<?php endif;?>install the <?php echo $this->getMageVersion(); ?> Snapshot
+		</a>
+		
+	</p>
+	
+	<p>
+	Run core diff for version: 
+		<select id="corescan_snapshot_to_diff" name=" name="corescan_snapshot_to_diff">
+			<option value="0">-- select snapshot --</option>
+			<?php foreach($this->getSnapshotNames() as $snapshot_name): ?>
+				<?php $selected = ($snapshot_name->getSnapshotName() == $this->getMageVersion()) ? 'selected="selected"' : ''; ?>
+				<option value="<?php echo $snapshot_name->getSnapshotNameId();?>"<?php echo $selected;?>><?php echo $this->escapeHtml($snapshot_name->getSnapshotName()); ?></option>
+			<?php endforeach;?>
+		</select>
+	<button id="corescan_start_diff" class="fg-button ui-state-default ui-corner-all">Start Diff</button>
+	</p>
+	
+	<div id="commercebug_progress_diff" style="display:none">
+		<img src="<?php echo $this->getPathSkin() . '/images/loader.gif'; ?>" /> 
+		<span style="position:relative;top:-2px;">Commerce Bug is scanning your core for changes.  This may take several minutes. You may
+		monitor progress in the Magento system log.</span>
+	</div>
+
+	<div id="commercebug_results_diff" style="display:none">
+		...
+	</div>
+	
+	<hr />
+	<br />
+	
+	<p>
+		Create new snapshot of 
+			<select id="corescan_create_new">
+				<option value="0">-- select option --</option>
+				<option value="current_core">Current Core</option>
+				<option value="other_files">Other Files</option>
+			</select>
+		<button id="corescan_create_snapshot" class="fg-button ui-state-default ui-corner-all">Create Snapshot</button>
+	</p>
+	
+	<div id="commercebug_progress_snapshot" style="display:none">
+		<img src="<?php echo $this->getPathSkin() . '/images/loader.gif'; ?>" /> 
+		<span style="position:relative;top:-2px;">Commerce Bug is creating your snapshot.  This may take several minutes. You may
+		monitor progress in the Magento system log.</span>
+	</div>
+
+	<div id="commercebug_results_snapshot" style="display:none">
+		...
+	</div>
+	
+	<form id="corescan_other_files" style="display:none;" method="post" action="<?php echo $this->getUrl('commercebug/snapshot/other'); ?>">
+		<label class="label_corescan" for="corescan_library_folder">Library: </label> <input type="text" id="corescan_library_folder" name="corescan_library_folder" size="60"> <br />
+		ex. <code>/path/to/mage/lib</code>
+		<br />
+		<label class="label_corescan" for="corescan_library_folder">Core Modules:</label> <input type="text" id="corescan_library_folder" name="corescan_module_folder" size="60"> <br />
+		ex. <code>/path/to/mage/app/code/core</code>		
+		<input type="hidden" name="corescan_snapshot_name" id="corescan_snapshot_name" value="" />
+	</form>
+</div>
+
+
+<script type="text/javascript">
+	jQueryCommercebug(document).ready(function(){
+		var $ = jQueryCommercebug;				
+		
+		var data = <?php echo $this->getHelperJson();?> ;
+		
+		var ajax_diff = function(url)
+		{
+			$.get(url,ajax_diff_results);
+		}
+		
+		var ajax_snapshotlocal = function(url)
+		{
+			$.get(url,ajax_snapshotlocal_results,'json');
+		}
+		
+		var ajax_snapshotlocal_results = function(r)
+		{
+			//var message = "Handling the response for the local scan";
+			ajax_snapshot_end(ajax_handle_response(r));
+			//alert(message);
+		}
+		
+		var ajax_diff_results = function(r)
+		{
+			var message = "This will check the response for an error or a report ID, and then display the error";
+			$('#commercebug_progress_diff').css('display','none');
+			$('#commercebug_results_diff').css('display','block');
+			$('#commercebug_results_diff').html(message);
+			alert(message);
+		}
+		
+		var clicked_diff = function()
+		{
+			if($('#corescan_snapshot_to_diff').val() != "0")
+			{
+				$('#commercebug_progress_diff').css('display','block');
+				$('#commercebug_results_diff').css('display','none');
+				$('#commercebug_done_diff').html('');
+				ajax_diff(data.url_diff + 'name/' + $('#corescan_snapshot_to_diff').val());
+				return true;				
+			}
+			alert("Please select a snapshot");
+		};
+		
+		var create_snapshot = function()
+		{
+			if($('#corescan_create_new').val() == "current_core")
+			{
+				return submit_snapshot_core();
+			}
+			else if($('#corescan_create_new').val() == "other_files")
+			{
+				return submit_snapshot_other();
+				//window.open();								
+			}
+			alert("Please select a snapshot action");
+		}
+
+		var submit_snapshot_other = function()
+		{
+			var name=prompt("Enter a snapshot name");
+			if(name)
+			{				
+				$('#corescan_snapshot_name').val(name);
+				ajax_snapshot_start();
+				$('#corescan_other_files').submit();
+			}
+			return true;		
+		}
+		
+		var submit_snapshot_core = function()
+		{
+			var name=prompt("Enter a snapshot name");
+			if(name)
+			{
+				ajax_snapshot_start();
+				ajax_snapshotlocal(data.url_snapshot_core + 'name/'+name);
+				//window.open(data.url_snapshot_core + 'name/'+name);
+			}
+			return true;
+		}
+		
+		$('button#corescan_create_snapshot').click(create_snapshot);
+		
+		$('button#corescan_start_diff').click(clicked_diff);		
+		
+		$('select#corescan_create_new').bind('change',function(){
+			if(jQueryCommercebug(this).val() == 'other_files')
+			{
+				jQueryCommercebug('#corescan_other_files').css('display','block');
+			}
+			else
+			{
+				jQueryCommercebug('#corescan_other_files').css('display','none');
+			}
+		});
+		
+		var ajax_snapshot_start = function()
+		{
+			$('#commercebug_progress_snapshot').css('display','block');			
+			$('#commercebug_results_snapshot').css('display','none');
+		}
+		
+		var ajax_snapshot_end = function(message)
+		{
+			$('#commercebug_progress_snapshot').css('display','none');
+			$('#commercebug_results_snapshot').css('display','block');
+			$('#commercebug_results_snapshot').html(message);		
+		}
+		
+		var ajax_handle_response = function(r)
+		{
+			var message = 'There was an error processing your request, please check the logs and try again. ';
+			message+= r.message;			
+			if(r.success)
+			{
+				message = r.message;
+			}
+			return message;
+		}
+		
+		var ajax_snapshot = function(r)
+		{
+			// commercebug_progress_snapshot
+			// commercebug_results_snapshot	
+			;
+			ajax_snapshot_end(ajax_handle_response(r));
+		}		
+		
+		$('#corescan_other_files').ajaxForm({'success':ajax_snapshot,'dataType':'json'});		
+		//button#corescan_create_snapshot
+		
+		//#corescan_start_diff
+	});
+</script>

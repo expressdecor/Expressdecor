@@ -1,0 +1,52 @@
+  <?php echo tep_draw_form('login', tep_href_link(FILENAME_LOGIN, 'action=process', 'SSL')); ?>
+	<div><img src="/templates/ed_new/img/login-top.png" style="margin-left: 25px;margin-bottom: 14px;" alt="" /></div>
+  <table border="0" width="100%" cellspacing="0" cellpadding="0" style="margin-left:5px;">
+		<tr>
+			<td style="width: 450px;" valign="top" class="main">
+				<div class="login-block border">
+					<div class="header">I Do Not Have an Account</div>
+					<div class="content register">
+						<div style="font-weight: bold; margin-bottom: 10px">By creating an account at ExpressDecor.com you will be able:</div>
+						<ul>
+							<li>To shop faster</li>
+							<li>Be up to date on an orders status</li>
+							<li>Keep track of the orders you have previously made</li>
+						</ul>
+						<div style="text-align: center;"><?php echo '<a href="' . tep_href_link(FILENAME_CREATE_ACCOUNT, '', 'SSL') . '">' . tep_image_button('button_register.gif', IMAGE_BUTTON_CONTINUE) . '</a>'; ?></div>
+					</div>
+				</div>
+			</td>
+			<td style="width: 450px;" valign="top">
+				<div class="login-block border">
+					<div class="header">I Have an Account</div>
+					<div class="content login" style="text-align: center;">
+						<?php if ($messageStack->size('login') > 0) { ?>
+						<div><?php echo $messageStack->output('login'); ?></div>
+						<?php } ?>
+						<table cellpadding="4" cellspacing="0" style="margin-left:50px;">
+							<tr>
+								<td class="main" align="right"><strong><?php echo ENTRY_EMAIL_ADDRESS; ?></strong></td>
+								<td class="main"><?php echo tep_draw_input_field('email_address', '', 'style="width: 150px;"'); ?></td>
+							</tr>
+							<tr>
+								<td class="main" align="right"><strong><?php echo ENTRY_PASSWORD; ?></strong></td>
+								<td class="main"><?php echo tep_draw_password_field('password', '', 'style="width: 150px;"'); ?></td>
+							</tr>
+							<tr>
+								<td class="smallText" colspan="2" align="right"><?php echo '<a href="' . tep_href_link(FILENAME_PASSWORD_FORGOTTEN, '', 'SSL') . '">Forgot your password?</a>'; ?></td>
+							</tr>
+						</table>
+						<div><?php echo tep_image_submit('button_sign-in.gif', IMAGE_BUTTON_LOGIN); ?></div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<?php
+	// ** GOOGLE CHECKOUT **
+	if (defined('MODULE_PAYMENT_GOOGLECHECKOUT_STATUS') && MODULE_PAYMENT_GOOGLECHECKOUT_STATUS == 'True') {
+//		include_once('googlecheckout/gcheckout.php');
+	} 
+	// ** END GOOGLE CHECKOUT **            
+	?>
+	</form>

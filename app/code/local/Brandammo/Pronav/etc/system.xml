@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+      <custommenu translate="label" module="pronav">
+         <label>Menu</label>
+         <sort_order>301</sort_order>
+      </custommenu>
+   </tabs>
+	<sections>
+		<pronav translate="label" module="pronav">
+		 <label>ProNav</label>
+         <tab>custommenu</tab>
+         <sort_order>130</sort_order>
+         <show_in_default>1</show_in_default>
+         <show_in_website>1</show_in_website>
+         <show_in_store>1</show_in_store>
+			<groups>
+				<pronavconfig translate="label">
+					<label>ProNav Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>300</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<pronav_status translate="label">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno
+							</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pronav_status>
+						<sensitivity translate="label comment">
+							<label>Sensitivity</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Sensitivity threshold (must be 1 or higher)]]></comment>
+						</sensitivity>
+						<interval translate="label comment">
+							<label>Interval</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Milliseconds for mouse over polling interval]]></comment>
+						</interval>
+						<timeout translate="label comment">
+							<label>Time out</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Milliseconds delay before mouse out events]]></comment>
+						</timeout>
+						<fadein translate="label comment">
+							<label>Fade in</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Milliseconds for fade in animation event]]></comment>
+						</fadein>
+						<fadeout translate="label comment">
+							<label>Fade out</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Milliseconds for fade out animation event]]></comment>
+						</fadeout>
+					</fields>
+				</pronavconfig>
+			</groups>
+		</pronav>
+	</sections>
+</config>

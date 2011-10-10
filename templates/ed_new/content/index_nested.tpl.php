@@ -1,0 +1,42 @@
+<?php
+  //$categories_top_banner = 'top-banner-default.jpg';
+  $categories_top_banner = '';
+  if ($category['categories_top_banner']!='') {
+    $categories_top_banner = $category['categories_top_banner'];
+  }
+?>
+		<div style="text-align: center; margin-bottom:10px;">
+		<?php if ($categories_top_banner && in_array($cPath, array('75', '21', '21_171 ', '21_141 ', '21_142 ', '21_143 ', '21_144 ', '21_145 '))) { ?>
+			<img src="/images/<?php echo $categories_top_banner; ?>" alt="free shipping on orders over $100" />
+		<?php } elseif ($categories_top_banner && !in_array($cPath, array('75', '21', '21_171 ', '21_141 ', '21_142 ', '21_143 ', '21_144 ', '21_145 '))) { ?>
+			<!--a href="coupons.php"--><img src="/images/<?php echo $categories_top_banner; ?>" alt="" /><!--/a-->
+		<?php } ?>
+  	<?php if ($category['categories_h1']!='') { ?>
+			<h1 class="title"><?php echo htmlspecialchars($category['categories_h1']); ?></h1>
+	  <?php } else { ?>
+	  	<h1 class="title"><?php echo htmlspecialchars($category['categories_name']); ?></h1>
+	  <?php } ?>
+	  
+	  <?php if ($category['categories_text1']!='' && (!isset($HTTP_GET_VARS['page']) || isset($HTTP_GET_VARS['page']) && $HTTP_GET_VARS['page'] == 1)) { ?>
+	  	<div class="homepage_text"><?php echo $category['categories_text1']; ?></div>
+	  <?php } ?>
+		</div>
+		<div class="browse_categories">
+			<div class="products_list">
+        <?php include(DIR_WS_MODULES . 'browse_categories.php'); ?>
+      </div>
+    </div>
+    
+		<div class="clearfix" style="height:1px;overflow:hidden;">&nbsp;</div>
+		<?php if ($category['categories_text2']!='' && (!isset($HTTP_GET_VARS['page']) || isset($HTTP_GET_VARS['page']) && $HTTP_GET_VARS['page'] == 1)) { ?>
+		<div class="border homepage_text" style="margin-top:10px;"><?php echo $category['categories_text2']; ?></div>
+		<?php } ?>
+		<div style="height:1px;overflow:hidden; clear: both;">&nbsp;</div>
+		
+		<?php echo bestsellersGetProducts((int)$current_category_id); ?>
+
+		<div class="clearfix">&nbsp;</div>
+		
+		<?php if ($category['categories_text3']!='' && (!isset($HTTP_GET_VARS['page']) || isset($HTTP_GET_VARS['page']) && $HTTP_GET_VARS['page'] == 1)) { ?>
+		<div class="border homepage_text"><?php echo $category['categories_text3']; ?></div>
+		<?php } ?>

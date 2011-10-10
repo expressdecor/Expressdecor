@@ -1,0 +1,20 @@
+ACTIVITY,,,"Fetching number of rows"
+ACTIVITY,,,Importing
+ERROR,1,0,"Invalid SKU (sku)"
+SUCCESS,2,3,
+SUCCESS,3,3,
+SUCCESS,4,3,
+SUCCESS,5,3,
+SUCCESS,6,3,
+SUCCESS,7,3,
+SUCCESS,8,3,
+SUCCESS,9,3,
+SUCCESS,10,3,
+SUCCESS,11,3,
+SUCCESS,12,3,
+SUCCESS,13,3,
+SUCCESS,14,3,
+SUCCESS,15,3,
+SUCCESS,16,3,
+ACTIVITY,,,"Running after import procedures"
+ACTIVITY,,,Done
