@@ -43,7 +43,7 @@
                     <host><![CDATA[ed.database.master]]></host>
                     <username><![CDATA[edadmin]]></username>
                     <password><![CDATA[1wvcDW7j]]></password>
-                    <dbname><![CDATA[mradmin_edmagento]]></dbname>
+                    <dbname><![CDATA[expressdecor]]></dbname>
                     <active>1</active>
                 </connection>
             </default_setup>
