@@ -1,3 +1,5 @@
+app/etc/local.xml
+app/etc/config.xml
 var/*
 images/*
 .htaccess

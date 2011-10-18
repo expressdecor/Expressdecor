@@ -1,5 +1,15 @@
 <?xml version="1.0"?>
 <config>
+
+ <default>
+    <expressdecor>
+      <sales>
+        <countdown_enable>1</countdown_enable>
+ 	<countdown_target_date>1</countdown_target_date>
+      </sales>
+    </expressdecor>
+  </default>
+
     <modules>
         <Expressdecor_Adminhtml>
             <version>0.1.0</version>
@@ -17,6 +27,7 @@
             </adminhtml>
         </blocks>
   </global>
+
 </config>
 
 
