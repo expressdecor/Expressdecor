@@ -73,7 +73,7 @@
         </reference>
     </catalogsearch_result_index>
 
-    <catalogsearch_advanced_index translate="label">
+    <!-- <catalogsearch_advanced_index translate="label">
         <label>Advanced Search Form</label>
         <!-- Mage_Catalogsearch -->
         <reference name="root">
@@ -89,11 +89,11 @@
             <block type="core/html_calendar" name="html_calendar" as="html_calendar" template="page/js/calendar.phtml"/>
         </reference>
     </catalogsearch_advanced_index>
-
+-->
 <!--
 Advanced search results
 -->
-
+<!--
     <catalogsearch_advanced_result translate="label">
         <label>Advanced Search Result</label>
         <!-- Mage_Catalogsearch -->
@@ -120,7 +120,7 @@ Advanced search results
             </block>
         </reference>
     </catalogsearch_advanced_result>
-
+-->
     <catalogsearch_term_popular translate="label">
         <label>Popular Search Terms</label>
         <remove name="right"/>
