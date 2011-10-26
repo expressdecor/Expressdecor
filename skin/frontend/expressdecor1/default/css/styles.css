@@ -1016,6 +1016,7 @@ float:right;
 .products-grid li.item { float:left; width:171px; margin-right:16px;  }
 .products-grid li.last { margin-right:0; }
 .products-grid .actions {}
+.std .products-grid li.item { float:left; width:160px; margin-right:16px; list-style: none; }
 .products-grid .product-image {border:1px solid #B6B6B6; display:block; text-decoration:none !important; margin:0 auto 10px; position:relative; width:170px; }
 .products-grid .product-name { margin-bottom:7px; }
 .products-grid .ratings { text-align:left; line-height:13px; }
@@ -1066,6 +1067,8 @@ float:right;
 
 .product-collateral-wrapper { float:left; width:938px; padding: 25px 0px 0px;}
 .product-collateral { float:left; width:600px; }
+.category-view .product-collateral { float:left; width:695px; }
+
 .product-collateral .emailto-link { font-size:11px; margin:0; background:url(../images/bkg_arrow-bullet.gif) no-repeat 0 4px; padding-left:12px; }
 
 .box-collateral { background:#fff; }
