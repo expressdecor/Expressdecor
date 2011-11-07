@@ -50,7 +50,7 @@ Default layout, loads most of the pages
                 <action method="addJs"><script>mage/translate.js</script></action>
                 <action method="addJs"><script>mage/cookies.js</script></action>
                 <action method="addJs"><script>ed.js</script></action>
-                <action method="addJs"><script>clicktaleevents.js</script></action>
+                <action method="addJs"><script>effects.js</script></action>
                 
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
                 
@@ -62,6 +62,7 @@ Default layout, loads most of the pages
                 <action method="addCss"><stylesheet>css/print.css</stylesheet><params>media="print"</params></action>
 
                 <action method="addItem"><type>js</type><name>lib/ds-sleight.js</name><params/><if>lt IE 7</if></action>
+                <action method="addItem"><type>skin_css</type><name>css/styles-ie7.css</name><params/><if>lt IE 7</if></action>
                 <action method="addItem"><type>skin_js</type><name>js/iehover-fix.js</name><params/><if>lt IE 7</if></action>
             </block>
 

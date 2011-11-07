@@ -22,7 +22,64 @@
  * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
+/*======Login top settings=====*/
+.header-login{
+  float:right; 
+  border: 1px solid black;
+  margin-bottom: 0px;
+  min-height: 25px;
+  padding-bottom: 0px;
+  padding-left: 5px;
+  padding-right: 4px;
+  padding-top: 6px;
+  text-align: left;
+  width: 271px;
 
+}
+
+
+.header-login ul li a {
+color: #FF6100;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+     padding-left: 5px;
+    font-weight: bold;
+}
+
+.header-login .links {float:left; margin-top: 0px !important; padding-left: 0px !important;}
+
+.header-login .top-cart {
+float: right;
+padding-right: 0px !important;
+padding-left: 0px;
+}
+
+/*footer*/
+.form-subscribe .v-fix {  border: 0px solid #FF6001 !important; }
+.form-subscribe .v-fix input { border: 2px solid #FF6001;  }
+
+.form-subscribe button.button span {
+padding-left: 0px;   
+    height: 22px !important;
+    width:55px;
+    margin-top: 1px;
+    /*padding-bottom:6px;*/
+    }
+    
+    .form-subscribe button.button span  span{
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    }
+.copyright {background-color: #000000;}    
+.footer .footer-line { background-color: #000000;}
+.footer {
+height: 255px;
+}
+
+ul#newnav li .sub {
+z-index:9999;
+}
 /* IE 6 only */
 #product_addtocart_form div.product-essential div.product-shop div.product-main-info2 div.addto-chat div.addto-bg {float: left;margin: 93px 0 0 -531px;}
 #product_addtocart_form div.product-essential div.product-shop div.product-main-info2 div.addto-chat div.addto-chat-elem3 ul.add-to-links { float: none; margin-left: -370px;
@@ -32,13 +89,7 @@ ul#pronav {padding: 0 4px 0px;}
 .scan {
     float: left;
 	}
-.top-search {
-    background: url("../images/search-bg.gif") no-repeat scroll 0 0 #FFFFFF;
-    margin: 0px 0 0 0px;
-    padding: 38px 0 0 1px;
-    position: none;
-    width: 280px;
-}
+
 .header .form-search {
     clear: right;
     float: none;
@@ -65,8 +116,16 @@ ul#pronav {padding: 0 4px 0px;}
 .giftcard-send-form   { float:left; width:416px; display:inline; margin-bottom:-40px;}
 .col2-right-layout .giftcard-send-form,
 .col2-left-layout .giftcard-send-form { width:100%; }
-.top-cart  { _width:10px; }
+
+
+#cartHeader { padding-top: 0px; height: min; }
+/*
+.top-cart  { border: 1px solid black; width:90px; padding-top: 0px; }
+.links { border: 1px solid black; }
+.top-cart .block-title strong {display: inline; padding-right:10px; background:url(../images/bkg_header-panel.gif) 100% -71px no-repeat; font-size:11px; color:#FF6100; font-weight:bold; text-decoration:none; text-transform: none;}
+*/
 .cart .crosssell { _height:400px; }
+
 .event  .event-bottom { _bottom:-14px }
 
 /* Doubled Margin Fixes */
@@ -240,3 +299,5 @@ a.button { _height:22px; }
 
 /* Hover Fix */
 iframe.hover-fix { position:absolute; left:-1px; top:-1px; z-index:-1; background:transparent; filter:progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0); }
+/*new design*/
+.top-search form#search_mini_form div.form-search button.button { margin-bottom:4px; }

@@ -27,13 +27,15 @@
  * @var Mage_Page_Block_Html_Header $this
  */
 ?>
+
+
  <div class="header-panel">
-        <div class="header-phone"><img src="<?=$this->getSkinUrl('images/header-phone.gif')?>"></div><div class="header-livechat"><a onclick="lpButtonCTTUrl = 'https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson&amp;referrer='+escape(document.location); lpButtonCTTUrl = (typeof(lpAppendVisitorCookies) != 'undefined' ? lpAppendVisitorCookies(lpButtonCTTUrl) : lpButtonCTTUrl); lpButtonCTTUrl = ((typeof(lpMTag)!='undefined' &amp;&amp; typeof(lpMTag.addFirstPartyCookies)!='undefined')?lpMTag.addFirstPartyCookies(lpButtonCTTUrl):lpButtonCTTUrl);window.open(lpButtonCTTUrl,'chat33660894','width=475,height=400,resizable=yes');return false;" href="https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;byhref=1&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson"><img src="<?=$this->getSkinUrl('images/live-chat-header.gif')?>"></a></div>
+
 	<div class="header-links">	
-       <!-- <div class="switches"><?php echo $this->getChildHtml('switches') ?></div>-->
+     
         <p class="welcome-msg"><?php echo $this->getChildHtml('welcome') ?></p>
-        <?php echo $this->getChildHtml('accountLinks') ?>
-		<!--<?php echo $this->getChildHtml('topLinks') ?>-->
+        <?php // echo $this->getChildHtml('accountLinks') ?>
+		<!--<?php //echo $this->getChildHtml('topLinks') ?>-->
     </div></div>
 <div class="header-container">
    
@@ -44,15 +46,70 @@
             <?php else:?>
             <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
             <?php endif?>
-            <?php echo $this->getChildHtml('topSearch') ?> <!--<img src="<?php echo $this->getSkinUrl('images/callouts/header_free_shipping.gif')?>" alt="" class="free-shipping" />-->
-        </div>
-        <div class="quick-access">
-            <!--<div class="checkout-link"><?php echo $this->getChildHtml('checkoutLinks') ?></div>-->
-            <?php echo $this->getChildHtml('topCart') ?>
+            
+         <div class="header-livechat">
+           <a onclick="lpButtonCTTUrl = 'https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson&amp;referrer='+escape(document.location); lpButtonCTTUrl = (typeof(lpAppendVisitorCookies) != 'undefined' ? lpAppendVisitorCookies(lpButtonCTTUrl) : lpButtonCTTUrl); lpButtonCTTUrl = ((typeof(lpMTag)!='undefined' &amp;&amp; typeof(lpMTag.addFirstPartyCookies)!='undefined')?lpMTag.addFirstPartyCookies(lpButtonCTTUrl):lpButtonCTTUrl);window.open(lpButtonCTTUrl,'chat33660894','width=475,height=400,resizable=yes');return false;" href="https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;byhref=1&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson">
+	       <div class="livechat-img"></div>
+           </a>
+	     </div>
+          <div class="freeshipping" >          
+          </div>  
+          <?php  echo $this->getChildHtml('topSearch') ?> 
+          
          
-           
         </div>
+
     </div>
-    <?php echo $this->getChildHtml('topMenu') ?>
-    <?php echo $this->getChildHtml('topContainer') ?>
+    <div  class="header-login">
+    <?php echo $this->getChildHtml('accountLinks') ?>
+     <?php  echo $this->getChildHtml('topCart') ?>
+    </div>
+
+    
+    	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('top_menu')->toHtml() ?>
+    	<?php // echo $this->getChildHtml('topMenu') ?>    
+
+<script>
+Event.observe(window, 'load', init, false);
+
+function greet(){
+	var url = 'images.php';
+	var pars = 'first=1&last=5';
+	var target = 'express-slides';
+	var imgAjax = new Ajax.Updater(target, url, {	method: 'get',	parameters: pars});
+
+	setInterval(function(){
+		var imgs = $$('.fadein img'),
+		visible = imgs.findAll(function(img){ return img.visible(); });
+		if(visible.length>1) visible.last().fade({ duration: .3 });
+		else imgs.last().appear({ duration: .3,
+		afterFinish: function(){ imgs.slice(0,imgs.length-1).invoke('show');  } });
+	}, 8000);
+}
+
+function init(){
+	greet();
+}
+
+function slider_show(num) {
+
+	var slide = document.getElementById('slide-'+num);
+	var imgs = $$('.fadein img');
+	var i =1;
+
+	for (i=1;i<=5;i++)
+	{
+		if (i!==num) {
+			imgs[i-1].fade({ duration: .3 });
+		}
+	}
+
+	slide.appear({ duration: .3 });
+}
+
+
+</script>
+
+
+<?php echo $this->getChildHtml('topContainer') ?>
 </div>

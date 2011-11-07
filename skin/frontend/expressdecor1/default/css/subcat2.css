@@ -1,0 +1,52 @@
+.subcat-box {float:left;
+height:173px;
+margin:3px 16px 0 6px;
+width:291px;}
+.subImg {}
+.subtext {color:#333333;
+display:block;
+font-weight:bold;
+height:45px;
+margin:0 10px;
+padding:125px 0 0 17px;
+position:absolute;
+text-align:center;
+text-decoration:none;
+width:100px;}
+.topblock{width:940px;}
+.sub {width:210px; display:inline;}
+.sub div.subcat-box {
+    float: left;
+    height: 132px;
+    margin: 3px 1px 0 27px;
+}
+.sub div.subcat-box-last {
+    float: left;
+    height: 105px;
+    padding: 3px 0 0 0;
+    width: 290px;
+}
+.sub div.subcat-box a.subtext {
+    color: #333333;
+    display: block;
+    font-weight: bold;
+    height: 39px;
+    padding: 124px 0 0;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    width: 279px;
+	font-size:14px;
+}
+.sub div.subcat-box-last a.subtext {
+    color: #333333;
+    display: block;
+    font-weight: bold;
+    height: 40px;
+    padding: 123px 0 0;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    width: 280px;
+	font-size:14px;
+}

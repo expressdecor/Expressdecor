@@ -104,72 +104,7 @@ left: 1140px;
 	margin-bottom:0;
 	width: 80px;
 	}
-	
-#nav ul{
-	margin:0;
-	padding:0;
-	list-style: none;
-	}
-#nav li {
-	background-image: url("../images/dnbutt.gif"); /* This is to preload the hover state */
-	background-repeat: no-repeat; 
-	margin-top: 33px; /* For IE5 Mac only - reset to 0 below */
-	margin-bottom: 65px; /* For IE5 Mac only - reset to 0 below */
-	}
-	
-#nav a { /* if background is on a:link IE6 won't display properly  */
-	background-image: url("../images/upbutt.gif"); /*can be just background */
-	background-repeat: no-repeat; /* height and or width in here will stop main image change in IE5 */
-	padding-top: 32px; /* For IE5 Mac only - reset to 0 below */
-	padding-left: 5px; 
-	padding-bottom: 32px; /* For IE5 Mac only - reset to 0 below */
-	padding-right: 32px; /* For IE5 Mac only - reset to 10 below */
-	color: yellow;
-	font-family: "Arial Black", sans-serif;
-	text-align: center;
-	/*height or width in here will stop main image change in IE5 Win
-	luckily, line-height is OK! - hidden from IE5 Mac see below
-	a must be block to display background-image in IE Win
-	 - but also needs to be hidden from IE5 Mac see below */
-	}
 
-#nav a/*Comment hack to hide this from IE5 - needed to extend link over button image in IE6 */{
-	height:80px;
-	}
- 
-#nav a:hover {
-	background: url("../images/dnbutt.gif") no-repeat; /* no background-x styles work here */
-	color: red; 
-	}
-#nav a img {
-	width: 88px; /* IE5 Win can't dynamically change size - don't use 0px to hide */
-	height: 67px;
-	position: absolute;
-	top: 200px;
-	left: 500px;
-	border: 1px solid black;
-	visibility: hidden;
-	}
-
- /* commented backslash hack v2 - hide rules from IE5 Mac \*/
-#nav a {
-	padding-top: 0; 
-	padding-bottom: 0;
-	padding-right: 10px; 
-	display: block;
-	line-height: 80px;
-	}	
-#nav li {
-	margin-top:0;
-	margin-bottom:0;
-	width: 80px;
-	}
-/* end hack */
-
-
-#nav a:hover img {
-	visibility:visible;
-	}
 
 div.desk_the_saving {
     background-color: #AAA;

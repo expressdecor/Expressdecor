@@ -1,2 +1,0 @@
-
-BufferedClickTaleTag('Coupons');
