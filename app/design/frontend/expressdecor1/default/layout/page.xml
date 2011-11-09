@@ -51,6 +51,12 @@ Default layout, loads most of the pages
                 <action method="addJs"><script>mage/cookies.js</script></action>
                 <action method="addJs"><script>ed.js</script></action>
                 <action method="addJs"><script>effects.js</script></action>
+           <action method="addJs">
+				<js>pronav/jquery.1.4.2.js</js>
+			</action>
+			<action method="addJs">
+				<js>pronav/jquery.hover.intent.js</js>
+			</action>
                 
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
                 

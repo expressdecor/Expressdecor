@@ -33,7 +33,7 @@
 
 	<div class="header-links">	
      
-        <p class="welcome-msg"><?php echo $this->getChildHtml('welcome') ?></p>
+        <p class="welcome-msg"><?php // echo $this->getChildHtml('welcome') ?></p>
         <?php // echo $this->getChildHtml('accountLinks') ?>
 		<!--<?php //echo $this->getChildHtml('topLinks') ?>-->
     </div></div>
@@ -69,46 +69,6 @@
     	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('top_menu')->toHtml() ?>
     	<?php // echo $this->getChildHtml('topMenu') ?>    
 
-<script>
-Event.observe(window, 'load', init, false);
-
-function greet(){
-	var url = 'images.php';
-	var pars = 'first=1&last=5';
-	var target = 'express-slides';
-	var imgAjax = new Ajax.Updater(target, url, {	method: 'get',	parameters: pars});
-
-	setInterval(function(){
-		var imgs = $$('.fadein img'),
-		visible = imgs.findAll(function(img){ return img.visible(); });
-		if(visible.length>1) visible.last().fade({ duration: .3 });
-		else imgs.last().appear({ duration: .3,
-		afterFinish: function(){ imgs.slice(0,imgs.length-1).invoke('show');  } });
-	}, 8000);
-}
-
-function init(){
-	greet();
-}
-
-function slider_show(num) {
-
-	var slide = document.getElementById('slide-'+num);
-	var imgs = $$('.fadein img');
-	var i =1;
-
-	for (i=1;i<=5;i++)
-	{
-		if (i!==num) {
-			imgs[i-1].fade({ duration: .3 });
-		}
-	}
-
-	slide.appear({ duration: .3 });
-}
-
-
-</script>
 
 
 <?php echo $this->getChildHtml('topContainer') ?>

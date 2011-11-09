@@ -2910,9 +2910,9 @@ address {
 height: 20px;
 text-transform: uppercase; 
 font-size: 14px; 
-background-color: #1E0D03;
 color: #FFFFFF;
 }
+.copyright { background-color: #1E0D03;}
 
 /*======Login top settings=====*/
 .header-login{
@@ -3145,3 +3145,58 @@ background-position: -3px -203px;
 
 }
 
+/*checkout page*/
+/*
+.checkout-options {border:0px solid black; height: 145px;}
+.checkout-options .checkout-reg, .checkout-options .checkout-guest , .checkout-options .checkout-login {
+ border:1px solid #E2DDD5;
+ float:left; 
+ height: 100%;
+ margin-left:2px;
+ padding-top: 5px;
+ border-bottom: 0px;
+ border-top: 0px;
+}
+.checkout-options .checkout-guest, .checkout-options .checkout-login { border-left: 0px;}
+.checkout-options .checkout-guest {  width: 288px;}
+.checkout-options .checkout-reg { width: 293px;}
+.checkout-options .checkout-login {  width: 309px; text-align:center;}
+.checkout-options .checkout-reg {border-: 0px;}
+.checkout-options .checkout-login .input-box { border:0px solid black;float:none; height: auto; width: auto; padding-top: 4px;padding-left:55px;}
+.checkout-options div .input-box { padding-left: 5px;}
+#onestepcheckout-form label,.checkout-options label { font-family: Arial; font-size: 12px; }
+.checkout-login button {
+margin: 0 0 0 -8px;
+}
+.checkout-login button span {
+  background-image:url(../images/header_footer_sprite.png);
+ background-repeat:no-repeat;
+background-position: -347px -4px;
+color: #FFFFFF;
+height: 25px;
+    height: 23px;
+    padding-bottom: 2px;
+    padding-left:5px;
+}
+.checkout-login button span span {
+font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+     padding-top: 2px;
+    text-transform: uppercase;
+    background-image: none;
+    color: #FFFFFF;
+ }
+ 
+ #onestepcheckout-login-popup button {
+ padding-left: 70px !important;
+ }
+
+ #label_password { margin-left: 25px;}
+ #label_info {padding-left: 11px;}
+ #onestepcheckout-login-link { width: 180px; height: 20px; color: #FFFFFF;text-transform: uppercase; background-color: #FF6100; font-weight: bold; margin-left: 60px; cursor: pointer; margin-bottom: 8px; }
+.input-email input {width: 200px !important;}
+.input-telephone {float: none !important;}
+.checkout-discount {font-weight: bold; color: #FF0000;}
+#onestepcheckout-form {float: left; }
+#onestepcheckout-login-error {width: 257px; }
+*/
