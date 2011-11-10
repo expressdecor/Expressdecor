@@ -209,6 +209,7 @@ button.disabled span {}
 .validation-advice { clear:both; font-size:11px !important; padding:3px 0 0 !important; color:#d91a00 !important; }
 .product-options .validation-error .options-list,
 .validation-failed { border:1px solid #f47d4e !important; background:#fff7f5 !important; }
+
 input.input-text.validation-failed,
 textarea.validation-failed { background:#fff7f5 url(../images/bkg_input-failed.gif) 0 0 repeat-x !important; }
 span.validation-passed,
@@ -2491,16 +2492,23 @@ ul.cms-menu.type-square ul { list-style-type:square; }
 .form-subscribe .subscribe-title { font-family: Helvetica; font-size: 14px; color: #000000;text-transform: uppercase;font-weight: bold; width: 234px;}
 .form-subscribe input.input-text { width:177px; display:block; }
 
-.form-subscribe button.button { margin:-25px 0 0 185px; float:right; }
+.form-subscribe button.button { margin: 0px 0 -40px 175px; float:right; }
+/*top right bottom left*/
+#newsletter{width: 160px; border: 2px solid #FF6001;}
+#newsletter.validation-failed { border:2px solid #FF6001 !important; background:#fff7f5 !important; }
+
 
 .form-subscribe button.button span {padding-left: 0px;
     background-image: url("../images/header_footer_sprite.png");
     background-position: -349px -4px;
     background-repeat: no-repeat;
-    height: 25px;
+    height: 20px;
     width:60px;
     /*padding-bottom:6px;*/
     }
+    
+#advice-validate-email-newsletter {width: 244px;margin-right: 0px;}
+    
 .form-subscribe button.button span span {color: #FFFFFF; /*padding-left: 2px; padding-top:4px;  */}
 
 .form-subscribe .validation-advice { width:180px; }
@@ -2881,7 +2889,7 @@ background-image: url("../images/header_footer_sprite.png");
 background-position: 1px -187px;
 height: 31px;
 width: 518px;
-margin-top:209px;
+margin-top:218px;
 }
 
 .footer .footer-menu-link a {
@@ -2891,7 +2899,7 @@ text-decoration: none;
 color: #000000;
 }
 .footer .footer-singup {
-    height: 100px;
+    height: 114px;
     padding-left: 10px;
     padding-top: 10px;
     margin-top: 10px;

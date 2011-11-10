@@ -59,6 +59,9 @@ padding-left: 0px;
 .form-subscribe .v-fix {  border: 0px solid #FF6001 !important; }
 .form-subscribe .v-fix input { border: 2px solid #FF6001;  }
 
+.form-subscribe button.button { margin: 0px 0 -40px 160px; float:right; margin-right: 2px; margin-top: 7px;}
+/*top right bottom left*/
+
 .form-subscribe button.button span {
 padding-left: 0px;   
     height: 22px !important;
@@ -74,6 +77,10 @@ padding-left: 0px;
     }
 .copyright {background-color: #000000;}    
 .footer .footer-line { background-color: #000000;}
+
+#advice-validate-email-newsletter {padding-top: 0px; line-height: 1.10;}
+.footer .footer-singup {height: 116px;}
+
 .footer {
 height: 255px;
 }
