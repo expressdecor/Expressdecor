@@ -8,7 +8,7 @@
   </tabs>
   <sections>
     <expressdecor translate="label">
-      <label>Countdown settings</label>
+      <label>Expressdecor settings</label>
       <tab>Expressdecor</tab>
       <frontend_type>text</frontend_type>
       <sort_order>1000</sort_order>
@@ -37,7 +37,7 @@
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
             </countdown_target_date>
-<!-- Second field -->
+		<!-- Second field -->
             <countdown_enable translate="label comment">
               <label>Enabled</label>
               <comment>
@@ -51,8 +51,137 @@
               <show_in_store>1</show_in_store>
             </countdown_enable>	
           </fields>
-        </sales>
+       </sales>
+
+       <slides translate="label">
+          <label>Slideshow settings</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>100</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <!-- slides fields -->
+            <slide1_url translate="label comment">
+              <label>Slide #1 image</label>
+              <comment>
+                <![CDATA[Url to slide image]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>1</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide1_url>
+            <!-- slide href -->
+            <slide1_link translate="label comment">
+              <label>Link for slide #1</label>
+              <comment>
+                <![CDATA[Link for this slide.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>2</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide1_link>
+          <slide2_url translate="label comment">
+              <label>Slide #2 image</label>
+              <comment>
+                <![CDATA[Url to slide image]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>3</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide2_url>
+            <!-- slide href -->
+            <slide2_link translate="label comment">
+              <label>Link for slide #2</label>
+              <comment>
+                <![CDATA[Link for this slide.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>4</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide2_link>
+             <slide3_url translate="label comment">
+              <label>Slide #3 image</label>
+              <comment>
+                <![CDATA[Url to slide image]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>5</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide3_url>
+            <!-- slide href -->
+            <slide3_link translate="label comment">
+              <label>Link for slide #3</label>
+              <comment>
+                <![CDATA[Link for this slide.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>6</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide3_link>
+             <slide4_url translate="label comment">
+              <label>Slide #4 image</label>
+              <comment>
+                <![CDATA[Url to slide image]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>7</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide4_url>
+            <!-- slide href -->
+            <slide4_link translate="label comment">
+              <label>Link for slide #4</label>
+              <comment>
+                <![CDATA[Link for this slide.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>8</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide4_link>
+            <slide5_url translate="label comment">
+              <label>Slide #5 image</label>
+              <comment>
+                <![CDATA[Url to slide image]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>9</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide5_url>
+            <!-- slide href -->
+            <slide5_link translate="label comment">
+              <label>Link for slide #5</label>
+              <comment>
+                <![CDATA[Link for this slide.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide5_link>
+
+          </fields>
+        </slides>
       </groups>
     </expressdecor>
+
   </sections>
 </config>

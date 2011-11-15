@@ -65,16 +65,16 @@
 
 
 <div class="top-cart">
-
+<div class="cart-img"></div>
 <?php $_cartQty = $this->getSummaryCount() ?>
 
 <?php if ($_cartQty > 0): ?>
 
-    <?php $_myCart = $this->__('My cart(<span>%s</span>)', $_cartQty) ?>
+    <?php $_myCart = $this->__('Cart(<span>%s</span>)', $_cartQty) ?>
 
 <?php else: ?>
 
-    <?php $_myCart = $this->__('My cart (<span>0</span>)') ?>
+    <?php $_myCart = $this->__('Cart (<span>0</span>)') ?>
 
 <?php endif ?>
 

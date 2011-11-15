@@ -308,9 +308,15 @@ a.button { _height:22px; }
 /* Hover Fix */
 iframe.hover-fix { position:absolute; left:-1px; top:-1px; z-index:-1; background:transparent; filter:progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0); }
 /*new design*/
-.top-search form#search_mini_form div.form-search button.button { margin-bottom:4px; }
+.top-search form#search_mini_form div.form-search button.button { margin-bottom:9px; }
+.top-search {padding-top: 0px !important; }
+.form-search {margin-top: 0px !important;}
 /* checkout page*/
 #onestepcheckout-login-popup {width: 307px; height:115px;   z-index:0;position: relative;}
 /*.checkout-options .checkout-login .input-box { padding-left: 0px;}*/
 .checkout-options .checkout-reg, .checkout-options .checkout-guest , .checkout-options .checkout-login { border-bottom: 1px solid #E2DDD5;}
 .onestepcheckout-threecolumns {width: 100%; }
+.onestepcheckout-column-left {width: 270px !important ;}
+.input-different-shipping { margin-top: 15px !important;  }
+.input-email input {width: 225px !important;}
+.input-telephone input {width: 225px !important;}

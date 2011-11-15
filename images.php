@@ -1,11 +1,22 @@
  
-<?php // header('Content-type: text/xml'); ?>
 
 <?php
 
+require_once 'app/Mage.php';
+Mage::app('default');
+
 $first=$_GET['first'];
 $last=$_GET['last'];
+$strings=array();
+$links=array();
 
+for ($i=$first;$i<=$last;$i++) {
+
+array_push($strings,Mage::getStoreConfig('expressdecor/slides/slide'.$i.'_url',Mage::app()->getStore()));
+array_push($links,Mage::getStoreConfig('expressdecor/slides/slide'.$i.'_link',Mage::app()->getStore()));
+
+}
+/*
 $strings=array('http://www.alex.expressdecor.com/media/new-products.jpg',
 'http://www.alex.expressdecor.com/media/main-banner/home_page_b_6.jpg',
 'http://www.alex.expressdecor.com/media/main-banner/home_page_b_3.jpg',
@@ -14,6 +25,7 @@ $strings=array('http://www.alex.expressdecor.com/media/new-products.jpg',
 );
 
 $links=array('#','#','#','#','#');
+*/
 //echo ('<total>'.count($strings).'</total>');
 
 for ($i=$first;$i<=$last;$i++) {	 
