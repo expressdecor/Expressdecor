@@ -2913,7 +2913,7 @@ background-image: url("../images/header_footer_sprite.png");
 background-position: 1px -187px;
 height: 31px;
 width: 518px;
-margin-top:218px;
+margin-top:203px;
 }
 
 .footer .footer-menu-link a {
@@ -2930,6 +2930,8 @@ color: #000000;
     width: 245px;
     background-color: #F5F5F5;
     border: 1px solid #DEDCDD;
+    margin-bottom: 26px;
+    margin-left: 45px;
 }
 .footer .footer-right-banners {
 padding-left: 22px;
