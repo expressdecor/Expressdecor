@@ -3269,3 +3269,5 @@ font-family: Arial,Helvetica,sans-serif;
 .onestepcheckout-column-left {background-image: none !important; border-right: 1px solid #E2DDD5; }
 .onestepcheckout-column-middle {height:507px; background-image: none !important; border-right: 1px solid #E2DDD5;}
 */
+.product-view .product-shop:after { display:block; content:"."; clear:both; font-size:0; line-height:0; height:0; overflow:hidden; }
+.product-discount .discount-txt img{width: 225px;padding: 3px 0px;}
