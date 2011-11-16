@@ -2528,14 +2528,14 @@ ul.cms-menu.type-square ul { list-style-type:square; }
     background-image: url("../images/header_footer_sprite.png");
     background-position: -349px -4px;
     background-repeat: no-repeat;
-    height: 20px;
+    height: 23px;
     width:60px;
     /*padding-bottom:6px;*/
     }
     
 #advice-validate-email-newsletter {width: 244px;margin-right: 0px;}
     
-.form-subscribe button.button span span {color: #FFFFFF; /*padding-left: 2px; padding-top:4px;  */}
+.form-subscribe button.button span span {color: #FFFFFF; padding-top: 0px; padding-bottom: 0px;/*padding-left: 2px; padding-top:4px;  */}
 
 .form-subscribe .validation-advice { width:180px; }
 .form-subscribe .v-fix { text-align:left; padding-right:0px; border: 2px solid #FF6001; }
@@ -3010,7 +3010,7 @@ background-image: none;
 /* height:28px; */
  position:relative;
  z-index:1;
- margin: 0;\
+ margin: 0;
  padding: 0;
  border-right:1px solid #6c6c6c;  
  line-height: 27px; 
@@ -3024,7 +3024,7 @@ border-right:0px solid #000000;
 #nav a.level-top {
 color:#fff;
 float:left;
-padding:3px 10px;
+padding:3px 10px 0 10px;
 padding-bottom: 0px;
 font-family: Arial;
 font-size: 12px;
