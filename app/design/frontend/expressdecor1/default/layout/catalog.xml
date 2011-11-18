@@ -45,9 +45,10 @@ Default layout, loads most of the pages
     <default>
 
         <!-- Mage_Catalog -->
-        <reference name="top.menu">
+        <!--<reference name="top.menu">
             <block type="catalog/navigation" name="catalog.topnav" template="catalog/navigation/top.phtml"/>
         </reference>
+	-->
         <reference name="top.container">
             <block type="cms/block" name="cms.top.callout" before="-">
                 <action method="setBlockId"><block_id>top_callout</block_id></action>
