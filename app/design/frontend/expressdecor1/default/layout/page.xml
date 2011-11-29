@@ -48,7 +48,11 @@ Default layout, loads most of the pages
                 <action method="addJs"><script>varien/form.js</script></action>
                 <action method="addJs"><script>varien/menu.js</script></action>
                 <action method="addJs"><script>mage/translate.js</script></action>
-                <action method="addJs"><script>mage/cookies.js</script></action>
+                <action method="addJs"><script>mage/cookies.js</script></action>                
+                <action method="addJs"><script>clientscript/prototype/scriptaculous.js?load=effects</script></action> 
+   				<action method="addJs"><script>clientscript/os.js</script></action> 
+			    <action method="addJs"><script>clientscript/model/carousel.js</script></action> 
+   				<action method="addJs"><script>clientscript/behavior/application.js</script></action> 
                 <action method="addJs"><script>ed.js</script></action>
                 <action method="addJs"><script>effects.js</script></action>
            <action method="addJs">
