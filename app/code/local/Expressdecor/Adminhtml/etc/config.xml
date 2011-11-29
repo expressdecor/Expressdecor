@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config>
 
- <default>
+<!-- <default>
     <expressdecor>
       <sales>
         <countdown_enable>1</countdown_enable>
@@ -22,7 +22,7 @@
     </expressdecor>
 
   </default>
-
+-->
     <modules>
         <Expressdecor_Adminhtml>
             <version>0.1.0</version>
