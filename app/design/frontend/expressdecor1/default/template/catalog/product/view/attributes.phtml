@@ -43,7 +43,23 @@
             <?php if(($_data['value']) != 'N/A' && ($_data['value']) != 'No'): ?>
         <tr>
             <th class="label"><?php echo $this->htmlEscape($this->__($_data['label'])) ?></th>
-            <td class="data"><?php echo $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?></td>
+            <td class="data">
+ <?php
+            $attr_html=$_helper->productAttribute($_product, $_data['value'], $_data['code']);
+            if ( (strpos($attr_html,'$')) > 0) {
+            	
+            	if ((strpos($data['code'],'price'))>0) {
+            		echo $attr_html;
+            	} else {
+            		$attr_html=str_replace('$','',$attr_html);
+            		$attr_html= str_replace('<span class="price">','',$attr_html);
+            		echo str_replace('</span>','',$attr_html);
+            	}
+            } else {
+            	echo $attr_html;
+            }
+       ?>
+</td>
         </tr>
 		 <?php endif; ?>
     <?php endforeach; ?>

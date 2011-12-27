@@ -1,0 +1,77 @@
+<?php
+/**
+ * Magento Enterprise Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Enterprise Edition License
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magentocommerce.com/license/enterprise-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://www.magentocommerce.com/license/enterprise-edition
+ */
+?>
+<?php
+/**
+ * Category layered navigation state
+ *
+ * @see Mage_Catalog_Block_Layer_State
+ */
+?>
+<?php $_filters = $this->getActiveFilters() ?>
+<?php if(!empty($_filters)): ?>
+<div class="currently">
+    <p class="block-subtitle"><?php echo $this->__('Currently Shopping by:') ?></p>
+    <ol>
+    <?php $iCounter = 0; ?>
+    <?php 
+    $postData = $_POST;
+    //print_r($_POST);
+
+
+    foreach ($_filters as $_filter):
+
+    ?>
+        <form id="filterByRemove<?php echo $iCounter ?>" action="" name="filterByRemove<?php echo $iCounter ?>" method="post">
+        <?php foreach ($postData as $key=>$value): ?>
+            <?php if($value != $_filter->getValueString()): ?>
+                <input type="hidden" name="<?php echo $key; ?>" value="<?php echo trim($value); ?>">
+            <?php endif; ?>
+        <?php endforeach ?>
+        <li>
+            <a href="<?php echo $_filter->getRemoveUrl() ?>" title="<?php echo $this->__('Remove This Item') ?>" class="btn-remove"><?php echo $this->__('Remove This Item') ?></a>
+            <?php /*<a href="javascript:submitFilterForm('filterByRemove<?php echo $iCounter ?>');" title="<?php echo $this->__('Remove This Item') ?>" class="btn-remove"><?php echo $this->__('Remove This Item') ?></a> */ ?>
+            <span class="label"><?php echo $this->__($_filter->getName()) ?>:</span>
+            <?php
+            $attributemodel=$_filter->filter->_data["attribute_model"];
+            $attribute_code=$attributemodel->getAttributeCode();
+
+            $label=$this->stripTags($_filter->getLabel());
+            if  (strpos($attribute_code,'price')===false ) {
+            	echo $label;
+            } else {
+            	echo str_replace('$','',$label);
+            }       
+             ?>
+        </li>
+        </form>
+        <?php $iCounter++; ?>
+    <?php endforeach; ?>
+    </ol>
+    <div class="actions"><a href="<?php echo $this->getClearUrl() ?>"><?php echo $this->__('Clear All') ?></a></div>
+</div>
+<?php endif; ?>
+
