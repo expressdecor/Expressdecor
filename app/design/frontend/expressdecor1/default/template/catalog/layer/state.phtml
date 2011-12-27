@@ -61,9 +61,9 @@
 
             $label=$this->stripTags($_filter->getLabel());
             if  (strpos($attribute_code,'price')===false ) {
-            	echo $label;
+		echo str_replace('$','',$label);
             } else {
-            	echo str_replace('$','',$label);
+		echo $label;
             }       
              ?>
         </li>
