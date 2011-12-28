@@ -1258,7 +1258,7 @@ text-transform:none;}
 
 .promo-txt {color:#000000;
 float:left;
-height:52px;
+/*height:52px;*/
 width:104%;
 padding-bottom: 27px;
 }
@@ -1614,7 +1614,9 @@ text-transform:none; }
     font-size: 15px;
     font-weight: bold;
     margin: 11px 0 0;
-    position: absolute; }
+    position: absolute; 
+    width: 175px;
+    }
 .product-options dt .qty-holder { float:right; }
 .product-options dt .qty-holder label { vertical-align:middle; }
 .product-options dt .qty-disabled { background:none; border:0; padding:3px; color:#000; }
@@ -2565,9 +2567,9 @@ address.copyright { margin-top:6px;   color: #FFFFFF; font-size: 14px;}
 /* Some sample data cms styles ================================================================================ */
 .page-head-alt {}
 .page-head,
-.page-head-alt { margin-bottom:20px; padding:23px 20px 11px; background:#f6f6f6 url(../images/bkg_page-title.gif) repeat-x 0 0; border-bottom:1px solid #cfcfcf; }
+.page-head-alt { margin-bottom:20px; padding:23px 5px 11px; background:#f6f6f6 url(../images/bkg_page-title.gif) repeat-x 0 0; border-bottom:1px solid #cfcfcf; }
 .col-main .page-head,
-.col-main .page-head-alt { margin:0 -20px 20px; }
+.col-main .page-head-alt { margin:0 0px 20px; }
 .page-head-alt .link-rss { float:right; margin-top:8px; }
 .page-head h2,
 .page-head h3,
