@@ -40,12 +40,12 @@
     <col />
     <tbody>
     <?php foreach ($_additional as $_data): ?>
-            <?php if(($_data['value']) != 'N/A' && ($_data['value']) != 'No'): ?>
+            <?php if(($_data['value']) != 'N/A' && ($_data['value']) != 'No' && ($_data['value']) != '0.00' ): ?>
         <tr>
             <th class="label"><?php echo $this->htmlEscape($this->__($_data['label'])) ?></th>
             <td class="data">
  <?php
-            $attr_html=$_helper->productAttribute($_product, $_data['value'], $_data['code']);
+  $attr_html=$_helper->productAttribute($_product, $_data['value'], $_data['code']);
             if ( (strpos($attr_html,'$')) > 0) {
             	
             	if ((strpos($data['code'],'price'))>0) {
@@ -53,12 +53,16 @@
             	} else {
             		$attr_html=str_replace('$','',$attr_html);
             		$attr_html= str_replace('<span class="price">','',$attr_html);
-            		echo str_replace('</span>','',$attr_html);
+            		//echo str_replace('</span>','',$attr_html);
+            		$attr_html=str_replace('</span>','',$attr_html);            	
             	}
-            } else {
-            	echo $attr_html;
+            } 
+            
+            if ( (strpos($attr_html,'_Base')) > 0) {
+            	$attr_html=str_replace('_Base','',$attr_html);  
             }
-       ?>
+            	echo $attr_html;
+                   ?>
 </td>
         </tr>
 		 <?php endif; ?>
