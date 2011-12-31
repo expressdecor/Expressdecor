@@ -41,6 +41,7 @@
     <tbody>
     <?php foreach ($_additional as $_data): ?>
             <?php if(($_data['value']) != 'N/A' && ($_data['value']) != 'No' && (trim($_data['value']))!= '$0.00' && !empty($_data['value']) ): ?>
+<?php echo ($_data['value']);?>
 <tr>
             <th class="label"><?php echo $this->htmlEscape($this->__($_data['label'])) ?></th>
             <td class="data">
