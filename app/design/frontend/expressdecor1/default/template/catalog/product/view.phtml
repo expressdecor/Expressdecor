@@ -188,7 +188,13 @@ jQuery(document).ready(function(){
                         <dt class="tab"><span><?php echo $this->escapeHtml($this->getChildData('description', 'title')) ?></span></dt>
                         <dd class="tab-container">
                            <div class="tab-content">
-                           <h2 class="prod-details">Product Details for the <?php echo $_product->getSku(); ?></h2>
+                           <h2 class="prod-details">Product Details for the 
+<?php 
+	$product_sku=$_product->getSku();
+	if ( (strpos($product_sku,'_Base')) > 0) {
+            	$product_sku=str_replace('_Base','',$product_sku);  
+          } 
+	echo $product_sku; ?></h2>
                            <?php echo $detailedInfoGroup['description'] ?> 
                            <?php if(!empty($productHelpfulLinks)) : ?>        
                                 <div class="product-helpful-links">
