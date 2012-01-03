@@ -32,7 +32,7 @@
  */
 ?>
 <?php $_filters = $this->getActiveFilters() ?>
-<?php if(!empty($_filters)): ?>
+<?php if (!empty($_filters))  : ?>
 <div class="currently">
     <p class="block-subtitle"><?php echo $this->__('Currently Shopping by:') ?></p>
     <ol>
@@ -56,20 +56,25 @@
             <?php /*<a href="javascript:submitFilterForm('filterByRemove<?php echo $iCounter ?>');" title="<?php echo $this->__('Remove This Item') ?>" class="btn-remove"><?php echo $this->__('Remove This Item') ?></a> */ ?>
             <span class="label"><?php echo $this->__($_filter->getName()) ?>:</span>
             <?php
-            $attributemodel=$_filter->filter->_data["attribute_model"];
-            $attribute_code=$attributemodel->getAttributeCode();
-
             $label=$this->stripTags($_filter->getLabel());
+            if ($_filter->getName()!='Category') {
+            $attributemodel=$_filter->filter->_data["attribute_model"];
+            $attribute_code=$attributemodel->getAttributeCode();	         
+            
             if  (strpos($attribute_code,'price')===false ) {
-		echo str_replace('$','',$label);
-            } else {
-		echo $label;
-            }       
+		 $label=str_replace('$','',$label);
+            } 
+            }
+            echo $label; 
              ?>
         </li>
         </form>
         <?php $iCounter++; ?>
     <?php endforeach; ?>
+    
+    
+    
+    
     </ol>
     <div class="actions"><a href="<?php echo $this->getClearUrl() ?>"><?php echo $this->__('Clear All') ?></a></div>
 </div>

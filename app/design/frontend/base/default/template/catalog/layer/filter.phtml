@@ -31,7 +31,6 @@
  * @see Mage_Catalog_Block_Layer_Filter
  */
 ?>
-
 <ol>
 <?php $iCounter = 0; ?>
 <?php foreach ($this->getItems() as $_item): ?>
@@ -80,8 +79,9 @@
         </form>
                 
         
-        <a rel="nofollow" href="<?php echo $this->urlEscape($_item->getUrl()) ?>"><?php echo $_item->getLabel() ?></a>
-        <?php else: echo $_item->getLabel() ?>
+        <a rel="nofollow" href="<?php echo $this->urlEscape($_item->getUrl()) ?>"><?php echo $_item->getLabel() ?> (<?php echo $_item->getCount()?>)</a>
+
+        <?php else: echo $_item->getLabel() ?> (<?php echo $_item->getCount()?>)
         <?php endif; ?>
        
     </li>
