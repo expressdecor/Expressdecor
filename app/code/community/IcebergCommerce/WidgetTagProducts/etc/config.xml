@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <IcebergCommerce_WidgetTagProducts>
+            <version>1.0.1</version>
+        </IcebergCommerce_WidgetTagProducts>
+    </modules>
+    <global>
+        <helpers>
+            <widgettagproducts>
+                <class>IcebergCommerce_WidgetTagProducts_Helper</class>
+            </widgettagproducts>
+        </helpers>
+        <blocks>
+             <widgettagproducts>
+                <class>IcebergCommerce_WidgetTagProducts_Block</class>
+             </widgettagproducts>
+        </blocks>
+        <models>
+             <widgettagproducts>
+                <class>IcebergCommerce_WidgetTagProducts_Model</class>
+             </widgettagproducts>
+        </models>
+    </global>
+</config> 

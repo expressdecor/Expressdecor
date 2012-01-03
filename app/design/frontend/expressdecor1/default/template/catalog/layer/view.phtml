@@ -37,15 +37,25 @@
         <strong><span><?php echo $this->__('Shop By') ?></span></strong>
     </div>
     <?php echo $this->getStateHtml() ?>
+
     <?php if($this->canShowOptions()): ?>
         <div class="block-content">
             <p class="block-subtitle"><?php echo $this->__('Shopping Options') ?></p>
             <dl id="narrow-by-list">
                 <?php $_filters = $this->getFilters() ?>
-                <?php foreach ($_filters as $_filter): ?>
+                <?php foreach ($_filters as $_filter): ?>               
+		<?php if(strpos($_filter->getHtml(),"<li>")===false) continue; ?>
+		<?php //if($_filter->getName() =='Category') continue; ?>
                 <?php if($_filter->getItemsCount()): ?>
                     <dt><?php echo $this->__($_filter->getName()) ?></dt>
-                    <dd><?php echo $_filter->getHtml() ?></dd>
+                    <dd><?php
+                    $html= $_filter->getHtml() ;
+                    if ($_filter->getType()=='catalog/layer_filter_decimal') {
+
+                    	echo str_replace('$','',$html);
+                    } else {
+                    	echo $html;
+                    } ?></dd>
                 <?php endif; ?>
                 <?php endforeach; ?>
             </dl>
