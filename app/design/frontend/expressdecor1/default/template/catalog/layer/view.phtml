@@ -45,14 +45,7 @@
                 <?php foreach ($_filters as $_filter): ?>
                 <?php if($_filter->getItemsCount()): ?>
                     <dt><?php echo $this->__($_filter->getName()) ?></dt>
-                    <dd><?php
-		    $html= $_filter->getHtml() ;
-                    if ($_filter->getType()=='catalog/layer_filter_decimal') {
-
-                    	echo str_replace('$','',$html);
-                    } else {
-                    	echo $html;
-                    } ?></dd>
+                    <dd><?php echo $_filter->getHtml() ?></dd>
                 <?php endif; ?>
                 <?php endforeach; ?>
             </dl>
