@@ -108,7 +108,7 @@ class Mage_Shipping_Model_Carrier_Flatrate
             ///////////////////////////////////////////////
             $nGrandTotal = $request->getPackageValue();
 /* changed for new year*/
-            if($nGrandTotal >= 0) {
+            if($nGrandTotal >= 100) {
                 $shippingPrice = '0.00';                                
                 $method->setMethodTitle("Free Shipping");
             }

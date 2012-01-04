@@ -3354,3 +3354,29 @@ background-repeat:no-repeat;
     font-size: 12px;
     font-weight: bold;
 }
+.price-discount-block .price-label{
+color: #000000;
+}
+.price-discount-block .price{
+text-decoration: line-through;
+color: #000000;
+}
+
+.price-discount-block {
+   font-size: 13px;
+}
+
+.price-discount, .price-discount-label {
+ color: #FF0000;
+    font-size: 13px;
+    font-weight: bold;
+}
+.std .widget  ul {
+list-style-type: none;
+padding:0px;
+}
+.std .widget {
+margin-left: -14px;
+}
+
+.category-view p {width: 715px;}

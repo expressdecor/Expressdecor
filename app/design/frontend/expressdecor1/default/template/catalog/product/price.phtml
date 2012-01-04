@@ -252,8 +252,10 @@
             <?php endif; ?>
         <?php endif; ?>
     <?php else: /* if ($_finalPrice == $_price): */ ?>
-        <?="\$_finalPrice: ".$_finalPrice?><BR>
-        <?="\$_price: ".$_price?>
+
+        <?php // "\$_finalPrice: ".$_finalPrice ?> <!-- <BR> -->
+        <?php // "\$_price: ".$_price ?>
+
         <?php $_originalWeeeTaxAmount = $_weeeHelper->getOriginalAmount($_product); ?>
 
         <?php if ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 0)): // including ?>
@@ -266,7 +268,7 @@
 
             <?php if ($_taxHelper->displayBothPrices()): ?>
                 <p class="special-price">
-                    <span class="price-label"><?php echo $this->__('Your Price:') ?></span>
+                    <span class="price-label"><?php echo $this->__('Price:') ?></span>
                     <span class="price-excluding-tax">
                         <span class="label"><?php echo $_taxHelper->__('Excl. Tax:') ?></span>
                         <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
@@ -282,7 +284,7 @@
                 </p>
             <?php else: ?>
             <p class="special-price">
-                <span class="price-label"><?php echo $this->__('Your Price:') ?></span>
+                <span class="price-label"><?php echo $this->__('Price:') ?></span>
                 <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
                     <?php echo $_coreHelper->currency($_finalPrice+$_weeeTaxAmount,true,false) ?>
                 </span>
@@ -298,7 +300,7 @@
             </p>
 
             <p class="special-price">
-                <span class="price-label"><?php echo $this->__('Your Price:') ?></span>
+                <span class="price-label"><?php echo $this->__('Price:') ?></span>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $_taxHelper->__('Excl. Tax:') ?></span>
                     <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
@@ -327,8 +329,8 @@
                 </span>
             </p>
 
-            <p class="special-price">
-                <span class="price-label"><?php echo $this->__('Your Price:') ?></span>
+           <p class="special-price">
+                <span class="price-label"><?php echo $this->__('Price:') ?></span>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $_taxHelper->__('Excl. Tax:') ?></span>
                     <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
@@ -358,7 +360,7 @@
             </p>
 
             <p class="special-price">
-                <span class="price-label"><?php echo $this->__('Your Price:') ?></span>
+                <span class="price-label"><?php echo $this->__('Price:') ?></span>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $_taxHelper->__('Excl. Tax:') ?></span>
                     <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
@@ -378,16 +380,16 @@
                 </span>
             </p>
         <?php else: // excl. ?>
-            6<p class="old-price">
-                <span class="price-label"><?php echo $this->__('Regular Price:') ?></span>
-                <span class="price" id="old-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
-                    <?php echo $_coreHelper->currency($_regularPrice,true,false) ?>
+            <p class="old-price">
+<!--                <span class="price-label"><?php echo $this->__('Regular Price:') ?></span>-->
+<!--                <span class="price" id="old-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">-->
+                    <?php // echo $_coreHelper->currency($_regularPrice,true,false) ?>
                 </span>
             </p>
 
             <?php if ($_taxHelper->displayBothPrices()): ?>
                 <p class="special-price">
-                    <span class="price-label"><?php echo $this->__('Your Price:') ?></span>
+                    <span class="price-label"><?php echo $this->__('Price:') ?></span>
                     <span class="price-excluding-tax">
                         <span class="label"><?php echo $_taxHelper->__('Excl. Tax:') ?></span>
                         <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
@@ -403,11 +405,20 @@
                 </p>
             <?php else: ?>
             <p class="special-price">
-                <span class="price-label"><?php echo $this->__('Your Price:') ?></span>
+<!--               <span class="price-label"><?php echo $this->__('Price:') ?></span>-->
                 <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
-                    <?php echo $_coreHelper->currency($_finalPrice,true,false) ?>
+                    <?php echo $_coreHelper->currency($_finalPrice,true,false) ?>                    
                 </span>
-            </p>
+                </p>
+                <p class="price-discount-block">
+                <span class="price-label"><?php echo $this->__('Originally:') ?></span>
+                 <span class="price" id="old-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                  <?php  echo $_coreHelper->currency($_regularPrice,true,false) ?>
+                 </span>
+                 
+                 <span class="price-discount-label"><?php echo $this->__('Save ') ?></span>
+                 <span class="price-discount"><?php echo (100-round($_finalPrice*100/$_regularPrice)); ?>%</span>
+               </p>
             <?php endif; ?>
         <?php endif; ?>
 
