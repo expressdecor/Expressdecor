@@ -27,15 +27,22 @@
 			return $json;
 		}
 		
-		protected function _getModelNameFromModel($model)
-		{
-			if(method_exists($model, 'getModelName'))
-			{
-				return $model->getModelName();
-			}
-			return ($model->getResource()->getEntityType()->getEntityModel());
-		}
-		
+protected function _getModelNameFromModel($model)
+{
+    if(method_exists($model, 'getModelName'))
+    {
+        return $model->getModelName();
+    }
+    if(is_object($model->getResource()) && method_exists($model->getResource(), 'getEntityType'))
+    {
+        return $model->getResource()->getEntityType()->getEntityModel();
+    }
+    if(is_object($model->getResource()))
+    {
+        return 'Method getEntityType not found on ' . get_class($model->getResource());
+    }        
+    return 'UNKNOWN';
+}		
 		public function createKeyName()
 		{
 			return 'collections';

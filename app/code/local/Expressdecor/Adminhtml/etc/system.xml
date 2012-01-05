@@ -180,6 +180,44 @@
 
           </fields>
         </slides>
+               
+        <pages translate="label">
+          <label>Css  and Free Shipping settings</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>100</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <!-- New fields go here -->
+            <static_css_date translate="label comment">
+              <label>CSS Date</label>
+              <comment>
+                <![CDATA[Date that will show in html code .css?******.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </static_css_date>
+		<!-- Second field -->
+            <free_shipping translate="label comment">
+              <label>Free Shipping if order more than: </label>
+              <comment>
+                <![CDATA[If order summary more than this value free shipping will apply.]]>
+              </comment>
+              <frontend_type>text</frontend_type>   
+              <sort_order>11</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </free_shipping>	
+          </fields>
+       </pages>
+
+      
+      
       </groups>
     </expressdecor>
 

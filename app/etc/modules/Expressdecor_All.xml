@@ -17,8 +17,17 @@
 	    <Expressdecor_Sales>
 			<active>true</active>
 			<codePool>local</codePool>
-
 	    </Expressdecor_Sales>
+	    
+	    <Expressdecor_Page>
+			<active>true</active>
+			<codePool>local</codePool>			
+	    </Expressdecor_Page>
+	    
+	    <Expressdecor_Shipping>
+			<active>true</active>
+			<codePool>local</codePool>			
+	    </Expressdecor_Shipping>
 	    
 	</modules>
 </config>
