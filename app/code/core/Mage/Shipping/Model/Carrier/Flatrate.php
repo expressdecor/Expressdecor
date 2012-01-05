@@ -112,8 +112,8 @@ class Mage_Shipping_Model_Carrier_Flatrate
                 $method->setMethodTitle("Free Shipping");
             }
             
-            if($customPrice > 0) {
-                $shippingPrice = $customPrice;                                
+           if($customPrice > 0) {
+               $shippingPrice = $customPrice;                                
                 $method->setMethodTitle("Freight Shipping Cost");
             }               
             ///////////////////////////////////////////////
