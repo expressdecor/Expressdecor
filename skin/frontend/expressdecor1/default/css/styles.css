@@ -453,7 +453,7 @@ width:55px; }
 .sorter .link-feed {}
 
 /* Toolbar */
-.toolbar { margin-top:12px; }
+.toolbar { margin-top: 30px; }
 .toolbar .pager { margin:0 0 0; border-width:1px 0; }
 .toolbar-bottom { display:block; }
 
@@ -2024,7 +2024,7 @@ ul.cms-menu.type-square ul { list-style-type:square; }
 /* Shopping Cart ========================================================================= */
 .checkout-cart-index .col-main { padding:0; }
 .checkout-cart-index .col-main .page-title { margin:0; }
-.cart-empty { padding:20px; background:#fff; }
+.cart-empty { padding:20px; background:#fff; font-size: 16px;}
 .cart { background:url(../images/bkg_cart.gif) repeat-y 100% 0; }
 .cart .title-buttons { padding-right:15px; }
 .cart .messages,
@@ -2042,7 +2042,7 @@ ul.cms-menu.type-square ul { list-style-type:square; }
 .cart-table thead th { vertical-align:bottom; }
 .cart-table tbody td { padding:12px; }
 .cart-table .btn-continue { float:left; background:none; border:none; }
-.cart-table .btn-continue span { background:none; border:none; text-transform:none; color:#444; text-decoration:underline; font-weight:normal; padding:0; }
+/* .cart-table .btn-continue span { background:none; border:none; text-transform:none; color:#444; text-decoration:underline; font-weight:normal; padding:0;} */
 .cart-table .btn-update { float:right; }
 
 /* Shopping Cart Collateral boxes */
