@@ -137,9 +137,9 @@
         //        print_r($_item->getBaseOriginalPrice());
         if ($old_price!=$qty*$_item->getCalculationPrice()) {
         	?>
-        	 <span class="cart-price-label"> <?php echo $this->__('Regular Price: '); ?></span> <span class="cart-old-price">$<?php echo $this->helper('checkout')->formatPrice($old_price); ?></span>
+        	 <span class="cart-price-label"> <?php echo $this->__('Regular Price: '); ?></span> <span class="cart-old-price"><?php echo $this->helper('checkout')->formatPrice($old_price); ?></span>
         	 <br>
-       <span class="cart-price-label"> <?php echo $this->__('Savings: '); ?></span>  <span class="cart-save-price">-$<?php echo $this->helper('checkout')->formatPrice($save); ?></span>
+       <span class="cart-price-label"> <?php echo $this->__('Savings: '); ?></span>  <span class="cart-save-price">-<?php echo $this->helper('checkout')->formatPrice($save); ?></span>
        <br>
         	<?php
         }
