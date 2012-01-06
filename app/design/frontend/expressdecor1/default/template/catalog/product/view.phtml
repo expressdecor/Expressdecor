@@ -186,9 +186,10 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
                  
 
                 <div class="product-shop">
-<div class="addone"><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<div class="addone">
+<!--<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>-->
 
-<g:plusone></g:plusone>
+<!--<g:plusone></g:plusone>-->
   <?php if($californiaCompliant == "Yes") :?>
 
                             <img src="<?=$this->getSkinUrl('images/pb-cert.jpg')?>">
@@ -224,25 +225,27 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
 	 	<?php
 
 	}
-	?>       
-                    <div class="product-price-label"><?php echo $this->__('Sale Price:') ?></div>
-                    <span class="special-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">                     
+	?>       		
+                   <p class="special-price-sale">
+                    <span class="price-label"><?php echo $this->__('Sale Price:') ?></span>
+                    <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">                     
                     <?php        
                     echo $_coreHelper->currency($_price,true,true); //displays regular price
                     ?>
                 </span>
+                
                 <?php 	If (!empty($msrp_price)) {
 
                 	$save=$msrp_price-$_price;
                 ?>            
                   <span class="price-save-label"><?php echo $this->__('(Save ') ?></span>
-                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo $save; ?></span><span class="price-save-label">)</span>
+                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo $save; ?></span><span class="price-save-label2">)</span>
                              <script type="text/javascript"  >
                              var disc_price=document.getElementById('disc-price-<?php echo $_id ?>').innerHTML;
                              disc_price=parseFloat(disc_price.replace("$",""));
 					 </script>
                <?php } ?>
-                
+                 </p>
             <?php endif; ?>
          <?php else: /* if ($_finalPrice == $_price): */ ?>
               
@@ -273,7 +276,7 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
                  </span>                          
                </p>
                       
-            <p class="special-price">
+            <p class="special-price-sale">
                <span class="price-label"><?php echo $this->__('Sale Price:') ?></span>
                 <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
                     <?php echo $_coreHelper->currency($_finalPrice,true,false) ?>                    
@@ -282,7 +285,7 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
                <?php  	If (!empty($msrp_price)) {
 	 	?>
                    <span class="price-save-label"><?php echo $this->__('(Save ') ?></span>
-                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo (max($_regularPrice,$msrp_price)-$_finalPrice); ?></span><span class="price-save-label">)</span>
+                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo (max($_regularPrice,$msrp_price)-$_finalPrice); ?></span><span class="price-save-label2">)</span>
                       <script type="text/javascript"  >
                       var disc_price=document.getElementById('disc-price-<?php echo $_id ?>').innerHTML;
                       disc_price=parseFloat(disc_price.replace("$",""));
@@ -370,27 +373,13 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
                     <div class="calc-tab">
 
 <!-- AddThis Button BEGIN -->
-
-<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-
-<a class="addthis_button_preferred_1"></a>
-
-<a class="addthis_button_preferred_2"></a>
-
-<a class="addthis_button_preferred_3"></a>
-
-<a class="addthis_button_preferred_4"></a>
-
-<a class="addthis_button_compact"></a>
-
-<a class="addthis_counter addthis_bubble_style"></a>
-
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+<a class="addthis_button_tweet"></a>
+<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+<a class="addthis_counter addthis_pill_style"></a>
 </div>
-
-<script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
-
-<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=styleizi"></script>
-
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f07749b0bd1cf94"></script>
 <!-- AddThis Button END -->
 
                                  

@@ -1468,11 +1468,11 @@ font-weight:bold;
     padding: 5px 0;
 }
 .special-price .price-label {   color: #000000;
-    font-size: 21px;
+    font-size: 13px;
     font-weight: bold;
     white-space: nowrap; }
 .special-price .price { color: #FF6100;
-    font-size: 21px;
+    font-size: 13px;
     font-weight: bold; }
 .sidebar .special-price .price-label { display:none !important; }
 
@@ -3369,6 +3369,7 @@ background-repeat:no-repeat;
 color: #555555;
     font-size: 17px;
     text-decoration: line-through;
+ 
 }
 .price-msrp-block .price-label{
   color: #555555;
@@ -3377,15 +3378,22 @@ color: #555555;
     margin-top: 0;
     padding-right: 10px;
     position: inherit;
+
 }
+.price-msrp-block{
+ /*height: 41px;*/
+ }
 .price-save-label{
 margin-left:5px;
 }
 
-.price-save-label, .price-save{
+.price-save-label, .price-save-label2, .price-save{
     color: #EE0000;
     font-size: 17px;
     font-weight: bold;
+}
+.price-save-label2 {
+margin-left:0px;
 }
 .price-save {
 color: #FF0000;
@@ -3409,12 +3417,16 @@ color: #555555;
    font-size: 13px;
 }
 
-.price-discount, .price-discount-label {
+.price-discount {
  color: #FF0000;
     font-size: 13px;
     font-weight: bold;
 }
-
+.price-discount-label {
+ color: #FF0000;
+    font-size: 12px;
+    font-weight: bold;
+}
 .product-shop .prices-box p{
 margin: 0px;
 }
@@ -3466,4 +3478,15 @@ color: #FF0000;
 }
 .a-right {
 width:165px;
+}
+.product-shop .prices-box .no-rating {margin-top: 5px;  float: left;}
+.special-price-sale .price {
+font-size: 21px;
+color: #FF6100;
+ font-weight: bold;
+}
+.special-price-sale .price-label {
+font-size: 21px;
+color: #000000;
+ font-weight: bold;
 }
