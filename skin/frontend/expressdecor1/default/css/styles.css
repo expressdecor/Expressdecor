@@ -1042,7 +1042,7 @@ margin: 0 0 0 -8px;
 
 .category-products { padding:25px 0 0; }
 .category-products .price2 { font-size:14px;}
-.category-products .regular-price .price { font-size:14px;}
+.category-products .regular-price .price { font-size:21px;}
 .category-products .price-box { font-size:12px; }
 
 /* View Type: Grid */
@@ -1349,7 +1349,7 @@ margin:0px 0 0 -34px;
 width:537px;}
 .product-view .product-shop { /*border:1px solid #C4C4C4;*/
 float:right;
-margin-top:-16px;
+margin-top: -70px;
 padding:0 30px;
 width:467px;
 }
@@ -1462,13 +1462,18 @@ font-weight:bold;
 .sidebar .old-price .price-label { display:none !important; }
 
 /* Special price */
-.special-price {}
-.special-price .price-label { color:#000000;
-font-size:20px;
-font-weight:bold;
-white-space:nowrap; }
-.special-price .price { font-weight:bold; color:#FF6100;
-font-size:23px; }
+.special-price {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 0;
+}
+.special-price .price-label {   color: #000000;
+    font-size: 21px;
+    font-weight: bold;
+    white-space: nowrap; }
+.special-price .price { color: #FF6100;
+    font-size: 21px;
+    font-weight: bold; }
 .sidebar .special-price .price-label { display:none !important; }
 
 /* Minimal price (as low as) */
@@ -1819,7 +1824,9 @@ width:933px;
 .product-view .box-related p { margin:0; }
 .product-view .box-related .product-name {     float: right;
     font-size: 12px;
-    width: 180px; }
+    width: 180px; 
+    height: 69px;
+    }
 .product-view .box-related .price-box {  margin: 8px 0 0 115px; }
 .product-view .box-related .note { padding:5px 20px; margin:0; font-size:12px; background:#f7edda; }
 .product-view .box-related .note,
@@ -1998,7 +2005,9 @@ ul.cms-menu.type-square ul { list-style-type:square; }
 
 
 /* Content Styles ================================================================= */
-.product-name { font-size:12px; font-weight:bold; }
+.product-name { font-size:12px; font-weight:bold;}
+.product-name-d { font-size:12px; font-weight:bold; height: 100px;}
+
 .product-name h1 {margin:11px -20px 12px;font-family:arial,helvetica; font-size:18px; font-weight:bold; color:#311B02; }
 .product-name a { color:#333; text-decoration:underline; }
 .product-name a:hover { color:#333; text-decoration:none; }
@@ -3354,12 +3363,46 @@ background-repeat:no-repeat;
     font-size: 12px;
     font-weight: bold;
 }
+
+/* Alex prices product page*/
+.price-msrp-block .price{
+color: #555555;
+    font-size: 17px;
+    text-decoration: line-through;
+}
+.price-msrp-block .price-label{
+  color: #555555;
+    float: left;
+    font-size: 16px;
+    margin-top: 0;
+    padding-right: 10px;
+    position: inherit;
+}
+.price-save-label{
+margin-left:5px;
+}
+
+.price-save-label, .price-save{
+    color: #EE0000;
+    font-size: 17px;
+    font-weight: bold;
+}
+.price-save {
+color: #FF0000;
+}
+
 .price-discount-block .price-label{
-color: #000000;
+color: #555555;
+    float: left;
+    font-size: 16px;
+    margin-top: 0;
+    padding-right: 10px;
+    position: inherit;
 }
 .price-discount-block .price{
-text-decoration: line-through;
-color: #000000;
+	    color: #555555;
+    font-size: 17px;
+    text-decoration: line-through;
 }
 
 .price-discount-block {
@@ -3371,6 +3414,16 @@ color: #000000;
     font-size: 13px;
     font-weight: bold;
 }
+
+.product-shop .prices-box p{
+margin: 0px;
+}
+
+.prices-box {
+  margin-left: -30px;
+    padding: 0;
+    width: 400px;
+}
 .std .widget  ul {
 list-style-type: none;
 padding:0px;
@@ -3379,4 +3432,38 @@ padding:0px;
 margin-left: -14px;
 }
 
-.category-view p {width: 715px;}
+
+.cart-old-price {
+ font-size: 13px;
+
+}
+.cart-price {
+width: 76px;
+color: #000000;
+ font-size: 13px;
+}
+
+.cart-unit-price {
+ font-size: 12px;
+width: 76px;
+font-style:italic;
+}
+
+
+.cart-save-price {
+color: #FF0000;
+ font-size: 13px;
+  
+}
+.cart-sale-price-label {
+ font-size: 13px;
+ font-weight: bold;
+    float: left;
+}
+.cart-price-label {
+ font-size: 13px;
+    float: left;
+}
+.a-right {
+width:165px;
+}

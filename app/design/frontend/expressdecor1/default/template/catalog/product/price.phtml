@@ -48,9 +48,17 @@
     $_simplePricesTax = ($_taxHelper->displayPriceIncludingTax() || $_taxHelper->displayBothPrices());
     $_minimalPriceValue = $_product->getMinimalPrice();
     $_minimalPrice = $_taxHelper->getPrice($_product, $_minimalPriceValue, $_simplePricesTax);
+    $product_ = Mage::getModel('catalog/product')->load($_product->getId());
+    $msrp_price=$product_->getMsrpPrice();
+   
 ?>
 
+
+
+
+
 <?php if (!$_product->isGrouped()): ?>
+
     <?php $_weeeTaxAmount = $_weeeHelper->getAmountForDisplay($_product); ?>
     <?php if ($_weeeHelper->typeOfDisplay($_product, array(1,2,4))): ?>
         <?php $_weeeTaxAmount = $_weeeHelper->getAmount($_product); ?>
@@ -189,6 +197,7 @@
                 </span>
             <?php else: ?>
                 <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                
                     <?php
                     ////////////////////////////////////////////////////////////////////////////
                     $product = Mage::getModel('catalog/product')->load($_product->getId());
@@ -249,6 +258,15 @@
                     //////////////////////////////////////////////////////////////////////////// 
                     ?>
                 </span>
+                <?php  	If (!empty($msrp_price)) {
+                      
+                	$save=100-round($_finalPrice*100/$msrp_price);
+                	?>
+                	<span class="price-discount">(<?php echo $save; ?>% OFF)</span>
+                	<?php 
+                }
+                ?>
+                     
             <?php endif; ?>
         <?php endif; ?>
     <?php else: /* if ($_finalPrice == $_price): */ ?>
@@ -404,21 +422,22 @@
                     </span>
                 </p>
             <?php else: ?>
+<!--             all pages-->
+                               
             <p class="special-price">
 <!--               <span class="price-label"><?php echo $this->__('Price:') ?></span>-->
                 <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
                     <?php echo $_coreHelper->currency($_finalPrice,true,false) ?>                    
                 </span>
+                <?php  	If (!empty($msrp_price)) {
+                	$save=100-round($_finalPrice*100/max($msrp_price,$_regularPrice));
+                } else {
+                	$save=100-round($_finalPrice*100/$_regularPrice);
+                }
+                ?>
+                     <span class="price-discount">(<?php echo $save; ?>% OFF)</span>
                 </p>
-                <p class="price-discount-block">
-                <span class="price-label"><?php echo $this->__('Originally:') ?></span>
-                 <span class="price" id="old-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
-                  <?php  echo $_coreHelper->currency($_regularPrice,true,false) ?>
-                 </span>
-                 
-                 <span class="price-discount-label"><?php echo $this->__('Save ') ?></span>
-                 <span class="price-discount"><?php echo (100-round($_finalPrice*100/$_regularPrice)); ?>%</span>
-               </p>
+                
             <?php endif; ?>
         <?php endif; ?>
 
