@@ -1043,6 +1043,9 @@ margin: 0 0 0 -8px;
 .category-products { padding:25px 0 0; }
 .category-products .price2 { font-size:14px;}
 .category-products .regular-price .price { font-size:21px;}
+.regular-price-catalog { color: #FF6100;
+    font-size: 13px;
+    font-weight: bold;}
 .category-products .price-box { font-size:12px; }
 
 /* View Type: Grid */
