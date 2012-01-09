@@ -87,24 +87,33 @@ class Expressdecor_Sales_Model_Order_Pdf_Invoice extends Mage_Sales_Model_Order_
 			$page->drawText(Mage::helper('sales')->__('Qty'), 430, $this->y, 'UTF-8');
 			$page->drawText(Mage::helper('sales')->__('Tax'), 480, $this->y, 'UTF-8');
 			$page->drawText(Mage::helper('sales')->__('Subtotal'), 535, $this->y, 'UTF-8');
-            $this->_setFontRegular($page);//Alex changes 7/20
-			$this->y -=15; 
+			$this->_setFontRegular($page);//Alex changes 7/20
+			$this->y -=15;
 
 			$page->setFillColor(new Zend_Pdf_Color_GrayScale(0));
 
+			/*check for foubles if configurable*/
+			$skus=array();
 			/* Add body */
 			foreach ($invoice->getAllItems() as $item){
 				if ($item->getOrderItem()->getParentItem()) {
 					continue;
-				}
 
-				if ($this->y < 15) {
-					$page = $this->newPage(array('table_header' => true));
 				}
+				
+				if (!in_array($item->getOrderItem()->getSku(),$skus)) {
 
-				/* Draw item */
-				$page = $this->_drawItem($item, $page, $order);
+
+					if ($this->y < 15) {
+						$page = $this->newPage(array('table_header' => true));
+					}
+
+					/* Draw item */
+					$page = $this->_drawItem($item, $page, $order);
+					array_push($skus,$item->getOrderItem()->getSku());
+				}
 			}
+
 
 			/* Add totals */
 			$page = $this->insertTotals($page, $invoice);
