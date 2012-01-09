@@ -93,16 +93,15 @@ class Expressdecor_Sales_Model_Order_Pdf_Invoice extends Mage_Sales_Model_Order_
 			$page->setFillColor(new Zend_Pdf_Color_GrayScale(0));
 
 			/*check for foubles if configurable*/
-			$skus=array();
+			$skus_id=array();
 			/* Add body */
 			foreach ($invoice->getAllItems() as $item){
 				if ($item->getOrderItem()->getParentItem()) {
 					continue;
 
 				}
-				
-				if (!in_array($item->getOrderItem()->getSku(),$skus)) {
 
+				if (!in_array($item->getOrderItem()->getParentItemId(),$skus_id)) {
 
 					if ($this->y < 15) {
 						$page = $this->newPage(array('table_header' => true));
@@ -110,9 +109,11 @@ class Expressdecor_Sales_Model_Order_Pdf_Invoice extends Mage_Sales_Model_Order_
 
 					/* Draw item */
 					$page = $this->_drawItem($item, $page, $order);
-					array_push($skus,$item->getOrderItem()->getSku());
+					array_push($skus_id,$item->getOrderItem()->getItemId());
+
 				}
 			}
+
 
 
 			/* Add totals */
