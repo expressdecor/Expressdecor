@@ -12625,3 +12625,57 @@ Stack trace:
 #20 /var/www/expressdecor/app/Mage.php(596): Mage_Core_Model_App->run(Array)
 #21 /var/www/expressdecor/index.php(81): Mage::run('', 'store')
 #22 {main}
+2012-01-16T20:17:41+00:00 ERR (3): 
+exception 'Zend_Mail_Transport_Exception' with message 'Unable to send mail. ' in /var/www/expressdecor/lib/Zend/Mail/Transport/Sendmail.php:137
+Stack trace:
+#0 /var/www/expressdecor/lib/Zend/Mail/Transport/Abstract.php(348): Zend_Mail_Transport_Sendmail->_sendMail()
+#1 /var/www/expressdecor/lib/Zend/Mail.php(1178): Zend_Mail_Transport_Abstract->send(Object(Zend_Mail))
+#2 /var/www/expressdecor/app/code/core/Mage/Core/Model/Email/Template.php(384): Zend_Mail->send()
+#3 /var/www/expressdecor/app/code/community/Mage/Advancedsmtp/Model/Email/Template.php(16): Mage_Core_Model_Email_Template->send('info@expressdec...', NULL, Array)
+#4 /var/www/expressdecor/app/code/core/Mage/Core/Model/Email/Template.php(437): Mage_Advancedsmtp_Model_Email_Template->send('info@expressdec...', NULL, Array)
+#5 /var/www/expressdecor/app/code/core/Mage/Contacts/controllers/IndexController.php(104): Mage_Core_Model_Email_Template->sendTransactional('1', 'general', 'info@expressdec...', NULL, Array)
+#6 /var/www/expressdecor/app/code/core/Mage/Core/Controller/Varien/Action.php(418): Mage_Contacts_IndexController->postAction()
+#7 /var/www/expressdecor/app/code/core/Mage/Core/Controller/Varien/Router/Standard.php(253): Mage_Core_Controller_Varien_Action->dispatch('post')
+#8 /var/www/expressdecor/app/code/community/ArtsOnIT/OfflineMaintenance/Controller/Router/Standard.php(46): Mage_Core_Controller_Varien_Router_Standard->match(Object(Mage_Core_Controller_Request_Http))
+#9 /var/www/expressdecor/app/code/core/Mage/Core/Controller/Varien/Front.php(176): ArtsOnIT_OfflineMaintenance_Controller_Router_Standard->match(Object(Mage_Core_Controller_Request_Http))
+#10 /var/www/expressdecor/app/code/core/Mage/Core/Model/App.php(304): Mage_Core_Controller_Varien_Front->dispatch()
+#11 /var/www/expressdecor/app/Mage.php(596): Mage_Core_Model_App->run(Array)
+#12 /var/www/expressdecor/index.php(81): Mage::run('', 'store')
+#13 {main}
+2012-01-16T20:20:11+00:00 ERR (3): 
+exception 'Zend_Mail_Transport_Exception' with message 'Unable to send mail. ' in /var/www/expressdecor/lib/Zend/Mail/Transport/Sendmail.php:137
+Stack trace:
+#0 /var/www/expressdecor/lib/Zend/Mail/Transport/Abstract.php(348): Zend_Mail_Transport_Sendmail->_sendMail()
+#1 /var/www/expressdecor/lib/Zend/Mail.php(1178): Zend_Mail_Transport_Abstract->send(Object(Zend_Mail))
+#2 /var/www/expressdecor/app/code/core/Mage/Core/Model/Email/Template.php(384): Zend_Mail->send()
+#3 /var/www/expressdecor/app/code/community/Mage/Advancedsmtp/Model/Email/Template.php(16): Mage_Core_Model_Email_Template->send('aliasandrl@expr...', NULL, Array)
+#4 /var/www/expressdecor/app/code/core/Mage/Core/Model/Email/Template.php(437): Mage_Advancedsmtp_Model_Email_Template->send('aliasandrl@expr...', NULL, Array)
+#5 /var/www/expressdecor/app/code/core/Mage/Contacts/controllers/IndexController.php(104): Mage_Core_Model_Email_Template->sendTransactional('1', 'general', 'aliasandrl@expr...', NULL, Array)
+#6 /var/www/expressdecor/app/code/core/Mage/Core/Controller/Varien/Action.php(418): Mage_Contacts_IndexController->postAction()
+#7 /var/www/expressdecor/app/code/core/Mage/Core/Controller/Varien/Router/Standard.php(253): Mage_Core_Controller_Varien_Action->dispatch('post')
+#8 /var/www/expressdecor/app/code/community/ArtsOnIT/OfflineMaintenance/Controller/Router/Standard.php(46): Mage_Core_Controller_Varien_Router_Standard->match(Object(Mage_Core_Controller_Request_Http))
+#9 /var/www/expressdecor/app/code/core/Mage/Core/Controller/Varien/Front.php(176): ArtsOnIT_OfflineMaintenance_Controller_Router_Standard->match(Object(Mage_Core_Controller_Request_Http))
+#10 /var/www/expressdecor/app/code/core/Mage/Core/Model/App.php(304): Mage_Core_Controller_Varien_Front->dispatch()
+#11 /var/www/expressdecor/app/Mage.php(596): Mage_Core_Model_App->run(Array)
+#12 /var/www/expressdecor/index.php(81): Mage::run('', 'store')
+#13 {main}
+2012-01-16T20:20:14+00:00 ERR (3): 
+exception 'Zend_Mail_Transport_Exception' with message 'Unable to send mail. ' in /var/www/expressdecor/lib/Zend/Mail/Transport/Sendmail.php:137
+Stack trace:
+#0 /var/www/expressdecor/lib/Zend/Mail/Transport/Abstract.php(348): Zend_Mail_Transport_Sendmail->_sendMail()
+#1 /var/www/expressdecor/lib/Zend/Mail.php(1178): Zend_Mail_Transport_Abstract->send(Object(Zend_Mail))
+#2 /var/www/expressdecor/app/code/core/Mage/Core/Model/Email/Template.php(384): Zend_Mail->send()
+#3 /var/www/expressdecor/app/code/community/Mage/Advancedsmtp/Model/Email/Template.php(16): Mage_Core_Model_Email_Template->send('aliasandrl@expr...', NULL, Array)
+#4 /var/www/expressdecor/app/code/core/Mage/Core/Model/Email/Template.php(437): Mage_Advancedsmtp_Model_Email_Template->send('aliasandrl@expr...', NULL, Array)
+#5 /var/www/expressdecor/feedback.php(21): Mage_Core_Model_Email_Template->sendTransactional('1', 'general', 'aliasandrl@expr...', NULL, Array)
+#6 {main}
+2012-01-16T20:20:24+00:00 ERR (3): 
+exception 'Zend_Mail_Transport_Exception' with message 'Unable to send mail. ' in /var/www/expressdecor/lib/Zend/Mail/Transport/Sendmail.php:137
+Stack trace:
+#0 /var/www/expressdecor/lib/Zend/Mail/Transport/Abstract.php(348): Zend_Mail_Transport_Sendmail->_sendMail()
+#1 /var/www/expressdecor/lib/Zend/Mail.php(1178): Zend_Mail_Transport_Abstract->send(Object(Zend_Mail))
+#2 /var/www/expressdecor/app/code/core/Mage/Core/Model/Email/Template.php(384): Zend_Mail->send()
+#3 /var/www/expressdecor/app/code/community/Mage/Advancedsmtp/Model/Email/Template.php(16): Mage_Core_Model_Email_Template->send('aliasandrl@expr...', NULL, Array)
+#4 /var/www/expressdecor/app/code/core/Mage/Core/Model/Email/Template.php(437): Mage_Advancedsmtp_Model_Email_Template->send('aliasandrl@expr...', NULL, Array)
+#5 /var/www/expressdecor/feedback.php(21): Mage_Core_Model_Email_Template->sendTransactional('1', 'general', 'aliasandrl@expr...', NULL, Array)
+#6 {main}

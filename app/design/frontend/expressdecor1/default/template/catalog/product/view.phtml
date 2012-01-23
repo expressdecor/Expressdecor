@@ -77,10 +77,12 @@ $adaCompliant = $_product->getResource()->getAttribute('ada_compliant')->getFron
 $californiaCompliant = $_product->getResource()->getAttribute('california_compliant')->getFrontend()->getValue($_product);
 $productHelpfulLinks = $_product->getResource()->getAttribute('product_helpful_links')->getFrontend()->getValue($_product);
 $customShipPrice = $_product->getResource()->getAttribute('custom_ship_price')->getFrontend()->getValue($_product);
+$video = $_product->getResource()->getAttribute('video_product')->getFrontend()->getValue($_product);
 $productCollection = $_product->getResource()->getAttribute('product_collection')->getFrontend()->getValue($_product);
-$bulletPoints = $_product->getResource()->getAttribute('bullet_points')->getFrontend()->getValue($_product);
+//$bulletPoints = $_product->getResource()->getAttribute('bullet_points')->getFrontend()->getValue($_product);
 $productCollectionTwo = $_product->getResource()->getAttribute('product_collection_two')->getFrontend()->getValue($_product);
-
+$manufacturerName_block = strtoupper(preg_replace("[^A-Za-z0-9-]", "", $manufacturerName));
+$outofstockMsg = $_product->getResource()->getAttribute('outofstock_msg')->getFrontend()->getValue($_product);
 //echo "<pre>"; print_r($_product); echo "</pre>";
 //prices
 $_taxHelper  = $this->helper('tax');
@@ -91,6 +93,11 @@ $_finalPrice = $_taxHelper->getPrice($_product, $_product->getFinalPrice()) ;
 $_id = $_product->getId();
 $msrp_price=$_product->getMsrpPrice();
 
+$product_sku=$_product->getSku();
+if ( (strpos($product_sku,'_Base')) > 0) {
+	$product_sku=str_replace('_Base','',$product_sku);
+}
+
 if ($_product->getTypeId() =='simple') {
 
 	$configurable_product_model = Mage::getModel('catalog/product_type_configurable');
@@ -100,45 +107,51 @@ if ($_product->getTypeId() =='simple') {
 		//if this product has a parent
 		$parent = Mage::getModel('catalog/product')->load($parentId[0]);
 		$newurl = $parent->getProductUrl();
-		Mage::app()->getFrontController()->getResponse()->setRedirect($newurl);
+		Header( "HTTP/1.1 301 Moved Permanently" );
+		Header("Location: $newurl");
+		Mage::app()->getResponse()->setRedirect($newurl);
+		echo "<script language='javascript'>window.location.href='$newurl';</script>";
 	}
 
 }
+if ($_product->getTypeId() =='configurable') {
+	$childProducts = Mage::getModel('catalog/product_type_configurable')
+	->getUsedProducts(null,$_product);
+	if (count($childProducts) > 0) {
+		echo '<script type="text/javascript">
+ var childs_option =new Array();
+ var childs_url =new Array();
+ var childs_full_url =new Array();
+ ';
+		$i=0;
+
+		foreach ($childProducts as $childproduct) {
+			$config_attr=$childproduct->getResource()->getAttribute('finish_product')->getFrontend()->getValue($childproduct);
+			echo  'childs_option['.$i.']="'.$config_attr.'";';
+			echo  'childs_url['.$i.']="'.$this->helper('catalog/image')->init($childproduct, 'image')->resize(300).'";';
+			echo  'childs_full_url['.$i.']="'.$this->helper('catalog/image')->init($childproduct, 'image').'";';
+			$i++;
+
+		}
+		echo '</script>';
+	}
+}
 ?>
-
 <script type="text/javascript">
-
 jQuery(document).ready(function(){
-
-
-
 	jQuery("#details_free_shipping").simpletip({
-
-		content: 'This offer excludes certain products, and shipments made to <strong>Alaska, Hawaii, and Puerto Rico.</strong><br /><strong>All orders outside the Continental U.S. are subject to international shipping rates, custom costs, and brokerage fees that are the sole responsibility of the buyer</strong>. ExpressDecor IS NOT responsible for any shipping costs or additional charges for orders under $100 or orders outside the Continental U.S.<br />For more information, you can call our customer service help line at <strong>1-866-507-2725</strong>, Live Chat us on www.expressdecor.com, or e-mail us at <a href="mailto:info@expressdecor.com">info@expressdecor.com</a> <strong>Monday thru Friday from 9-6 p.m. </strong>',
-
+		content: '<?php echo Mage::getStoreConfig('expressdecor/pages/product_shipping',Mage::app()->getStore());  ?>',
 		fixed: true,
-
 		persistent: true,
-
 		position: ["-450", "20"]
-
 	});
-
-
 
 	jQuery("#details_in_stock").simpletip({
-
-		content: 'We provide fast shipping on all our <strong>in stock</strong> products to guarantee you efficient and quality service. <br />U.S. business days are Monday through Friday<br /><strong>Note: All out of stock items or bulk orders may take more than 3 days to ship</strong>. We appreciate your patience and value your service, and will ship your order as soon as the products are available.<br />Any additional questions can be answered either by calling our customer service help line at <strong>1-866-507-2725</strong> , Live Chatting us on www.expressdecor.com, or e-mailing us at <strong><a href="mailto:info@expressdecor.com">info@expressdecor.com</a> Monday thru Friday from 9-6p.m.</strong> ',
-
+		content: '<?php echo Mage::getStoreConfig('expressdecor/pages/product_instock',Mage::app()->getStore());  ?>',
 		fixed: true,
-
 		persistent: true,
-
 		position: ["-450", "20"]
-
 	});
-
-
 
 });
 
@@ -146,70 +159,104 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
 
 </script>
 
-
-
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
 
-
-
- <div class="product-name-d">
-
-                            <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?><?php //echo $this->EdTest() ?></h1>
-
- </div>
-
 <div class="product-view">
-
     <form action="<?php echo $this->getAddToCartUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
-
         <div class="no-display">
-
             <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" >
-
             <input type="hidden" name="related_product" id="related-products-field" value="" >
-
         </div>
+        <div class="product-essential">  
+         <?php if (!empty($video)) { ?>
+                  <div class="video-container">
+                  <?php echo $video; ?>                  
+                  </div>
+                  <?php } ?>
+                   <div class="product-img-outer">
+                        <?php echo $this->getChildHtml('media') ?>
 
-        <div class="product-essential">
-
-            
-                   <div class="product-main-info">
-
-
-                 
-
-                </div>
-
-
-                
-
-                 
-
-                <div class="product-shop">
-<div class="addone">
-<!--<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>-->
-
-<!--<g:plusone></g:plusone>-->
-  <?php if($californiaCompliant == "Yes") :?>
-
-                            <img src="<?=$this->getSkinUrl('images/pb-cert.jpg')?>">
-
-                        <?php endif;?>
-
-                        <?php if($adaCompliant == "Yes") :?>
-
-                            <img src="<?=$this->getSkinUrl('images/ada-cert.jpg')?>">
-
-                        <?php endif;?>      
+                </div>        
+                <div class="product-center">
+                   
+ <div class="product-name-d">
+    <h1><div class="manufacter-name"><?php    
+    $name=$_helper->productAttribute($_product, $_product->getName(), 'name');
+    echo substr($name,0,strpos($name,' '));
+   ?>
+ </div><div class="manufacter-full-name">
+   <?php
+   echo substr($name,strpos($name,' ')+1,strlen($name)-strpos($name,' ')+1);
+    ?></div>
+    <div class="manufater-sku">SKU#:  <?php echo $product_sku; ?></div>        
+    </h1>
+ </div>
+                    
+<?php echo $this->getReviewsSummaryHtml($_product, false, true); ?>
+<!--Options-->
+                   <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container2') ):?>
+                     <div class="options-container-big">                       
+                          <?php  echo $this->getChildChildHtml('container2', '', true, true) ?>
+                     </div>
+                   <?php endif;?>                                                   
+                        <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container1') ):?>
+                            <div class="options-container-small">
+                                <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                            </div>
+                        <?php endif;?> 
+<!--/Options end-->
+<?php echo $this->getChildHtml('alert_urls') ?>                       
+                                            <div class="calc-tab">
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_preferred_5"></a>
+<a class="addthis_button_preferred_6"></a>
+<a class="addthis_button_preferred_7"></a>
+<a class="addthis_button_preferred_8"></a>
+<a class="addthis_button_preferred_9"></a>
+<a class="addthis_button_preferred_10"></a>
+<a class="addthis_button_preferred_11"></a>
+<a class="addthis_button_preferred_12"></a>
+<a class="addthis_button_preferred_13"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
 </div>
-                    <div class="prices-box">
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f07749b0bd1cf94"></script>
+<!-- AddThis Button END -->                                
+                    </div> 
+                                   
+<div class="addone">
 
-            
-			   <?php if ($_finalPrice == $_price): ?>
+  <?php if($californiaCompliant == "Yes") :?>
+                            <img src="<?=$this->getSkinUrl('images/pb-leadfree.png')?>">
+                        <?php endif;?>                        
+         <img src="<?=$this->getSkinUrl('images/30_day.png')?>">    
+         <?php
+         $deal=$this->getChildHtml('expressdeal');
+         if(!empty( $deal ) ) {
+
+         	echo $deal;
+
+} ?>  
+<?php if($adaCompliant == "Yes") :?>
+                            <img src="<?=$this->getSkinUrl('images/ada.png')?>">
+                        <?php endif;?>  
+</div>
+
+ </div>    
+<!--                     end center-->
+                <div class="product-shop">          
+                 <div class="product-main-info2">  
+                          <div class="prices-box">            
+			   <?php if ($_finalPrice == $_price): 
+			   $price_for_shipping=$_price; ?>
                     <?php if (!$_taxHelper->displayBothPrices()): ?>
 <!--                    msrp price-->
 	<?php
-
 	If (!empty($msrp_price)) {
 	 	?>
 	 	  <p class="price-msrp-block">
@@ -220,10 +267,8 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
                    <script type="text/javascript"  >
                    var msrp_price=document.getElementById('old-price2-<?php echo $_id ?>').innerHTML;
                    msrp_price=parseFloat(msrp_price.replace("$",""));
-					 </script>
-                  
+					 </script>                  
 	 	<?php
-
 	}
 	?>       		
                    <p class="special-price-sale">
@@ -233,28 +278,32 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
                     echo $_coreHelper->currency($_price,true,true); //displays regular price
                     ?>
                 </span>
-                
+                 </p>
                 <?php 	If (!empty($msrp_price)) {
 
                 	$save=$msrp_price-$_price;
-                ?>            
-                  <span class="price-save-label"><?php echo $this->__('(Save ') ?></span>
-                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo $save; ?></span><span class="price-save-label2">)</span>
+                ?>          
+                   <p class="price-save-block">  
+                  <span class="price-save-label"><?php echo $this->__('You Save ') ?></span>
+                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo $save; ?></span> 
                              <script type="text/javascript"  >
                              var disc_price=document.getElementById('disc-price-<?php echo $_id ?>').innerHTML;
                              disc_price=parseFloat(disc_price.replace("$",""));
 					 </script>
+					  </p>
                <?php } ?>
-                 </p>
+                
             <?php endif; ?>
-         <?php else: /* if ($_finalPrice == $_price): */ ?>
+         <?php else: /* if ($_finalPrice == $_price): */ 
+         $price_for_shipping=$_finalPrice;
+         ?>
               
                  <?php if (!$_taxHelper->displayBothPrices()): ?>
                     
 
                <?php  	If (!empty($msrp_price)) {
 	 	?>
-	 	  <p class="price-msrp-block">
+	 	  <div class="price-msrp-block">
                 <span class="price-label"><?php echo $this->__('Retail Price:') ?></span>
                  <span class="price" id="old-price2-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
                  <?php  echo $_coreHelper->currency($msrp_price,true,false) ?>
@@ -262,629 +311,240 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
                    <script type="text/javascript"  >
                    var msrp_price=document.getElementById('old-price2-<?php echo $_id ?>').innerHTML;
                    msrp_price=parseFloat(msrp_price.replace("$",""));
-					 </script>
-                  
+					 </script>      
+					 </div>            
 	 	<?php
                } else {
                	$msrp_price=0;
                }
 	?>
-	         <p class="price-discount-block">
+	         <div class="price-discount-block">
                 <span class="price-label"><?php echo $this->__('Regular Price:') ?></span>
                  <span class="price" id="old-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
                   <?php  echo $_coreHelper->currency($_regularPrice,true,false) ?>
                  </span>                          
-               </p>
-                      
-            <p class="special-price-sale">
+               </div>                      
+            <div class="special-price-sale">
                <span class="price-label"><?php echo $this->__('Sale Price:') ?></span>
                 <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
                     <?php echo $_coreHelper->currency($_finalPrice,true,false) ?>                    
-                </span>
-                
+                </span> 
+                 </div>               
                <?php  	If (!empty($msrp_price)) {
 	 	?>
-                   <span class="price-save-label"><?php echo $this->__('(Save ') ?></span>
-                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo (max($_regularPrice,$msrp_price)-$_finalPrice); ?></span><span class="price-save-label2">)</span>
+	 	  <div class="price-save-block">
+                   <span class="price-save-label"><?php echo $this->__('You Save ') ?></span>
+                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo (max($_regularPrice,$msrp_price)-$_finalPrice); ?></span>
                       <script type="text/javascript"  >
                       var disc_price=document.getElementById('disc-price-<?php echo $_id ?>').innerHTML;
                       disc_price=parseFloat(disc_price.replace("$",""));
 					 </script>
+					  </div>
 					 <?php
                } ?> 
-                </p>
-                 <?php endif; ?>
-              
-         <?php endif; ?>
-                    
-                        <?php // echo $this->getChildHtml('product_type_data') ?>
-
-						
-
-                       <!-- <?php /* <p class="product-ids"><?php echo $this->__('SKU# %s', $this->htmlEscape($_product->getSku())); ?></p> */ ?> -->
-
-                        <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
-
-                        <?php echo $this->getChildHtml('alert_urls') ?>
-
-                    </div>
-                 <div class="product-main-info2">                  
-                   <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container2') ):?>
-
-                     <div class="options-container-big">
-
-                          <?php echo getShippingandCouponDiv($_product->getId(), $discountCode, $customShipPrice, $bulletPoints) ?>
-
-                          <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
-
-                     </div>
-
-                   <?php endif;?>
-                  
-                   <?php if (!$this->hasOptions()):?>
-
-                        <div class="add-to-box">
-
-                            <?php echo getShippingandCouponDiv($_product->getId(), $discountCode, $customShipPrice, $bulletPoints) ?>
-
-                            <?php // if($_product->isSaleable()): ?>                           
-
-                                <?php echo $this->getChildHtml('addtocart') ?>
-
-                            <?php // endif; ?>
-
-                        </div>
-
-                        <?php // echo $this->getChildHtml('addto') ?>
-
-                    <?php else:?>                 
-
-                        <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container1') ):?>
-
-                            <div class="options-container-small">
-                                <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
-
-                            </div>
-
-                        <?php endif;?>
-
-                        <?php // echo $this->getChildHtml('addto') ?> 
-
-                    <?php endif;?>
-
-                     </div>      
-
-                    <?php echo $this->getChildHtml('tierprices') ?>
-
-                    <?php echo $this->getChildHtml('extrahint') ?>
-
-                    
-
-                    <div class="calc-tab">
-
-<!-- AddThis Button BEGIN -->
-<div class="addthis_toolbox addthis_default_style ">
-<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-<a class="addthis_button_tweet"></a>
-<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-<a class="addthis_counter addthis_pill_style"></a>
-</div>
-<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f07749b0bd1cf94"></script>
-<!-- AddThis Button END -->
-
-                                 
-
-                    </div>
-
-                    
-
-                    <?php //if(!empty($productCollection)) { ?>
-
-                    <div class="product-collection">
-
-                        <?php echo $productCollection; ?>
-
-                        <?php echo $productCollectionTwo; ?>                          
-
-                    </div>
-
-                    <?php //} ?>
-
-
-
-                    <?php if ($_product->getShortDescription()):?>
-
-                        <div class="short-description std">
-
-                            <h2><?php echo $this->__('Quick Overview') ?></h2>
-
-                            <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
-
-                        </div>
-
-                    <?php endif;?>
-
-                      
-
-
-
-                    <?php echo $this->getChildHtml('other');?>
-
-                    
-
-                </div>
-
-                
-
-                <div class="product-img-outer">
-
-                        <div class="product-img-logo">
-
-                        <?php echo getCmsContent($manufacturerLabel, "_LG"); ?>
-
-                        </div>
-
-                        <?php echo $this->getChildHtml('media') ?>
-
-                </div>   
-
-                 
-
-                
-
-
-
+               
+                 <?php endif; ?>             
+         <?php endif; ?>                           
         </div>
-
-        
-
-        <div class="product-collateral-wrapper">
-
-            <div class="product-collateral">
-
-                <?php if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')):?>
-
-                    <dl id="collateral-tabs" class="collateral-tabs">
-
-                        <dt class="tabempty"></dt>
-
-                        
-
-                        <dt class="tab"><span><?php echo $this->escapeHtml($this->getChildData('description', 'title')) ?></span></dt>
-
-                        <dd class="tab-container">
-
-                           <div class="tab-content">
-
-                           <h2 class="prod-details">Product Details for the 
-
-<?php 
-
-$product_sku=$_product->getSku();
-
-if ( (strpos($product_sku,'_Base')) > 0) {
-
-	$product_sku=str_replace('_Base','',$product_sku);
-
-}
-
-	echo $product_sku; ?></h2>
-
-                           <?php echo $detailedInfoGroup['description'] ?> 
-
-                           <?php if(!empty($productHelpfulLinks)) : ?>        
-
-                                <div class="product-helpful-links">
-
-								<br /><hr/><br />
-
-								<p>
-
-<strong>
-
-<u>Installation Manual</u>
-
-</strong>
-
-</p><br />
-
-								<?php echo Mage::getModel('core/email_template_filter')->filter($productHelpfulLinks) ?></div>
-
-                           <?php endif;?>                           
-
-                           </div>
-
-                        </dd>
-
-                        
-
-                        
-
-                        <?php if ($_product->getShortDescription()):?>
-
-                        <dt class="tab"><span>Description</span></dt>
-
-                        <dd class="tab-container">
-
-                           <div class="tab-content">                           
-
-                                <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
-
-                           </div>
-
-                        </dd>
-
-                        <?php endif;?>
-
-                        
-
-                        
-
-                        
-
-                        <dt class="tab"><span>Warranty</span></dt>
-
-                        <dd class="tab-container">
-
-                           <div class="tab-content"><?php echo getCmsContent($manufacturerLabel, "_WT"); ?></div>
-
-                        </dd>
-
-                        
-
-                        <dt class="tab"><span>Shipping and Returns</span></dt>
-
-                        <dd class="tab-container">
-
-                           <div class="tab-content"><?php echo getCmsContent($manufacturerLabel, "_SR"); ?></div>
-
-                        </dd>                       
-
-                        
-
-                    <?php
-
-                    /* foreach ($detailedInfoGroup as $alias => $html):?>
-
-                    <dt class="tab"><span><?php echo $this->escapeHtml($this->getChildData($alias, 'title')) ?></span></dt>
-
-                    <dd class="tab-container">
-
-                    <div class="tab-content"><?php echo $html ?></div>
-
-                    </dd>
-
-                    <?php endforeach; */ ?>
-
-                    </dl>
-
-                    <script type="text/javascript">new Enterprise.Tabs('collateral-tabs')</script>
-
-                <?php endif; ?>
-
-                
-
-                <?php /* if ($this->canEmailToFriend()): ?>
-
-                    <p class="emailto-link"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a></p>
-
-                    <?php endif; */
-
-                ?>
-
-            </div>
-
-            
-
-            <?php if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')):?>
-
-            <div style="float:right; width:325px;">
-
-                <?php echo $this->getChildHtml('relatedProducts') ?>            
-
-                <div class="box-techspec">
-
-                    <span>Technical Specs</span>
-
-                    <?php echo $detailedInfoGroup['additional']; ?>
-
-                </div>
-
-            </div>
-
-            
-
-                <?php
-
-                $more_way_toshop = getCmsContent($manufacturerLabel, "_GUIDE");
-
-                if(!empty($more_way_toshop)) :
-
-                ?>                             
-
-                    <div class="more-ways-toshop">
-
-                      <?php echo $more_way_toshop?>
-
-                    <div class="more-ways-toshop-bg"></div>  
-
-                    </div>
-
-                <?php endif; ?>
-
-            <?php endif; ?>
-
-            
-
-        </div>
-
-        <div class="clearer"></div>          
-
-    </form>
-
-        
-
-        <?php //echo $this->getChildHtml('upsell_products') ?>
-
-        <?php //echo $this->getChildHtml('productTagList') ?>
-
-        <?php echo $this->getChildHtml('product_additional_data') ?>
-
-        <?php echo $this->getChildHtml('reviews') ?>
-
-</div>
-
-
-
-<script type="text/javascript">
-
-//<![CDATA[
-
-var productAddToCartForm = new VarienForm('product_addtocart_form');
-
-productAddToCartForm.submit = function(button) {
-
-	if (this.validator.validate()) {
-
-		this.form.submit();
-
-		if (button && button != 'undefined') {
-
-			button.disabled = true;
-
-		}
-
-	}
-
-}.bind(productAddToCartForm);
-
-//]]>
-
-</script>
-
-
-
+        <div class='promo-txt'>
 <?php
-
-function getCmsContent($manufacturerName, $cmsCode) {
-
-	$manufacturerName = strtoupper(preg_replace("[^A-Za-z0-9-]", "", $manufacturerName));
-
-
-
-	$content = Mage::getModel('cms/block')
-
-	->setStoreId(1)//$store_id)
-
-	->load($manufacturerName.$cmsCode)
-
-	->getContent();
-
-
-
-	$processor = Mage::getModel('core/email_template_filter');
-
-	$content = $processor->filter($content);
-
-	//$content = $manufacturerName;
-
-	return $content;
-
-}
-
-
-
-
-
-function getShippingandCouponDiv($product_id, $discountCode, $customShipPrice, $bulletPoints) {
-
-
-
-	$productPrice = getProductMinPrice($product_id);
-
-
-
-	$html = "";
-
-
-
-	$html .= "<div class='promo-txt'>";
-
-	$html .= "<div class='product-discount'>";
-
-	$html .= "<div class='discount-txt'>";
-
-	if(!empty($discountCode)) {
-
-		$html .= $discountCode;
-
-	}
-
-	$html .= $bulletPoints."</div>";
-
-	$html .= "</div>";
-
-
-
-
-
-	$html .= "<div class='product-shipping'>";
-
-	if($customShipPrice > 0) {
-
-		$html .= "<div class='shipping-txt'>Shipping: Freight Shipping Cost ".Mage::helper('core')->currency($customShipPrice)."</div>";
-
-	}
-
-	elseif($productPrice > 100) {
-
-		$html .= "<div class='shipping-txt'> Free Shipping in Continental US <div id='details_free_shipping'>Details</div></div>";
-
-	}
-
-	else {
-
-		$html .= "<div class='shipping-txt'> Free Shipping in Continental US on order over \$100 <div id='details_free_shipping'>Details</div></div>";
-
-	}
-
-	$html .= "</div>";
-
-	$html .= "</div>";
-
-
-
-	return $html;
-
-}
-
-
-
-
-
-function getProductMinPrice($product_id) {
-
-
-
-	$pminPrice = 0;
-
-	$product = Mage::getModel('catalog/product')->load($product_id);
-
-	$prodPrice = $product->getPrice();
-
-
-
-	if($product->getOptions()) {
-
-
-
-		$minPrices=array();
-
-		$maxPrices=array();
-
-		foreach ($product->getOptions() as $_option) {
-
-			switch ($_option->getType()) {
-
-				case 'field': case 'file': case 'area': case 'date_time': case 'date': case 'time':
-
-					if($_option->getIsRequire()){
-
-						$minPrices[] = ($_option->getPriceType()=='percent') ? $prodPrice*$_option->getPrice()/100 : $_option->getPrice();
-
-					}
-
-					$maxPrices[] = ($_option->getPriceType()=='percent') ? $prodPrice*$_option->getPrice()/100 : $_option->getPrice();
-
-					break;
-
-				case 'radio': case 'drop_down':
-
-					$valuePrices=array();
-
-					foreach ($_option->getValues() as $_value){
-
-						$valuePrices[] = ($_value->getPriceType()=='percent') ? $prodPrice*$_value->getPrice()/100 : $_value->getPrice();
-
-					}
-
-					sort($valuePrices,SORT_NUMERIC);
-
-					if($_option->getIsRequire()){
-
-						$minPrices[] = $valuePrices[0];
-
-					}
-
-					$maxPrices[] = array_pop($valuePrices);
-
-					break;
-
-				case 'multiple': case 'checkbox':
-
-					$valuePrices=array();
-
-					foreach ($_option->getValues() as $_value){
-
-						$valuePrices[] = ($_value->getPriceType()=='percent') ? $prodPrice*$_value->getPrice()/100 : $_value->getPrice();
-
-					}
-
-					sort($valuePrices,SORT_NUMERIC);
-
-					if($_option->getIsRequire()){
-
-						$minPrices[] = $valuePrices[0];
-
-					}
-
-					$maxPrices[] = array_sum($valuePrices);
-
-					break;
-
-			}
-
+//if 	($customShipPrice > 0)	{
+	?>
+<!--	<div class="shipping-txt">Freight Shipping Cost <?php echo $_coreHelper->currency($customShipPrice,true,false); ?></div>	-->
+	<?php //} else
+	if ($price_for_shipping > 100) {?> 
+	<div class="shipping-txt"> Free</div> <div class="shipping-txt-last"> Shipping</div> <div id="details_free_shipping"></div>
+	<?php //} else { ?>
+<!--	<div class='shipping-txt'> Free Shipping in Continental US on order over $100 <div id="details_free_shipping">Details</div></div>-->
+	<?php } ?>
+</div>      
+        <div class="stock-container">
+        <?php  
+        if ( (!empty($outofstockMsg)) || ($_product->getIsInStock()==0) ){
+        if(empty($outofstockMsg)) $outofstockMsg="Product will be available soon";
+        	echo "<div class=\"out-stock\">".$outofstockMsg."</div>";
+        }else {?>
+        <div class="in-stock">In Stock</div><div class="in-stock-ready"> Ready to ship </div>
+          <div id='details_in_stock'></div>
+        <?php }?>
+        </div> 
+        
+<?php
+$promo=$this->getChildHtml('addtopromo');
+if(!empty( $promo ) ) { ?>
+  <div class="product-discount">
+	<div class="discount-txt">
+<?php echo $promo; ?>
+	</div>
+  </div>
+	<?php
+}?>  
+<!--                 add to block                -->
+                       <div class="add-to-box">
+                           <?php echo $this->getChildHtml('addtocart') ?>   
+                       <div class="express-customer-servise">
+	                       <div class="express-message">  <?php echo $this->__('<b>Questions?</b> Chat or Talk with our Express Customer Service '); ?></div>
+                            <div class="express-imgs"> <a href="https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;byhref=1&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson" onclick="lpButtonCTTUrl = 'https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson&amp;referrer='+escape(document.location); lpButtonCTTUrl = (typeof(lpAppendVisitorCookies) != 'undefined' ? lpAppendVisitorCookies(lpButtonCTTUrl) : lpButtonCTTUrl); lpButtonCTTUrl = ((typeof(lpMTag)!='undefined' &amp;&amp; typeof(lpMTag.addFirstPartyCookies)!='undefined')?lpMTag.addFirstPartyCookies(lpButtonCTTUrl):lpButtonCTTUrl);window.open(lpButtonCTTUrl,'chat33660894','width=475,height=400,resizable=yes');return false;">
+	       					<div class="livechat-img"></div></a>  
+           	       				<div class="livechat-img-right"></div>      
+   		        	       </div>
+                       </div>                                                             
+                     </div>                                 
+
+                       
+                   </div> 
+                   <div class="product-img-logo">
+                        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId($manufacturerName_block.'_LG')->toHtml();; ?>
+                   </div>  
+                   	 <?php if(!empty($productCollection)) { ?>
+                    <div class="product-collection">
+                        <?php echo $productCollection; ?>
+                         <?php if(!empty($productCollectionTwo)) { ?>
+                        <br>
+                        <?php echo $productCollectionTwo; ?>  
+                            <?php } ?>                        
+                    </div>
+                    <?php } ?>
+<!--                  end right block   -->
+                    <?php echo $this->getChildHtml('tierprices') ?>
+                    <?php echo $this->getChildHtml('extrahint') ?>                                                                           
+           
+                </div>  
+                                
+        </div>    
+               <?php if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')):?>
+        <div class="product-collateral-wrapper">
+            <div class="product-collateral">
+             
+                    <dl id="collateral-tabs" class="collateral-tabs">
+                        <dt class="tabempty"></dt>                        
+                        <dt class="tab"><span><?php  echo $this->escapeHtml($this->getChildData('description', 'title')) ?></span></dt>
+                        <dd class="tab-container">
+                           <div class="tab-content">
+                           <h2 class="prod-details">Product Details for the 
+<?php 
+	echo $product_sku; ?></h2>
+                           <?php echo $detailedInfoGroup['description'] ?> 
+                           <?php if(!empty($productHelpfulLinks)) : ?>        
+                                <div class="product-helpful-links">
+								<br/><br/><br/>
+								<p>
+<strong>
+<u>Installation Manual</u>
+</strong>
+</p><br/>
+								<?php echo Mage::getModel('core/email_template_filter')->filter($productHelpfulLinks) ?></div>
+                           <?php endif;?>                           
+                           </div>
+                        </dd>                                               
+                        <?php if ($_product->getShortDescription()):?>
+                        <dt class="tab"><span>Description</span></dt>
+                        <dd class="tab-container">
+                           <div class="tab-content">                           
+                                <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+                           </div>
+                        </dd>
+                        <?php endif;?>         
+<!--						technical specs-->
+                        <?php if (!empty($detailedInfoGroup['additional'])):?>
+                        <dt class="tab"><span>Technical Specs</span></dt>
+                        <dd class="tab-container">
+                           <div class="tab-content">                           
+                              <?php echo $detailedInfoGroup['additional']; ?>
+                           </div>
+                        </dd>
+                        <?php endif;?>                        
+                         <?php
+                         $reviews=$this->getChildHtml('reviews');
+                         $reviews=trim($reviews);
+                         if (!empty($reviews)):?>
+                         <dt class="tab"><span>Reviews</span></dt>
+                        <dd class="tab-container">
+                           <div class="tab-content"><?php echo $reviews; ?></div>
+                        </dd>   
+                        <?php endif;?>                                              
+                          <?php
+                          $warrancy=$this->getLayout()->createBlock('cms/block')->setBlockId($manufacturerName_block.'_WT')->toHtml();
+                         if (!empty($warrancy)):?>
+                        <dt class="tab"><span>Warranty</span></dt>
+                        <dd class="tab-container">
+                           <div class="tab-content"><?php echo $warrancy; ?></div>
+                        </dd>                            
+                         <?php endif;?> 
+                       <dt class="tab"><span>Shipping</span></dt>
+                        <dd class="tab-container">
+                           <div class="tab-content">                    
+                         <?php
+                         $shipping=$this->getLayout()->createBlock('cms/block')->setBlockId($manufacturerName_block.'_SR')->toHtml();
+                         if (!empty($shipping)){
+                         	echo $shipping;
+                         } else {
+                         	echo Mage::getStoreConfig('expressdecor/pages/product_shipping_default',Mage::app()->getStore());
+                         }?>          
+     
+                         </div>
+                        </dd>   
+                                                                        
+                    </dl>
+                    <script type="text/javascript">new Enterprise.Tabs('collateral-tabs')</script>
+                              
+            </div>  
+                <?php endif; ?>            
+            <?php if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')):?>
+            <div class="related-products">
+                <?php echo $this->getChildHtml('relatedProducts') ?>            
+            </div>           
+                <?php
+                $more_way_toshop = $this->getLayout()->createBlock('cms/block')->setBlockId($manufacturerName_block.'_GUIDE')->toHtml();;
+                if(!empty($more_way_toshop)) :
+                ?>                             
+                    <div class="more-ways-toshop">
+                      <?php echo $more_way_toshop?>
+                    <div class="more-ways-toshop-bg"></div>  
+                    </div>
+                <?php endif; ?>
+                     
+        </div>
+          <?php endif; ?> 
+        <div class="clearer"></div>          
+    </form>       
+        <?php //echo $this->getChildHtml('upsell_products') ?>
+        <?php echo $this->getChildHtml('product_additional_data') ?>     
+</div>
+    <?php echo $this->getChildHtml('other');?>     
+<script type="text/javascript">
+//<![CDATA[
+var productAddToCartForm = new VarienForm('product_addtocart_form');
+productAddToCartForm.submit = function(button) {
+	if (this.validator.validate()) {
+		this.form.submit();
+		if (button && button != 'undefined') {
+			button.disabled = true;
 		}
-
-		$minTotal = $prodPrice + array_sum($minPrices);
-
-		$maxTotal = $prodPrice + array_sum($maxPrices);
-
-		if($minTotal==$maxTotal){
-
-			$html = Mage::helper('core')->currency($minTotal);
-
-		} else {
-
-			//$html = Mage::helper('core')->currency($minTotal).'-'.Mage::helper('core')->currency($maxTotal);
-
-			$html = "<span class=\"price\"></span><span class=\"price2\">\$".$minTotal."-\$".$maxTotal."</span>";
-
-		}
-
-
-
-		$pminPrice = $minTotal;
-
-
-
 	}
-
-	else {
-
-		$pminPrice = $prodPrice;
-
-		//echo $_coreHelper->currency($_price,true,true); //displays regular price
-
-	}
-
-
-
-	return $pminPrice;
-
-}
-
-
-
-?>  
-
+}.bind(productAddToCartForm);
+//]]>
+</script>
+ <?php
+ if ($_product->getTypeId() =='configurable') {
+ 	$childProducts = Mage::getModel('catalog/product_type_configurable')
+ 	->getUsedProducts(null,$_product);
+ 	if (count($childProducts) > 0) {
+ 		echo "
+	<script type='text/javascript'>
+        //<![CDATA[
+        Event.observe('attribute527', 'change', function(event) {
+        	 conf_attr=$('attribute527').options[$('attribute527').selectedIndex].text;
+        	 i=0;
+        	 for (i=0;i<".count($childProducts).";i++)
+        	 {
+        	  	if (childs_option[i]==conf_attr) {        	  	
+        	  	change_base_image(childs_full_url[i],childs_url[i]);        	  	
+        	  	}
+        	 }
+        });
+        //]]>
+        </script> ";
+ 	}
+ }
+ ?>

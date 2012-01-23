@@ -23,21 +23,14 @@
  * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
- 
-
 ?>
 <?php 
 $_product = $this->getProduct();
-$manufacturerName = $_product->getResource()->getAttribute('manufacturer')->getFrontend()->getValue($_product); 
-$skuCode = $_product->getResource()->getAttribute('sku')->getFrontend()->getValue($_product);
-?> 
-<?php $_items = $this->getReviewsCollection()->getItems();?>
-<a name="review"></a>
+//$manufacturerName = $_product->getResource()->getAttribute('manufacturer')->getFrontend()->getValue($_product); 
+//$skuCode = $_product->getResource()->getAttribute('sku')->getFrontend()->getValue($_product);
+$_items = $this->getReviewsCollection()->getItems();
+ if (count($_items)): ?>
 <div class="box-collateral box-reviews" id="customer-reviews">
-<?php if (count($_items)):?>
-    <div class="box-title">
-        <h2><?php echo $manufacturerName." ".$skuCode." ".$this->__('Reviews') ?></h2>
-    </div>
     <?php echo $this->getChildHtml('toolbar') ?>
     <dl class="box-content" id="product-reviews-list">
     <?php foreach ($_items as $_review):?>
@@ -45,29 +38,22 @@ $skuCode = $_product->getResource()->getAttribute('sku')->getFrontend()->getValu
            <?php echo $this->htmlEscape($_review->getTitle()) ?> <?php echo $this->__('Review by %s', $this->htmlEscape($_review->getNickname())) ?>
         </dt>
         <dd>
-            <table class="data-table review-summary-table">
-                <col />
-                <col />
-                <tbody>
+            <div class="review-summary-table">
                     <?php foreach ($_review->getRatingVotes() as $_vote): ?>
-                    <tr>
-                        <th class="label"><?php echo $this->escapeHtml($_vote->getRatingCode()) ?></th>
-                        <td class="value">
+
+                        <div class="label"><?php echo $this->escapeHtml($_vote->getRatingCode()) ?></div>                   
                             <div class="rating-box">
                                 <div class="rating" style="width:<?php echo $_vote->getPercent() ?>%;"></div>
-                            </div>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-            <p><?php echo nl2br($this->htmlEscape($_review->getDetail())) ?></p>
-           
+                            </div>      
+                    <?php endforeach; ?>         
+            </div>
+            <p><?php echo nl2br($this->htmlEscape($_review->getDetail())) ?></p>           
         </dd>
     <?php endforeach; ?>
     </dl>
     <script type="text/javascript">decorateGeneric($$('#product-reviews-list dd'), ['last']);</script>
     <?php echo $this->getChildHtml('toolbar') ?>
-<?php endif;?>
-<?php //echo $this->getChildHtml('review_form') ?>
 </div>
+<?php endif;?>
+<?php // echo $this->getChildHtml('review_form') ?>
+

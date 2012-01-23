@@ -24,8 +24,14 @@
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 ?>
+
+<?php $_product = Mage::registry('product'); ?>
 <div class="box-title">
     <h2><?php echo $this->__('Write Your Own Review') ?></h2>
+<!--    <div class="buttons-set review-back">-->
+    <p class="back-link"><a href="<?php echo $_product->getProductUrl() ?>"><small>&laquo; </small><?php echo $this->__('Back to Main Product Info') ?></a></p>
+<!--</div>-->
+
 </div>
 <?php if ($this->getAllowWriteReviewFlag()): ?>
 <form action="<?php echo $this->getAction() ?>" method="post" id="review-form">
@@ -55,21 +61,23 @@
                                     <th><div class="rating-box"><span class="rating nobr" style="width:100%" title="<?php echo $this->__('5 stars') ?>"><?php echo $this->__('5 stars') ?></span></div></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                                  </table> 
+                      </div>
+                  </li>
+                                                   
                             <?php foreach ($this->getRatings() as $_rating): ?>
-                                <tr>
-                                    <td class="label"><?php echo $this->escapeHtml($_rating->getRatingCode()) ?></td>
+                               <li>  
+                                    <label class="label required"><em>*</em><?php echo $this->escapeHtml($_rating->getRatingCode()) ?></label>
+                                     <div class="input-box-rating">
                                 <?php foreach ($_rating->getOptions() as $_option): ?>
-                                    <td class="value"><input type="radio" name="ratings[<?php echo $_rating->getId() ?>]" id="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>_<?php echo $_option->getValue() ?>" value="<?php echo $_option->getId() ?>" class="radio" /></td>
+                                    <div class="value-rating"><input type="radio" name="ratings[<?php echo $_rating->getId() ?>]" id="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>_<?php echo $_option->getValue() ?>" value="<?php echo $_option->getId() ?>" class="radio" /></div>
                                 <?php endforeach; ?>
-                                </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                	  </div>
+                                </li>
+                            <?php endforeach; ?>                   
+                
                         <input type="hidden" name="validate_rating" class="validate-rating" value="" />
                         <script type="text/javascript">decorateTable('product-review-table')</script>
-                    </div>
-                </li>
             </ul>
         <?php endif ?>
         <ul class="form-list">
@@ -86,7 +94,7 @@
                 <div class="input-box"><textarea name="detail" id="review_field" cols="5" rows="3" class="required-entry"><?php echo $this->htmlEscape($data->getDetail()) ?></textarea></div>
             </li>
         </ul>
-        <div class="buttons-set form-buttons btn-only">
+        <div class="buttons-set form-buttons btn-only review-button-add">
             <button type="submit" class="button"><span><span><?php echo $this->__('Submit Review') ?></span></span></button>
         </div>
         <p class="required"><?php echo $this->__('* Required Fields') ?></p>

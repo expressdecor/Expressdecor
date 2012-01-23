@@ -77,10 +77,12 @@ class Oeditor_Ordereditor_Adminhtml_OrdereditorController extends Mage_Adminhtml
 			return true;
 		} elseif($type == "sales_flag") { //modified by alex : adding sales_flag
 			if ($value=="No flag") $value='';
-//			$this->_order->setSalesFlag($value)->save();
+			//			$this->_order->setSalesFlag($value)->save();
 			$this->_order->setData('sales_flag',$value)->save();
+			return true;
+		}  elseif($type == "channel") { //modified by alex : adding channel
 
-
+			$this->_order->setData('channel',$value)->save();
 			return true;
 		} elseif($type == "cust_name") {
 
@@ -192,6 +194,10 @@ class Oeditor_Ordereditor_Adminhtml_OrdereditorController extends Mage_Adminhtml
 			if($field == "sales_flag") {  //addes by Alex : adding sales_flag
 				if ($value=="No flag") $value='';
 				$this->_order->setData('sales_flag',$value)->save();
+				return true;
+			}
+			if($field == "channel") {  //addes by Alex : adding channel
+				$this->_order->setData('channel',$value)->save();
 				return true;
 			}
 
