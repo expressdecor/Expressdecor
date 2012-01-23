@@ -243,6 +243,12 @@ Product view
                 <block type="core/text_list" name="product.info.extrahint" as="extrahint" translate="label">
                     <label>Product View Extra Hint</label>
                 </block>
+                <block type="core/text_list" name="product.addto.promo" as="addtopromo" translate="label">
+                    <label>Product View  Add to Cart Block</label>
+                </block>
+               <block type="core/text_list" name="product.express.deal" as="expressdeal" translate="label">
+                    <label>Product View ExpressDeal Icon</label>
+                </block>
 
                 
                 <block type="catalog/product_list_related" name="catalog.product.related" as="relatedProducts" template="catalog/product/list/related.phtml"/>
@@ -259,7 +265,7 @@ Product view
                 </block>
                 <block type="catalog/product_view" name="product.info.options.wrapper.bottom" as="product_options_wrapper_bottom" template="catalog/product/view/options/wrapper/bottom.phtml" translate="label">
                     <label>Bottom Block Options Wrapper</label>
-                    <action method="append"><block>product.info.addtocart</block></action>
+<!--                    <action method="append"><block>product.info.addtocart</block></action>-->
                     <block type="catalog/product_view" name="product.clone_prices" as="prices" template="catalog/product/view/price_clone.phtml"/>
                     <action method="append"><block>product.tierprices</block></action>
                 </block>

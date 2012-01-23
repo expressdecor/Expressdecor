@@ -213,6 +213,43 @@
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
             </free_shipping>	
+<!--             3rd field-->
+  			<product_shipping translate="label comment">
+              <label>Product page shipping info: </label>
+              <comment>
+                <![CDATA[Show on products page at the left menu.]]>
+              </comment>
+              <frontend_type>textarea</frontend_type>   
+              <sort_order>12</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </product_shipping>	
+<!--            4rd Field-->
+  		<product_instock translate="label comment">
+              <label>In stock additional information: </label>
+              <comment>
+                <![CDATA[Show on products page at the left menu. When item in stock.]]>
+              </comment>
+              <frontend_type>textarea</frontend_type>   
+              <sort_order>13</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </product_instock>	
+ <!--            5rd Field-->
+  		<product_shipping_default translate="label comment">
+              <label>Shipping and Returnd default: </label>
+              <comment>
+                <![CDATA[Show on products page at Shipping tab.]]>
+              </comment>
+              <frontend_type>textarea</frontend_type>   
+              <sort_order>14</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </product_shipping_default>	
+            
           </fields>
        </pages>
 

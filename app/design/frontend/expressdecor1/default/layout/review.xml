@@ -72,19 +72,28 @@ Product reviews page
         </reference>
         <reference name="head">
             <action method="addItem"><type>skin_js</type><name>js/jqzoom/jquery-1.3.1.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery.simpletip-1.3.1.pack.js</name></action>
+            <action method="addCss"><stylesheet>css/jquery.simpletip.css</stylesheet></action>
             <action method="addItem"><type>skin_js</type><name>js/jqzoom/jquery.jqzoom1.0.1.js</name></action>
             <action method="addJs"><script>varien/product.js</script></action>
         </reference>
         <reference name="content">
             <block type="review/product_view" name="product.info" template="catalog/product/view.phtml">
                 <block type="catalog/product_view_media" name="product.info.media" as="media" template="catalog/product/view/media.phtml">
-                    <action method="disableGallery"/>
+                   <!-- <action method="disableGallery"/>-->
                 </block>
+              
                 <block type="catalog/product_view" name="product.info.addto" as="addto" template="catalog/product/view/addto.phtml"/>
                 <block type="catalog/product_view" name="product.info.addtocart" as="addtocart" template="catalog/product/view/addtocart.phtml"/>
                 <block type="catalog/product_view" name="product.tierprices" as="tierprices" template="catalog/product/view/tierprices.phtml"/>
-                <block type="core/template" name="product.info.other" as="other" template="review/product/view/other.phtml"/>
+<!--                <block type="core/template" name="product.info.other" as="other" template="review/product/view/other.phtml"/>-->
                 <block type="page/html_pager" name="product_review_list.toolbar" />
+                                <block type="core/text_list" name="product.addto.promo" as="addtopromo" translate="label">
+                    <label>Product View  Add to Cart Block</label>
+                </block>
+               <block type="core/text_list" name="product.express.deal" as="expressdeal" translate="label">
+                    <label>Product View ExpressDeal Icon</label>
+                </block>
                 <block type="core/template" name="product_review_list.count" template="review/product/view/count.phtml" />
                 <block type="review/product_view_list" name="product.info.product_additional_data" as="product_additional_data" template="review/product/view/list.phtml">
                     <block type="review/form" name="product.review.form" as="review_form">

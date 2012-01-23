@@ -49,28 +49,36 @@
  */
 
 ?>
-<?php  
-$_product = Mage::getModel('catalog/product')->load($_product = $this->getProduct()->getId());
 
-?>
-    <div class="add-to-cart">              
-  
-<?php if($_product->isSaleable()): ?>
-        <?php if(!$_product->isGrouped()): ?>
- <div class="add-to-block">
-        <label for="qty"><?php echo $this->__('Quantity:') ?></label>
+<?php if ($this->getReviewsCount()): ?>
 
-        <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getMinimalQty($_product)== null?1:$this->getMinimalQty($_product) ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+    <div class="ratings">
 
-        <?php endif; ?>
+        <?php if ($this->getRatingSummary()):?>
 
-        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart"  onclick="productAddToCartForm.submit(this)"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+            <div class="rating-box">
 
-        <?php echo $this->getChildHtml('', true, true) ?>
-        </div>
-<?php endif; ?>
+                <div class="rating" style="width:<?php echo $this->getRatingSummary() ?>%"></div>
 
-    
+            </div>
+
+        <?php endif;?>
+
+        <p class="rating-links">
+
+            <a rel="nofollow" href="#review"><?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?></a>
+
+            <span class="separator">|</span>
+
+            <a rel="nofollow" href="<?php echo $this->getReviewsUrl() ?>#review-form"><?php echo $this->__('Write a Review') ?></a>
+
+        </p>
 
     </div>
+
+<?php elseif ($this->getDisplayIfEmpty()): ?>
+ <div class="ratings">
+    123<p class="no-rating"><a rel="nofollow" href="<?php echo $this->getReviewsUrl() ?>#review-form"><?php echo $this->__('Write a review for this product') ?></a></p>
+ </div>
+<?php endif; ?>
 
