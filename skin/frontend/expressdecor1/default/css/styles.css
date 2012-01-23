@@ -3161,16 +3161,99 @@ margin-left: 3px;
 .std .slidenav { width: 650px; background-color: #8D9598; text-align: center;}
 .std .slidenav a { color: #FFFFFF; text-decoration: none; font-weight: bold; padding-right: 20px; font-size: 12px;}
 /*==Center - right banner ==*/
-.std .center-right-banner {
+ .std .center-right-banner {
  float: right;
     height: 291px;
     margin-right: 6px;
     margin-top: -291px;
     width: 281px;
-    background-image: url("../images/home.png");
-background-position: -22px -210px;
+    background-image: url("../images/express-deals.png");
+/*background-position: -22px -210px;*/
 
 }
+.std .center-right-banner .center-right-arrow {
+    background-image: url("../images/express-right.png");
+     height: 24px;
+    width: 27px;
+    margin-left: 243px;
+    margin-top: -25px;
+     cursor: pointer;
+}
+
+.std .center-right-banner .center-left-arrow { 
+    background-image: url("../images/express-left.png");
+     height: 24px;
+    width: 27px;
+      margin-left: 10px;
+margin-top: 41px;
+  cursor: pointer;
+}
+.std .center-right-banner .center-right-image   {
+width: 167px;
+height: 163px;
+  margin-left: 65px;
+    margin-top: 56px;
+    position: relative;
+}
+.std .center-right-banner .center-right-image img {
+position: absolute;
+left: 0;
+top: 0;
+}
+
+.std .center-right-banner .center-right-labels div span {
+position: absolute;
+left: 0;
+top: 0;
+color: #000000;
+font-weight: bold;
+font-size: 15px;
+}
+.std .center-right-banner .center-right-labels div {
+margin-left:26px;
+margin-top: 20px;
+  position: absolute;
+    width: 253px;
+}
+
+.std .center-right-banner .center-right-prices div span.deal-price {
+position: absolute;
+left: 0;
+top: 0;
+color: #FF0000;
+font-weight: bold;
+font-size: 17px;
+}
+.std .center-right-banner .center-right-prices div span.deal-off-price {
+left: 65px;
+position: absolute;
+top: 0;
+color: #989898;
+font-weight: bold;
+font-size: 17px;
+ text-decoration: line-through;
+}
+
+.std .center-right-banner .center-right-prices div {
+margin-left:52px;
+  position: absolute;
+    width: 253px;
+margin-top: 41px;
+
+}
+
+#center-img-link-1{
+margin-left:23px;
+}
+
+#center-img-link-2{
+margin-left:17px;
+}
+
+#center-img-link-3{
+margin-left:22px;
+}
+
 
 /*checkout page*/
 /*

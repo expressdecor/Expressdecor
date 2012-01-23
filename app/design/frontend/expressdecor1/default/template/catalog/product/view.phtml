@@ -100,7 +100,10 @@ if ($_product->getTypeId() =='simple') {
 		//if this product has a parent
 		$parent = Mage::getModel('catalog/product')->load($parentId[0]);
 		$newurl = $parent->getProductUrl();
-		Mage::app()->getFrontController()->getResponse()->setRedirect($newurl);
+		Header( "HTTP/1.1 301 Moved Permanently" );
+                Header("Location: $newurl");
+                Mage::app()->getResponse()->setRedirect($newurl);
+                echo "<script language='javascript'>window.location.href='$newurl';</script>";
 	}
 
 }

@@ -37,17 +37,44 @@ class Expressdecor_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block
 
 	protected function _prepareCollection()
 	{
-		$collection = Mage::getResourceModel($this->_getCollectionClass());
+		$collection = Mage::getResourceModel($this->_getCollectionClass())->join(
+		'sales/order_item',
+		'`sales/order_item`.order_id=`main_table`.entity_id',
+		array(
+		'skus'  => new Zend_Db_Expr('group_concat(`sales/order_item`.sku SEPARATOR ",")'),
+		'names' => new Zend_Db_Expr('group_concat(`sales/order_item`.name SEPARATOR ",")'),
+		)
+		);
+		$collection->getSelect()->group('entity_id');
+
 		$collection->getSelect()->joinLeft(array('sfop'=>'sales_flat_order_payment'),'main_table.entity_id=sfop.parent_id', array('sfop.method'));
 		$this->setCollection($collection);
 		return Mage_Adminhtml_Block_Widget_Grid::_prepareCollection();
 	}
 
 
+
 	protected function _prepareColumns()
 	{
 		parent::_prepareColumns();
 
+/*
+		$this->addColumn('names', array(
+		'header'    => Mage::helper('Sales')->__('Name'),
+		'width'     => '800px',
+		'index'     => 'names',
+		'type'        => 'text',
+		));
+
+
+		$this->addColumn('skus', array(
+		'header'    => Mage::helper('Sales')->__('Skus'),
+		'width'     => '80px',
+		'index'     => 'skus',
+		'type'        => 'text',
+		));
+		*/
+		
 		$this->addColumn('sales_flag',array(
 		'header' => Mage::helper('sales')->__('Flag'),
 		'index'  => 'sales_flag',
@@ -64,7 +91,16 @@ class Expressdecor_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block
 		'options'   => array('verisign' => 'Credit Card', 'checkmo' => 'Check/Money Order', 'paypal_express'=>'PayPal', 'googlecheckout'=>'Google Checkout')
 		));
 
-//		return parent::_prepareColumns();
+		$this->addColumn('channel', array(
+		'header'    => Mage::helper('sales')->__('Chanell'),
+		'index'     => 'channel',
+		'type'  => 'options',
+		'width' => '70px',
+		'options'   => array('Amazon' => 'Amazon', 'Sears' => 'Sears', 'Ebay'=>'Ebay', 'Ebayrefurb'=>'Ebay Refurb')
+		));
+
+
+		//		return parent::_prepareColumns();
 	}
 
 

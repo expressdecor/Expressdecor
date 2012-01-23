@@ -148,6 +148,31 @@ $statuses = Mage::getSingleton('sales/order_config')->getStatuses();
            </div> 
         </div>   
     </div>          
+    
+    <!--   Channel of order  -->   
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-flag"><?php echo Mage::helper('sales')->__('Order Channel:') ?></h4>
+        </div>
+        <div class="fieldset">
+            <div class="hor-scroll">
+
+            <label><?php echo Mage::helper('sales')->__('Order Channel:') ?></label>
+               <strong>
+               <span  id="edit_channel" title="Click to edit">
+               <?php  echo $_order->channel." (Click to edit)"  ?> </span>
+               </strong> 
+             
+             <script type="text/javascript">                
+             new Ajax.InPlaceCollectionEditor('edit_channel', '<?php echo $this->getUrl("ordereditor/adminhtml_ordereditor/save/field/channel/type/channel/")."order/".$_order->getId() ; ?>',{ highlightColor:'#E2F1B1',
+             collection: [' ', 'Amazon','Sears','Ebay','Ebayrefurb']    
+             });
+                </script>
+                
+           </div> 
+        </div>   
+    </div>   
+    
     <!--Account Information-->
     <div class="entry-edit">
         <div class="entry-edit-head">
