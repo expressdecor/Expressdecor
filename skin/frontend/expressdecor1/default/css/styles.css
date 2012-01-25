@@ -1696,6 +1696,7 @@ button.btn-cart span {}
 .add-to-cart button.btn-cart span {
 background-image:url("../images/addtocart.gif");
 height: 23px !important;
+ background-position: 1px 0;
 padding:0 0 0 0px !important; }
 .product-view .product-essential button.btn-cart span span,
 .add-to-cart button.btn-cart span span {
