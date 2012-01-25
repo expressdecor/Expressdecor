@@ -1336,11 +1336,16 @@ padding-top: 10px;
 font-size:11px;
 padding-left:10px;
 text-transform:none; display:none;}
+.discount-txt li{
+text-align:left;
+}
+
 .discount-txt { 
   /*  float: left;*/
 font-size: 13px;
 margin: 0px 0px 0;
-padding-right: 0px;
+padding-top: 10px;
+padding-left: 10px;
 /*
 background:url("../images/red-sale-tag.png") no-repeat ;
 color: #FFFFFF;
