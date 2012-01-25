@@ -81,7 +81,7 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
 <?php /* --------- jqZoom --------- */ ?>
     <?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
         <?php list($_imgWidth, $_imgHeight) = $this->helper('catalog/image')->init($_product, 'image')->getOriginalSizeArray(); ?>
-        <?php if ($_imgWidth > 350 && $_imgHeight > 350):?>
+        <?php if ($_imgWidth > 100 && $_imgHeight > 100):?>
             <a class="product-image image-zoom" id="main-image" title="<?php echo $this->htmlEscape($_product->getImageLabel()); ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>" >
                 <?php
                 $_img = '<img id="main-image-img" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(300).'" height="300" width="300" alt="'.$this->htmlEscape($_product->getImageLabel()).'" title="'.$this->htmlEscape($_product->getImageLabel()).'" />';
@@ -207,13 +207,18 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
             </a>
  <?php } ?>
     </li>
-    <?php foreach ($this->getGalleryImages() as $_image): ?>
+    <?php foreach ($this->getGalleryImages() as $_image): 
+       $src= $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(48);
+    if ( strpos($src,'thumbnail.jpg') === false)  { 
+    ?>
         <li>
             <a href="#" onclick="change_base_image('<?php echo  $_image->getUrl(); ?>','<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small', $_image->getFile())->resize(330); ?>'); disable_video();"  title="<?php echo $this->htmlEscape($_image->getLabel()) ?>">
             <img onmouseover="change_base_image('<?php echo  $_image->getUrl(); ?>','<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small', $_image->getFile())->resize(330); ?>');"   src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(48); ?>" width="48" height="48" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" />
             </a>
 
         </li>
-    <?php endforeach; ?>
+    <?php 
+    }
+    endforeach; ?>
     </ul>
 </div>
