@@ -50,7 +50,9 @@
     $_minimalPrice = $_taxHelper->getPrice($_product, $_minimalPriceValue, $_simplePricesTax);
     $product_ = Mage::getModel('catalog/product')->load($_product->getId());
     $msrp_price=$product_->getMsrpPrice();
-   
+   if ($msrp_price=='0') {
+	$msrp_price='';
+}
 ?>
 
 
