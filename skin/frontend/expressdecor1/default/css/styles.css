@@ -490,7 +490,7 @@ width:55px; }
  
 .data-table .attr-container {
 border-bottom: 1px dotted #A9A9A9;
-width: 270px;
+width: 100%;
 }
 .data-table .label {
 color: #000000;
@@ -1337,11 +1337,14 @@ font-size:11px;
 padding-left:10px;
 text-transform:none; display:none;}
 .discount-txt { 
- 
   /*  float: left;*/
 font-size: 13px;
 margin: 0px 0px 0;
 padding-right: 0px;
+/*
+background:url("../images/red-sale-tag.png") no-repeat ;
+color: #FFFFFF;
+*/
 }
 .product-discount span
 {
