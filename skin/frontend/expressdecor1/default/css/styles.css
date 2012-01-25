@@ -3994,3 +3994,12 @@ font-size: 12px;
     padding-left: 10px;
     width: 205px;
 }
+.brand-logo-img{
+float: left;  margin-right: 11px;
+}
+.brand-logo-text{
+ color: #787777;
+    font-size: 11px;
+    font-weight: bold;
+    margin-right: 0;
+}
