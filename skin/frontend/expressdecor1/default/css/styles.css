@@ -1293,6 +1293,7 @@ padding-top: 10px;
 	color:#03F;
 	}
 .stock-container {  
+  margin-bottom: -8px;
 padding-bottom: 6px;
 height:17px;
 padding-top: 0px;
@@ -3582,7 +3583,7 @@ position: inherit;
 
 }
 .price-msrp-block, .price-discount-block, .special-price-sale, .price-save-block{
- height: 21px;
+ height: 23px;
  }
  
 
@@ -3684,13 +3685,13 @@ width:165px;
   .no-rating {   float: left; font-size:12px; margin-bottom: 7px;}
   .no-rating a { color:#44444; }
 .special-price-sale .price {
-font-size: 15px;
+font-size: 16px;
 color: #FF6100;
  font-weight: bold;
     float:right; 
 }
 .special-price-sale .price-label {
-font-size: 15px;
+font-size: 16px;
 color: #FF6100;
  font-weight: bold;
 }
