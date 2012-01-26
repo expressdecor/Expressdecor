@@ -643,7 +643,7 @@ margin-left:18px;
 .header-container { margin: 26px 0 0px; text-align:left; }
 .header { padding: 14px 0 9px; min-height:56px; position:relative; z-index:5; width:940px; }
 /*div.header {padding-top: 20px;}*/
-.header .logo { text-decoration:none !important; margin-top:0px;margin-top: -8px; }
+.header .logo { text-decoration:none !important; margin-top:0px;margin-top: -6px; }
 .header .logo strong { position:absolute; top:-999em; left:-999em; width:0; height:0; font-size:0; line-height:0; text-indent:-999em; overflow:hidden; }
 .header h1.logo {}
 .header .quick-access {background:url("../images/cart.gif") no-repeat scroll 0 3px #FFFFFF; width:163px; height:51px; float:right; padding:10px 0 0; }
