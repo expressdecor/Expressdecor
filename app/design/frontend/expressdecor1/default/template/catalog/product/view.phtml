@@ -229,7 +229,7 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
 
 <?php $from=$_product->getNewsFromDate();
 $to=$_product->getNewstoDate();
-if ( (date('Y-m-d-') <= $to ) && (date('Y-m-d-') => $from) ) {
+if ( (date('Y-m-d-') <= $to ) && (date('Y-m-d-') >= $from) ) {
 ?>
  <img src="<?=$this->getSkinUrl('images/pb-leadfree.png')?>">
  <?php } ?>
