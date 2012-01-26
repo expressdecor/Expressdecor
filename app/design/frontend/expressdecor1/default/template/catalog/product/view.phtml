@@ -228,10 +228,11 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
 <div class="addone">
 
 <?php $from=$_product->getNewsFromDate();
-$to=$_product->getNewstoDate();
-if ( (date('Y-m-d-') <= $to ) && (date('Y-m-d-') >= $from) ) {
+$to=$_product->getNewsToDate();
+
+if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
 ?>
- <img src="<?=$this->getSkinUrl('images/pb-leadfree.png')?>">
+ <img src="<?=$this->getSkinUrl('images/new-product.png')?>">
  <?php } ?>
   <?php if($californiaCompliant == "Yes") :?>
                             <img src="<?=$this->getSkinUrl('images/pb-leadfree.png')?>">
