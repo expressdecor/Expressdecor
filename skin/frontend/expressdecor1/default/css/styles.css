@@ -1503,7 +1503,7 @@ border:1px solid #cfcfcf; }
 .product-view .short-description { padding:10px 0; clear:both; font-size:12px; display:none; }
 .product-view .short-description h2 { margin:0 0 5px; font-size:13px; }
 .product-view .product-shop .add-to-cart { padding:2px 0px 10px 0; /*margin-top: 100px; width: 214px;*/ }
-.product-view .product-shop .add-to-cart button.button { float:left;}
+.product-view .product-shop .add-to-cart button.button { float:right; margin-right:3px;}
 /* Rating */
 .rating-box { width:61px; height:12px; font-size:0; line-height:0; /*background:url(../images/bkg_rating.gif) 0 100% repeat-x;*/ overflow:hidden; }
 .rating-box .rating { float:left; height:12px; background:url(../images/bkg_rating.png) 0 0 repeat-x; }
