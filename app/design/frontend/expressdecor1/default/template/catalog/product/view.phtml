@@ -351,14 +351,15 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
         </div>
         <div class='promo-txt'>
 <?php
-//if 	($customShipPrice > 0)	{
+if 	($customShipPrice > 0)	{
 	?>
-<!--	<div class="shipping-txt">Freight Shipping Cost <?php echo $_coreHelper->currency($customShipPrice,true,false); ?></div>	-->
-	<?php //} else
-	if ($price_for_shipping > 100) {?> 
-	<div class="shipping-txt"> Free</div> <div class="shipping-txt-last"> Shipping</div> <div id="details_free_shipping"></div>
+ 
+	<?php // echo $_coreHelper->currency($customShipPrice,true,false); ?>
+	<?php } else {
+	//if ($price_for_shipping > 100) {?> 
+	
 	<?php //} else { ?>
-<!--	<div class='shipping-txt'> Free Shipping in Continental US on order over $100 <div id="details_free_shipping">Details</div></div>-->
+<div class="shipping-txt"> Free</div> <div class="shipping-txt-last"> Shipping Eligible</div> <div id="details_free_shipping"></div>
 	<?php } ?>
 </div>      
         <div class="stock-container">
