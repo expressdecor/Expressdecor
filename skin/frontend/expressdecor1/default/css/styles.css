@@ -636,9 +636,9 @@ width: 145px;
 margin-left:18px;
 }
 .header-links{float:right;}
-.branding { position:absolute; left:0; margin:-38px 0 0; top:50%; height:58px; }
+.branding { position:absolute; left:0; margin:-38px 0 0; top:50%; height:58px;   margin-top: -31px; }
 .logo { float:left; }
-.free-shipping { float:left; margin:15px 0 0 10px; display:inline; }
+
 
 .header-container { margin: 26px 0 0px; text-align:left; }
 .header { padding: 14px 0 9px; min-height:56px; position:relative; z-index:5; width:940px; }
@@ -696,12 +696,13 @@ white-space: nowrap;}
 .switch ul, x:-moz-any-link, x:default { width:auto; }/* FireFox 3 restore */
 
 .list-opened { background-position:100% -129px !important; color:#d33911 !important; }
+.free-shipping { float:left; margin:15px 0 0 10px; display:inline; }
 .freeshipping {
 background: url(../images/rotating_banner.gif) no-repeat;
 float: left;
 height:63px;
 width:200px;
-margin-top: 0px;
+margin-top:6px; 
 /* background-position: -200px 7px;*/
 
  margin-left: 185px;
@@ -3073,6 +3074,7 @@ color: #FFFFFF;
   padding-left: 5px;
   padding-right: 4px;
   padding-top: 6px;
+   margin-top: 5px;
   text-align: left;
   width: 237px;
   margin-right: 6px;
@@ -3091,7 +3093,7 @@ font-weight: bold;
 padding-right: 4px;
 }
 /********** < Navigation */
-.nav-container { padding-bottom:3px; margin-bottom:-1px; position:relative; z-index:4; width: 653px; }
+.nav-container { padding-bottom:3px; margin-bottom:-1px; position:relative; z-index:4; width: 653px;  margin-top: 5px; }
 
 #nav { 
 background-color: #000000;
@@ -4017,3 +4019,12 @@ float: left;  margin-right: 11px;
 .addthis_toolbox {
 padding-left:10px;
 }
+
+.popup {
+float:right;
+height: 20px;
+width: 20px;
+margin-right: 5px;
+cursor:pointer;
+}
+
