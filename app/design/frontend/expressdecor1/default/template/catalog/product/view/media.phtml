@@ -104,8 +104,9 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
            });
            //]]>
             </script>
-
+     <div class="popup"   onclick="popWin('<?php echo $this->getGalleryUrl($_image) ?>', 'gallery', 'width=330,height=330,left=50,top=50,location=no,status=yes,scrollbars=yes,resizable=yes'); return false;"><img src="<?php  echo $this->getSkinUrl('/images/popup.png')?>" /> </div>
             <p class="notice"><?php echo $this->__('Click on image to zoom'); ?></p>
+       
         <?php else: ?>
             <p class="product-image">
                 <?php
