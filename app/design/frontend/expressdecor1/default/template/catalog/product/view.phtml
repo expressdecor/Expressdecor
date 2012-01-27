@@ -186,11 +186,12 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
  <div class="product-name-d">
     <h1><div class="manufacter-name"><?php    
     $name=$_helper->productAttribute($_product, $_product->getName(), 'name');
-    echo substr($name,0,strpos($name,' '));
+    echo $manufacturerName;
    ?>
  </div><div class="manufacter-full-name">
    <?php
-   echo substr($name,strpos($name,' ')+1,strlen($name)-strpos($name,' ')+1);
+  // echo $manufacturerName;
+   echo str_replace($manufacturerName,'',$name);
     ?></div>
     <div class="manufater-sku">SKU#:  <?php echo $product_sku; ?></div>        
     </h1>
