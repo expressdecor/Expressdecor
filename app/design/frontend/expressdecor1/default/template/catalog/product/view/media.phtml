@@ -1,65 +1,33 @@
 <?php
-
 /**
-
  * Magento Enterprise Edition
-
  *
-
  * NOTICE OF LICENSE
-
  *
-
  * This source file is subject to the Magento Enterprise Edition License
-
  * that is bundled with this package in the file LICENSE_EE.txt.
-
  * It is also available through the world-wide-web at this URL:
-
  * http://www.magentocommerce.com/license/enterprise-edition
-
  * If you did not receive a copy of the license and are unable to
-
  * obtain it through the world-wide-web, please send an email
-
  * to license@magentocommerce.com so we can send you a copy immediately.
-
  *
-
- * DISCLAIMER
-
+  DISCLAIMER
  *
-
  * Do not edit or add to this file if you wish to upgrade Magento to newer
-
  * versions in the future. If you wish to customize Magento for your
-
  * needs please refer to http://www.magentocommerce.com for more information.
-
  *
-
  * @category    design
-
  * @package     enterprise_default
-
  * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
-
  * @license     http://www.magentocommerce.com/license/enterprise-edition
-
  */
-
-
-
 /**
-
  * Product media data template
-
  *
-
  * @see Mage_Catalog_Block_Product_View_Media
-
  */
-
 ?>
 
 <?php
@@ -177,9 +145,10 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
               	}
               }
               function  change_base_image(img_url, small_img_url) {
+            
               	jQuery('#main-image').unbind();
               	document.getElementById('main-image-img').src=small_img_url;
-              	<?php if ($_imgWidth > 380 && $_imgHeight > 380):?>
+              	<?php if ($_imgWidth > 100 && $_imgHeight > 100):?>
               	document.getElementById('main-image').href=img_url;
 
 
@@ -200,26 +169,57 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
             </script>
             
 <div class="more-views">   
-    <ul>
-<?php if (!empty($video)) { ?>
-    <li>
-            <a href="#" onclick="show_video();"  title="Show Video">
-            <div class="video-link"></div>
-            </a>
+
+    <div id="express-images" class="carousel">
+                <div class="button navButton previous" style="display:none;">Back</div>
+                <div class="button navButton next" style="display:none;">More</div>
+                <div class="container">
+                  <div class="items">
+                  <?php if (!empty($video)) { ?>
+
+            
+            <div class="item">
+                            <div class="key caption"></div>                            
+                            <div class="icon">
+                               <a href="#"  onclick="show_video();"  title="Show Video" >    <div class="video-link"></div></a>
+                            </div>                            
+                            <div class="picture">
+                           <a href="#"  onclick="show_video();"  title="Show Video">     <div class="video-link"></div>
+       					 </a>
+                            </div>
+                        </div>
  <?php } ?>
-    </li>
     <?php foreach ($this->getGalleryImages() as $_image): 
        $src= $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(48);
     if ( strpos($src,'thumbnail.jpg') === false)  { 
-    ?>
-        <li>
+    ?>                        
+                   <div class="item">
+                            <div class="key caption"></div>                            
+                            <div class="icon">
+                               <a href="#" onclick="change_base_image('<?php echo  $_image->getUrl(); ?>','<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small', $_image->getFile())->resize(330); ?>'); disable_video();"  title="<?php echo $this->htmlEscape($_image->getLabel()) ?>">
+ <img onmouseover="change_base_image('<?php echo  $_image->getUrl(); ?>','<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small', $_image->getFile())->resize(330); ?>');"   src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(48); ?>" width="48" height="48" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" />
+ </a>
+                            </div>                            
+                            <div class="picture">
+                           <a href="#" onclick="change_base_image('<?php echo  $_image->getUrl(); ?>','<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small', $_image->getFile())->resize(330); ?>'); disable_video();"  title="<?php echo $this->htmlEscape($_image->getLabel()) ?>"> 
+<img onmouseover="change_base_image('<?php echo  $_image->getUrl(); ?>','<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small', $_image->getFile())->resize(330); ?>');"   src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(48); ?>" width="48" height="48" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" />
+        					 </a>
+                            </div>
+                        </div>
+          
+                         
+     
+      <!--  <li>
             <a href="#" onclick="change_base_image('<?php echo  $_image->getUrl(); ?>','<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small', $_image->getFile())->resize(330); ?>'); disable_video();"  title="<?php echo $this->htmlEscape($_image->getLabel()) ?>">
             <img onmouseover="change_base_image('<?php echo  $_image->getUrl(); ?>','<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small', $_image->getFile())->resize(330); ?>');"   src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(48); ?>" width="48" height="48" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" />
             </a>
 
-        </li>
+        </li>-->
     <?php 
     }
     endforeach; ?>
-    </ul>
+                       </div>                            
+                  </div>
+            </div>
+<!--    </ul>-->
 </div>
