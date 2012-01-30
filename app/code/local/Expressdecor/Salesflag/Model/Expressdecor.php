@@ -14,12 +14,14 @@ class Expressdecor_Salesflag_Model_Expressdecor extends Mage_Core_Model_Abstract
 	public function CheckPromo() {
 		$orderId =Mage::getModel('checkout/session')->getLastOrderId();
 		$this->edOrder = Mage::getModel('sales/order');
-
+		$id =Mage::getStoreConfig('expressdecor/ses_cook/promo_cookie_param',Mage::app()->getStore());
+		
 		$promo_code=Mage::getModel('checkout/session')->getPromoCode();
 		if (!empty($promo_code)){
 			$this->edOrder->load($orderId);
 			$this->edOrder->setData('promo_code',$promo_code);
 			$this->edOrder->save();
+			Mage::getModel('core/cookie')->delete($id, $promo_value);
 		}
 
 	}

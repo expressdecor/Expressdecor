@@ -41,6 +41,7 @@ class Expressdecor_Page_Block_Html_Head extends Mage_Page_Block_Html_Head
 		$promo_value = Mage::getModel('core/cookie')->get($id);
 		$promo_value_session=Mage::getModel('checkout/session')->getPromoCode();
 
+
 		if (!$promo_value) {
 			if (!empty($promo_src)) {
 				$promo_value = $promo_src; // text data
@@ -49,12 +50,17 @@ class Expressdecor_Page_Block_Html_Head extends Mage_Page_Block_Html_Head
 				if (!$promo_value_session) {
 					Mage::getModel('checkout/session')->setPromoCode($promo_value);
 				}
+			} else {
+				if ($promo_value_session) {
+					Mage::getModel('checkout/session')->unsPromoCode($promo_value);
+				}
 			}
 		} else {
 			if (!$promo_value_session){
 				Mage::getModel('checkout/session')->setPromoCode($promo_value);
 			}
 		}
+
 		if ($discount_code) {
 			if (!$param_discount_session)
 			Mage::getModel('checkout/session')->setDiscountParam($discount_code);
