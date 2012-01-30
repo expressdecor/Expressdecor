@@ -2,7 +2,7 @@
 <config>
 	<modules>
 	    <Expressdecor_Salesflag>
-	        <version>0.2.0</version>
+	        <version>0.3.0</version>
 	    </Expressdecor_Salesflag>
 	</modules>
 	<global> 
@@ -41,11 +41,21 @@
         </resources>    
          
 	 <events>   	 
+	    <checkout_cart_add_product_complete>
+	      <observers>
+	      <product_add_discount_observer>
+	     	 <class>salesflag/expressdecor</class>
+	     	 <method>ApplyDiscount</method>
+	      </product_add_discount_observer>
+	      </observers>	      
+	    </checkout_cart_add_product_complete>
+	    
 		<checkout_onepage_controller_success_action>  
 		   <observers>
 		      <sales_place_observer>		         
 		         <class>salesflag/expressdecor</class>
 		            <method>flagOrder</method>
+		            <method>CheckPromo</method>
 		      </sales_place_observer>
 		    </observers>
 		</checkout_onepage_controller_success_action> 

@@ -31,25 +31,36 @@ class Expressdecor_Page_Block_Html_Head extends Mage_Page_Block_Html_Head
 			}
 		}
 		// coockie value test
-	/*	$id = 'pageSrc3';
-		echo time('d-m-y');
+		$id =Mage::getStoreConfig('expressdecor/ses_cook/promo_cookie_param',Mage::app()->getStore());
+
+		$param_discount =Mage::getStoreConfig('expressdecor/ses_cook/discount_param',Mage::app()->getStore());
+		$param_discount_session =Mage::getModel('checkout/session')->getDiscountParam();
+		$discount_code= $this->getRequest()->getParam($param_discount);
+
 		$promo_src = $this->getRequest()->getParam($id);
 		$promo_value = Mage::getModel('core/cookie')->get($id);
+		$promo_value_session=Mage::getModel('checkout/session')->getPromoCode();
 
 		if (!$promo_value) {
 			if (!empty($promo_src)) {
 				$promo_value = $promo_src; // text data
-				$time = time()-3600;//60*60*24*30; // month
+				$time = time()+60*60*24*30; // month
 				Mage::getModel('core/cookie')->set($id, $promo_value, $time);
-				echo $promo_value.'_was_set';
+				if (!$promo_value_session) {
+					Mage::getModel('checkout/session')->setPromoCode($promo_value);
+				}
 			}
-		} else
-		{
-
-			echo $promo_value;
+		} else {
+			if (!$promo_value_session){
+				Mage::getModel('checkout/session')->setPromoCode($promo_value);
+			}
+		}
+		if ($discount_code) {
+			if (!$param_discount_session)
+			Mage::getModel('checkout/session')->setDiscountParam($discount_code);
 		}
 
-*/
+
 
 		//coockie value test
 		// prepare HTML
