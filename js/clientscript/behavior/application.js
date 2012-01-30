@@ -1,4 +1,4 @@
-﻿//Applies behaviour rules to the classes
+//Applies behaviour rules to the classes
 //Author: Brian R Miedlar (c) 2006-2009
 
 var AppBehavior = Class.create();
