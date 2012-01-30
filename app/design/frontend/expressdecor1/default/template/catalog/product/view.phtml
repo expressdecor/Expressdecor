@@ -401,15 +401,15 @@ if(!empty( $promo ) ) { ?>
                    <div class="product-img-logo">
                         <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId($manufacturerName_block.'_LG')->toHtml();; ?>
                    </div>  
-                   	 <?php if(!empty($productCollection)) { ?>
-                    <div class="product-collection">
-                        <?php echo $productCollection; ?>
-                         <?php if(!empty($productCollectionTwo)) { ?>
-                        <br>
-                        <?php echo $productCollectionTwo; ?>  
-                            <?php } ?>                        
-                    </div>
-                    <?php } ?>
+                   	 <?php // if(!empty($productCollection)) { ?>
+<!--                    <div class="product-collection">-->
+                        <?php  //echo $productCollection; ?>
+                         <?php // if(!empty($productCollectionTwo)) { ?>
+<!--                        <br>-->
+                        <?php // echo  //$productCollectionTwo; ?>  
+                            <?php // } ?>                        
+<!--                    </div>-->
+                    <?php // } ?>
 <!--                  end right block   -->
                     <?php echo $this->getChildHtml('tierprices') ?>
                     <?php echo $this->getChildHtml('extrahint') ?>                                                                           
