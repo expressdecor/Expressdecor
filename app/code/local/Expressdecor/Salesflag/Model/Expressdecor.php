@@ -4,6 +4,26 @@
  */
 class Expressdecor_Salesflag_Model_Expressdecor extends Mage_Core_Model_Abstract
 {
+	public function ApplyDiscount() {
+		$coupon_code=Mage::getModel('checkout/session')->getDiscountParam($param_discount);
+		
+		if ($coupon_code)
+		Mage::getSingleton('checkout/cart')->getQuote()->setCouponCode($coupon_code)->save();		
+	}
+
+	public function CheckPromo() {
+		$orderId =Mage::getModel('checkout/session')->getLastOrderId();
+		$this->edOrder = Mage::getModel('sales/order');
+
+		$promo_code=Mage::getModel('checkout/session')->getPromoCode();
+		if (!empty($promo_code)){
+			$this->edOrder->load($orderId);
+			$this->edOrder->setData('promo_code',$promo_code);
+			$this->edOrder->save();
+		}
+
+	}
+
 	public function flagOrder()
 	{
 
