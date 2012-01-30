@@ -401,15 +401,7 @@ if(!empty( $promo ) ) { ?>
                    <div class="product-img-logo">
                         <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId($manufacturerName_block.'_LG')->toHtml();; ?>
                    </div>  
-                   	 <?php // if(!empty($productCollection)) { ?>
-<!--                    <div class="product-collection">-->
-                        <?php  //echo $productCollection; ?>
-                         <?php // if(!empty($productCollectionTwo)) { ?>
-<!--                        <br>-->
-                        <?php // echo  //$productCollectionTwo; ?>  
-                            <?php // } ?>                        
-<!--                    </div>-->
-                    <?php // } ?>
+
 <!--                  end right block   -->
                     <?php echo $this->getChildHtml('tierprices') ?>
                     <?php echo $this->getChildHtml('extrahint') ?>                                                                           
@@ -498,7 +490,16 @@ if(!empty( $promo ) ) { ?>
             <?php if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')):?>
             <div class="related-products">
                 <?php echo $this->getChildHtml('relatedProducts') ?>            
-            </div>           
+            </div>     
+                               	 <?php  if(!empty($productCollection)) { ?>
+                    <div class="product-collection">
+                        <?php  echo $productCollection; ?>
+                         <?php  if(!empty($productCollectionTwo)) { ?>
+                        <br>
+                        <?php  echo  $productCollectionTwo; ?>  
+                            <?php  } ?>                        
+                    </div>
+                    <?php  } ?>      
                 <?php
                 $more_way_toshop = $this->getLayout()->createBlock('cms/block')->setBlockId($manufacturerName_block.'_GUIDE')->toHtml();;
                 if(!empty($more_way_toshop)) :
