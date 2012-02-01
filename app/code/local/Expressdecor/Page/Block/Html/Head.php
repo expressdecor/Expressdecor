@@ -45,7 +45,7 @@ class Expressdecor_Page_Block_Html_Head extends Mage_Page_Block_Html_Head
 		if (!$promo_value) {
 			if (!empty($promo_src)) {
 				$promo_value = $promo_src; // text data
-				$time = time()+60*60*24*30; // month
+				$time =60*60*24*30; // month
 				Mage::getModel('core/cookie')->set($id, $promo_value, $time);
 				if (!$promo_value_session) {
 					Mage::getModel('checkout/session')->setPromoCode($promo_value);

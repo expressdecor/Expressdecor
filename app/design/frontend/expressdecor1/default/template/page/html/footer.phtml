@@ -196,7 +196,6 @@ Event.observe('star-5', 'mouseout', function(event) {
 setInterval(function(){
 	if ($('feedbackP').getStyle('margin-left')!='-400px') {
 		new Effect.Pulsate("feedbackP", {pulses:2,duration:3});
-		$('feedbackP').appear({ duration: .3 });
 	}
 }, 10000);
 
