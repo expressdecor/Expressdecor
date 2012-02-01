@@ -46,7 +46,7 @@
 <![endif]-->
 <div id="feedbackP">
     <div id="feedbackButton"><?php echo$this->__('Feedback'); ?></div>
-
+<div id="feedback_hide" onclick="hide_feedback();"></div>
 <form action="/contacts/index/post/" class="feedback" id="feedbackForm" method="post">
     
 <div class="feedback-fieldset">
@@ -92,6 +92,13 @@
     <p class="required"><?php echo Mage::helper('contacts')->__('* Required Fields') ?></p>
 </form>
 <script type="text/javascript">
+
+function hide_feedback() {
+	if ($('feedbackP').getStyle('margin-left')!='-130px') {
+	$('feedbackP').fade({ duration: .3 });		
+	}
+
+}
 
 function star_click(val) {
 
@@ -189,6 +196,7 @@ Event.observe('star-5', 'mouseout', function(event) {
 setInterval(function(){
 	if ($('feedbackP').getStyle('margin-left')!='-400px') {
 		new Effect.Pulsate("feedbackP", {pulses:2,duration:3});
+		$('feedbackP').appear({ duration: .3 });
 	}
 }, 10000);
 
