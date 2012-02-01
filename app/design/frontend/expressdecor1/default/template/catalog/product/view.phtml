@@ -397,7 +397,7 @@ if(!empty( $promo ) ) { ?>
                      </div>                                 
 
                        
-                   </div> 
+                   </div>
                    <div class="product-img-logo">
                         <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId($manufacturerName_block.'_LG')->toHtml();; ?>
                    </div>  
@@ -455,7 +455,7 @@ if(!empty( $promo ) ) { ?>
                          $reviews=$this->getChildHtml('reviews');
                          $reviews=trim($reviews);
                          if (!empty($reviews)):?>
-                         <dt class="tab"><span>Reviews</span></dt>
+                         <dt id="reviews" class="tab"><span>Reviews</span></dt>
                         <dd class="tab-container">
                            <div class="tab-content"><?php echo $reviews; ?></div>
                         </dd>   

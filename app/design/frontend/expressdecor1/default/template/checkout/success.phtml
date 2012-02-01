@@ -1,0 +1,159 @@
+<?php
+/**
+ * Magento Enterprise Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Enterprise Edition License
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magentocommerce.com/license/enterprise-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://www.magentocommerce.com/license/enterprise-edition
+ */
+?>
+<!-- Google Code for Kitchen Sinks Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1070966174;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "ziKTCKrS1gIQnsvW_gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1070966174/?label=ziKTCKrS1gIQnsvW_gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+[2:19:10 PM] russroman: <!-- Google Code for Purchase Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1070966174;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "666666";
+var google_conversion_label = "ohATCOq3ogIQnsvW_gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1070966174/?label=ohATCOq3ogIQnsvW_gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<div class="page-title">
+    <h1><?php echo $this->__('Your order has been received') ?></h1>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<h2 class="sub-title"><?php echo $this->__('Thank you for your purchase!') ?></h2>
+
+<?php if ($this->getOrderId()):?>
+<?php if ($this->getCanViewOrder()) :?>
+    <div class="yourorder"><p><h4>Your order # is:<h2><?php echo $this->__('%s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></h2></h4></p></div>
+<?php  else :?>
+  <div class="yourorder-guest"><p><h4 style="float: left;font-size: 14px;padding-right: 10px; padding-top: 10px;">Your order # is:<h2 style="color: #D12C01;font-size: 27px;"><?php echo $this->__('%s.', $this->escapeHtml($this->getOrderId())) ?></h2></h4></p></div>
+<?php endif;?>
+    <p><?php echo $this->__('You will receive an order confirmation email with details of your order and a link to track its progress.') ?></p>
+<?php if ($this->getViewOrder() && $this->getCanPrintOrder()) :?>
+    <p>
+        <?php echo $this->__('Click <a href="%s" onclick="this.target=\'_blank\'">here to print</a> a copy of your order confirmation.', $this->getPrintUrl()) ?>
+        <?php echo $this->getChildHtml() ?>
+    </p>
+<?php endif;?>
+<?php endif;?>
+
+<?php if ($this->getAgreementRefId()): ?>
+    <p><?php echo $this->__('Your billing agreement # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getAgreementUrl()), $this->escapeHtml($this->getAgreementRefId())))?></p>
+<?php endif;?>
+
+<?php if ($profiles = $this->getRecurringProfiles()):?>
+<p><?php echo $this->__('Your recurring payment profiles:'); ?></p>
+<ul class="disc">
+<?php foreach($profiles as $profile):?>
+<?php $profileIdHtml = ($this->getCanViewProfiles() ? sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getProfileUrl($profile)), $this->escapeHtml($this->getObjectData($profile, 'reference_id'))) : $this->escapeHtml($this->getObjectData($profile, 'reference_id')));?>
+    <li><?php echo $this->__('Payment profile # %s: "%s".', $profileIdHtml, $this->escapeHtml($this->getObjectData($profile, 'schedule_description')))?></li>
+<?php endforeach;?>
+</ul>
+<?php endif;?>
+<p>Your order is currently being processed and will be promptly shipped. If you have any questions about your order, please contact our customer service department at <strong>866-5072725 or Email us at info@expressdecor.com</strong>. Our knowledgeable representatives are available <strong>Monday-Friday 9am-6pm Eastern Standard Time</strong> to assist with any general questions, order inquiries, and any other questions you may have about your order or any of the products we carry.<br /><br />
+
+We appreciate your business; don't forget to checkout our website for all your future remodeling projects.
+</p>
+<div class="buttons-set">
+    <button type="button" class="button" title="<?php echo $this->__('Continue Shopping') ?>" onclick="window.location='<?php echo $this->getUrl() ?>'"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+</div>
+<?php 
+$_customerId = Mage::getSingleton('customer/session')->getCustomerId(); 
+$customerData = Mage::getModel('customer/customer')->load($_customerId);
+$lastOrderId = Mage::getSingleton('checkout/session')->getLastOrderId(); 
+$order = Mage::getSingleton('sales/order'); 
+$order->load($lastOrderId); 
+$_totalData =$order->getData(); 
+$_sub = $_totalData['subtotal']; 
+$transaction_string = '"' . $lastOrderId . '","Expressdecor","' . $_totalData['subtotal'] . '","' . $_totalData['tax_amount'] . '","' . $_totalData['shipping_amount'] . '","","",""';
+?>
+<img src="https://shareasale.com/sale.cfm?tracking=<?php echo $lastOrderId ?>&amount=<?php echo $_sub ?>&transtype=sale&merchantID=17021" width="1" height="1" />
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try{
+	var pageTracker = _gat._getTracker("UA-777007-1");
+	pageTracker._initData();
+	pageTracker._trackPageview();
+	pageTracker._addTrans(<?php echo $transaction_string; ?>);
+	pageTracker._trackTrans();
+} catch(err) {}
+</script>
+
+ <!-- BEGIN: buySAFE Guarantee-->
+<script src="https://seal.buysafe.com/private/rollover/rollover.js"></script>
+<span id="BuySafeSealSpan"></span>
+<span id="BuySafeGuaranteeSpan"></span>
+<script type="text/javascript">
+  buySAFE.Hash = "[VAR_BmD2giRyWOTG3NJxhQzBulk%2f%2bBRu4B%2fZanaoj%2fcIx36XAGnr6Tj1Dws6Dr5O9SUE0fHdbi59hFTNpkt0PJ%2fzJA%3d%3d]";
+ WriteBuySafeSeal("BuySafeSealSpan", "GuaranteedSeal");
+ WriteBuySafeGuarantee("JavaScript");
+</script>
+<!-- END: buySAFE Guarantee-->
+
+<!-- Google Code for Purchase/Sale Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1070966174;
+var google_conversion_language = "en";
+var google_conversion_format = "1";
+var google_conversion_color = "666666";
+var google_conversion_label = "fxjQCLb4PxCey9b-Aw";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1070966174/?label=fxjQCLb4PxCey9b-Aw&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
