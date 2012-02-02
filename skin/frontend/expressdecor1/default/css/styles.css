@@ -4102,7 +4102,7 @@ background-image: url("../images/help-backgr-off.png");
 background-image: url("../images/help-backgr-on.png");
 }
 #tabout-left-aviable, #tabout-left-off {
-
+ z-index: 9999;
 background-repeat: no-repeat;  
     position: fixed;
     left: -196px;

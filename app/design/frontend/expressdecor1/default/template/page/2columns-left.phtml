@@ -93,7 +93,7 @@ if ( ($is_open!=1) && ($is_open!=0) ) {
 	}
 }
 ?>
-<div id="tabout-left-<?php if ( (strtotime($hours->customer_service_time->$day->start) < strtotime(date('H:i')) ) && ( strtotime(date('H:i')) < strtotime($hours->customer_service_time->$day->end)) ) {   ?>aviable<?php } else {   ?>off<?php } ?>" >          
+<div <?php if ($is_open) { echo 'class="open"'; }?> id="tabout-left-<?php if ( (strtotime($hours->customer_service_time->$day->start) < strtotime(date('H:i')) ) && ( strtotime(date('H:i')) < strtotime($hours->customer_service_time->$day->end)) ) {   ?>aviable<?php } else {   ?>off<?php } ?>" >          
     <div id="handle">   
     </div>    
 <div class="express-title">Customer Service</div>
