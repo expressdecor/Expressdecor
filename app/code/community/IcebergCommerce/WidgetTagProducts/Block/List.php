@@ -36,6 +36,8 @@ class IcebergCommerce_WidgetTagProducts_Block_List extends Mage_Catalog_Block_Pr
 		if (is_null($this->_productCollection))
 		{
 			$layer = $this->getLayer();
+			
+		
 			$tagIds = explode(',' , $this->getProductTagIds() );
 
 			/* @todo add current category or default 2 */
@@ -71,6 +73,8 @@ class IcebergCommerce_WidgetTagProducts_Block_List extends Mage_Catalog_Block_Pr
 
 			$this->_productCollection->getSelect()->where('relation.active = (?)',1);
 			$this->_productCollection->setFlag('distinct', true);
+			
+			//echo $this->_productCollection->getSelect();
 		}
 		//end
 

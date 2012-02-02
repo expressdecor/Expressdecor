@@ -624,7 +624,7 @@ float:left;
 background-image: url("../images/header_footer_sprite.png");
 background-position: 1px -2px;
 height: 28px;
-width: 2px;
+width: 1px;
 }
 .livechat-img-right {
 float:left;
@@ -634,6 +634,28 @@ background-position: -4px -30px;
 height: 28px;
 width: 145px;
 margin-left:18px;
+}
+
+.livechat-img-custom {
+ margin-top: 20px;
+float:none;
+background-image: url("../images/header_footer_sprite.png");
+background-position: 1px -135px;
+height: 36px;
+width: 136px;
+margin-left:26px;
+margin-bottom: 9px;
+}
+.livechat-img-right-custom {
+float:none;
+margin-top: 10px;
+margin-left:32px;
+padding:0px 0 0 0px;
+background-image: url("../images/header_footer_sprite.png");
+background-position: -4px -30px;
+margin-bottom: 8px;
+height: 28px;
+width: 145px;
 }
 .header-links{float:right;}
 .branding { position:absolute; left:0; margin:-38px 0 0; top:50%; height:58px;   margin-top: -31px; }
@@ -3024,7 +3046,7 @@ padding-bottom: 10px;
 .footer-left .footer-payment-icons {
 padding-top: 10px;
 background-image: url("../images/header_footer_sprite.png");
-background-position: 1px -187px;
+background-position: 1px -57px;
 height: 31px;
 width: 518px;
 margin-top:211px;
@@ -4073,11 +4095,17 @@ background-repeat:no-repeat;
 /*end product page slider*/
 
 /*Tabs out */
-#tabout-left {
-border: 2px solid black;
-    background-color: #EFEFDF;
+#tabout-left-off {
+background-image: url("../images/help-backgr-off.png");
+}
+#tabout-left-aviable {
+background-image: url("../images/help-backgr-on.png");
+}
+#tabout-left-aviable, #tabout-left-off {
+
+background-repeat: no-repeat;  
     position: fixed;
-    left: -203px;
+    left: -196px;
     width: 220px;
     height: 200px;
     top: 248px;
@@ -4092,13 +4120,12 @@ border: 2px solid black;
    -webkit-border-radius:  0 10px 10px 0 ; /* Safari, Chrome */
    -khtml-border-radius:  0 10px 10px 0 ; /* KHTML */      
 }
-#tabout-left.open {
+#tabout-left-aviable.open, #tabout-left-off.open {
     left: 0;
 }
 #handle {
-border-left: 1px dotted black;
-    background-color: #EFEFDF;
-    width: 8%;
+
+    width: 24px;
     height: 200px;
     float: right;
     cursor: pointer;
@@ -4108,74 +4135,24 @@ border-left: 1px dotted black;
    -khtml-border-radius:  0 10px 10px 0 ; /* KHTML */  
 }
 .open #handle {
-    background-color: #EFEFDF;
+ 
 }
 
-#tabout-left .express-text{
+#tabout-left-aviable .express-text, #tabout-left-off .express-text{
  font-size: 13px;
-padding-top: 15px;
+padding-top: 4px;
 font-weight: bold;
+color: #444;
 }
 
-#tabout-left .express-title {
-font-size: 17px;
-padding-top: 7px;
+#tabout-left-aviable .express-title, #tabout-left-off .express-title{
+font-size: 16px;
+padding-top: 18px;
 
 }
 
-#handle .character{
-font-size: 13px;
-padding-top: 7px;
-font-weight: bold;
-}
+ 
 
-#handle .hand-img {
-background-image: url("../images/green_round.png");
-background-repeat: no-repeat;
-background-size: 14px auto;
-width: 14px;
-height:14px;
- margin-left: 3px;
-    margin-top: 11px;
-}
 
-/*right*//*
-#tabout-right {
-border: 2px solid black;
-    background-color: #EFEFDF;
-    position: fixed;
-    left: 98.7688%;
-    width: 220px;
-    height: 200px;
-    top: 248px;
-    -webkit-transition: left 0.5s ease-in-out;
-    -moz-transition: left 0.5s ease-in-out;
-    -o-transition: left 0.5s ease-in-out;
-    -ms-transition: left 0.5s ease-in-out;
-    transition: left 0.5s ease-in-out;
-
-   border-radius: 10px 0 0 10px ;     
-   -moz-border-radius: 10px 0 0 10px; /* Firefox */
- /*  -webkit-border-radius: 10px 10px 0 0; /* Safari, Chrome */
-/*   -khtml-border-radius: 10px 10px 0 0; /* KHTML */    /*   
-}
-#tabout-right.open-right {
-    left: 87%;
-}
-#handle-right {
-border-right: 1px dotted black;
-    background-color: #EFEFDF;
-    width: 9.09%;
-    height: 200px;
-    float: left;
-    cursor: pointer;
-   border-radius:  10px 0 0 10px ;     
-   -moz-border-radius: 10px 0 0 10px ; /* Firefox */
- /*  -webkit-border-radius:  10px 0 0 10px ; /* Safari, Chrome */
- /*  -khtml-border-radius:  10px 0 0 10px ; /* KHTML */  
-/*}
-.open-right #handle-right {
-    background-color: #EFEFDF;
-}
 
 /* end tabs out*/

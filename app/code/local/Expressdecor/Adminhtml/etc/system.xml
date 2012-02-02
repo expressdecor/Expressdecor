@@ -288,9 +288,31 @@
             
           </fields>
        </ses_cook>
+<!--		Customer servise hours parameters-->
 
-      
-      
+       <customer_service translate="label">
+          <label>Customer service parameters</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>98</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <!-- New fields go here -->
+            <service_hours translate="label comment">
+              <label>Customer service hours</label>
+              <comment>
+                <![CDATA[Customer service hours during week. Json format ]]>
+              </comment>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </service_hours>		
+            </fields>
+       </customer_service>   
+        
       </groups>
     </expressdecor>
 
