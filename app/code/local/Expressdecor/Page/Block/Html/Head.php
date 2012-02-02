@@ -62,8 +62,11 @@ class Expressdecor_Page_Block_Html_Head extends Mage_Page_Block_Html_Head
 		}
 
 		if ($discount_code) {
-			if (!$param_discount_session)
+//			if (!$param_discount_session)
 			Mage::getModel('checkout/session')->setDiscountParam($discount_code);
+			$items = Mage::getSingleton('checkout/session')->getQuote()->getAllItems();
+			if (count($items) > 0)
+			Mage::getSingleton('checkout/cart')->getQuote()->setCouponCode($discount_code)->save();		
 		}
 
 

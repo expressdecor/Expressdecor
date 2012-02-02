@@ -117,7 +117,7 @@ class Expressdecor_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block
 		));
 
 				$this->addColumn('Promo code', array(
-		'header'    => Mage::helper('sales')->__('promo_code'),
+		'header'    => Mage::helper('sales')->__('Source'),
 		'index'     => 'promo_code',
 		'type'  => 'text',
 		'width' => '20px'

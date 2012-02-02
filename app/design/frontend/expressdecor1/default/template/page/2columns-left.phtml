@@ -75,6 +75,59 @@
 <?php echo $this->getChildHtml('after_body_start') ?>
 
 <div class="wrapper">
+<?php 
+$hours=array();
+$hours=Mage::getStoreConfig('expressdecor/customer_service/service_hours',Mage::app()->getStore());
+$hours=json_decode($hours);
+$day=date('D');
+
+$is_open=Mage::getModel('core/session')->getNeedHelp();
+
+if ( ($is_open!=1) && ($is_open!=0) ) {
+	if ( (strtotime($hours->customer_service_time->$day->start) < strtotime(date('H:i')) ) && ( strtotime(date('H:i')) < strtotime($hours->customer_service_time->$day->end)) ) {
+		$is_open=1;
+		Mage::getModel('core/session')->setNeedHelp(1);
+	} else {
+		$is_open=0;
+		Mage::getModel('core/session')->setNeedHelp(0);
+	}
+}
+?>
+<div id="tabout-left-<?php if ( (strtotime($hours->customer_service_time->$day->start) < strtotime(date('H:i')) ) && ( strtotime(date('H:i')) < strtotime($hours->customer_service_time->$day->end)) ) {   ?>aviable<?php } else {   ?>off<?php } ?>" >          
+    <div id="handle">   
+    </div>    
+<div class="express-title">Customer Service</div>
+<?php if ( (strtotime($hours->customer_service_time->$day->start) < strtotime(date('H:i')) ) && ( strtotime(date('H:i')) < strtotime($hours->customer_service_time->$day->end)) ) {   ?>
+    <a onclick="lpButtonCTTUrl = 'https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson&amp;referrer='+escape(document.location); lpButtonCTTUrl = (typeof(lpAppendVisitorCookies) != 'undefined' ? lpAppendVisitorCookies(lpButtonCTTUrl) : lpButtonCTTUrl); lpButtonCTTUrl = ((typeof(lpMTag)!='undefined' &amp;&amp; typeof(lpMTag.addFirstPartyCookies)!='undefined')?lpMTag.addFirstPartyCookies(lpButtonCTTUrl):lpButtonCTTUrl);window.open(lpButtonCTTUrl,'chat33660894','width=475,height=400,resizable=yes');return false;" href="https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;byhref=1&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson">
+    <?php } else {   ?>
+    <a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>contacts" >
+    <?php } ?>
+	       <div class="livechat-img-custom" ></div>
+           </a> 
+           <div class="livechat-img-right-custom" ></div>
+           <div class="express-text">Hours of Operation:</div>
+           <div class="express-text"> Today <? echo date('g A',strtotime($hours->customer_service_time->$day->start))?>  to  <?=date('g A',strtotime($hours->customer_service_time->$day->end))?> EST </div>    
+</div>
+
+<script type="text/javascript">Event.observe('handle', 'click',Element.toggleClassName.curry("tabout-left-<?php if ( (strtotime($hours->customer_service_time->$day->start) < strtotime(date('H:i')) ) && ( strtotime(date('H:i')) < strtotime($hours->customer_service_time->$day->end)) ) {   ?>aviable<?php } else {   ?>off<?php } ?>", 'open'));</script>
+
+<?php 
+ if ($is_open) {
+
+	?>
+	<script type="text/javascript">$('handle').click(); </script>
+	<script type="text/javascript">
+	Event.observe('handle', 'click',function(event) {
+		new Ajax.Request('/set_session.php',
+		{
+			method:'get',
+			parameters: {customer_show: 0}
+		});
+
+	});
+</script>
+
+<?php }  ?>
 <!--
  <div class="header-bg">
 
