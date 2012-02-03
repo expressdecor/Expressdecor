@@ -4147,12 +4147,33 @@ color: #444;
 
 #tabout-left-aviable .express-title, #tabout-left-off .express-title{
 font-size: 16px;
-padding-top: 18px;
+
 
 }
+.express-offline {
+color: #FF0000;
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 19px;
+    margin-top: 11px;
+}
 
- 
+.express-email {
+  font-weight: bold;
+    font-size: 14px;
+  margin-bottom: 23px;
+    margin-top: 11px;
+}
 
 
-
+#express_hide {
+ background-image: url("../images/close_button_red.png");
+width:14px;
+height:14px;
+background-repeat: no-repeat;
+background-size: 14px;
+margin-left: 172px;
+    margin-top: 13px;
+    cursor: pointer;
+}
 /* end tabs out*/
