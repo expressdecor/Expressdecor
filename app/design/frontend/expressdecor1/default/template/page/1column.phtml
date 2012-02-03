@@ -116,10 +116,8 @@ if(strpos($end_time_config,"+")>0)
 	$end_time=mktime($h,$m,date("s"),date("m"),date("d"),date("Y"));
 	
 }
-echo $is_open;
 if (!isset($is_open)) {
 	if ( ($start_date < strtotime(date('H:i')) ) && ( strtotime(date("M-d-Y H:i:s")) < $end_time )  ) {
-		echo "asd";
 		$is_open=1;
 		Mage::getModel('core/session')->setNeedHelp(1);
 	} else {
