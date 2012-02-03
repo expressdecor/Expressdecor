@@ -66,7 +66,7 @@
 
         <p class="rating-links">
 
-            <a rel="nofollow" href="#" onclick="$('reviews').click(); return false;"><?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?></a>
+            <a rel="nofollow" href="#" onclick="show_review();"><?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?></a>
 
             <span class="separator">|</span>
 
@@ -75,7 +75,14 @@
         </p>
 
     </div>
+  <script type="text/javascript">
+  function show_review() {
 
+  	simulate(document.getElementById("reviews"), "click");
+  	$('reviews').click();
+
+  }
+  </script>
 <?php elseif ($this->getDisplayIfEmpty()): ?>
  <div class="ratings">
     <p class="no-rating"><a rel="nofollow" href="<?php echo $this->getReviewsUrl() ?>#review-form"><?php echo $this->__('Write a review for this product') ?></a></p>
