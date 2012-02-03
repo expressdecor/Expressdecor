@@ -1320,9 +1320,11 @@ padding-top: 10px;
 .stock-container {  
   margin-bottom: -8px;
 padding-bottom: 6px;
-height:17px;
 padding-top: 0px;
 border-bottom: 1px dotted #A9A9A9;
+}
+.in-stock-mes {
+height:17px;
 }
 .in-stock {
 font-weight:bold;
