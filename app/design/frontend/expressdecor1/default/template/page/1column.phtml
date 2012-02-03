@@ -116,9 +116,10 @@ if(strpos($end_time_config,"+")>0)
 	$end_time=mktime($h,$m,date("s"),date("m"),date("d"),date("Y"));
 	
 }
-
-if ( ($is_open!=1) && ($is_open!=0) ) {
+echo $is_open;
+if (!isset($is_open)) {
 	if ( ($start_date < strtotime(date('H:i')) ) && ( strtotime(date("M-d-Y H:i:s")) < $end_time )  ) {
+		echo "asd";
 		$is_open=1;
 		Mage::getModel('core/session')->setNeedHelp(1);
 	} else {
@@ -130,7 +131,7 @@ if ( ($is_open!=1) && ($is_open!=0) ) {
 
 
 ?>
-<div <?php if ($is_open) { echo 'class="open"'; }?> id="tabout-left-<?php if ( ($start_date < strtotime(date('H:i')) ) && ( strtotime(date("M-d-Y H:i:s")) < $end_time) ) {   ?>aviable<?php } else {   ?>off<?php } ?>" >          
+<div <?php if ($is_open==1) { echo 'class="open"'; }?> id="tabout-left-<?php if ( ($start_date < strtotime(date('H:i')) ) && ( strtotime(date("M-d-Y H:i:s")) < $end_time) ) {   ?>aviable<?php } else {   ?>off<?php } ?>" >          
     <div id="handle">   
     </div>    
     <div onclick="$('handle').click();" id="express_hide"></div>
@@ -155,7 +156,7 @@ if ( ($is_open!=1) && ($is_open!=0) ) {
 <script type="text/javascript">Event.observe('handle', 'click',Element.toggleClassName.curry("tabout-left-<?php if ( ($start_date < strtotime(date('H:i')) ) && (  strtotime(date("M-d-Y H:i:s")) < $end_time) ) {   ?>aviable<?php } else {   ?>off<?php } ?>", 'open'));</script>
 
 <?php 
-if ($is_open) {
+if ($is_open==1) {
 
 	?>
  
