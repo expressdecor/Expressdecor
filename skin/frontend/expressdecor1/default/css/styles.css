@@ -4148,6 +4148,8 @@ color: #444;
 #tabout-left-aviable .express-title, #tabout-left-off .express-title{
 font-size: 16px;
 margin-top: -15px;
+width: 130px;
+margin-left:35px;
 
 }
 .express-offline {
