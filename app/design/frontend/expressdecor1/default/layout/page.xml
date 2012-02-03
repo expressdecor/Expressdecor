@@ -53,6 +53,7 @@ Default layout, loads most of the pages
    				<action method="addJs"><script>clientscript/os.js</script></action> 
 			    <action method="addJs"><script>clientscript/model/carousel.js</script></action> 
    				<action method="addJs"><script>clientscript/behavior/application.js</script></action> 
+   				<action method="addJs"><script>simulate.js</script></action> 
                 <action method="addJs"><script>ed.js</script></action>
                 <action method="addJs"><script>effects.js</script></action>
            <action method="addJs">
