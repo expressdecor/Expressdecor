@@ -77,7 +77,7 @@
 <div class="wrapper">
 
 <?php 
-date_default_timezone_set('America/New_York');
+//date_default_timezone_set('America/New_York');
 $hours=array();
 $hours=Mage::getStoreConfig('expressdecor/customer_service/service_hours',Mage::app()->getStore());
 $hours=json_decode($hours);
@@ -137,7 +137,7 @@ if (!isset($is_open)) {
     </div>    
     <div onclick='simulate(document.getElementById("handle"), "click");' id="express_hide"></div>
 <div class="express-title">Customer Service</div>
-<?php if ( ($start_date < strtotime(date('H:i')) ) && ( strtotime(date('H:i')) < $end_time) ) {   ?>
+<?php if ( ($start_date < strtotime(date('H:i')) ) && ( strtotime(date("M-d-Y H:i:s")) < $end_time) ) {   ?>
     <a onclick="lpButtonCTTUrl = 'https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson&amp;referrer='+escape(document.location); lpButtonCTTUrl = (typeof(lpAppendVisitorCookies) != 'undefined' ? lpAppendVisitorCookies(lpButtonCTTUrl) : lpButtonCTTUrl); lpButtonCTTUrl = ((typeof(lpMTag)!='undefined' &amp;&amp; typeof(lpMTag.addFirstPartyCookies)!='undefined')?lpMTag.addFirstPartyCookies(lpButtonCTTUrl):lpButtonCTTUrl);window.open(lpButtonCTTUrl,'chat33660894','width=475,height=400,resizable=yes');return false;" href="https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;byhref=1&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson">
       <div class="livechat-img-custom" ></div>
                  </a> 
