@@ -81,6 +81,9 @@ Default layout, loads most of the pages
                 <label>Page Top</label>
             </block>
 
+              <block type="page/html_footer" name="tabs_out" as="tabs_out" template="page/tab-out.phtml">
+              </block>
+            
             <block type="page/html_notices" name="global_notices" as="global_notices" template="page/html/notices.phtml" />
 
             <block type="page/html_header" name="header" as="header">
