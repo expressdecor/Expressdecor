@@ -29,5 +29,10 @@
 			<codePool>local</codePool>			
 	    </Expressdecor_Shipping>
 	    
+	    <Expressdecor_Catalog>
+			<active>true</active>
+			<codePool>local</codePool>			
+	    </Expressdecor_Catalog>
+	    	    
 	</modules>
 </config>
