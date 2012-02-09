@@ -119,7 +119,7 @@ $iCounter = 0; ?>
     
     <?php $iCounter++;  ?>
 <?php endforeach ?>
- <?php if ($i > 4): ?>
+ <?php if ($i > $num_to_show): ?>
  <script type="text/javascript">
  function hide_<?php echo $filt_name; ?>() {
 
@@ -129,14 +129,14 @@ $iCounter = 0; ?>
  	?>
  	var obj = $('btn-<?php echo $filt_name; ?>');
 
- 	if (obj.innerHTML.indexOf("show") > -1) {
- 		obj.innerHTML=obj.innerHTML.replace("show more", "hide");
+ 	if (obj.innerHTML.indexOf("more") > -1) {
+ 		obj.innerHTML=obj.innerHTML.replace("show more", "show less");
  		$('more-arrow-img-down-<?php echo $filt_name; ?>').toggle();
  		$('more-arrow-img-up-<?php echo $filt_name; ?>').toggle();
 
  		
  	} else {
- 		obj.innerHTML=obj.innerHTML.replace("hide", "show more");
+ 		obj.innerHTML=obj.innerHTML.replace("less", "more");
  		$('more-arrow-img-down-<?php echo $filt_name; ?>').toggle();
  		$('more-arrow-img-up-<?php echo $filt_name; ?>').toggle();
  	}
