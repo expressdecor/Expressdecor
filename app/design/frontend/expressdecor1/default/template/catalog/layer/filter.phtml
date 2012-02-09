@@ -30,9 +30,15 @@
  *
  * @see Mage_Catalog_Block_Layer_Filter
  */
+
 ?>
-<ol>
-<?php $iCounter = 0; ?>    
+<?php
+$filt_name=strtolower(str_replace(' ','_',$this->_filter->getName()));
+$i=0;
+$num_to_show=5; //number of option that not collapsed
+$iCounter = 0; ?> 
+<ol >
+   
 
 <?php  $currentCategory = Mage::registry('current_category'); ?>
 <?php foreach ($this->getItems() as $_item): ?>
@@ -57,10 +63,14 @@
     }
 
     ?>
-    <?php if ($_item->getCount() > 0): ?>
+    <?php if ($_item->getCount() > 0):
+
+     ?>
+     <div id="cat-optn-<?php echo $filt_name; ?>-<?php echo $i; ?>" >
     <li>
         <?php if ($_item->getCount() > 0): ?>
         <?php
+        $i++;
         //if(strtoupper($_item->getLabel()) == "SPOUT REACH") {
         //echo $this->urlEscape($_item->getUrl());
         //}
@@ -83,10 +93,10 @@
         <?php         
         $url=$this->urlEscape($_item->getUrl());
         if (empty($currentCategory)) {
-        		if (strpos($url,'cat=')>0) {        
+        	if (strpos($url,'cat=')>0) {
         		$url=str_replace('cat=','catId=',$url);
         	}
-                
+
         }
         ?>
 
@@ -104,8 +114,47 @@
         <?php endif; ?>
        
     </li>
+    </div>
     <?php endif; ?>
     
-    <?php $iCounter++; ?>
+    <?php $iCounter++;  ?>
 <?php endforeach ?>
+ <?php if ($i > $num_to_show): ?>
+ <script type="text/javascript">
+ function hide_<?php echo $filt_name; ?>() {
+
+ 	<?php for ($i2=$num_to_show; $i2<$i;$i2++) {
+ 		echo "$('cat-optn-$filt_name-$i2').toggle(); ";
+ 	}
+ 	?>
+ 	var obj = $('btn-<?php echo $filt_name; ?>');
+
+ 	if (obj.innerHTML.indexOf("more") > -1) {
+ 		obj.innerHTML=obj.innerHTML.replace("show more", "show less");
+ 		$('more-arrow-img-down-<?php echo $filt_name; ?>').toggle();
+ 		$('more-arrow-img-up-<?php echo $filt_name; ?>').toggle();
+
+ 		
+ 	} else {
+ 		obj.innerHTML=obj.innerHTML.replace("less", "more");
+ 		$('more-arrow-img-down-<?php echo $filt_name; ?>').toggle();
+ 		$('more-arrow-img-up-<?php echo $filt_name; ?>').toggle();
+ 	}
+ }
+
+ <?php for ($i2=$num_to_show; $i2<$i;$i2++) {
+ 	echo "$('cat-optn-$filt_name-$i2').toggle(); ";
+ }
+ ?>
+
+ </script>
+ <div >
+<li>
+<a class="cat-more" id="btn-<?php echo $filt_name; ?>" onclick="hide_<?php echo $filt_name; ?>();" >show more</a> <div id="more-arrow-img-down-<?php echo $filt_name; ?>" class="more-arrow"></div><div id="more-arrow-img-up-<?php echo $filt_name; ?>" class="more-arrow-hide"></div>
+</li>
+</div>
+ <script type="text/javascript">
+$('more-arrow-img-up-<?php echo $filt_name; ?>').toggle();
+ </script>
+   <?php endif; ?>
 </ol>

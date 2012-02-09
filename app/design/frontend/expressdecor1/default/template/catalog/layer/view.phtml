@@ -52,7 +52,8 @@
                     $html= $_filter->getHtml() ;
                     if ($_filter->getType()=='catalog/layer_filter_decimal') {
 
-                    	echo str_replace('$','',$html);
+                    	$html=str_replace('>$','>',$html);
+                    	echo str_replace('- $','- ',$html);
                     } else {
                     	echo $html;
                     } ?></dd>
