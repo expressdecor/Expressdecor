@@ -130,7 +130,7 @@ $iCounter = 0; ?>
  	var obj = $('btn-<?php echo $filt_name; ?>');
 
  	if (obj.innerHTML.indexOf("more") > -1) {
- 		obj.innerHTML=obj.innerHTML.replace("show more", "show less");
+ 		obj.innerHTML=obj.innerHTML.replace("more", "less");
  		$('more-arrow-img-down-<?php echo $filt_name; ?>').toggle();
  		$('more-arrow-img-up-<?php echo $filt_name; ?>').toggle();
 
@@ -150,7 +150,7 @@ $iCounter = 0; ?>
  </script>
  <div >
 <li>
-<a class="cat-more" id="btn-<?php echo $filt_name; ?>" onclick="hide_<?php echo $filt_name; ?>();" >show more</a> <div id="more-arrow-img-down-<?php echo $filt_name; ?>" class="more-arrow"></div><div id="more-arrow-img-up-<?php echo $filt_name; ?>" class="more-arrow-hide"></div>
+<a class="cat-more" id="btn-<?php echo $filt_name; ?>" onclick="hide_<?php echo $filt_name; ?>();" >Show more</a> <div id="more-arrow-img-down-<?php echo $filt_name; ?>" class="more-arrow"></div><div id="more-arrow-img-up-<?php echo $filt_name; ?>" class="more-arrow-hide"></div>
 </li>
 </div>
  <script type="text/javascript">
