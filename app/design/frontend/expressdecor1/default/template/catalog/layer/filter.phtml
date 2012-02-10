@@ -34,6 +34,7 @@
 ?>
 <?php
 $filt_name=strtolower(str_replace(' ','_',$this->_filter->getName()));
+$filt_name=str_replace(')','',str_replace('(','', $filt_name));
 $i=0;
 $num_to_show=5; //number of option that not collapsed
 $iCounter = 0; ?> 
