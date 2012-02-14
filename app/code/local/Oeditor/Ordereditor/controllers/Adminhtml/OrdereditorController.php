@@ -81,9 +81,12 @@ class Oeditor_Ordereditor_Adminhtml_OrdereditorController extends Mage_Adminhtml
 			$this->_order->setData('sales_flag',$value)->save();
 			return true;
 		}  elseif($type == "channel") { //modified by alex : adding channel
-
 			$this->_order->setData('channel',$value)->save();
 			return true;
+		}  elseif($type == "foreign_system_id") { //modified by alex : adding marketplace id
+			$this->_order->setData('foreign_system_id',$value)->save();
+			return true;
+					
 		} elseif($type == "cust_name") {
 
 			$explodeName = explode(" ",$value);
@@ -198,6 +201,10 @@ class Oeditor_Ordereditor_Adminhtml_OrdereditorController extends Mage_Adminhtml
 			}
 			if($field == "channel") {  //addes by Alex : adding channel
 				$this->_order->setData('channel',$value)->save();
+				return true;
+			}
+			if($field == "foreign_system_id") {  //addes by Alex : adding marketplace id
+				$this->_order->setData('foreign_system_id',$value)->save();
 				return true;
 			}
 
