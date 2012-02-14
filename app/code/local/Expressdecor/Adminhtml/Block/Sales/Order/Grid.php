@@ -122,6 +122,13 @@ class Expressdecor_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block
 		'type'  => 'text',
 		'width' => '20px'
 		));
+		
+				$this->addColumn('Marketplace ID', array(
+		'header'    => Mage::helper('sales')->__('Marketplace ID'),
+		'index'     => 'foreign_system_id',
+		'type'  => 'text',
+		'width' => '20px'
+		));
 
 		//		return parent::_prepareColumns();
 	}
