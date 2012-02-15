@@ -4211,10 +4211,9 @@ height: 200px;
 .subcat-box-small{
   float:left;
   padding: 5px;
-  width: 140px;
   margin: 10px;
   background-color: #FFFFFF;
-  height: 88px;
+  height: 66px;
 }
 
 .subtext-small {
@@ -4222,7 +4221,7 @@ color: #000000;
 display: block;
 font-weight: bold;
 
-text-align: center;
+text-align: left;
 text-decoration: none;
 /*padding: 5px;*/
 font-size: 12px;
