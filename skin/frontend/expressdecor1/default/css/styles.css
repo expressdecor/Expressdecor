@@ -4211,11 +4211,11 @@ height: 200px;
 .subcat-box-small{
   float:left;
   padding: 5px;
-  width: 150px;
+  width: 140px;
   border:1px solid #c9c9c9;
   margin: 10px;
-  background-color: #d9d9d9;
-  height: 105px;
+  background-color: #FFFFFF;
+  height: 88px;
 }
 
 .subtext-small {
