@@ -181,16 +181,10 @@ $statuses = Mage::getSingleton('sales/order_config')->getStatuses();
         <div class="fieldset">
             <div class="hor-scroll">
 
-            <label><?php echo Mage::helper('sales')->__('Marketplace ID::') ?></label>
-               <strong>
-               <span  id="edit_foreign_system_id" title="Click to edit">
-               <?php  echo $_order->foreign_system_id." (Click to edit)"  ?> </span>
-               </strong> 
-             
-             <script type="text/javascript">                
-             new Ajax.InPlaceEditor('edit_foreign_system_id', '<?php echo $this->getUrl("ordereditor/adminhtml_ordereditor/save/field/foreign_system_id/type/foreign_system_id/")."order/".$_order->getId() ; ?>',{ highlightColor:'#E2F1B1',
-           
-             });
+            <label><?php echo Mage::helper('sales')->__('Marketplace ID:') ?></label>
+               <strong><span  id="edit_foreign_system_id" title="Click to edit"><?php  echo $_order->foreign_system_id." (Click to edit)"  ?> </span></strong>  
+             <script type="text/javascript">                            
+             new Ajax.InPlaceEditor('edit_foreign_system_id', '<?php echo $this->getUrl("ordereditor/adminhtml_ordereditor/save/field/foreign_system_id/type/foreign_system_id/")."order/".$_order->getId() ; ?>',{ highlightColor:'#E2F1B1'});
                 </script>
                 
            </div> 

@@ -4207,4 +4207,25 @@ background-position: -152px -134px;
 .order-page .col-1 .info-box {
 height: 200px;	
 }
+
+.subcat-box-small{
+  float:left;
+  padding: 5px;
+  width: 150px;
+  border:1px solid #c9c9c9;
+  margin: 10px;
+  background-color: #d9d9d9;
+  height: 105px;
+}
+
+.subtext-small {
+color: #000000;
+display: block;
+font-weight: bold;
+
+text-align: center;
+text-decoration: none;
+/*padding: 5px;*/
+font-size: 12px;
+font-weight: bold;
 }
