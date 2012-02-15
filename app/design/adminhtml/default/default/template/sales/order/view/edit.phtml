@@ -170,16 +170,8 @@ $statuses = Mage::getSingleton('sales/order_config')->getStatuses();
                 </script>
                 
            </div> 
-        </div>   
-    </div>   
-     
-        <!--   MArketPlace ID -->   
-    <div class="entry-edit">
-        <div class="entry-edit-head">
-            <h4 class="icon-head head-flag"><?php echo Mage::helper('sales')->__('Marketplace ID:') ?></h4>
-        </div>
-        <div class="fieldset">
-            <div class="hor-scroll">
+           <!--   MArketPlace ID -->   
+           <div class="hor-scroll">
 
             <label><?php echo Mage::helper('sales')->__('Marketplace ID:') ?></label>
                <strong><span  id="edit_foreign_system_id" title="Click to edit"><?php  echo $_order->foreign_system_id." (Click to edit)"  ?> </span></strong>  
@@ -189,7 +181,9 @@ $statuses = Mage::getSingleton('sales/order_config')->getStatuses();
                 
            </div> 
         </div>   
-    </div>
+    </div>   
+     
+        
      
     <!--Account Information-->
     <div class="entry-edit">
