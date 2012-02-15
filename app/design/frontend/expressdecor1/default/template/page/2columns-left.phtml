@@ -75,50 +75,7 @@
 <?php echo $this->getChildHtml('after_body_start') ?>
 
 <div class="wrapper">
-<style>
 
-a#move_up {
-	position: fixed;
-	top: 10px;
-	width: 90px;
-	left: 20px;
-	height: 21px;
-	display: none;
-	text-align: center;
-    font-weight: bold;
-	font: 12px Verdana;
-	text-decoration: none;
-	color: #FFFFFF;
-	background: #FF6100;
-	padding-top:5px;
-	opacity:0.9;
-	filter: alpha(opacity=90);
-}
-a#move_up:hover {
-	color: #fff;
-	background: #597da3;
-}
- 
-
-</style>
-<a id="move_up" href="#">Go up</a>
-<script>
-jQuery(function () {
-	jQuery(window).scroll(function () {
-		if (jQuery(this).scrollTop() > 100)
-			jQuery('a#move_up').fadeIn();
-		else
-			jQuery('a#move_up').fadeOut(400);
-	});
-	jQuery('a#move_up').click(function () {
-		jQuery('body,html').animate({
-			scrollTop: 0
-		}, 800);
-		return false;
-	});
-});
-
-</script>
 <?php echo $this->getChildHtml('tabs_out') ?>
 <!--
  <div class="header-bg">
