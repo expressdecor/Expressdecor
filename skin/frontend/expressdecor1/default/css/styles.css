@@ -4184,7 +4184,7 @@ margin-left: 172px;
 /* end tabs out*/ 
 
 .category-view p{padding: 0px 10px;font-size: 12px;}
-.cat-more { cursor: pointer;font-weight: bold !important;  font-style: italic !important; color: #0000CC !important; }
+.cat-more { cursor: pointer;font-weight: bold !important;  font-style: italic !important; color: #0000CC !important; text-decoration: underline !important; }
 .more-arrow {
 background-image: url("../images/header_footer_sprite1.png");
  height: 16px;
