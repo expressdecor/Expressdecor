@@ -77,6 +77,9 @@ Category default layout
 
     <catalog_category_default translate="label">
         <label>Catalog Category (Non-Anchor)</label>
+                <reference name="head">
+         <block  type="page/html"  template="catalog/category/canonical.phtml" />
+        </reference>  
         <reference name="left">
             <block type="catalog/navigation" name="catalog.leftnav" before="-" template="catalog/navigation/left.phtml"/>
         </reference>
