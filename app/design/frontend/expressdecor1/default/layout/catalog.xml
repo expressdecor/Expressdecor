@@ -120,6 +120,9 @@ Category layered navigation layout
 
     <catalog_category_layered translate="label">
         <label>Catalog Category (Anchor)</label>
+        <reference name="head">
+         <block  type="page/html"  template="catalog/category/canonical.phtml" />
+        </reference>      
         <reference name="left">
             <block type="catalog/layer_view" name="catalog.leftnav" before="-" template="catalog/layer/view.phtml"/>
         </reference>
@@ -208,6 +211,8 @@ Product view
             <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/><!--<if/><condition>can_load_calendar_js</condition>--></action>
             <action method="addItem"><type>js</type><name>calendar/calendar.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
             <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
+            <block  type="page/html"  template="catalog/product/canonical.phtml" />
+            
         </reference>
         <reference name="content">
             <block type="catalog/product_view" name="product.info" template="catalog/product/view.phtml">
