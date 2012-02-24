@@ -44,6 +44,9 @@ Default layout, loads most of the pages
 
     <cms_page translate="label">
         <label>CMS Pages (All)</label>
+       <reference name="head">
+         <block  type="page/html"  template="cms/canonical.phtml" />
+        </reference>  
         <reference name="content">
             <block type="core/template" name="page_content_heading" template="cms/content_heading.phtml"/>
             <block type="enterprise_cms/hierarchy_pagination" name="hierarchy_pagination" template="cms/hierarchy/pagination.phtml"/>
