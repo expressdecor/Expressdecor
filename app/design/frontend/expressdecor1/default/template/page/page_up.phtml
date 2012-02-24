@@ -1,0 +1,21 @@
+<a id="move_up" href="#">Go up</a>
+
+<script>
+jQuery(function () {
+jQuery(window).scroll(function () {
+if (jQuery(this).scrollTop() > 100)
+      jQuery('a#move_up').fadeIn();
+    else
+      jQuery('a#move_up').fadeOut(400);
+  });
+  jQuery('a#move_up').click(function () {
+    jQuery('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+
+
+
+</script>

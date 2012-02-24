@@ -33,6 +33,11 @@
 			<active>true</active>
 			<codePool>local</codePool>			
 	    </Expressdecor_Catalog>
+	
+	    <Expressdecor_Attview>
+			<active>true</active>
+			<codePool>local</codePool>			
+	    </Expressdecor_Attview>
 	    	    
 	</modules>
 </config>

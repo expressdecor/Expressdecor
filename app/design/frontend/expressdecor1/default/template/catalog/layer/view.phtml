@@ -25,43 +25,112 @@
  */
 ?>
 <?php
+
 /**
  * Category layered navigation
  *
  * @see Mage_Catalog_Block_Layer_View
  */
 ?>
-<?php if($this->canShowBlock()): ?>
+<?php
+
+if ($this->canShowBlock ()) :
+	?>
 <div class="block block-layered-nav">
-    <div class="block-title">
-        <strong><span><?php echo $this->__('Shop By') ?></span></strong>
-    </div>
-    <?php echo $this->getStateHtml() ?>
+<div class="block-title"><strong><span><?php
+	echo $this->__ ( 'Shop By' )?></span></strong></div>
+    <?php
+	echo $this->getStateHtml ()?>
 
-    <?php if($this->canShowOptions()): ?>
+    <?php
+	if ($this->canShowOptions ()) :
+		?>
         <div class="block-content">
-            <p class="block-subtitle"><?php echo $this->__('Shopping Options') ?></p>
-            <dl id="narrow-by-list">
-                <?php $_filters = $this->getFilters() ?>
-                <?php foreach ($_filters as $_filter): ?>               
-		<?php if(strpos($_filter->getHtml(),"<li>")===false) continue; ?>
-		<?php //if($_filter->getName() =='Category') continue; ?>
-                <?php if($_filter->getItemsCount()): ?>
-                    <dt><?php echo $this->__($_filter->getName()) ?></dt>
-                    <dd><?php
-                    $html= $_filter->getHtml() ;
-                    if ($_filter->getType()=='catalog/layer_filter_decimal') {
-
-                    	$html=str_replace('>$','>',$html);
-                    	echo str_replace('- $','- ',$html);
-                    } else {
-                    	echo $html;
-                    } ?></dd>
-                <?php endif; ?>
-                <?php endforeach; ?>
+<p class="block-subtitle"><?php
+		echo $this->__ ( 'Shopping Options' )?></p>
+<dl id="narrow-by-list">
+                <?php
+		$_filters = $this->getFilters ()?>
+                <?php
+		foreach ( $_filters as $_filter ) :
+			?>               
+		<?php
+			if (strpos ( $_filter->getHtml (), "<li>" ) === false)
+				continue;
+			?>
+		<?php //if($_filter->getName() =='Category') continue; 									?>
+                <?php
+			if ($_filter->getItemsCount ()) :
+				?>
+                <?php
+				$attributeModel = $_filter->getAttributeModel ();
+				if ($attributeModel) {
+					$currentCategory = Mage::registry ( 'current_category' );
+					$attribute_views = $attributeModel->getAttributeSetViews ();
+					if (! empty ( $currentCategory )) {
+						$cat_views_obj = json_decode ( json_decode ( $attribute_views )->arr_views );
+						$view_model = Mage::getModel ( 'catalog/category' )->load;
+					} else {
+						$cat_views_obj = json_decode ( json_decode ( $attribute_views )->arr_views_tag );
+						$view_model = Mage::getModel ( 'tag/tag' )->load;
+					}
+					$view_att_text = "";
+					//getting tag id 
+					$dataCurrentPage = $this->getHelper ( 'cms/page' )->getPage ()->getContent ();
+					$dataCurrentPage = substr ( $dataCurrentPage, strpos ( $dataCurrentPage, '"widgettagproducts/list" product_tag_ids="' ) );
+					$tag_id = substr ( $dataCurrentPage, strpos ( $dataCurrentPage, 'product_tag_ids="' ) + 17, strpos ( $dataCurrentPage, '" option_column_count="4"' ) - strpos ( $dataCurrentPage, 'product_tag_ids="' ) - 17 );
+					$tag_id = explode ( ',', $tag_id );				
+					//check if exists and change label
+					foreach ( $cat_views_obj as $view_obj ) {
+						if (! empty ( $currentCategory )) { // if category
+							if ($view_obj->catid == $currentCategory->getId ()) {
+								$view_att_text = $view_obj->view_label;
+							}
+						} else { // if tag						 							 
+							if ($view_obj->tagid==$tag_id[0]) {
+								$view_att_text = $view_obj->view_label;
+							}										
+						}
+					
+					}
+				}
+				if (empty ( $view_att_text )) {
+					$view_att_text = $_filter->getName ();
+				}
+				
+				?>
+                    <dt><?php
+				echo $this->__ ( $view_att_text )?></dt>
+	<dd><?php
+				$html = $_filter->getHtml ();
+				if ($_filter->getType () == 'catalog/layer_filter_decimal') {
+					
+					$html = str_replace ( '>$', '>', $html );
+					echo str_replace ( '- $', '- ', $html );
+				} else {
+					echo $html;
+				}
+				?></dd>
+                
+			
+			
+			<?php endif;
+			?>
+                <?php
+		endforeach
+		;
+		?>
             </dl>
-            <script type="text/javascript">decorateDataList('narrow-by-list')</script>
-        </div>
-    <?php endif; ?>
+<script type="text/javascript">decorateDataList('narrow-by-list')</script>
 </div>
-<?php endif; ?>
+    
+	
+	
+	<?php endif;
+	?>
+</div>
+
+
+
+<?php endif;
+?>

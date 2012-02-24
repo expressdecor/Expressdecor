@@ -78,14 +78,26 @@
 
             <?php if(($_data['value']) != 'N/A' && ($_data['value']) != 'No' && (trim($_data['value']))!= '<span class="price">$0.00</span>' && !empty($_data['value']) ): ?>
 
+<?php
+$attribute_cat_views=$_product->getResource()->getAttribute($_data['code'])->getAttributeSetViews();
+$cat_views_obj=json_decode(json_decode($attribute_cat_views)->arr_views);
+$label="";
+foreach ($cat_views_obj as $view) {
+	if ($view->catid==0) {
+		$label=$view->view_label;
+	}
+}
+if (empty($label)) {
+	$label=$this->__($_data['label']);
+}
+?>
 <div class="attr-container">
 
-            <div class="label"><?php echo $this->htmlEscape($this->__($_data['label'])) ?></div>
+            <div class="label"><?php echo $this->htmlEscape($label); ?></div>
 
             <div class="data">
 
  <?php
-
   $attr_html=$_helper->productAttribute($_product, $_data['value'], $_data['code']);
 
             if ( (strpos($attr_html,'$')) > 0) {            

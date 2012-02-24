@@ -54,7 +54,7 @@ if (!isset($is_open)) {
 
 
 ?>
-<div <?php if ($is_open==1) { echo 'class="open"'; }?> id="tabout-left-<?php if ( ($start_date < strtotime(date('H:i', Mage::getModel('core/date')->timestamp(time()))) ) && ( strtotime(date("M-d-Y H:i:s", Mage::getModel('core/date')->timestamp(time()))) < $end_time) ) {   ?>aviable<?php } else {   ?>off<?php } ?>" >          
+<div  id="tabout-left-<?php if ( ($start_date < strtotime(date('H:i', Mage::getModel('core/date')->timestamp(time()))) ) && ( strtotime(date("M-d-Y H:i:s", Mage::getModel('core/date')->timestamp(time()))) < $end_time) ) {   ?>aviable<?php } else {   ?>off<?php } ?>" >          
     <div id="handle">   
     </div>    
     <div onclick='simulate(document.getElementById("handle"), "click");' id="express_hide"></div>
