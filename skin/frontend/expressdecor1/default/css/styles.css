@@ -3922,7 +3922,7 @@ padding-right:0px;
 float: none;
 margin: 0px;
 }
-#feedbackForm .form-list input.input-text, .form-list textarea {
+#feedbackForm .form-list input.input-text, #feedbackForm .form-list textarea {
 float: none;
 margin-left: -21px;
 width: 276px;

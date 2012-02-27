@@ -321,3 +321,7 @@ iframe.hover-fix { position:absolute; left:-1px; top:-1px; z-index:-1; backgroun
 .input-email input {width: 225px !important;}
 .input-telephone input {width: 225px !important;}
 
+.special-price-sale .price { margin-top: -10px; }
+#feedbackButton {margin-left:-280px; }
+#feedbackP {border: 1px solid }
+}
