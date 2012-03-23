@@ -74,7 +74,6 @@
             <sales_convert_quote>
                 <remote_ip><to_order>*</to_order></remote_ip>
                 <x_forwarded_for><to_order>*</to_order></x_forwarded_for>
-
                 <customer_id><to_order>*</to_order></customer_id>
                 <customer_email><to_order>*</to_order></customer_email>
                 <customer_prefix><to_order>*</to_order></customer_prefix>
@@ -90,9 +89,7 @@
                 <customer_dob><to_order>*</to_order></customer_dob>
                 <customer_taxvat><to_order>*</to_order></customer_taxvat>
                 <customer_gender><to_order>*</to_order></customer_gender>
-
                 <base_grand_total><to_order>quote_base_grand_total</to_order></base_grand_total>
-
                 <global_currency_code><to_order>*</to_order></global_currency_code>
                 <base_currency_code><to_order>*</to_order></base_currency_code>
                 <store_currency_code><to_order>*</to_order></store_currency_code>
@@ -101,12 +98,10 @@
                 <store_to_quote_rate><to_order>store_to_order_rate</to_order></store_to_quote_rate>
                 <base_to_global_rate><to_order>*</to_order></base_to_global_rate>
                 <base_to_quote_rate><to_order>base_to_order_rate</to_order></base_to_quote_rate>
-
                 <coupon_code><to_order>*</to_order></coupon_code>
                 <is_virtual><to_order>*</to_order></is_virtual>
                 <is_multi_payment><to_order>*</to_order></is_multi_payment>
                 <applied_rule_ids><to_order>*</to_order></applied_rule_ids>
-
                 <items_qty><to_order>total_qty_ordered</to_order></items_qty>
             </sales_convert_quote>
 
@@ -115,7 +110,6 @@
                 <shipping_method><to_order>*</to_order></shipping_method>
                 <shipping_description><to_order>*</to_order></shipping_description>
                 <shipping_rate><to_order>*</to_order></shipping_rate>
-
                 <subtotal><to_order>*</to_order></subtotal>
                 <tax_amount><to_order>*</to_order></tax_amount>
                 <tax_string><to_order>*</to_order></tax_string>
@@ -675,6 +669,8 @@
                     <completed_paypal_ec_ipn translate="label"><label>Completed [PayPal EC IPN]</label></completed_paypal_ec_ipn>
                     <processing_mw translate="label"><label>Processing MW</label></processing_mw>
                     <fraud_alert translate="label"><label>Fraud Alert</label></fraud_alert>
+                    <edi_export_ready translate="label"><label>Ready for picking</label></edi_export_ready>
+                    <edi_export_complete translate="label"><label><![CDATA[Picking & Packing]]></label></edi_export_complete>
                 </statuses>
                 <states>
                     <new translate="label">
