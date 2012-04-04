@@ -38,6 +38,10 @@
 			<active>true</active>
 			<codePool>local</codePool>			
 	    </Expressdecor_Attview>
-	    	    
+
+	    <Expressdecor_Googleanalytics>
+			<active>true</active>
+			<codePool>local</codePool>			
+	    </Expressdecor_Googleanalytics>	    	    
 	</modules>
 </config>
