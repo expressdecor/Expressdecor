@@ -10,6 +10,7 @@ class Expressdecor_Googleanalytics_Block_Ga extends Mage_GoogleAnalytics_Block_G
         }
         // the code compatible with google checkout shortcut (it requires a global pageTracker variable)
         return "
+     
     // the global variable is created intentionally
     var pageTracker =_gat._getTracker('{$this->jsQuoteEscape($accountId)}');
     pageTracker._trackPageview({$optPageURL});
@@ -73,11 +74,21 @@ class Expressdecor_Googleanalytics_Block_Ga extends Mage_GoogleAnalytics_Block_G
 <!-- BEGIN GOOGLE ANALYTICS CODE -->
 <script type="text/javascript">
 //<![CDATA[
-     
+
+<script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol ) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src=\'" + gaJsHost + "google-analytics.com/ga.js\' type=\'text/javascript\'%3E%3C/script%3E"));
+</script>
+
+   
+
+         
 ' . $this->_getPageTrackingCode ( $accountId ) . '
 ' . $this->_getOrdersTrackingCode () . '
 
   
+   
+
 //]]>
 </script>
 <!-- END GOOGLE ANALYTICS CODE -->';
