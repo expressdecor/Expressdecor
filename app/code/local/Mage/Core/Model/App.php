@@ -359,7 +359,10 @@ class Mage_Core_Model_App
 			
 			}
 		}
-		
+        if (strpos ( $useragent, 'iPad' ) > 0) {
+				$mobile = 0;
+			
+		 }
 		if ($mobile == 1) {
 			$this->_cache = Mage::getModel('core/cache', $options1);
 		} else {
