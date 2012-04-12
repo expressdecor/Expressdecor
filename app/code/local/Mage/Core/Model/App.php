@@ -349,7 +349,7 @@ class Mage_Core_Model_App
         $useragent = $_SERVER ['HTTP_USER_AGENT'];
 		$exceptions = "iPhone|iPod|BlackBerry|Pre|Palm|Googlebot-Mobile|Mobile|mobile|mobi|Safari Mobile|Mobile Safari|Android|HTC|Mobile";
 		$exceptions_array = explode ( '|', $exceptions );
-		$options1=array();
+		$options1=array( 'file_name_prefix' => 'iphone2');
 		
 		$mobile = 0;
 		
@@ -360,9 +360,9 @@ class Mage_Core_Model_App
 			}
 		}
         if (strpos ( $useragent, 'iPad' ) > 0) {
-				$mobile = 0;
-			
+				$mobile = 0;			
 		 }
+		 
 		if ($mobile == 1) {
 			$this->_cache = Mage::getModel('core/cache', $options1);
 		} else {
