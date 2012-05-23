@@ -28,7 +28,7 @@ $links=array('#','#','#','#','#');
 */
 //echo ('<total>'.count($strings).'</total>');
 
-for ($i=$first;$i<=$last;$i++) {	 
+for ($i=1;$i<=count($links);$i++) {	 
 	print_r("<a class='slide-link' href='".$links[$i-1]."' ><img id='slide-".$i."' src='".$strings[$i-1]."'></a>");
 }
 
