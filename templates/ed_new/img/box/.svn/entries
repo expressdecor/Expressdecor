@@ -1,40 +1,0 @@
-8
-
-dir
-1628
-http://svn.njdb.org/svn_osnew/trunk/src/templates/ed_new/img/box
-http://svn.njdb.org/svn_osnew
-
-
-
-2011-05-27T21:51:28.881393Z
-1624
-kostya
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-274df288-60bd-4ead-9bba-7f5924a17038
-
-box_content
-dir
-
-box_left
-dir
-
-box_right
-dir
-
-elements
-dir
-

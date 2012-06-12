@@ -1,1 +1,0 @@
-Please get latest version of the software and read latest installation instructions at: http://wiki.clicktale.com/Article/PHP
