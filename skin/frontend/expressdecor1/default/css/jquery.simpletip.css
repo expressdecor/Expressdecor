@@ -1,0 +1,17 @@
+.tooltip{ 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	z-index: 99; 
+	display: none; 
+	border: 1px solid #999;
+	width: 350px;
+	height:100px;
+	background-color: #FFF;
+	color: #000000;
+	text-align: justify;
+	padding: 6px;
+	font-weight: normal;
+	text-transform: none;
+	text-decoration:none;
+}

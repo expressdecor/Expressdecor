@@ -1,0 +1,36 @@
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?=$this->__('Fixing Urls')?></h3></td>
+            <td class="a-right">               
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="entry-edit">
+    <form id="edit_form" name="edit_form" method="post" action="<?=$this->getUrl('*/*/post')?>">
+        <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+        <h4 class="icon-head head-edit-form fieldset-legend"><?=$this->__('Update Urls')?></h4>
+        <fieldset id="my-fieldset" >
+          <?php 
+          $urlmodel=Mage::getModel('core/url_rewrite')->getCollection()
+			->addFieldToFilter('id_path', array(
+			'like' => '%category%',
+			))
+			->addFieldToFilter('request_path', array(
+			'like' => '%/%',
+			))
+			->addFieldToFilter('category_id', array(
+			'gt' => 0,
+			));
+			echo $this->__('Categories for update : %s (include inactive categories)',count($urlmodel->getAllIds()));
+          ?>
+          <br>
+          <br>
+                     <button onclick="editForm.submit()" class="scalable save" type="button"><span>Update category urls</span></button>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript">
+    var editForm = new varienForm('edit_form');
+</script>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Expressdecor_Ordercomments>
+            <version>0.1.0</version>
+       </Expressdecor_Ordercomments>
+    </modules>                 
+    <global> 
+     	   
+        <models>
+                <sales>
+                  <rewrite>                       
+                     <order>Expressdecor_Ordercomments_Model_Sales_Order</order>                      
+                  </rewrite>
+                </sales>
+        </models>
+        <resources>       
+            <ordercomments_setup>
+                <setup>
+                    <module>Expressdecor_Ordercomments</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ordercomments_setup>
+            <ordercomments_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ordercomments_write>
+            <ordercomments_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ordercomments_read>
+        </resources>
+    </global>  
+</config>

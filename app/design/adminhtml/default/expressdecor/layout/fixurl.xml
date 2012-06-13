@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+<fixurl_adminhtml_fixurlbackend_index>
+			<reference name="content">
+				<block type="fixurl/adminhtml_fixurlbackend" name="fixurlbackend" template="fixurl/fixurlbackend.phtml"/>
+			</reference>
+		</fixurl_adminhtml_fixurlbackend_index>
+		<fixurl_adminhtml_fixurlbackend_post>
+			<reference name="content">
+				<block type="fixurl/adminhtml_fixurlbackend" name="fixurlbackend" template="fixurl/fixurlbackend.phtml"/>
+			</reference>
+		</fixurl_adminhtml_fixurlbackend_post>
+</layout>

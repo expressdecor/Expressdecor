@@ -1,0 +1,47 @@
+<?php echo $this->__('<strong>Note:</strong> This table captures collections which inherit from core Magento collection class (<code>Mage_Core_Model_Mysql4_Collection_Abstract</code>).  Legacy collections which inherit directly from <code>Varien_Data_Collection_Db</code> are not captured.
+'); ?>
+<div id="ascommercebug_collections_results">
+</div>
+
+<script type="text/javascript">
+	jQueryCommercebug(document).ready(function(){
+		jQueryCommercebug.fn.commercebug.registerCallback(function(info){
+			var o = jQueryCommercebug.parseJSON(info);
+			var collections 		= o.collections;			
+			var collectionFiles 	= o.collectionFiles;				
+			var collectionModels	= o.collectionModels;
+			var table  = [];
+			table.push('<table id="'+s_prefix+'_collections_results_table" class="tablesorter">');
+			table.push('<thead><tr><th><?php echo $this->__('Collection Name'); ?><\/th><!--<th>Model Name<\/th>--><th><?php echo $this->__('Times Instantiated'); ?><\/th><\/tr><\/thead>');
+		
+			table.push('<tbody>');		
+			var c=0;
+			jQueryCommercebug.each(collections, function(key, value){
+				var odd_or_even = c % 2 ? 'odd' : 'even';
+				table.push('<tr class="'+odd_or_even+'">');
+		
+				table.push('<td class="classname">');
+				table.push(key);
+				table.push('<br />');
+				table.push('<span class="pathinfo">' + 
+				'Collects Mage::getModel("'+collectionModels[key]+'"); <br />' +
+				collectionFiles[key] + 
+				'<\/span>');								
+				
+				table.push('<\/td>');
+// 				table.push('<td>');
+// 				table.push(collectionModels[key]);
+// 				table.push('<\/td>');				
+				table.push('<td>');
+				table.push(value);
+				table.push('<\/td>');
+				table.push('<' + '/tr>');			
+				c++;
+			});
+			table.push('<\/tbody>');						
+			table.push('<\/table>');
+			jQueryCommercebug('#'+s_prefix+'_collections_results').html(table.join(''));
+			jQueryCommercebug('#'+s_prefix+'_collections_results_table').tablesorter({widgets: ['zebra']});			
+		});
+	});
+</script>
