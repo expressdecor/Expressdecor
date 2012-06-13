@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config>
+     <modules>
+         <Blc_Adminhtml>
+            <version>0.0.1</version>
+        </Blc_Adminhtml>
+    </modules>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Blc_Adminhtml before="Mage_Adminhtml">Blc_Adminhtml</Blc_Adminhtml>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+   </admin>
+</config>

@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Magento ArtsOnIt Offline Maintenance Page
+ *
+ * @category   ArtsOnIt
+ * @package    Mage_OfflineMaintenance
+ * @copyright  Copyright (c) 2009 ArtsOn.IT (http://www.ArtsOn.it)
+ * @author     Calore Luca Erico (l.calore@ArtsOn.it)
+  *@licence     www.artson.it/licence/magento/omp
+ */
+-->
+<config>
+    <modules>
+        <ArtsOnIT_OfflineMaintenance>
+            <version>1.5.1</version>
+        </ArtsOnIT_OfflineMaintenance>
+    </modules>
+	<global>
+		<helpers>
+            <offlineMaintenance>
+                <class>ArtsOnIT_OfflineMaintenance_Helper</class>
+            </offlineMaintenance>
+        </helpers>
+		 
+	</global>
+	<stores>
+        <default>
+            <web>
+                <routers>
+                     <standard><area>frontend</area><class>ArtsOnIT_OfflineMaintenance_Controller_Router_Standard</class></standard>
+                </routers>
+            </web>
+        </default>
+    </stores>
+	<default>
+		<web>
+            <routers> 
+                <standard><area>frontend</area><class>ArtsOnIT_OfflineMaintenance_Controller_Router_Standard</class></standard>
+            </routers>
+		</web>
+		<offlineMaintenance>
+			<settings>
+                <enabled>0</enabled>
+				<message><![CDATA[
+<style>
+body {
+background:#777777 none repeat scroll 0 0;
+color:#FFFFFF;
+font-family:Helvetica,Arial,Verdana,sans-serif;
+font-size:12px;
+ 
+margin:0;
+padding:0;
+text-align:center;
+}
+h1 
+{
+	margin:0px;
+	padding:0px;
+ 	margin-top:30%;
+ 	font-size: 25pt;
+ 	display:block;
+}
+h2
+{
+	padding:0px;
+ 	margin-top: 5px;
+ 	font-size: 18pt;
+}
+
+</style>
+</head>
+
+<body>
+<h1>We're sorry, but our website is under maintenance.</h1>
+<h2>Please enjoy a quick cup of espresso and then try refreshing this page</h2>
+ ]]>
+</message> 
+			</settings>
+		</offlineMaintenance>
+	</default>
+ 
+  <adminhtml>
+        <translate>
+            <modules>
+                <ArtsOnIT_OfflineMaintenance>
+                    <files>
+                        <default>ArtsOnIT_OfflineMaintenance.csv</default>
+                    </files>
+                </ArtsOnIT_OfflineMaintenance>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <offlineMaintenance>
+                                            <title>Offline Maintenance</title>
+                                        </offlineMaintenance>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+     
+</config>

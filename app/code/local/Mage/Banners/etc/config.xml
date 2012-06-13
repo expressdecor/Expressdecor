@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   Mage
+ * @package    Mage_Banners
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+<config>
+    <modules>
+        <Mage_Banners>
+            <version>1.4.0</version>
+        </Mage_Banners>
+    </modules>
+    <frontend>
+        <routers>
+            <banners>
+                <use>standard</use>
+                <args>
+                    <module>Mage_Banners</module>
+                    <frontName>banners</frontName>
+                </args>
+            </banners>
+        </routers>
+        <layout>
+            <updates>
+                <banners>
+                    <file>banners.xml</file>
+                </banners>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			<banners>
+				<use>admin</use>
+				<args>
+					<module>Mage_Banners</module>
+					<frontName>banners</frontName>
+				</args>
+			</banners>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<banners module="banners">
+				<title>Banners</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<items module="banners">
+						<title>Manage Banners</title>
+						<sort_order>0</sort_order>
+						<action>banners/adminhtml_banners</action>
+					</items>
+				</children>
+			</banners>
+		</menu>
+		<acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <banners translate="title" module="banners">
+                                            <title>Banners Section</title>
+                                            <sort_order>50</sort_order>
+                                        </banners>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+		<layout>
+			<updates>
+				<banners>
+					<file>banners.xml</file>
+				</banners>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <banners>
+                <class>Mage_Banners_Model</class>
+                <resourceModel>banners_mysql4</resourceModel>
+            </banners>
+            <banners_mysql4>
+                <class>Mage_Banners_Model_Mysql4</class>
+                <entities>
+                    <banners>
+                        <table>banners</table>
+                    </banners>
+					<banners_store>
+		                <table>banners_store</table>
+		            </banners_store>
+                </entities>
+            </banners_mysql4>
+        </models>
+        <resources>
+            <banners_setup>
+                <setup>
+                    <module>Mage_Banners</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </banners_setup>
+            <banners_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </banners_write>
+            <banners_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </banners_read>
+        </resources>
+        <blocks>
+            <banners>
+                <class>Mage_Banners_Block</class>
+            </banners>
+        </blocks>
+        <helpers>
+            <banners>
+                <class>Mage_Banners_Helper</class>
+            </banners>
+        </helpers>
+    </global>
+</config>

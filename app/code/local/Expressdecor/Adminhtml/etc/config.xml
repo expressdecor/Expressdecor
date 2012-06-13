@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<config>
+ <modules>
+        <Expressdecor_Adminhtml>
+            <version>0.1.0</version>
+        </Expressdecor_Adminhtml>
+    </modules>
+
+    <global>
+
+    
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_grid>Expressdecor_Adminhtml_Block_Sales_Order_Grid</sales_order_grid>
+                    <catalog_product_grid>Expressdecor_Adminhtml_Block_Catalog_Product_Grid</catalog_product_grid>
+                    <page>Expressdecor_Adminhtml_Block_Page</page>
+                    <sales_order_view_tab_history>Expressdecor_Adminhtml_Block_Sales_Order_View_Tab_History</sales_order_view_tab_history>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+ 
+  </global>
+ 
+ <!-- <default>
+    <expressdecor>
+      <sales>
+        <countdown_enable>1</countdown_enable>
+        <countdown_target_date>1</countdown_target_date>
+      </sales>
+      <slides>
+        <slide1_url>1</slide1_url>
+        <slide1_link>1</slide1_link>
+        <slide2_url>1</slide2_url>
+        <slide2_link>1</slide2_link>
+        <slide3_url>1</slide3_url> 
+        <slide3_link>1</slide3_link>
+        <slide3_url>1</slide4_url>
+        <slide4_link>1</slide4_link>
+        <slide5_url>1</slide5_url>
+        <slide5_link>1</slide5_link>
+      </slides>
+      <pages>
+      <static_css_date>1</static_css_date>
+      <free_shipping>1 </free_shipping>
+      <product_shipping>1</product_shipping>
+      <product_instock>1 </product_instock>
+      <product_shipping_default>1</product_shipping_default>
+      </pages>
+    </expressdecor>
+
+</default>-->
+
+   
+
+</config>
+

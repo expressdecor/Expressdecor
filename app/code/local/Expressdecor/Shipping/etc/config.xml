@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Expressdecor_Catalog>
+            <version>0.1.0</version>
+        </Expressdecor_Catalog>
+    </modules>
+
+ <global>
+        <models>
+           <shipping>
+              <rewrite>
+                  <carrier_flatrate>Expressdecor_Shipping_Model_Carrier_Flatrate</carrier_flatrate> 
+               </rewrite>                                            
+           </shipping>    
+                     
+           </models>
+  </global>
+</config>
+
+
+	

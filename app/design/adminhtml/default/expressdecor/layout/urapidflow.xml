@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layout>
+    <urapidflowadmin_adminhtml_profile_edit>
+        <reference name="head">
+            <action method="addCss"><name>urapidflow.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>urapidflow.js</name></action>
+        </reference>
+    </urapidflowadmin_adminhtml_profile_edit>
+</layout>

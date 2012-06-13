@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<config>
+      <modules>
+        <Expressdecor_Fixurl>
+          <version>0.1.0</version>
+        </Expressdecor_Fixurl>
+      </modules>
+	  
+   <global>
+   
+      <helpers>
+       <fixurl>
+           <class>Expressdecor_Fixurl_Helper</class>
+       </fixurl>
+      </helpers>   
+
+	  <blocks><fixurl><class>Expressdecor_Fixurl_Block</class></fixurl></blocks>
+   </global> 
+   
+   <admin>
+			<routers>
+				<fixurl>
+					<use>admin</use>
+					<args>
+						<module>Expressdecor_Fixurl</module>
+						<frontName>fixurl</frontName>
+					</args>
+				</fixurl>
+			</routers>
+		    </admin>
+		    <adminhtml>
+		<menu>
+			<fixurl module="fixurl">
+				<title>Expressdecor</title>
+				<sort_order>100</sort_order>
+				<children>
+				<fixurlbackend module="fixurl">
+						<title>Fix Urls Rewrite</title>
+						<sort_order>0</sort_order>
+						<action>fixurl/adminhtml_fixurlbackend</action>
+					</fixurlbackend>
+				</children>
+			</fixurl>
+		</menu>
+		<acl>
+			<resources>
+			
+            <fixurl_setup>
+                <setup>
+                    <module>Expressdecor_Fixurl</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </fixurl_setup>
+            <fixurl_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </fixurl_write>
+            <fixurl_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </fixurl_read>			
+   
+				<all>
+				    <title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<fixurl translate="title" module="fixurl">
+							<title>Expressdecor</title>
+							<sort_order>1000</sort_order>
+							<children>
+                                <fixurlbackend translate="title">
+									<title>Fix Urls Rewrite</title>
+								</fixurlbackend>
+							</children>
+					   </fixurl>
+					</children>
+				</admin>
+
+			</resources>
+		</acl>
+
+		<layout>
+			<updates>
+				<fixurl>
+				    <file>fixurl.xml</file>
+				</fixurl>
+			</updates>
+		</layout>
+	</adminhtml>
+</config> 

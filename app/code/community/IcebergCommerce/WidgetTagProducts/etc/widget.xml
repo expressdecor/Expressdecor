@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<widgets>
+	<widgettagproducts_list type="widgettagproducts/list" translate="name" template="catalog/product/list.phtml">
+		<name>(Iceberg Commerce) Products List - Filter By Tags</name>
+		<description>List products on the page. Products can be filtered by tags.</description>
+		<parameters>
+		
+			<product_tag_ids translate="label">
+				<visible>1</visible>
+                <required>0</required>
+                <label>Filter Products By Tags</label>
+                <type>multiselect</type>
+                <source_model>widgettagproducts/tags</source_model>
+                <sort_order>0</sort_order>
+			</product_tag_ids>
+			
+			<option_column_count translate="label description">
+				<label>Number of Products Per Row</label>
+				<visible>1</visible>
+				<type>text</type>
+				<description>If Empty, default system values will be used</description>
+            </option_column_count>
+            
+            <option_page_size translate="label description">
+				<label>Number of Products Per Page</label>
+				<visible>1</visible>
+				<type>text</type>
+				<description>If Empty, default system values will be used</description>
+            </option_page_size>
+            
+            <option_limit_size translate="label description">
+				<label>Limit total results</label>
+				<visible>1</visible>
+				<type>text</type>
+				<description>If specified, results will all be shown on a single page</description>
+            </option_limit_size>
+            
+            <option_sort_by translate="label">
+				<label>Sort By</label>
+				<visible>1</visible>
+				<type>select</type>
+				<source_model>widgettagproducts/sort</source_model>
+                <value>0</value>
+            </option_sort_by>
+            
+            <option_sort_direction translate="label">
+				<label>Sort Direction</label>
+				<visible>1</visible>
+				<type>select</type>
+				<values>
+					<asc translate="label">
+                        <value>asc</value>
+                        <label>Ascending</label>
+                    </asc>
+                    <desc translate="label">
+                        <value>desc</value>
+                        <label>Descending</label>
+                    </desc>
+                </values>
+                <value>asc</value>
+            </option_sort_direction>
+            
+			<option_show_all translate="label description">
+				<label>Display Format</label>
+				<description>Determine if you want products to be paginated</description>
+				<visible>1</visible>
+				<type>select</type>
+				<values>
+					<none translate="label">
+                        <value>0</value>
+                        <label>Show on multiple pages</label>
+                    </none>
+                    <value_yes translate="label">
+                        <value>1</value>
+                        <label>Show all on a single page</label>
+                    </value_yes>
+                </values>
+                <value>0</value>
+            </option_show_all>
+			
+		</parameters>
+	</widgettagproducts_list>
+</widgets> 

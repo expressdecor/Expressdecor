@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Expressdecor_Catalog>
+            <version>0.1.0</version>
+        </Expressdecor_Catalog>
+    </modules>
+
+ <global>
+        <blocks>
+           <catalog>
+              <rewrite>
+                  <product_list_toolbar>Expressdecor_Catalog_Block_Product_List_Toolbar</product_list_toolbar> 
+               </rewrite>
+           </catalog>           
+        </blocks>  
+        
+         <models>
+           <catalog>
+              <rewrite>
+                  <category>Expressdecor_Catalog_Model_Category</category> 
+               </rewrite>                                            
+           </catalog>                                      
+         </models>    
+              
+  </global>
+</config>
+
+
+	

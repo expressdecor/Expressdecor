@@ -1,0 +1,68 @@
+<script type="text/javascript">
+var htmlNotice = '<ul class="messages">';
+htmlNotice += '		<li class="notice-msg">';
+htmlNotice += '  			<ul>';
+htmlNotice += "		 		<li>{{message}}</li>";
+htmlNotice += ' 			</ul>';
+htmlNotice += '  		</li>';
+htmlNotice += '</ul>	'; 
+
+var htmlSuccess = '<ul class="messages">';
+htmlSuccess += '		<li class="success-msg">';
+htmlSuccess += '  			<ul>';
+htmlSuccess += "		 		<li>{{message}}</li>";
+htmlSuccess += ' 			</ul>';
+htmlSuccess += '  		</li>';
+htmlSuccess += '</ul>	'; 
+
+var htmlError = '<ul class="messages">';
+htmlError += '		<li class="error-msg">';
+htmlError += '  			<ul>';
+htmlError += "		 		<li>{{message}}</li>";
+htmlError += ' 			</ul>';
+htmlError += '  		</li>';
+htmlError += '</ul>	'; 
+	
+	//------------------------------------------------------------------
+	//                          LIST
+	//------------------------------------------------------------------
+	$('add-new-list-btn').observe('click', function( event ){
+	    var newlistbtn = Event.element(event);
+            $('add-new-list').toggle();
+            if ( newlistbtn.innerHTML == "<span><?php echo $this->__('Add New List'); ?></span>" ) {
+                newlistbtn.innerHTML = "<span><?php echo $this->__('Done adding lists'); ?></span>";
+            }
+            else {
+                newlistbtn.innerHTML = "<span><?php echo $this->__('Add New List'); ?></span>";
+            }
+	});
+	
+	$('save-list').observe('click', function(){
+		/*if ($('list-name').empty()) {
+			Validation.ajaxError($('list-name'), 'Required field');
+			return false;
+		}*/
+		
+		var url = "<?php echo Mage::getSingleton('adminhtml/url')->getUrl('*/*/saveList'); ?>";
+		
+		new Ajax.Request(url,{
+			method:'post',
+			parameters: {list_name: $('list-name').getValue(), list_description: $('list-description').getValue()},
+			evalJSON:'force',
+			onSuccess: function(transport){
+			    if(transport.responseJSON && transport.responseJSON.result == 'error') {
+			        var msg = htmlError.replace('{{message}}',transport.responseJSON.response);
+					$('messages').update(msg);
+			    } else if(transport.responseText) {
+			        $('ajax-content').update(transport.responseText);
+			    }				
+			},
+			onFailure: function(){ 
+				var errorMessage = "<?php echo $this->__('Server error'); ?>";
+				var msg = htmlError.replace('{{message}}',errorMessage);
+				$('messages').update(msg);
+			}
+  		});
+	
+	});
+</script>

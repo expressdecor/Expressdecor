@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Oeditor_Ordereditor>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Oeditor_Ordereditor>
+    </modules>
+</config> 

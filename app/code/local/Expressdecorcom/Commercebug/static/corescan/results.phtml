@@ -1,0 +1,7 @@
+<h2><?php echo $this->getDiffResults()->getNumberOfFilesScanned();?> <?php echo $this->__('files scanned'); ?></h2>
+<dl>
+<?php foreach($this->getDiffResults()->getDiffs() as $result): ?>
+	<dt><strong><pre><?php echo $result->getFile();?></pre></strong></dt>
+	<dt><pre><?php echo $this->colorCodeDiff(htmlspecialchars($result->getOutput()));?></pre></dt>
+<?php endforeach; ?>
+</dl>	

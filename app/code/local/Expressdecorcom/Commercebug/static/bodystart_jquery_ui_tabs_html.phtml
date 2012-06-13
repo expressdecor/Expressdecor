@@ -1,0 +1,68 @@
+<div style="text-align:left;background-color:#fff;display:block;width:4em;">
+	+ <a href="#" id="ascommercebug_showhide">Debug</a>
+</div>
+<div id="ascommercebug-tabs" style="display:none;">
+	<ul>
+		<?php foreach($this->getTabIdPairs() as $id=>$name): ?>
+			<li><a href="#<?php echo $id;?>"><span><?php echo $name;?></span></a></li>
+		<?php endforeach; ?>
+	</ul>
+	
+	<?php foreach($this->getTabIdAndHtmlPairs() as $id=>$html): ?>
+		<div id="<?php echo$id;?>" class="tab-container">
+			<?php echo $html;?>
+		</div>
+	<?php endforeach; ?>
+</div>
+
+<script type="text/javascript">
+	jQueryCommercebug(document).ready(function(){
+		jQueryCommercebug("#ascommercebug-tabs").commercebug(commercebug_json);
+		
+		<?php if(Mage::getStoreConfig('commercebug/options/keyboard_shortcuts')): ?>		
+			jQueryCommercebug(document).bind('keyup',function(e){		
+				var code = (e.keyCode ? e.keyCode : e.which);
+				
+				//bail if we're in certain tags.  Not ideal as it kills
+				//tab navigation, but that's why we let them turn it off
+				if( jQueryCommercebug(e.target).is('input') || 
+				jQueryCommercebug(e.target).is('textarea') 	||
+				jQueryCommercebug(e.target).is('select') 	||
+				jQueryCommercebug(e.target).is('option')	)
+				{
+					return true;
+				}
+				
+				if(code == 76)
+				{
+					jQueryCommercebug('#ascommercebug-tabs').commercebug.tab_forward('#ascommercebug-tabs');
+				}
+				else if (code == 72)
+				{
+					jQueryCommercebug('#ascommercebug-tabs').commercebug.tab_backwards('#ascommercebug-tabs');
+				}				
+			});		
+		<?php endif; ?>		
+		
+	});			
+</script>
+
+<!-- updater -->
+
+<?php if($this->getCheckForUpdatesFlag()): ?>
+	<script type="text/javascript">
+	jQueryCommercebug.getJSON('<?php echo $this->getUpdateUrl();?>',function(data){
+		var current_version = '<?php echo Mage::getConfig()->getModuleConfig(Mage::helper('commercebug')->calculateRealModuleName())->version;?>';
+		
+		var message 		= 'Your Version: <strong>' + current_version + '<\/strong>; Latest Version:<strong>' + data.message;
+		message				+= '<\/strong>. The latest version may always be obtained from your <a href="/">download page</a>';
+		jQueryCommercebug('#ascommercebug_version').html(message);		
+	});	
+	</script>
+	<?php $this->resetLastUpdated();?>
+<?php else:?>	
+	<script type="text/javascript">	
+		var r = jQueryCommercebug.parseJSON('<?php echo $this->fetchResultsFromLastUpdateCheck();?>');
+		jQueryCommercebug('#ascommercebug_version').html('<?php $this->__("Last Update Check:");?> <?php echo $this->getLastUpdateCheck();?>');		
+	</script>
+<?php endif;?>

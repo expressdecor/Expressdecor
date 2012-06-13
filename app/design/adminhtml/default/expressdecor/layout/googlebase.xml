@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+<googlebase_adminhtml_googlebasebackend_index>
+			<reference name="content">
+				<block type="googlebase/adminhtml_googlebasebackend" name="googlebasebackend" template="new_googlebase/googlebasebackend.phtml"/>
+			</reference>
+</googlebase_adminhtml_googlebasebackend_index>
+<googlebase_adminhtml_googlebasebackend_post>
+			<reference name="content">
+				<block type="googlebase/adminhtml_googlebasebackend" name="googlebasebackend" template="new_googlebase/googlebasebackend.phtml"/>
+			</reference>
+		</googlebase_adminhtml_googlebasebackend_post>
+</layout>

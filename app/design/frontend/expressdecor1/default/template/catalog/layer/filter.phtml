@@ -1,0 +1,161 @@
+<?php
+/**
+ * Magento Enterprise Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Enterprise Edition License
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magentocommerce.com/license/enterprise-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://www.magentocommerce.com/license/enterprise-edition
+ */
+?>
+<?php
+/**
+ * Template for filter items block
+ *
+ * @see Mage_Catalog_Block_Layer_Filter
+ */
+
+?>
+<?php
+$filt_name=strtolower(str_replace(' ','_',$this->_filter->getName()));
+$filt_name=str_replace(')','',str_replace('(','', $filt_name));
+$i=0;
+$num_to_show=5; //number of option that not collapsed
+$iCounter = 0; ?> 
+<ol >
+   
+
+<?php  $currentCategory = Mage::registry('current_category'); ?>
+<?php foreach ($this->getItems() as $_item): ?>
+    <?php
+    //http://74.119.232.3/kitchen-sink-accessories.html?cat=174&rt=kitchen-sink-accessories.html
+    //http://74.119.232.3/kitchen-sink-accessories.html?manufacturer=162&rt=kitchen-sink-accessories.html
+    $postData = $_POST;
+    $hiddenVars = explode('?',str_replace('%2C',',',$this->urlEscape($_item->getUrl())));
+
+    $hiddenVars = explode('&',$hiddenVars[1]);
+
+    $pos = strpos($hiddenVars[0], 'rt');
+    if($pos === false) {
+    	$hiddenVars = explode('=',$hiddenVars[0]);
+    	$hiddenVars[0] = trim($hiddenVars[0]);
+    	$hiddenVars[1] = trim($hiddenVars[1]);
+    }
+    else {
+    	$hiddenVars = explode('=',$hiddenVars[1]);
+    	$hiddenVars[0] = str_replace('amp;','',trim($hiddenVars[0]));
+    	$hiddenVars[1] = trim($hiddenVars[1]);
+    }
+
+    ?>
+    <?php if ($_item->getCount() > 0):
+
+     ?>
+     <div id="cat-optn-<?php echo $filt_name; ?>-<?php echo $i; ?>" >
+    <li>
+        <?php if ($_item->getCount() > 0): ?>
+        <?php
+        $i++;
+        //if(strtoupper($_item->getLabel()) == "SPOUT REACH") {
+        //echo $this->urlEscape($_item->getUrl());
+        //}
+        ?>
+        <form id="filterBy<?php echo $hiddenVars[0].$iCounter ?>" action="" name="filterBy<?php echo $hiddenVars[0].$iCounter?>" method="post">
+        <input type="hidden" name="<?php echo trim($hiddenVars[0]); ?>" value="<?php echo trim($hiddenVars[1]); ?>">
+        <?php foreach ($postData as $key=>$value): ?>
+            <?php if($key != $hiddenVars[0]): ?>
+                <input type="hidden" name="<?php echo $key; ?>" value="<?php echo trim($value); ?>">
+            <?php endif; ?>
+        <?php endforeach ?>
+        <?php //echo $this->urlEscape($_item->getUrl()) ?>
+        <?php /* <a href="<?php echo $this->urlEscape($_item->getUrl()) ?>"><?php echo $_item->getLabel() ?></a> */ ?>
+        <?php /* <a href="javascript:submitFilterForm('filterBy<?php echo $hiddenVars[0].$iCounter ?>');"><?php echo $_item->getLabel() ?></a> */?>        
+        <?php //print_r($postData); ?>
+        <?php
+            /*<a href="javascript:submitFilterForm('filterBy<?php echo $hiddenVars[0].$iCounter ?>');"><?php echo $_item->getLabel() ?></a>*/?>
+        </form>
+                
+        <?php         
+        $url=$this->urlEscape($_item->getUrl());
+        if (empty($currentCategory)) {
+        	if (strpos($url,'cat=')>0) {
+        		$url=str_replace('cat=','catId=',$url);
+        	}
+
+        }
+        ?>
+
+        <a rel="nofollow" href="<?php echo $url ?>"><?php echo $_item->getLabel() ?>
+        
+        <?php if (!empty($currentCategory)) {
+        	echo '('.$_item->getCount().')';
+        }?>
+           
+          </a>
+           
+       
+
+        <?php else: echo $_item->getLabel() ?> (<?php echo $_item->getCount()?>)
+        <?php endif; ?>
+       
+    </li>
+    </div>
+    <?php endif; ?>
+    
+    <?php $iCounter++;  ?>
+<?php endforeach ?>
+ <?php if ($i > $num_to_show): ?>
+ <script type="text/javascript">
+ function hide_<?php echo $filt_name; ?>() {
+
+ 	<?php for ($i2=$num_to_show; $i2<$i;$i2++) {
+ 		echo "$('cat-optn-$filt_name-$i2').toggle(); ";
+ 	}
+ 	?>
+ 	var obj = $('btn-<?php echo $filt_name; ?>');
+
+ 	if (obj.innerHTML.indexOf("more") > -1) {
+ 		obj.innerHTML=obj.innerHTML.replace("more", "less");
+ 		$('more-arrow-img-down-<?php echo $filt_name; ?>').toggle();
+ 		$('more-arrow-img-up-<?php echo $filt_name; ?>').toggle();
+
+ 		
+ 	} else {
+ 		obj.innerHTML=obj.innerHTML.replace("less", "more");
+ 		$('more-arrow-img-down-<?php echo $filt_name; ?>').toggle();
+ 		$('more-arrow-img-up-<?php echo $filt_name; ?>').toggle();
+ 	}
+ }
+
+ <?php for ($i2=$num_to_show; $i2<$i;$i2++) {
+ 	echo "$('cat-optn-$filt_name-$i2').toggle(); ";
+ }
+ ?>
+
+ </script>
+ <div >
+<li>
+<a class="cat-more" id="btn-<?php echo $filt_name; ?>" onclick="hide_<?php echo $filt_name; ?>();" >Show more</a> <div id="more-arrow-img-down-<?php echo $filt_name; ?>" class="more-arrow"></div><div id="more-arrow-img-up-<?php echo $filt_name; ?>" class="more-arrow-hide"></div>
+</li>
+</div>
+ <script type="text/javascript">
+$('more-arrow-img-up-<?php echo $filt_name; ?>').toggle();
+ </script>
+   <?php endif; ?>
+</ol>

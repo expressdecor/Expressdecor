@@ -1,0 +1,412 @@
+
+<?php $taskListCollection = $this->getTaskLists(); ?>
+<?php $users = $this->getUsersAsOptionArray(); ?>
+
+<?php
+$viewBy="";
+$getviewBy =$this->getRequest()->getParam('viewBy'); 
+if(empty($getviewBy)) {
+    $viewBy=trim(Mage::getSingleton('admin/session')->getUser()->getUsername());
+}
+else {
+    $viewBy=trim($this->getRequest()->getParam('viewBy'));
+}
+?>
+
+
+<select name="viewBy" onchange="if (this.selectedIndex > 0) document.location.href='?viewBy=' + this.value;">
+    <option value="">--<?php echo $this->__('choose user'); ?>--</option>
+        <option value="all">All Users</option>
+    <?php foreach($users as $user): ?>
+        <option value="<?php echo $user['label']; ?>"><?php echo $user['label']; ?></option>
+    <?php endforeach; ?>
+</select>
+
+
+<?php if($taskListCollection->getSize()): ?>
+<div class="entry-edit">
+    <?php foreach($taskListCollection as $taskList): ?>
+    <?php if(strtolower($taskList->getName()) == strtolower($viewBy) || $viewBy == "all")  { ?>
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $taskList->getName(); ?> <a href="#" id="toggleTL<?php echo $taskList->getId(); ?>" onclick="collapseExpand('<?php echo $taskList->getId(); ?>');return false;">(collapse)</a></h4>
+        <?php if( $taskList->getDescription() != '' ): ?>
+        <br />
+        <p style="color:#fff;float:left;font-style:italic;">
+            <?php echo nl2br($taskList->getDescription()); ?>
+        </p>
+        <?php endif; ?>
+        <div class="form-buttons">
+            <button class="save scalable add-new-task-btn" type="button"><span><?php echo $this->__('Add Task'); ?></span></button>
+            <button class="delete scalable delete-list" id="deleteTask-<?php echo $taskList->getId(); ?>" type="button"><span>Delete List</span></button>
+        </div>
+    </div>
+    <div class="fieldset grid tasklist" id="taskList-<?php echo $taskList->getId(); ?>">
+        <div class="add-new-task" style="margin-bottom: 25px; display: none;">    
+            <input type="hidden" name="task-id" value=""  />   
+            <input type="hidden" name="task-list-id" value="<?php echo $taskList->getId(); ?>"  />      
+            <input type="text" name="task-name" value="" class="input-text" style="width: 250px"/> 
+            <select name="assign-to">
+                <option value="">--<?php echo $this->__('choose user'); ?>--</option>
+                <?php foreach($users as $user): ?>
+                    <option value="<?php echo $user['value']; ?>"><?php echo $user['label']; ?></option>
+                <?php endforeach; ?>
+            </select>
+                <select name="priority">
+                    <option value="any"><?php echo Mage::helper('nicommerce_taskmanager')->__('Priority');?></option>
+                    <?php
+                    for ( $i=1; $i<=5; $i++ )
+                    {
+                        echo '<option value="'.$i.'"';
+                        echo '>'.Mage::helper('nicommerce_taskmanager')->__($i).'</option>';
+                    } ?>
+                </select>
+                <button class="scalable save save-task" type="button"><span><?php echo Mage::helper('nicommerce_taskmanager')->__('Save'); ?></span></button>
+        </div>
+        <?php $tasks = $taskList->getTasks(); ?>
+        <?php if($tasks->getSize()): ?>
+        <table class="data">            
+            <thead>
+                <tr class="headings">
+                    <th style="width: 10%;"><?php echo $this->__('Actions'); ?></th>
+                    <th style="width: 25%;"><?php echo $this->__('Task'); ?></th>
+                            <th style="width: 45%;"><?php echo $this->__('Comments'); ?></th>
+                            <th><?php echo $this->__('Priority'); ?></th>
+                            <th><?php echo $this->__('Assigned To'); ?></th>
+                    <th><?php echo $this->__('On'); ?></th>         
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach($tasks as $task): ?>
+            <?php $class = ($task->getCompletedOn())? ' class="completed-task"': ''; ?>            
+            <tr<?php echo $class; ?>>
+                <td class="actions">
+                    <span class="json-data" style="display: none;"><?php echo $task->toJson(); ?></span>
+                    <a href="#" class="edit-task">edit</a>  
+                    | <a href="#" class="delete-task">delete</a> 
+                    <?php if(!$task->getCompletedOn()): ?>
+                    | <a href="#" class="mark-complete-task">mark complete</a> 
+                    <?php endif; ?>
+                </td>
+                <td class="task"><?php echo $task->getContent(); ?></td>
+                        <td>
+                            <a class="add-new-comment-btn" href="#" style="font-size:10px;display:inline;text-decoration:underline;"><?php echo $this->__('Add comment'); ?></a>
+
+                           <div class="add-new-comment" style="margin-bottom: 25px; display: none;">
+                                <input type="hidden" name="comment-id" value=""  />
+                                <input type="hidden" name="task-list-item-id" value="<?php echo $task->getId(); ?>"  />
+                                <input type="hidden" name="placed-by-id" value="<?php echo Mage::getSingleton('admin/session')->getUser()->getId(); ?>"  />
+                                <textarea rows="5" cols="50" name="comment-content"></textarea><br />
+
+                                <button class="scalable save save-comment" type="button"><span><?php echo Mage::helper('nicommerce_taskmanager')->__('Save'); ?></span></button>
+                            </div>
+
+                            <?php $comments = $task->getComments(); ?>
+                            <?php if( count( $comments ) >0 ): ?>
+                                <table style="border:0;" cell-spacing="0" cell-padding="0" border="0">
+                                <?php foreach ($comments as $comment): ?>
+                                    <tr>
+                                        <td style="border:0;" width="20%"><em><?php echo $comment->getUser()->getUsername();?></em></td>
+                                        <td style="border:0;" width="80%"><?php echo $comment->getContent();?></td>
+                                    </tr>
+                                <?php endforeach;?>
+                                </table>
+                            <?php endif; ?>
+                        </td>
+                        <td class="priority"><?php echo $task->getPriority(); ?></td>
+                        <td class="assignedTo"><?php echo $task->getUsername(); ?> (<?php echo $task->getFirstname(); ?>  <?php echo $task->getLastname(); ?>)</td>
+                        <td class="date"><?php echo $this->formatDate($task->getUpdatedOn(), 'medium', true); ?></td>
+            </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php endif; ?>
+    </div>    
+        <div class="fieldset grid tasklisthidden" id="taskListHid-<?php echo $taskList->getId(); ?>">
+            &nbsp;
+        </div>
+    <?php
+    } //if($taskList->getName() == "Boris" || $taskList->getName() == "All")  { 
+    ?>    
+        
+    <?php endforeach; ?>
+</div>
+<?php endif; ?>
+
+<script type="text/javascript">
+//------------------------------------------------------------------
+//                          LIST - GRID
+//------------------------------------------------------------------
+var priorityValue = $('prioritySelectah').value;
+
+$$('.delete-list').each(function(deleteListBtn){
+
+    deleteListBtn.observe('click', function(event){
+        if(confirm("<?php echo $this->__('Are you sure you want to delete this list?'); ?>")) {
+            
+            var url = "<?php echo Mage::getSingleton('adminhtml/url')->getUrl('*/*/deleteList'); ?>priority/"+priorityValue;
+            new Ajax.Request(url,{
+                method:'post',
+                parameters: {list_id: deleteListBtn.id.split('-')[1]},
+                evalJSON:'force',
+                onSuccess: function(transport){
+                    if(transport.responseJSON && transport.responseJSON.result == 'error') {
+                        var msg = htmlError.replace('{{message}}',transport.responseJSON.response);
+                        $('messages').update(msg);
+                    } else if(transport.responseText) {
+                        $('ajax-content').update(transport.responseText);
+                    }                
+                },
+                onFailure: function(){ 
+                    var errorMessage = "<?php echo $this->__('Server error'); ?>";
+                    var msg = htmlError.replace('{{message}}',errorMessage);
+                    $('messages').update(msg);
+                }
+              });  
+        }
+        Event.stop(event);
+    });
+
+});
+
+
+//------------------------------------------------------------------
+//                          TASK
+//------------------------------------------------------------------
+$$('.add-new-task-btn').each(function(addTaskBtn){
+    addTaskBtn.observe('click',function(event){
+        tl = addTaskBtn.up('.entry-edit-head').next('.fieldset');
+        showList( tl.getAttribute('id').substr(9) );
+        tl.down('.add-new-task').toggle();
+        if ( addTaskBtn.innerHTML == "<span><?php echo $this->__('Add Task'); ?></span>" ){
+            addTaskBtn.innerHTML = "<span><?php echo $this->__('Done adding tasks'); ?></span>";
+        }
+        else {
+            addTaskBtn.innerHTML = "<span><?php echo $this->__('Add Task'); ?></span>";
+        }
+        Event.stop(event);
+    });
+});
+
+$$('.add-new-comment-btn').each(function(addCommentBtn){
+    addCommentBtn.observe('click',function(event){
+        addCommentBtn.next('.add-new-comment').toggle();
+        if ( addCommentBtn.innerHTML == "<?php echo $this->__('Add comment'); ?>" ) {
+            /*addCommentBtn.replace("<a class='add-new-comment-btn' href='#' style='font-size:10px;display:inline;text-decoration:underline;'><?php echo $this->__('Done adding comments'); ?></a>");*/
+            addCommentBtn.innerHTML = "<?php echo $this->__('Done adding comments'); ?></a>";
+        }
+        else {
+            addCommentBtn.innerHTML = ("<?php echo $this->__('Add comment'); ?>");
+        }
+        Event.stop(event);
+    });
+});
+
+$$('.save-task').each(function(saveTaskBtn){
+    saveTaskBtn.observe('click', function(event){
+        var url = "<?php echo Mage::getSingleton('adminhtml/url')->getUrl('*/*/saveTask'); ?>priority/"+priorityValue;
+        
+        var data = {};
+        data.task_id = saveTaskBtn.previous('input[name="task-id"]').value;
+        data.list_id = saveTaskBtn.previous('input[name="task-list-id"]').value;
+        data.assigned_to_id = saveTaskBtn.previous('select[name="assign-to"]').getValue();
+        data.priority = saveTaskBtn.previous('select[name="priority"]').getValue();
+        data.task = saveTaskBtn.previous('input[name="task-name"]').value;
+
+        new Ajax.Request(url,{
+            method:'post',
+            parameters: data,
+            evalJSON:'force',
+            onSuccess: function(transport){
+                if(transport.responseJSON && transport.responseJSON.result == 'error') {
+                    var msg = htmlError.replace('{{message}}',transport.responseJSON.response);
+                        $('messages').update(msg);
+                } else if(transport.responseText) {
+                    $('ajax-content').update(transport.responseText);
+                }
+            },
+            onFailure: function(){
+                    var errorMessage = "<?php echo $this->__('Server error'); ?>";
+                    var msg = htmlError.replace('{{message}}',errorMessage);
+                    $('messages').update(msg);
+            }
+          });
+        Event.stop(event);
+    });
+});
+                                
+$$('.save-comment').each(function(saveCommentBtn){
+    saveCommentBtn.observe('click', function(event){
+        var url = "<?php echo Mage::getSingleton('adminhtml/url')->getUrl('*/*/saveComment'); ?>priority/"+priorityValue;
+
+        var data = {};
+        data.comment_id = saveCommentBtn.previous('input[name="comment-id"]').value;
+        data.task_id = saveCommentBtn.previous('input[name="task-list-item-id"]').value;
+        data.placed_by_id = saveCommentBtn.previous('input[name="placed-by-id"]').getValue();
+        data.content = saveCommentBtn.previous('textarea[name="comment-content"]').value;
+
+
+        new Ajax.Request(url,{
+                method:'post',
+                parameters: data,
+                evalJSON:'force',
+                onSuccess: function(transport){
+                    if(transport.responseJSON && transport.responseJSON.result == 'error') {
+                        var msg = htmlError.replace('{{message}}',transport.responseJSON.response);
+                        $('messages').update(msg);
+                    } else if(transport.responseText) {
+                        $('ajax-content').update(transport.responseText);
+                    }
+                },
+                onFailure: function(){
+                    var errorMessage = "<?php echo $this->__('Server error'); ?>";
+                    var msg = htmlError.replace('{{message}}',errorMessage);
+                    $('messages').update(msg);
+                }
+          });
+        Event.stop(event);
+    });
+});
+
+$$('.edit-task').each(function(editTaskBtn){
+    editTaskBtn.observe('click', function(event){
+        taskData = eval('('+editTaskBtn.previous('.json-data').innerHTML+')');
+        
+        var taskEditor = editTaskBtn.up('.fieldset').down('.add-new-task');
+        
+        taskEditor.setStyle({display: 'block'});
+        taskEditor.down('input[name="task-id"]').value = taskData.task_id;
+        taskEditor.down('input[name="task-name"]').value = taskData.content;
+        taskEditor.down('select[name="assign-to"]').childElements().each(function(option){
+            if(option.value == taskData.assigned_to_id) option.selected = "selected";
+        });
+        Event.stop(event);
+    });
+});
+
+
+
+$$('.delete-task').each(function(deleteTaskBtn){
+
+    deleteTaskBtn.observe('click', function(event){
+        if(confirm("<?php echo $this->__('Are you sure you want to delete this task?'); ?>")) {
+            
+            var url = "<?php echo Mage::getSingleton('adminhtml/url')->getUrl('*/*/deleteTask'); ?>priority/"+priorityValue;
+            taskData = eval('('+deleteTaskBtn.previous('.json-data').innerHTML+')');
+            
+            new Ajax.Request(url,{
+                method:'post',
+                parameters: {task_id: taskData.task_id},
+                evalJSON:'force',
+                onSuccess: function(transport){
+                    if(transport.responseJSON && transport.responseJSON.result == 'error') {
+                        var msg = htmlError.replace('{{message}}',transport.responseJSON.response);
+                        $('messages').update(msg);
+                    } else if(transport.responseText) {
+                        $('ajax-content').update(transport.responseText);
+                    }                
+                },
+                onFailure: function(){ 
+                    var errorMessage = "<?php echo $this->__('Server error'); ?>";
+                    var msg = htmlError.replace('{{message}}',errorMessage);
+                    $('messages').update(msg);
+                }
+              });  
+        }
+        Event.stop(event);
+    });
+
+});
+
+
+$$('.mark-complete-task').each(function(markCompleteTaskBtn){
+
+    markCompleteTaskBtn.observe('click', function(event){            
+        var url = "<?php echo Mage::getSingleton('adminhtml/url')->getUrl('*/*/markCompleteTask'); ?>priority/"+priorityValue;
+        taskData = eval('('+markCompleteTaskBtn.previous('.json-data').innerHTML+')');
+        
+        new Ajax.Request(url,{
+            method:'post',
+            parameters: {task_id: taskData.task_id},
+            evalJSON:'force',
+            onSuccess: function(transport){
+                if(transport.responseJSON && transport.responseJSON.result == 'error') {
+                    var msg = htmlError.replace('{{message}}',transport.responseJSON.response);
+                    $('messages').update(msg);
+                } else if(transport.responseText) {
+                    $('ajax-content').update(transport.responseText);
+                }                
+            },
+            onFailure: function(){ 
+                var errorMessage = "<?php echo $this->__('Server error'); ?>";
+                var msg = htmlError.replace('{{message}}',errorMessage);
+                $('messages').update(msg);
+            }
+          });
+         Event.stop(event);
+    });
+
+});
+
+function getCookie(c_name)
+{
+if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=");
+  if (c_start!=-1)
+    {
+    c_start=c_start + c_name.length+1;
+    c_end=document.cookie.indexOf(";",c_start);
+    if (c_end==-1) c_end=document.cookie.length;
+    return unescape(document.cookie.substring(c_start,c_end));
+    }
+  }
+return "";
+}
+
+function setCookie(c_name,value,expiredays)
+{
+var exdate=new Date();
+exdate.setDate(exdate.getDate()+expiredays);
+document.cookie=c_name+ "=" +escape(value)+
+((expiredays==null) ? "" : ";expires="+exdate.toUTCString())+'; path=/';
+}
+
+function collapseExpand( listId ) {
+    //alert ( 'cookie:'+getCookie('taskList-'+listId)+' toggler:'+$('toggleTL'+listId).innerHTML);
+
+    if( $('toggleTL'+listId).innerHTML == '(expand)' ) {
+        $('toggleTL'+listId).update('(collapse)');
+    }
+    else {
+        $('toggleTL'+listId).update('(expand)');
+    }
+    $('taskList-'+listId).toggle();
+    $('taskListHid-'+listId).toggle();
+    
+    setCookie( 'taskList-'+listId, $('toggleTL'+listId).innerHTML, 365 );
+}
+
+function showList( listId ) {
+    //alert ( 'cookie:'+getCookie('taskList-'+listId)+' toggler:'+$('toggleTL'+listId).innerHTML);
+
+    if( $('toggleTL'+listId).innerHTML == '(expand)' ) {
+        $('toggleTL'+listId).update('(collapse)');
+    }
+
+    $('taskList-'+listId).show();
+    $('taskListHid-'+listId).hide();
+
+    setCookie( 'taskList-'+listId, $('toggleTL'+listId).innerHTML, 365 );
+}
+
+$$('.tasklist').each(function(s){
+    if ( getCookie( s.getAttribute('id') ) == '(expand)' ) {
+        s.toggle();
+        $( 'toggleTL'+s.getAttribute('id').substr(9) ).update('(expand)');
+    }
+    if ( getCookie( s.getAttribute('id') ) == '(collapse)' ) {
+        s_hid = s.getAttribute('id').substr(9);
+        $('taskListHid-'+s_hid).toggle();
+    }
+});
+</script>

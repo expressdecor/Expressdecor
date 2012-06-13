@@ -1,0 +1,113 @@
+<?php
+
+$_coreHelper = $this->helper('core');
+$checkoutHelper = Mage::helper('onestepcheckout/checkout');
+
+if(!$checkoutHelper->canRun()) {
+    $message = base64_decode('PGRpdiBzdHlsZT0iYm9yZGVyOiAzcHggc29saWQgcmVkOyBwYWRkaW5nOiA1cHg7IG1hcmdpbi1ib3R0b206IDE1cHg7IG1hcmdpbi10b3A6IDE1cHg7Ij5QbGVhc2UgZW50ZXIgYSB2YWxpZCBzZXJpYWwgZm9yIHRoZSBkb21haW4gIltET01BSU5dIiBpbiB5b3VyIGFkbWluaXN0cmF0aW9uIHBhbmVsLiBJZiB5b3UgZG9uJ3QgaGF2ZSBvbmUsIHBsZWFzZSBwdXJjaGFzZSBhIHZhbGlkIGxpY2Vuc2UgZnJvbSA8YSBocmVmPSJodHRwOi8vd3d3Lm9uZXN0ZXBjaGVja291dC5jb20iPnd3dy5vbmVzdGVwY2hlY2tvdXQuY29tPC9hPjwvZGl2Pg==');
+
+    $message = str_replace('[DOMAIN]', $_SERVER['SERVER_NAME'], $message);
+
+    echo $message;
+
+}
+else    {
+
+?>
+
+<?php
+
+
+
+?>
+
+<table class="onestepcheckout-summary">
+    <thead>
+        <tr>
+            <th class="name"><?php echo $this->__('Product'); ?></th>
+            <th class="qty"><?php echo $this->__('Qty'); ?></th>
+            <th class="total"><?php echo $this->__('Subtotal'); ?></th>
+        </tr>
+    </thead>
+    <?php foreach($this->getItems() as $item): ?>
+    <tr>
+        <td class="name">
+            <?php echo $item->getName(); ?>
+            <?php if($checkoutHelper->settings['show_custom_options']): ?>
+                <?php $options = $item->getProduct()->getTypeInstance(true)->getOrderOptions($item->getProduct()); ?>
+                <?php if(isset($options['options']) && count($options['options']) > 0): ?>
+                <ul class="onestepcheckout-custom-options">
+                <?php foreach($options['options'] as $option): ?>
+                    <li><b><?php echo $option['label'] . ':</b> ' . $option['value']; ?></li>
+                <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
+
+                <?php if($item->getProduct()->isConfigurable()): ?>
+
+                <?php
+                $configurable_options = $item->getProduct()->getTypeInstance(true)->getSelectedAttributesInfo($item->getProduct());
+                ?>
+
+                <?php if(is_array($configurable_options) && count($configurable_options) > 0): ?>
+                <ul class="onestepcheckout-custom-options">
+                <?php foreach($configurable_options as $option): ?>
+                    <li><b><?php echo $option['label']; ?>:</b> <?php echo $option['value']; ?></li>
+                <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
+
+                <?php endif; ?>
+
+            <?php endif; ?>
+        </td>
+        <td class="qty"><?php echo $item->getQty(); ?></td>
+        <td class="total">
+            <?php if($checkoutHelper->settings['display_tax_included']): ?>
+            <?php echo $this->helper('checkout')->formatPrice($this->helper('checkout')->getSubtotalInclTax($item)); ?>
+            <?php else: ?>
+            <?php echo $this->helper('checkout')->formatPrice($item->getRowTotal()); ?>
+            <?php endif; ?>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<table class="onestepcheckout-totals">
+    <?php foreach($this->getTotals() as $total): ?>
+    <tr<?php if($total->getCode() == 'grand_total'): ?> class="grand-total"<?php endif; ?>>
+        <td class="title">
+
+            <?php
+
+            $code = $total->getCode();
+            $value = $total->getValue();
+
+            if($code == 'subtotal')    {
+                $total_name = $this->__('Subtotal');
+            }
+            elseif($code == 'shipping')    {
+                $total_name = $this->__('Shipping');
+                if($checkoutHelper->settings['display_tax_included'])   {
+                    $value += $this->getQuote()->getShippingAddress()->getShippingTaxAmount();
+                }
+                            }
+            elseif($code == 'grand_total')    {
+                $total_name = $this->__('Grand total');
+            }
+            else    {
+                $total_name = $total->getTitle();
+            }
+
+            echo $total_name;
+
+            ?>
+        </td>
+        <td class="value">
+            <?php echo $this->helper('checkout')->formatPrice($value); ?>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<?php } ?>

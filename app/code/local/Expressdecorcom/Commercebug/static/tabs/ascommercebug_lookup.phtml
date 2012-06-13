@@ -1,0 +1,18 @@
+<div id="ascommercebug_lookup_container">
+	<p><?php echo $this->__('Enter a URI (<span class="classname">catalog/product</span>) or a class name 
+	(<span class="classname">Mage_Catalog_Model_Product</span>).</p>');?>
+	<div><?php echo $this->__('Using URI context'); ?>
+	<select id="ascommercebug_select_context">
+		<option value="all"><?php echo $this->__('All'); ?></option>
+		<option value="model"><?php echo $this->__('Model'); ?></option>
+		<option value="block"><?php echo $this->__('Block'); ?></option>								
+		<option value="helper"><?php echo $this->__('Helper'); ?></option>				
+	</select>, 
+	<input type="text" id="ascommercebug_text_lookup_uri"/>  
+	<button id="ascommercebug_but_lookup" class="fg-button ui-state-default ui-corner-all">
+		<?php echo $this->__('Resolves To'); ?>
+	</button>
+	</div>
+	<div id="ascommercebug_lookup_results">
+	</div>
+</div>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+<salesflag_adminhtml_salesflagbackend_index>
+			<reference name="content">
+				<block type="salesflag/adminhtml_salesflagbackend" name="salesflagbackend" template="salesflag/salesflagbackend.phtml"/>
+			</reference>
+		</salesflag_adminhtml_salesflagbackend_index>
+</layout>

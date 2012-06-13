@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+	    <Expressdecor_Attview>
+	        <version>0.1.0</version>
+	    </Expressdecor_Attview>
+	</modules>
+	<global> 
+	  
+	 <helpers>
+       <attview>
+           <class>Expressdecor_Attview_Helper</class>
+       </attview>
+     </helpers>  
+       
+	 <models>
+        <attview>
+           <class>Expressdecor_Attview_Model</class>
+        </attview>
+     </models>
+     
+	       <resources>
+            <attview_setup>
+                <setup>
+                    <module>Expressdecor_Attview</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </attview_setup>
+            <attview_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </attview_write>
+            <attview_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </attview_read>			
+        </resources>    
+         
+	 <events>   	 
+	  	  
+	 </events>		
+        
+  	</global>
+  	
+</config>
+
+
+	
