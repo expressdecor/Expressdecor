@@ -37,7 +37,7 @@ class Expressdecor_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block
 
 	protected function _prepareCollection()
 	{
-		$collection = Mage::getResourceModel($this->_getCollectionClass());
+		
 		/*->join(
 		'sales/order_item',
 		'`sales/order_item`.order_id=`main_table`.entity_id',
@@ -46,14 +46,15 @@ class Expressdecor_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block
 		'names' => new Zend_Db_Expr('group_concat(`sales/order_item`.name SEPARATOR ",")'),
 		)
 		);*/
-// 		$collection->getSelect()->group('entity_id');
+//  		$collection->getSelect()->group('entity_id');
 
-		$collection->getSelect()->joinLeft(array('sfop'=>'sales_flat_order_payment'),'main_table.entity_id=sfop.parent_id', array('sfop.method'));
+		$collection = Mage::getResourceModel($this->_getCollectionClass());
+		$collection->getSelect()->joininner(array('sfop'=>'sales_flat_order_payment'),'`main_table`.`entity_id`=`sfop`.`parent_id`', array('payment_method'=>'sfop.method'));
+
 		$this->setCollection($collection);
 		return Mage_Adminhtml_Block_Widget_Grid::_prepareCollection();
 	}
-
-
+	 
 
 	protected function _prepareColumns()
 	{
@@ -100,10 +101,11 @@ class Expressdecor_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block
 		'options'   => array('Non US Add'=> 'Non US Add','cc Add/Non US Add' => 'cc Add/Non US Add','cc Add'=> 'cc Add',''=>'No flag','App Non US Add'=>'App Non US Add','App cc Add/Non US Add'=>'App cc Add/Non US Add','App cc Add'=>'App cc Add')
 		));
 
-		$this->addColumn('method', array(
+		$this->addColumn('payment_method', array(
 		'header'    => Mage::helper('sales')->__('Payment Method'),
-		'index'     => 'method',
+		'index'     => 'payment_method',
 		'type'  => 'options',
+		'filter_index' => '`sfop`.`method`',
 		'width' => '70px',
 		'options'   => array('verisign' => 'Credit Card', 'checkmo' => 'Check/Money Order', 'paypal_express'=>'PayPal', 'googlecheckout'=>'Google Checkout')
 		));
