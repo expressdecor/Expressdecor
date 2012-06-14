@@ -371,7 +371,7 @@ if 	($customShipPrice > 0)	{
         <div class="stock-container">
         <?php  
         if ( (!empty($outofstockMsg)) || ($_product->getIsInStock()==0) ){
-        	if(empty($outofstockMsg)) $outofstockMsg="Product will be available soon";
+        	if(empty($outofstockMsg)) $outofstockMsg=$this->__('Product will be available soon');
         	echo "<div class=\"out-stock\">".$outofstockMsg."</div>";
         }else {?>
         <div class="in-stock-mes">
