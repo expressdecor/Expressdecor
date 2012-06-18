@@ -3349,7 +3349,7 @@ width: 100%;
 height: 68px;
 border-bottom: 1px solid #FFFFFF;
 border-top: 1px solid #939598;
-background-color: #E6E7E8;
+background-color: #000000; /*#E6E7E8;*/
 cursor: pointer;	
 }
 .std .center-right-banner .block-active{ 
@@ -3379,10 +3379,12 @@ font-style: italic;
 padding-left: 15px;
 cursor: pointer;
 opacity: 0.6;
+color: #FFFFFF;
 }
 
 .std .center-right-banner .descr-text-active {
 opacity: 1;
+color:#444444;
  }
 
 /*checkout page*/
