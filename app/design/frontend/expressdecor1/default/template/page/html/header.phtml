@@ -28,18 +28,25 @@
  */
 ?>
 
-
+ 
  <div class="header-panel">
 
-	<div class="header-links">	
-     
-        <p class="welcome-msg"><?php // echo $this->getChildHtml('welcome') ?></p>
+	<div class="header-links">	   
+<!--         <p class="welcome-msg"> -->
+        <?php // echo $this->getChildHtml('welcome') ?>
+<!--         </p> -->
         <?php // echo $this->getChildHtml('accountLinks') ?>
 		<!--<?php //echo $this->getChildHtml('topLinks') ?>-->
     </div></div>
 <div class="header-container">
    
     <div class="header">
+      <div class="header-line" >
+      <a class="header-line-shipping" href="<?php echo $this->getUrl('') ?>"></a>
+      <a class="header-line-tax" href="<?php echo $this->getUrl('') ?>"></a>
+      <a class="header-line-returns" href="<?php echo $this->getUrl('') ?>returns.html"></a>
+      </div>
+     
         <div class="branding">
         <?php if ($this->getIsHomePage()):?>
             <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
@@ -50,6 +57,7 @@
     
           <div class="freeshipping" >          
           </div>  
+          <a href="<?php echo $this->getUrl('') ?>" ><div class="header-proaccount" ></div></a>
           <div class="header-right-block">
           <?php  echo $this->getChildHtml('topSearch') ?> 
        <div class="header-livechat">

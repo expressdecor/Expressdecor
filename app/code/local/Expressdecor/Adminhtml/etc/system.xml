@@ -85,13 +85,37 @@
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
             </slide1_link>
+             <!-- slide title -->
+              <slide1_title translate="label comment">
+              <label>Title for slide #1</label>
+              <comment>
+                <![CDATA[Title for this slide.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>3</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide1_title>           
+              <!-- slide desc -->
+              <slide1_descr translate="label comment">
+              <label>Description for slide #1</label>
+              <comment>
+                <![CDATA[Description for this slide.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>4</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide1_descr>
           <slide2_url translate="label comment">
               <label>Slide #2 image</label>
               <comment>
                 <![CDATA[Url to slide image]]>
               </comment>
               <frontend_type>text</frontend_type>
-              <sort_order>3</sort_order>
+              <sort_order>5</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
@@ -103,18 +127,42 @@
                 <![CDATA[Link for this slide.]]>
               </comment>
               <frontend_type>text</frontend_type>
-              <sort_order>4</sort_order>
+              <sort_order>6</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
             </slide2_link>
+                         <!-- slide title -->
+              <slide2_title translate="label comment">
+              <label>Title for slide #2</label>
+              <comment>
+                <![CDATA[Title for this slide.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>7</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide2_title>           
+              <!-- slide desc -->
+              <slide2_descr translate="label comment">
+              <label>Description for slide #2</label>
+              <comment>
+                <![CDATA[Description for this slide.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>8</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide2_descr>
              <slide3_url translate="label comment">
               <label>Slide #3 image</label>
               <comment>
                 <![CDATA[Url to slide image]]>
               </comment>
               <frontend_type>text</frontend_type>
-              <sort_order>5</sort_order>
+              <sort_order>9</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
@@ -126,18 +174,42 @@
                 <![CDATA[Link for this slide.]]>
               </comment>
               <frontend_type>text</frontend_type>
-              <sort_order>6</sort_order>
+              <sort_order>10</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
             </slide3_link>
+              <!-- slide title -->
+              <slide3_title translate="label comment">
+              <label>Title for slide #3</label>
+              <comment>
+                <![CDATA[Title for this slide.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>11</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide3_title>           
+              <!-- slide desc -->
+              <slide3_descr translate="label comment">
+              <label>Description for slide #3</label>
+              <comment>
+                <![CDATA[Description for this slide.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>12</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide3_descr>
              <slide4_url translate="label comment">
               <label>Slide #4 image</label>
               <comment>
                 <![CDATA[Url to slide image]]>
               </comment>
               <frontend_type>text</frontend_type>
-              <sort_order>7</sort_order>
+              <sort_order>13</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
@@ -149,18 +221,42 @@
                 <![CDATA[Link for this slide.]]>
               </comment>
               <frontend_type>text</frontend_type>
-              <sort_order>8</sort_order>
+              <sort_order>14</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
             </slide4_link>
+                         <!-- slide title -->
+              <slide4_title translate="label comment">
+              <label>Title for slide #4</label>
+              <comment>
+                <![CDATA[Title for this slide.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>15</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide4_title>           
+              <!-- slide desc -->
+              <slide4_descr translate="label comment">
+              <label>Description for slide #4</label>
+              <comment>
+                <![CDATA[Description for this slide.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>16</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide4_descr>
             <slide5_url translate="label comment">
               <label>Slide #5 image</label>
               <comment>
                 <![CDATA[Url to slide image]]>
               </comment>
               <frontend_type>text</frontend_type>
-              <sort_order>9</sort_order>
+              <sort_order>17</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
@@ -172,12 +268,35 @@
                 <![CDATA[Link for this slide.]]>
               </comment>
               <frontend_type>text</frontend_type>
-              <sort_order>10</sort_order>
+              <sort_order>18</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
             </slide5_link>
-
+			             <!-- slide title -->
+              <slide5_title translate="label comment">
+              <label>Title for slide #5</label>
+              <comment>
+                <![CDATA[Title for this slide.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>19</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide5_title>           
+              <!-- slide desc -->
+              <slide5_descr translate="label comment">
+              <label>Description for slide #5</label>
+              <comment>
+                <![CDATA[Description for this slide.]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </slide5_descr>
           </fields>
         </slides>
                
