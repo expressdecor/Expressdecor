@@ -3349,7 +3349,7 @@ width: 100%;
 height: 68px;
 border-bottom: 1px solid #FFFFFF;
 border-top: 1px solid #939598;
-background-color: #F78C18; /*#E6E7E8;*/
+background-color: #E6E7E8;
 cursor: pointer;	
 }
 .std .center-right-banner .block-active{ 
@@ -3367,7 +3367,7 @@ font-size: 14px;
 padding-top: 19px;
 font-family: "Berlin Sans FB";
 padding-left: 15px;
- color: #FFFFFF; 
+ color: #7C7E80; 
 }
 
 .std .center-right-banner .title-text-active {
@@ -3379,7 +3379,7 @@ font-family: "Berlin Sans FB";
 padding-left: 15px;
 cursor: pointer;
 opacity: 0.6;
-color: #FFFFFF;
+color: #444444;
 }
 
 .std .center-right-banner .descr-text-active {
