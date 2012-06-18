@@ -662,7 +662,7 @@ width: 145px;
 .logo { float:left; }
 
 
-.header-container { margin: 26px 0 0px; text-align:left; }
+.header-container { margin: 46px 0 0px; text-align:left; }
 .header { padding: 14px 0 9px; min-height:56px; position:relative; z-index:5; width:940px; }
 /*div.header {padding-top: 20px;}*/
 .header .logo { text-decoration:none !important; margin-top:0px;margin-top: 0px; }
@@ -730,7 +730,7 @@ margin-top:6px;
  margin-left: 185px;
 }
 /*new right block*/
-.header-right-block {float: left; width: 289px; height:75px; margin-left: 33px;}
+.header-right-block {float: left; width: 289px; height:75px; }
 .top-search {
 float:right;
   margin-bottom:0;
@@ -763,7 +763,7 @@ float:left;
   white-space:nowrap;
 }
 .header .form-search label { display:none; }
-.header .form-search input.input-text {border: 2px solid #FF6001 !important; background:#fff url(../images/bkg_search-input.gif) no-repeat 0 0; padding-left:26px; width:183px;margin-left: 27px; height: 22px; }
+.header .form-search input.input-text {border: 2px solid #FF6001 !important; background:#fff url(../images/bkg_search-input.gif) no-repeat 0 0; padding-left:26px; width:262px;margin-left: -55px; height: 22px; }
 .header .form-search a { display:none; }
 
 .header .form-search button.button { 
@@ -3310,189 +3310,84 @@ margin-left: 3px;
 }
 
 /*== slideshow nav ==*/
- #express-slides { position:relative; height:275px; width:650px; }
+.std .top-container {
+	height:350px;
+}
+ #express-slides { position:relative; height:350px; width:640px; float:left; }
 .std .fadein img { position:absolute; left:0; top:0; }
 .std .slidenav { width: 650px; background-color: #8D9598; text-align: center;}
 .std .slidenav a { color: #FFFFFF; text-decoration: none; font-weight: bold; padding-right: 20px; font-size: 12px;}
 /*==Center - right banner ==*/
  .std .center-right-banner {
  float: right;
-    height: 291px;
+    height: 350px;
     margin-right: 6px;
-    margin-top: -291px;
-    width: 281px;
-    background-image: url("../images/express-deals.png");
-/*background-position: -22px -210px;*/
-
-}
-.std .center-right-banner .center-right-arrow {
-    background-image: url("../images/express-right.png");
-     height: 24px;
-    width: 27px;
-    margin-left: 243px;
-    margin-top: -25px;
-     cursor: pointer;
+ 
+    width: 294px;
+position: relative;
 }
 
-.std .center-right-banner .center-left-arrow { 
-    background-image: url("../images/express-left.png");
-     height: 24px;
-    width: 27px;
-      margin-left: 10px;
-margin-top: 41px;
-  cursor: pointer;
-}
-.std .center-right-banner .center-right-image   {
-width: 167px;
-height: 163px;
-  margin-left: 65px;
-    margin-top: 56px;
-    position: relative;
-}
-.std .center-right-banner .center-right-image img {
+ .std .center-right-banner a {
+	text-decoration:none;
+ }
+ .std .center-right-banner .triangle {
+ background:url(../images/header_footer_sprite1.png) -519px -3px no-repeat;
 position: absolute;
-left: 0;
-top: 0;
+background-color: #transparent;
+z-index: 1;
+height: 70px;
+width: 35px;
+margin-left: -35px;
+margin-top: 0px;
+display: none; 
+}
+.std .center-right-banner .triangle-active {
+display: block; 	
+}
+.std .center-right-banner .block {
+width: 100%;
+height: 68px;
+border-bottom: 1px solid #FFFFFF;
+border-top: 1px solid #939598;
+background-color: #E6E7E8;
+cursor: pointer;	
+}
+.std .center-right-banner .block-active{ 
+background-color: #FFFFFF;
+border-bottom: 1px solid #FFFFFF;
+border-top: 1px solid #BEBCB0; 
+}
+.std .center-right-banner .block-last{  
+border-bottom: 1px solid #E6E7E8; 
 }
 
-.std .center-right-banner .center-right-labels div span {
-position: absolute;
-left: 0;
-top: 0;
-color: #000000;
+.std .center-right-banner .title-text {
+text-transform: uppercase;	
+font-size: 13px;
+padding-top: 19px;
 font-weight: bold;
-font-size: 15px;
-}
-.std .center-right-banner .center-right-labels div {
-margin-left:26px;
-margin-top: 20px;
-  position: absolute;
-    width: 253px;
+padding-left: 15px;
+ color: #7C7E80; 
 }
 
-.std .center-right-banner .center-right-prices div span.deal-price {
-position: absolute;
-left: 0;
-top: 0;
-color: #FF0000;
-font-weight: bold;
-font-size: 17px;
+.std .center-right-banner .title-text-active {
+color: #F7651E;
 }
-.std .center-right-banner .center-right-prices div span.deal-off-price {
-left: 65px;
-position: absolute;
-top: 0;
-color: #989898;
-font-weight: bold;
-font-size: 17px;
- text-decoration: line-through;
+.std .center-right-banner .descr-text {
+font-size: 11px;
+font-style: italic;
+padding-left: 15px;
+cursor: pointer;
+opacity: 0.6;
 }
 
-.std .center-right-banner .center-right-prices div {
-margin-left:52px;
-  position: absolute;
-    width: 253px;
-margin-top: 41px;
-
-}
-
-#center-img-link-1{
-margin-left:23px;
-}
-
-#center-img-link-2{
-margin-left:17px;
-}
-
-#center-img-link-3{
-margin-left:22px;
-}
-
+.std .center-right-banner .descr-text-active {
+opacity: 1;
+ }
 
 /*checkout page*/
 .onestepcheckout-index-index .col1-layout .col-main .page-title {margin-top:0px;}
-/*
-.checkout-options {border-bottom: 1px solid #E2DDD5; height: 142px;}
-.checkout-options .checkout-reg, .checkout-options .checkout-login {
- border:1px solid #E2DDD5;
- float:left; 
- height: 100%;
-width: 448px;
- border-bottom: 0px;
- border-top: 0px;
-}
- .checkout-options .checkout-login { border-left: 0px; }
- .checkout-reg  .input-box label { font-family: Arial; font-size: 12px;}
-#box-guest {  padding-left: 235px;} 
-#box-reg {float:left;}
 
-.txt-new {padding-top: 16px; font-family: Arial; font-size: 12px; font-color: #000000 ; padding-left: 5px;}
-.checkout-options .checkout-login .input-box { border:0px solid black;float:none; height: auto; width: auto; padding-top: 4px;padding-left:55px;}
-.checkout-options div .input-box { padding-left: 5px;}
-#onestepcheckout-form label, .checkout-options label { font-family: Arial; font-size: 12px; color: #000000; }
-.checkout-login button {
-margin: 0 0 0 -8px;
-}
-.checkout-login button span {
-  background-image:url(../images/header_footer_sprite1.png);
- background-repeat:no-repeat;
-background-position: -347px -4px;
-color: #FFFFFF;
-height: 25px;
-height: 23px;
-padding-bottom: 2px;
-padding-left:5px;
-}
-.checkout-login button span span {
-font-family: Arial,Helvetica,sans-serif;
-font-size: 11px;
- padding-top: 2px;
-text-transform: uppercase;
-background-image: none;
-color: #FFFFFF;
- }
- 
- #onestepcheckout-login-popup button {
- padding-left: 94px !important;
- }
-
- #label_password { margin-left: 25px;}
- #label_info {padding-left: 11px;}
- #onestepcheckout-login-link { 
-  height: 25px; 
-  color: #000000;
-  text-transform: uppercase;
-  background-color: #DDDDDD;
-  font-weight: bold;
-  margin-bottom: 8px; 
-  font-size:12px; padding-left: 10px;
-  }
-
-.checkout-head {   height: 25px; 
-  color: #000000;
-  text-transform: uppercase;
-  background-color: #DDDDDD; 
-  font-size:12px;
-  height: 25px; 
-  font-weight: bold;
- margin-top: 10px;
-  padding-left: 10px;
-  width: 889px;
-  }
-  
-  
-.login_with {padding-top: 4px; }  
-.input-email input {width: 245px !important;}
-.input-telephone input {float: none !important; width: 245px !important;}
-.input-region {width: 55% !important ;}
-.checkout-discount {font-weight: bold; color: #FF0000;}
-#onestepcheckout-form {float: left; }
-#onestepcheckout-login-error {width: 162px; margin-left: 79px; margin-top: 0; margin-bottom:  0px !important ;}
-.checkoutcontainer { border-top :0px !important; margin-top:0px !important;}
-#onestepcheckout-login-popup {width: 280px !important;  padding-left: 57px;}
-.onestepcheckout-column-left {background-image: none !important; border-right: 1px solid #E2DDD5; }
-.onestepcheckout-column-middle {height:507px; background-image: none !important; border-right: 1px solid #E2DDD5;}
-*/
 .product-view .product-shop:after { display:block; content:"."; clear:both; font-size:0; line-height:0; height:0; overflow:hidden; }
 
 
@@ -4281,4 +4176,27 @@ a#move_up:hover { color: #fff; background: #597da3;}
 .contacts-index-index .col-main {padding-bottom:57px;}
 /*end of contact us page*/
 .onestepcheckout-index-index .checkmo-list address {color: #000000; height:42px;}
- 
+ /*header*/
+.header-line{
+background:url(../images/header_footer_sprite1.png) 0px -176px no-repeat;
+height:20px;
+margin-left: -7px;
+margin-top:-30px;
+}
+
+.header-line .header-line-shipping, .header-line-tax, .header-line-returns {
+ display: block;
+ position: relative;
+height:20px;
+width:313px;
+float:left;
+}
+
+.header-proaccount{
+background:url(../images/header_footer_sprite1.png) -7px -212px no-repeat;
+height:25px;
+width:79px;
+float:left;
+margin-left: -44px;
+margin-top: 43px;
+}
