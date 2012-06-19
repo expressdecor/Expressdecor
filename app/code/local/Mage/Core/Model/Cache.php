@@ -100,15 +100,16 @@ class Mage_Core_Model_Cache
         $this->_defaultBackendOptions['cache_dir'] = Mage::getBaseDir('cache');
 
 	///
+
 		$useragent = $_SERVER ['HTTP_USER_AGENT'];
-                $exceptions = "iPhone|iPod|BlackBerry|Pre|Palm|Googlebot-Mobile|Mobile|mobile|mobi|Safari Mobile|Mobile Safari|Android|HTC|Mobile";
+                $exceptions = "iPhone|iPod|BlackBerry|Palm|Googlebot-Mobile|Mobile|mobile|mobi|Safari Mobile|Mobile Safari|Android|HTC|Mobile";
                 $exceptions_array = explode ( '|', $exceptions );
                 $options1=array( 'file_name_prefix' => 'iphone2');
 
                 $mobile = 0;
 
                 foreach ( $exceptions_array as $exc ) {
-                        if (strpos ( $useragent, $exc ) > 0) {
+                        if (strpos ( $useragent, $exc ) > 0) {                        	
                                 $mobile = 1;
 
                         }
