@@ -96,12 +96,12 @@ class TinyBrick_OrderEdit_Model_Carrier_Flatrate extends Mage_Shipping_Model_Car
             $nGrandTotal = $request->getPackageValue();
             if($nGrandTotal >= 100) {
                 $shippingPrice = '0.00';                                
-                $method->setMethodTitle("Free Shipping");
+            //    $method->setMethodTitle("Free Shipping"); Google checkout
             }
             
             if($customPrice > 0) {
                 $shippingPrice = $customPrice;                                
-                $method->setMethodTitle("Freight Shipping Cost");
+              //  $method->setMethodTitle("Freight Shipping Cost");  Google checkout
             }               
             
 

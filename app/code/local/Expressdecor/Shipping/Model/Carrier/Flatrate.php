@@ -1,5 +1,5 @@
 <?php
-
+/// IT DOESNT WORK - LOOK at Tinybrick
 class Expressdecor_Shipping_Model_Carrier_Flatrate  extends Mage_Shipping_Model_Carrier_Flatrate
     implements Mage_Shipping_Model_Carrier_Interface
 {
@@ -67,12 +67,12 @@ class Expressdecor_Shipping_Model_Carrier_Flatrate  extends Mage_Shipping_Model_
             $nGrandTotal = $request->getPackageValue();
             if($nGrandTotal >= 100) {
                 $shippingPrice = '0.00';                                
-                $method->setMethodTitle("Fixed"); //Google checkout problem was Free Shipping
+                //$method->setMethodTitle("Fixed"); //Google checkout problem was Free Shipping same TinyBrick order edit 
             }
             
             if($customPrice > 0) {
                 $shippingPrice = $customPrice;                                
-                $method->setMethodTitle("Fixed");//Google checkout problem was  Freight Shipping Cost
+               // $method->setMethodTitle("Fixed");//Google checkout problem was  Freight Shipping Cost
             }               
             ///////////////////////////////////////////////
 
