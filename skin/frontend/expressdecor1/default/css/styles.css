@@ -3363,12 +3363,10 @@ border-bottom: 1px solid #E6E7E8;
 
 .std .center-right-banner .title-text {
 text-transform: uppercase;	
-font-size: 13px;
+font-size: 14px;
 padding-top: 19px;
-font-family: "Arial";
 padding-left: 15px;
-color: #7C7E80;
-font-weight: bold; 
+ color: #7C7E80;  
 }
 
 .std .center-right-banner .title-text-active {
@@ -3376,7 +3374,6 @@ color: #F7651E;
 }
 .std .center-right-banner .descr-text {
 font-size: 12px;
-font-family: "Arial";
 padding-left: 15px;
 cursor: pointer;
 opacity: 0.6;
