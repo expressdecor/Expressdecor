@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Expressdecor_Paypal>
+            <version>0.1.0</version>
+        </Expressdecor_Paypal>
+    </modules>
+
+ <global>
+         <models>
+           <paypal>
+              <rewrite>
+                  <express_checkout>Expressdecor_Paypal_Model_Express_Checkout</express_checkout> 
+               </rewrite>                                            
+           </paypal>                                      
+         </models>    
+              
+  </global>
+</config>
+
+
+	

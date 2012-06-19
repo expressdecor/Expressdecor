@@ -3362,13 +3362,21 @@ border-bottom: 1px solid #E6E7E8;
 }
 
 .std .center-right-banner .title-text {
+<<<<<<< HEAD
 text-transform: uppercase;
+=======
+text-transform: uppercase;	
+>>>>>>> afeeca5ebafedb6363bfed3bc7ef5a3fc426cd4d
 font-size: 13px;
 padding-top: 19px;
 font-family: "Arial";
 padding-left: 15px;
 color: #7C7E80;
+<<<<<<< HEAD
 font-weight: bold;
+=======
+font-weight: bold; 
+>>>>>>> afeeca5ebafedb6363bfed3bc7ef5a3fc426cd4d
 }
 
 .std .center-right-banner .title-text-active {
