@@ -218,6 +218,47 @@ span.validation-passed,
 div.validation-passed { background:url(../images/icon_ok.gif) 100% 2px no-repeat; padding-right:20px; }
 span.validation-error,
 div.validation-error { background:url(../images/icon_error.gif) 100% 2px no-repeat; padding-right:20px; }
+
+.onestepcheckout-index-index span.input-postcode.validation-passed,
+.onestepcheckout-index-index div.input-postcode.validation-passed, 
+.onestepcheckout-index-index span.input-postcode.validation-error,
+.onestepcheckout-index-index div.input-postcode.validation-error    { background-position:95px 17px;}
+
+.onestepcheckout-index-index span.input-firstname.validation-passed,
+.onestepcheckout-index-index div.input-firstname.validation-passed,
+.onestepcheckout-index-index span.input-lastname.validation-passed,
+.onestepcheckout-index-index div.input-lastname.validation-passed,
+.onestepcheckout-index-index span.input-email.validation-passed,
+.onestepcheckout-index-index div.input-email.validation-passed,
+.onestepcheckout-index-index span.input-telephone.validation-passed,
+.onestepcheckout-index-index div.input-telephone.validation-passed,
+.onestepcheckout-index-index span.input-firstname.validation-error,
+.onestepcheckout-index-index div.input-firstname.validation-error,
+.onestepcheckout-index-index span.input-lastname.validation-error,
+.onestepcheckout-index-index div.input-lastname.validation-error, 
+.onestepcheckout-index-index span.input-email.validation-error,
+.onestepcheckout-index-index div.input-email.validation-error, 
+.onestepcheckout-index-index span.input-telephone.validation-error,
+.onestepcheckout-index-index div.input-telephone.validation-error   { background-position:110px 17px;}
+
+.onestepcheckout-index-index span.input-country.validation-passed,
+.onestepcheckout-index-index div.input-country.validation-passed,
+.onestepcheckout-index-index span.input-address.validation-passed,
+.onestepcheckout-index-index div.input-address.validation-passed,
+.onestepcheckout-index-index span.input-city.validation-passed,
+.onestepcheckout-index-index div.input-city.validation-passed,
+.onestepcheckout-index-index span.input-address.validation-error,
+.onestepcheckout-index-index div.input-address.validation-error,
+.onestepcheckout-index-index span.input-city.validation-error,
+.onestepcheckout-index-index div.input-city.validation-error { background-position:256px 17px;padding-right:0px;}
+
+.onestepcheckout-index-index span.input-region.validation-passed,
+.onestepcheckout-index-index div.input-region.validation-passed,
+.onestepcheckout-index-index span.input-region.validation-error,
+.onestepcheckout-index-index div.input-region.validation-error   { background-position:145px 17px;}
+
+ 
+
 .required em { color:#f15c22; margin-right:4px; }
 p.required { margin:0; padding:5px 0 7px; text-align:right; width:620px; font-size:11px; color:#f02800; }
 .form-list .validation-advice { width:250px; margin-right:-250px; }
@@ -3363,12 +3404,10 @@ border-bottom: 1px solid #E6E7E8;
 
 .std .center-right-banner .title-text {
 text-transform: uppercase;	
-font-size: 13px;
+font-size: 14px;
 padding-top: 19px;
-font-family: "Arial";
 padding-left: 15px;
-color: #7C7E80;
-font-weight: bold; 
+ color: #7C7E80;  
 }
 
 .std .center-right-banner .title-text-active {
@@ -3376,7 +3415,6 @@ color: #F7651E;
 }
 .std .center-right-banner .descr-text {
 font-size: 12px;
-font-family: "Arial";
 padding-left: 15px;
 cursor: pointer;
 opacity: 0.6;
