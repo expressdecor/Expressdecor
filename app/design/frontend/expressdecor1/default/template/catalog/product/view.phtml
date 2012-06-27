@@ -275,7 +275,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                  </span>
                    <script type="text/javascript"  >
                    var msrp_price=document.getElementById('old-price2-<?php echo $_id ?>').innerHTML;
-                   msrp_price=parseFloat(msrp_price.replace("$",""));
+                   msrp_price=parseFloat(msrp_price.replace("$","").replace(",",""));
 					 </script>                  
 	 	<?php
 	}
@@ -297,7 +297,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                  <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo $save; ?></span> 
                              <script type="text/javascript"  >
                              var disc_price=document.getElementById('disc-price-<?php echo $_id ?>').innerHTML;
-                             disc_price=parseFloat(disc_price.replace("$",""));
+                             disc_price=parseFloat(disc_price.replace("$","").replace(",",""));
 					 </script>
 					  </p>
                <?php } ?>
@@ -319,7 +319,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                  </span>
                    <script type="text/javascript"  >
                    var msrp_price=document.getElementById('old-price2-<?php echo $_id ?>').innerHTML;
-                   msrp_price=parseFloat(msrp_price.replace("$",""));
+                   msrp_price=parseFloat(msrp_price.replace("$","").replace(",",""));
 					 </script>      
 					 </div>            
 	 	<?php
@@ -346,7 +346,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                  <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo (max($_regularPrice,$msrp_price)-$_finalPrice); ?></span>
                       <script type="text/javascript"  >
                       var disc_price=document.getElementById('disc-price-<?php echo $_id ?>').innerHTML;
-                      disc_price=parseFloat(disc_price.replace("$",""));
+                      disc_price=parseFloat(disc_price.replace("$","").replace(",",""));
 					 </script>
 					  </div>
 					 <?php
