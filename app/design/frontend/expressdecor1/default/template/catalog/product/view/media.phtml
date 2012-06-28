@@ -49,7 +49,7 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
 <?php /* --------- jqZoom --------- */ ?>
     <?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
         <?php list($_imgWidth, $_imgHeight) = $this->helper('catalog/image')->init($_product, 'image')->getOriginalSizeArray(); ?>
-        <?php if ($_imgWidth > 100 && $_imgHeight > 100):?>
+        <?php if ($_imgWidth > 300 && $_imgHeight > 300):?>
             <a class="product-image image-zoom" id="main-image" title="<?php echo $this->htmlEscape($_product->getImageLabel()); ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>" >
                 <?php
                 $_img = '<img id="main-image-img" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(300).'" height="300" width="300" alt="'.$this->htmlEscape($_product->getImageLabel()).'" title="'.$this->htmlEscape($_product->getImageLabel()).'" />';
