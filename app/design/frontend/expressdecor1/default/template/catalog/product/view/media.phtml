@@ -54,6 +54,7 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
                 <?php
                 $_img = '<img id="main-image-img" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(300).'" height="300" width="300" alt="'.$this->htmlEscape($_product->getImageLabel()).'" title="'.$this->htmlEscape($_product->getImageLabel()).'" />';
                 echo $_helper->productAttribute($_product, $_img, 'image-thumb');
+               
                 ?>
             </a>
            <script type="text/javascript">
@@ -125,8 +126,8 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
     <?php endif; ?>
 <?php /* --------- /native magento zoom --------- */ ?>
 <?php endif; ?>
-<?php if (count($this->getGalleryImages()) > 0): ?>
-<?php endif; ?>
+<?php  // if (count($this->getGalleryImages()) > 0): ?>
+<?php  //endif; ?>
 </div>
               <script type="text/javascript">
               function show_video() {
@@ -206,20 +207,12 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
         					 </a>
                             </div>
                         </div>
-          
-                         
-     
-      <!--  <li>
-            <a href="#" onclick="change_base_image('<?php echo  $_image->getUrl(); ?>','<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small', $_image->getFile())->resize(330); ?>'); disable_video();"  title="<?php echo $this->htmlEscape($_image->getLabel()) ?>">
-            <img onmouseover="change_base_image('<?php echo  $_image->getUrl(); ?>','<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small', $_image->getFile())->resize(330); ?>');"   src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(48); ?>" width="48" height="48" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" />
-            </a>
-
-        </li>-->
     <?php 
-    }
+    } 
     endforeach; ?>
                        </div>                            
                   </div>
             </div>
-<!--    </ul>-->
+ 
 </div>
+ 

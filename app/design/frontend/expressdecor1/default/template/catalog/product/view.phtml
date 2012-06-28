@@ -183,7 +183,7 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
                   </div>
                   <?php } ?>
                    <div class="product-img-outer">
-                        <?php echo $this->getChildHtml('media') ?>
+                        <?php echo $this->getChildHtml('media'); ?>
 
                 </div>        
                 <div class="product-center">
@@ -215,7 +215,7 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
                             </div>
                         <?php endif;?> 
 <!--/Options end-->
-<?php echo $this->getChildHtml('alert_urls') ?>                       
+<?php echo $this->getChildHtml('alert_urls'); ?>                       
                                             <div class="calc-tab">
 <!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style ">
@@ -356,7 +356,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
          <?php endif; ?>                           
         </div>
         <div class='promo-txt'>
-<?php
+<?php 
 if 	($customShipPrice > 0)	{
 	?>
  
@@ -584,8 +584,10 @@ productAddToCartForm.submit = function(button) {
         	    {        	   
         	     	$('attribute".$conf_attr_id."').options[i].selected=true;       	    
         	    }
-        	    if (childs_option[i]=='".$selected_finish."') {        	  	
-        	  	change_base_image(childs_full_url[i],childs_url[i]);        	  	
+        	    if (childs_option[i]=='".$selected_finish."') {    
+        	       if (childs_full_url[i].indexOf('placeholder') == -1) { 	  	
+        	  	     change_base_image(childs_full_url[i],childs_url[i]);
+        	  	   }           	  	
         	  	}  
         	 }
 			
