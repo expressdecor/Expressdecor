@@ -666,6 +666,7 @@ background-image: url("../images/header_footer_sprite1.png");
 background-position: 1px -2px;
 height: 28px;
 width: 1px;
+margin-left:9px;
 }
 .livechat-img-right {
 float:left;
@@ -674,7 +675,7 @@ background-image: url("../images/header_footer_sprite1.png");
 background-position: -4px -30px;
 height: 28px;
 width: 145px;
-margin-left:18px;
+margin-left:9px;
 }
 
 .livechat-img-custom {
@@ -1218,7 +1219,7 @@ color: #000000;
 }
 .collateral-tabs .tab { 
 position:relative; 
-z-index:2; 
+z-index:2 !important; 
 margin-right:-1px; 
 background:url("../images/tab-background.png") repeat-x scroll 0 0 transparent;
 color:#000; 
@@ -1248,9 +1249,9 @@ text-transform:uppercase;
  color:#000;
  font-weight: bold;
   height:32px;
- /*font-weight:bold; */
+   z-index: 3 !important;
   
-  z-index:3; border-bottom:0; 
+   border-bottom:0; 
 
 /*background:url("../images/tab-bg.jpg") */
 
@@ -4222,7 +4223,7 @@ a#move_up:hover { color: #fff; background: #597da3;}
 background:url(../images/header_footer_sprite1.png) 0px -176px no-repeat;
 height:20px;
 margin-left: -7px;
-margin-top:-30px;
+margin-top:-36px;
 }
 
 .header-line .header-line-shipping, .header-line-tax, .header-line-returns {

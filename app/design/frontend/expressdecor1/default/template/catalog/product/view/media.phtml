@@ -49,11 +49,12 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
 <?php /* --------- jqZoom --------- */ ?>
     <?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
         <?php list($_imgWidth, $_imgHeight) = $this->helper('catalog/image')->init($_product, 'image')->getOriginalSizeArray(); ?>
-        <?php if ($_imgWidth > 100 && $_imgHeight > 100):?>
+        <?php if ($_imgWidth > 300 && $_imgHeight > 300):?>
             <a class="product-image image-zoom" id="main-image" title="<?php echo $this->htmlEscape($_product->getImageLabel()); ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>" >
                 <?php
                 $_img = '<img id="main-image-img" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(300).'" height="300" width="300" alt="'.$this->htmlEscape($_product->getImageLabel()).'" title="'.$this->htmlEscape($_product->getImageLabel()).'" />';
                 echo $_helper->productAttribute($_product, $_img, 'image-thumb');
+               
                 ?>
             </a>
            <script type="text/javascript">
@@ -125,8 +126,7 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
     <?php endif; ?>
 <?php /* --------- /native magento zoom --------- */ ?>
 <?php endif; ?>
-<?php if (count($this->getGalleryImages()) > 0): ?>
-<?php endif; ?>
+ 
 </div>
               <script type="text/javascript">
               function show_video() {
@@ -187,8 +187,10 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
                            <a href="#"  onclick="show_video();"  title="Show Video">     <div class="video-link"></div>
        					 </a>
                             </div>
-                        </div>
+            </div>
  <?php } ?>
+
+
     <?php foreach ($this->getGalleryImages() as $_image): 
        $src= $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(48);
     if ( strpos($src,'thumbnail.jpg') === false)  { 
@@ -206,20 +208,23 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
         					 </a>
                             </div>
                         </div>
-          
-                         
-     
-      <!--  <li>
-            <a href="#" onclick="change_base_image('<?php echo  $_image->getUrl(); ?>','<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small', $_image->getFile())->resize(330); ?>'); disable_video();"  title="<?php echo $this->htmlEscape($_image->getLabel()) ?>">
-            <img onmouseover="change_base_image('<?php echo  $_image->getUrl(); ?>','<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small', $_image->getFile())->resize(330); ?>');"   src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(48); ?>" width="48" height="48" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" />
-            </a>
-
-        </li>-->
     <?php 
-    }
+    } 
     endforeach; ?>
+  <?php   if (count($this->getGalleryImages()) == 0): ?>
+              <div class="item" style="display:none;">
+                            <div class="key caption"></div>                            
+                            <div class="icon">
+                               <a href="#"   title="palceholder" ></a>
+                            </div>                            
+                            <div class="picture">
+                           <a href="#"    title="palceholder"></a>
+                            </div>
+            </div>
+  <?php  endif; ?>
                        </div>                            
                   </div>
             </div>
-<!--    </ul>-->
+ 
 </div>
+ 
