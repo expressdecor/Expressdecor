@@ -294,7 +294,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                 ?>          
                    <p class="price-save-block">  
                   <span class="price-save-label"><?php echo $this->__('You Save ') ?></span>
-                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo $save; ?></span> 
+                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo round($save,2); ?></span> 
                              <script type="text/javascript"  >
                              var disc_price=document.getElementById('disc-price-<?php echo $_id ?>').innerHTML;
                              disc_price=parseFloat(disc_price.replace("$","").replace(",",""));
@@ -343,7 +343,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
 	 	?>
 	 	  <div class="price-save-block">
                    <span class="price-save-label"><?php echo $this->__('You Save ') ?></span>
-                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo (max($_regularPrice,$msrp_price)-$_finalPrice); ?></span>
+                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo round((max($_regularPrice,$msrp_price)-$_finalPrice),2); ?></span>
                       <script type="text/javascript"  >
                       var disc_price=document.getElementById('disc-price-<?php echo $_id ?>').innerHTML;
                       disc_price=parseFloat(disc_price.replace("$","").replace(",",""));
