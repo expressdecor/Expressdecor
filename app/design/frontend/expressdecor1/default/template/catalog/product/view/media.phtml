@@ -126,8 +126,7 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
     <?php endif; ?>
 <?php /* --------- /native magento zoom --------- */ ?>
 <?php endif; ?>
-<?php  // if (count($this->getGalleryImages()) > 0): ?>
-<?php  //endif; ?>
+ 
 </div>
               <script type="text/javascript">
               function show_video() {
@@ -188,8 +187,10 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
                            <a href="#"  onclick="show_video();"  title="Show Video">     <div class="video-link"></div>
        					 </a>
                             </div>
-                        </div>
+            </div>
  <?php } ?>
+
+
     <?php foreach ($this->getGalleryImages() as $_image): 
        $src= $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(48);
     if ( strpos($src,'thumbnail.jpg') === false)  { 
@@ -210,6 +211,17 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
     <?php 
     } 
     endforeach; ?>
+  <?php   if (count($this->getGalleryImages()) == 0): ?>
+              <div class="item" style="display:none;">
+                            <div class="key caption"></div>                            
+                            <div class="icon">
+                               <a href="#"   title="palceholder" ></a>
+                            </div>                            
+                            <div class="picture">
+                           <a href="#"    title="palceholder"></a>
+                            </div>
+            </div>
+  <?php  endif; ?>
                        </div>                            
                   </div>
             </div>
