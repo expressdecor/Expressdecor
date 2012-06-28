@@ -1218,7 +1218,7 @@ color: #000000;
 }
 .collateral-tabs .tab { 
 position:relative; 
-z-index:2; 
+z-index:2 !important; 
 margin-right:-1px; 
 background:url("../images/tab-background.png") repeat-x scroll 0 0 transparent;
 color:#000; 
@@ -1248,9 +1248,9 @@ text-transform:uppercase;
  color:#000;
  font-weight: bold;
   height:32px;
- /*font-weight:bold; */
+   z-index: 3 !important;
   
-  z-index:3; border-bottom:0; 
+   border-bottom:0; 
 
 /*background:url("../images/tab-bg.jpg") */
 
