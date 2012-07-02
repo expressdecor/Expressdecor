@@ -161,11 +161,11 @@ var google_conversion_value = 0;
 <!--  Google trust store -->
 <?php
     $orderId = $this->getOrderId();
-    $order = Mage::getModel('sales/order')->loadByIncrementId($orderId);
-    $customer = Mage::getModel('customer/customer')->load($order->getCustomerId());
+    $order = Mage::getModel('sales/order')->loadByIncrementId($orderId);   
     $address = $order->getBillingAddress();
     $shipDate = new Zend_Date(); // some logic to determine ship date
     $shipDate->add('48', Zend_Date::HOUR); //48 Hours for shipping
+ 
 ?>
 <!-- START Trusted Stores Order -->
 <div id="gts-order" style="display:none;">
@@ -173,7 +173,7 @@ var google_conversion_value = 0;
   <!-- start order and merchant information -->
   <span id="gts-o-id"><?php echo $orderId; ?></span>
   <span id="gts-o-domain">www.expressdecor.com</span>
-  <span id="gts-o-email"><?php echo htmlentities($customer->getEmail()); ?></span>
+  <span id="gts-o-email"><?php echo htmlentities($order->getCustomerEmail()); ?></span>
   <span id="gts-o-country"><?php echo htmlentities($address->getCountryId()); ?></span>
   <span id="gts-o-currency">USD</span>
   <span id="gts-o-total"><?php echo $order->getGrandTotal(); ?></span>
