@@ -157,3 +157,49 @@ var google_conversion_value = 0;
 <img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1070966174/?label=fxjQCLb4PxCey9b-Aw&amp;guid=ON&amp;script=0"/>
 </div>
 </noscript>
+
+<!--  Google trust store -->
+<?php
+    $orderId = $this->getOrderId();
+    $order = Mage::getModel('sales/order')->loadByIncrementId($orderId);
+    $customer = Mage::getModel('customer/customer')->load($order->getCustomerId());
+    $address = $order->getBillingAddress();
+    $shipDate = new Zend_Date(); // some logic to determine ship date
+    $shipDate->add('48', Zend_Date::HOUR); //48 Hours for shipping
+?>
+<!-- START Trusted Stores Order -->
+<div id="gts-order" style="display:none;">
+
+  <!-- start order and merchant information -->
+  <span id="gts-o-id"><?php echo $orderId; ?></span>
+  <span id="gts-o-domain">www.expressdecor.com</span>
+  <span id="gts-o-email"><?php echo htmlentities($customer->getEmail()); ?></span>
+  <span id="gts-o-country"><?php echo htmlentities($address->getCountryId()); ?></span>
+  <span id="gts-o-currency">USD</span>
+  <span id="gts-o-total"><?php echo $order->getGrandTotal(); ?></span>
+  <span id="gts-o-discounts">-<?php echo $order->getDiscountAmount(); ?></span>
+  <span id="gts-o-shipping-total"><?php echo $order->getShippingAmount(); ?></span>
+  <span id="gts-o-tax-total"><?php echo $order->getTaxAmount(); ?></span>
+  <span id="gts-o-est-ship-date"><?php echo $shipDate->toString('yyyy-MM-dd'); ?></span>
+  <span id="gts-o-has-preorder">false</span>
+  <span id="gts-o-has-digital">false</span>
+  <!-- end order and merchant information -->
+
+  <!-- start repeated item specific information -->
+  <?php foreach ($order->getAllItems() as $item): ?>
+  <!-- item example: this area repeated for each item in the order -->
+  <span class="gts-item">
+    <span class="gts-i-name"><?php echo htmlentities($item->getName()); ?></span>
+    <span class="gts-i-price"><?php echo $item->getBasePrice(); ?></span>
+    <span class="gts-i-quantity"><?php echo (int)$item->getQtyOrdered(); ?></span>
+    <span class="gts-i-prodsearch-id"><?php echo $item->getSku(); ?></span>
+    <span class="gts-i-prodsearch-store-id">2600150</span>
+    <span class="gts-i-prodsearch-country">US</span>
+    <span class="gts-i-prodsearch-language">en</span>
+  </span>
+  <?php endforeach; ?>
+  <!-- end item 1 example -->
+  <!-- end repeated item specific information -->
+
+</div>
+<!-- END Trusted Stores -->
