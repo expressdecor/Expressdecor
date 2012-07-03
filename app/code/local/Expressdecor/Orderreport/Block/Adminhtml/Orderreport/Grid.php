@@ -22,6 +22,7 @@ class Expressdecor_Orderreport_Block_Adminhtml_Orderreport_Grid extends Mage_Adm
     	$this->addColumn('order_date', array(
     			'header'    =>Mage::helper('orderreport')->__('Order Date'),
     			'align'     =>'right',
+    			'width'     =>'160px',
     			'index'     =>'created_at',
     			'type'      =>'datetime'
     	));
