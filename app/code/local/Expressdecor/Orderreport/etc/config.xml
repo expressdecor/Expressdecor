@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Expressdecor_Orderreport>
+            <version>0.1.0</version>
+        </Expressdecor_Orderreport>
+    </modules>
+    <admin>
+        <routers>
+            <orderreport>
+                <use>admin</use>
+                <args>
+                    <module>Expressdecor_Orderreport</module>
+                    <frontName>orderreport</frontName>
+                </args>
+            </orderreport>
+        </routers>
+    </admin>
+    <adminhtml>
+        <menu>
+            <report>
+                <children>
+                    <orderreport translate="title" module="orderreport">
+                        <title>Placed Orders Report</title>
+                        <action>orderreport/adminhtml_orderreport</action>
+                    </orderreport>
+                </children>
+            </report>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children> 
+                        <report>
+                            <children>
+                                <orderreport translate="title" module="orderreport">
+                                    <title>Placed Orders Report</title>
+                                    <action>orderreport/adminhtml_orderreport</action>
+                                </orderreport>
+                            </children>
+                        </report>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <orderreport> 
+                    <file>orderreport.xml</file>
+                </orderreport>
+            </updates>
+        </layout>
+    </adminhtml>
+    <global>
+        <models>
+            <orderreport>
+                <class>Expressdecor_Orderreport_Model</class>
+                <resourceModel>orderreport</resourceModel>
+            </orderreport>
+        </models>
+        <resources>
+            <orderreport_setup>
+                <setup>
+                    <module>Expressdecor_Orderreport</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </orderreport_setup>
+            <orderreport_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </orderreport_write>
+            <orderreport_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </orderreport_read>
+        </resources>
+        <blocks>
+            <orderreport>
+                <class>Expressdecor_Orderreport_Block</class>
+            </orderreport>
+        </blocks>
+        <helpers>
+            <orderreport>
+                <class>Expressdecor_Orderreport_Helper</class>
+            </orderreport>
+        </helpers>
+    </global>
+</config>

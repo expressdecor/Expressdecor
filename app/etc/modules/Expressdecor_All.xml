@@ -58,5 +58,10 @@
 			<active>true</active>
 			<codePool>local</codePool>
 	    </Expressdecor_Paypal>
+	    
+	        <Expressdecor_Orderreport>
+			<active>true</active>
+			<codePool>local</codePool>
+	    </Expressdecor_Orderreport>	
 	</modules>
 </config>
