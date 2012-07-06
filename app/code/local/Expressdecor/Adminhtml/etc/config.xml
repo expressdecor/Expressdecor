@@ -6,9 +6,7 @@
         </Expressdecor_Adminhtml>
     </modules>
 
-    <global>
-
-    
+    <global>  
         <blocks>
             <adminhtml>
                 <rewrite>
