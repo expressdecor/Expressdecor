@@ -89,7 +89,7 @@ class TinyBrick_OrderEdit_Model_Carrier_Flatrate extends Mage_Shipping_Model_Car
             if ($request->getFreeShipping() === true || $request->getPackageQty() == $this->getFreeBoxes()) {
                 $shippingPrice = '0.00';                                
             }
-           
+            
             
             //added changes
             ///////////////////////////////////////////////
@@ -117,7 +117,7 @@ class TinyBrick_OrderEdit_Model_Carrier_Flatrate extends Mage_Shipping_Model_Car
             ///////////////////////////////////////////////
             
             $result->append($method);
-        }  
+        }
 
         return $result;
     }    
