@@ -308,7 +308,10 @@ var WidgetInstance = {
         } else if (type == 'products') {
             additional.url = '<?php echo $this->getProductsChooserUrl() ?>';
             additional.post_parameters = $H({'product_type_id':$(chooser).down('input.product_type_id').value});
+ 	} else if (type == 'tags') {
+            additional.url = '<?php echo $this->getTagsChooserUrl() ?>';
         }
+
         if (chooser && additional) {
             this.displayChooser(chooser, additional);
         }

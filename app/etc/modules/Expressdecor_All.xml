@@ -59,9 +59,22 @@
 			<codePool>local</codePool>
 	    </Expressdecor_Paypal>
 	    
-	        <Expressdecor_Orderreport>
+	    <Expressdecor_Orderreport>
 			<active>true</active>
 			<codePool>local</codePool>
 	    </Expressdecor_Orderreport>	
+	    
+	    <Expressdecor_Tagsbanner>
+			<active>true</active>
+			<codePool>local</codePool>
+			 <depends>
+                <Mage_Admin />
+                <Enterprise_Cms />
+                <Mage_Adminhtml />
+                <Mage_Cms />
+                <Mage_Widget />
+            </depends>
+			
+	    </Expressdecor_Tagsbanner>	
 	</modules>
 </config>

@@ -48,10 +48,11 @@ class IcebergCommerce_WidgetTagProducts_Block_List extends Mage_Catalog_Block_Pr
 
 			$this->_productCollection = $layer->getProductCollection()
 			->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
+			->addAttributeToSelect('name')
 			->addStoreFilter(Mage::app()->getStore()->getId())
 			->addUrlRewrite();
 
-
+			
 			$i=0;
 			foreach ($tagIds as $tagid) {
 				if( $i==0) {
@@ -70,11 +71,30 @@ class IcebergCommerce_WidgetTagProducts_Block_List extends Mage_Catalog_Block_Pr
 
 			Mage::getSingleton('catalog/product_status')->addSaleableFilterToCollection($this->_productCollection);
 			Mage::getSingleton('catalog/product_visibility')->addVisibleInSiteFilterToCollection($this->_productCollection);
-
 			$this->_productCollection->getSelect()->where('relation.active = (?)',1);
+			//sorting
+			$order = $this->getRequest()->getParam('order');
+			if (!$order) {
+				$this->_productCollection->getSelect()->order('relation.position DESC');
+			} else {
+				$sort_direction=$this->getRequest()->getParam('dir');
+				if ($order=='position') {
+					$this->_productCollection->getSelect()->order('relation.position '.$sort_direction);
+				} elseif ($order=='name') {
+					$this->_productCollection->getSelect()
+					->join( array('ev'=>'catalog_product_entity_varchar'), 'ev.entity_id = e.entity_id', array())
+					->where('ev.attribute_id = (?)',60)
+				 	->order('ev.value '.$sort_direction);
+				} else{
+					$this->_productCollection->getSelect()->order('ev.'.$order.' '.$sort_direction);
+				}				 
+			}
+			 
+			//$this->_productCollection->getSelect()->where('relation.active = (?)',1)->order('relation.position DESC');
+			
 			$this->_productCollection->setFlag('distinct', true);
 			
-			//echo $this->_productCollection->getSelect();
+			//echo $this->_productCollection->getSelect(); 
 		}
 		//end
 

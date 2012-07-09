@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+	    <Expressdecor_Tagsbanner>
+	        <version>1.1.0</version>
+	    </Expressdecor_Tagsbanner>
+	</modules>
+<global> 
+
+  <blocks>
+     <adminhtml>
+         <rewrite>
+            <cms_page_widget_chooser>Expressdecor_Tagsbanner_Block_Adminhtml_Cms_Page_Widget_Chooser</cms_page_widget_chooser>            
+         </rewrite>        
+     </adminhtml>
+     <widget>
+     <rewrite>
+       <adminhtml_widget_instance_edit_tab_main_layout>Expressdecor_Tagsbanner_Block_Adminhtml_Widget_Instance_Edit_Tab_Main_Layout</adminhtml_widget_instance_edit_tab_main_layout>
+     </rewrite>
+     </widget>
+  </blocks>           
+    <models>
+      <widget>
+         <rewrite>
+           <widget_instance>Expressdecor_Tagsbanner_Model_Widget_Instance</widget_instance> 
+         </rewrite>                                            
+      </widget>                                      
+    </models> 
+         
+	<helpers>
+       <tagsbanner>
+           <class>Expressdecor_Tagsbanner_Helper</class>
+       </tagsbanner>
+       <cms>
+	      <rewrite>
+	          <page>Expressdecor_Tagsbanner_Helper_Page</page>
+	       </rewrite>
+	   </cms>
+    </helpers>  
+     
+   <resources>
+            <tagsbanner_setup>
+                <setup>
+                    <module>Expressdecor_Tagsbanner</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </tagsbanner_setup>
+            <tagsbanner_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </tagsbanner_write>
+            <tagsbanner_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </tagsbanner_read>			
+  </resources>
+                         
+</global>
+
+ <admin>
+    <routers>
+        <adminhtml>
+            <args>
+                <modules>
+                    <expressdecor_tagsbanner before="Mage_Adminhtml">Expressdecor_Tagsbanner_Adminhtml</expressdecor_tagsbanner>
+                </modules>
+            </args>
+        </adminhtml>
+    </routers>
+ </admin>
+</config>
+
+
+	
