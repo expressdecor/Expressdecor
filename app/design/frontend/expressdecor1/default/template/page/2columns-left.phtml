@@ -98,7 +98,21 @@
 
             <div class="col-main">
 
-                <?php echo $this->getChildHtml('content') ?>
+                <?php 
+                if(!empty($_GET['p']) && $_GET['p'] > 1) {
+                	$content=$this->getChildHtml('content');
+                	$dom = new DOMDocument;
+                	$dom->loadHTML($content);
+                	$xPath = new DOMXPath($dom);
+                	$nodes = $xPath->query('//*[@class="category-view"]');
+                	if($nodes->item(0)) {
+                		$nodes->item(0)->parentNode->removeChild($nodes->item(0));
+                	}
+                	echo $dom->saveHTML();                	              
+                } else {
+                echo $this->getChildHtml('content') ;
+                }
+                ?>
 
             </div>
 

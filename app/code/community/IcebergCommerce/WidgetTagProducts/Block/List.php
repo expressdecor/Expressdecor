@@ -72,6 +72,12 @@ class IcebergCommerce_WidgetTagProducts_Block_List extends Mage_Catalog_Block_Pr
 			Mage::getSingleton('catalog/product_status')->addSaleableFilterToCollection($this->_productCollection);
 			Mage::getSingleton('catalog/product_visibility')->addVisibleInSiteFilterToCollection($this->_productCollection);
 			$this->_productCollection->getSelect()->where('relation.active = (?)',1);
+			//visibility
+			$this->_productCollection->getSelect()
+			->join( array('et'=>'catalog_product_entity_int'), 'et.entity_id = e.entity_id', array())
+			->where('et.attribute_id = (?)',91)
+			->where('et.value IN (2,4)');
+			
 			//sorting
 			$order = $this->getRequest()->getParam('order');
 			if (!$order) {
@@ -97,13 +103,20 @@ class IcebergCommerce_WidgetTagProducts_Block_List extends Mage_Catalog_Block_Pr
 			//echo $this->_productCollection->getSelect(); 
 		}
 		//end
-
+		$limit=$this->getRequest()->getParam('limit');
 		$limitSize = (int) $this->getOptionLimitSize();
-
-		if ($limitSize > 0)
-		{
-			$this->_productCollection->setPageSize($limitSize);
+ 		
+		if (!empty($limit)){
+			$this->_productCollection->setPageSize($limit);
+		} else {
+			
+			if ($limitSize > 0)
+			{
+				$this->_productCollection->setPageSize($limitSize);
+			}
 		}
+		
+		
 		return $this->_productCollection;
 
 
