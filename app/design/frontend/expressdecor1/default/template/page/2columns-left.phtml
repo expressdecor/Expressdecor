@@ -99,7 +99,9 @@
             <div class="col-main">
 
                 <?php 
-                if(!empty($_GET['p']) && $_GET['p'] > 1) {
+                $_category  = Mage::registry('current_category');
+ 
+                if(!empty($_GET['p']) && $_GET['p'] > 1 && empty($_category)) {
                 	$content=$this->getChildHtml('content');
                 	$dom = new DOMDocument;
                 	$dom->loadHTML($content);
@@ -112,6 +114,7 @@
                 } else {
                 echo $this->getChildHtml('content') ;
                 }
+               
                 ?>
 
             </div>
