@@ -91,8 +91,8 @@ class IcebergCommerce_WidgetTagProducts_Block_List extends Mage_Catalog_Block_Pr
 					->join( array('ev'=>'catalog_product_entity_varchar'), 'ev.entity_id = e.entity_id', array())
 					->where('ev.attribute_id = (?)',60)
 				 	->order('ev.value '.$sort_direction);
-				} else{
-					$this->_productCollection->getSelect()->order('ev.'.$order.' '.$sort_direction);
+				} elseif ($order=='price'){
+					$this->_productCollection->getSelect()->order('price_index.final_price '.$sort_direction);
 				}				 
 			}
 			 
