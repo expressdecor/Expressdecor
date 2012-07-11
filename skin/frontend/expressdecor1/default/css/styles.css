@@ -1111,7 +1111,7 @@ margin: 0 0 0 -8px;
 
 /* Category Page ========================================================================= */
 .category-view { margin:0 -20px -20px; }
-
+.cms-page-view .category-view {margin-left:0px;} 
 .category-title { margin-bottom:0;  border-bottom:0; text-align:left; }
 .category-title .rss-feed { float:right; margin:7px 0 0; padding-left:17px; line-height:12px; background:url(../images/icon_rss.gif) 0 0 no-repeat; white-space:nowrap; text-decoration:none; }
 .category-title .rss-feed:hover { text-decoration:underline; }
