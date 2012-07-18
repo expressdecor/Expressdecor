@@ -1118,7 +1118,7 @@ margin: 0 0 0 -8px;
 
 .category-view .note-msg,
 .category-description { padding:20px; }
-
+.std  .note-msg { padding:20px; } 
 .results-view { margin:0 -20px -20px; }
 .results-view .recommendations { padding:20px 20px 0; }
 .catalogsearch-result-index .page-title { margin-bottom:0; }
