@@ -57,7 +57,8 @@ function get_name_cat($collection) {
 		$name=$cur_category->getName();
 		$storeId = Mage::app()->getStore()->getId();	
 		// check category name and explode into tags
-		$name=str_replace(' Collection', '', $name);
+	
+		//$name=str_replace(' Collection', '', $name); // need to save collection
 		$name=str_replace('Faucet', 'Faucets', $name);
 		$name=str_replace('Faucetss', 'Faucets', $name);
 		$name=str_replace('Sink', 'Sinks', $name);
@@ -67,6 +68,19 @@ function get_name_cat($collection) {
 		$name=str_replace('bathroom ', 'Bathroom ', $name);
 		$name=trim($name);
 		// With space
+		/* Kitchen Faucets Collection
+		 * Kitchen Sinks Collection
+		* Bathroom Faucets Collection
+		* Bathroom Waterfall Faucets Collection
+		* Ceramic Sinks Collection
+		* Glass Sinks Collection
+		*/
+		$name=str_replace('Kitchen Faucets Collection', 'Kitchen-Faucets-Collection', $name);
+		$name=str_replace('Kitchen Sinks Collection', 'Kitchen-Sinks-Collection', $name);
+		$name=str_replace('Bathroom Faucets Collection', 'Bathroom-Faucets-Collection', $name);
+		$name=str_replace('Bathroom Waterfall Faucets Collection', 'Bathroom-Waterfall-Faucets-Collection', $name);
+		$name=str_replace('Ceramic Sinks Collection', 'Ceramic-Sinks-Collection', $name);
+		$name=str_replace('Glass Sinks Collection', 'Glass-Sinks-Collection', $name);
 		/*
 		 * Shower Sets
 		 * Shower Heads
@@ -76,6 +90,7 @@ function get_name_cat($collection) {
 		 * Belle Foret
 		 * New Arrivals
 		*/		
+		
 		$name=str_replace('Shower Sets', 'Shower_Sets', $name);
 		$name=str_replace('Shower Heads', 'Shower_Heads', $name);
 		$name=str_replace('Tile Redi', 'Tile_Redi', $name);
@@ -95,8 +110,13 @@ function get_name_cat($collection) {
 			$tag_name=str_replace('Elizabethan_Classics', 'Elizabethan Classics', $tag_name);
 			$tag_name=str_replace('Belle_Foret', 'Belle Foret', $tag_name);
 			$tag_name=str_replace('New_Arrivals', 'New Arrivals', $tag_name);
-			
-			echo $tag_name.'<br/>';
+			$name=str_replace('Kitchen-Faucets-Collection', 'Kitchen Faucets Collection', $name);
+			$name=str_replace('Kitchen-Sinks-Collection', 'Kitchen Sinks Collection', $name);
+			$name=str_replace('Bathroom-Faucets-Collection', 'Bathroom Faucets Collection', $name);
+			$name=str_replace('Bathroom-Waterfall-Faucets-Collection', 'Bathroom Waterfall Faucets Collection', $name);
+			$name=str_replace('Ceramic-Sinks-Collection', 'Ceramic Sinks Collection', $name);
+			$name=str_replace('Glass-Sinks-Collection', 'Glass Sinks Collection', $name);
+			//echo $tag_name.'<br/>';
 			 
 			//tag
 			$tag_id=get_tag_id($tag_name,$storeId);
@@ -110,7 +130,7 @@ function get_name_cat($collection) {
 			}
 		}
 			 	
-		//cms page
+// 		//cms page
 		$PageModel=Mage::getModel('cms/page');
 		$PageModel->unsetData();
 		$content="";
@@ -153,7 +173,7 @@ function get_name_cat($collection) {
 		);
 
 		$PageModel->setData($data)->save();
-		echo "<br/>".$cur_category->getUrlKey().'.html'."<br/>";
+		echo $cur_category->getUrlKey().'.html'."<br/>";
 		//end cms
 
 		// delete from url rewrite ??
