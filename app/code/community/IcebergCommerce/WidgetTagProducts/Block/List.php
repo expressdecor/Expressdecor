@@ -151,6 +151,11 @@ class IcebergCommerce_WidgetTagProducts_Block_List extends Mage_Catalog_Block_Pr
 		// Set Defaults for Pagination
 		// --------------------------------------------
 		$pageSize = (int) $this->getOptionPageSize();
+		 
+		$limit=$this->getRequest()->getParam('limit');
+		if (!empty($limit)){
+			$pageSize=$limit;
+		} 
 		if ($pageSize > 0)
 		{
 			$toolbarBlock->setData('_current_limit', $pageSize);
