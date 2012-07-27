@@ -92,7 +92,7 @@
         <div class="main col1-layout">
 
             <div class="col-main">
-
+ 
                 <?php echo $this->getChildHtml('content') ?>
 
             </div>
@@ -110,7 +110,12 @@
 </div>
 
 <?php echo $this->getAbsoluteFooter() ?>
-
+<?php
+	$mail=Mage::getModel('core/cookie')->get('express_mail5'); //cookie for popup window
+	if ($mail>0){
+	  echo "<script type=\"text/javascript\">jQ('.express-emails').hide(); jQ('.emails-overlay').hide();</script>"; 
+	}
+  ?>
 </body>
 
 </html>

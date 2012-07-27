@@ -8,7 +8,12 @@ class Expressdecor_Salesflag_Model_Expressdecor extends Mage_Core_Model_Abstract
 		$coupon_code=Mage::getModel('checkout/session')->getDiscountParam($param_discount);
 		
 		if ($coupon_code)
-		Mage::getSingleton('checkout/cart')->getQuote()->setCouponCode($coupon_code)->save();		
+		Mage::getSingleton('checkout/cart')->getQuote()->setCouponCode($coupon_code)->save();				
+		//Email newsletter Homepage
+		$email=Mage::getModel('core/cookie')->get('express_email');
+		if (!empty($email)){
+			Mage::getSingleton('checkout/cart')->getQuote()->setCustomerEmail($email)->save();
+		}
 	}
 
 	public function CheckPromo() {

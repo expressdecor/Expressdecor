@@ -4247,7 +4247,15 @@ margin-top: 43px;
 }
 
 /*  Express-email */
-.express-emails {position:absolute;margin-left:245px;top: 25%; background-color: #FFFFFF; opacity: 0.9; width: 335px; height:185px;z-index:99999; background: url("../images/sign-up-coupons-back.png") 0px 0px no-repeat; }
-.express-emails .close-button {position:absolute; right:0px; top:0px; margin-top:15px; margin-right:24px; background: url("../images/close_button_red.png") 0px 0px no-repeat; width:14px;height:14px;}
-.express-emails .sing-up { position:absolute; left:53px; bottom:0px; height:95px; pading-top:50px; }
-.express-emails  .form-subscribe {float:none;}
+.emails-overlay {position: fixed;z-index: 13;height: 100%;width: 100%;background-color: #000000; opacity: 0.7; top:0; left:0;}
+.express-emails {position:absolute;margin-left:147px;top: 25%; background-color: #FFFFFF; opacity: 1; width: 560px; height:494px;z-index:99999; background: url("../images/popup-email.jpg") 0px 0px no-repeat; }
+/*.express-emails .close-button {position:absolute; right:0px; top:0px; margin-top:1px; margin-right:3px; background: url("../images/close_button_red.png") 0px 0px no-repeat; width:14px;height:14px;}*/
+.express-emails .sign-up { position:absolute; left:115px; bottom:0px; height:116px; pading-top:50px; }
+.express-emails  .form-subscribe {float:none; width: 334px !important;}
+.express-emails  .form-subscribe button.button span   { background: none !important; width: 70px !important; }
+.express-emails  .form-subscribe button.button span  span {padding-right: 0px !important;}
+.express-emails  input,
+.express-emails .validation-failed {border:0px solid #FFFFFF !important; background-color: #E0E1E2; height:27px; width:247px !important; padding: 0px 0px 0px 2px !important;}
+.express-emails  .email-policy {width:100px; height:20px; background-color: #A6AAAB; color: #1E508B;position: absolute; left: 160px;bottom:14px; padding-top: 4px; font-weight: bold;font-size: 12px; text-align:center; }
+.express-emails .email-close {width:91px; height:20px; background-color: #A6AAAB; color: #1E508B;position: absolute;left: 270px; bottom:14px; padding-top: 4px; font-weight: bold;font-size: 12px;text-align:center;margin-left:23px;}
+.express-emails a { text-decoration:none;}
