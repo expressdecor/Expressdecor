@@ -111,9 +111,9 @@
 
 <?php echo $this->getAbsoluteFooter() ?>
 <?php
-	$mail=Mage::getModel('core/cookie')->get('express_mail5'); //cookie for popup window
+	$mail=Mage::getModel('core/cookie')->get('express_mail'); //cookie for popup window 
 	if ($mail>0){
-	  echo "<script type=\"text/javascript\">jQ('.express-emails').hide(); jQ('.emails-overlay').hide();</script>"; 
+	  echo "<script type=\"text/javascript\">jQ('.express-emails').hide(); jQ('.emails-overlay').hide();</script>";
 	}
   ?>
 </body>
