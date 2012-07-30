@@ -1,7 +1,9 @@
+<?php $url=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>
+
 <div class="emails-overlay" style="display:none;"></div>
 <div class="express-emails"  style="display:none;" >
 <div class="sign-up">
-<form id="newsletter-validate-detail2" method="post" action="http://dev.expressdecor.com/newsletter/subscriber/new/">
+<form id="newsletter-validate-detail2" method="post" action="<?php echo $url;?>/newsletter/subscriber/new/">
     <div class="form-subscribe">
           <button id="submit-button-signup"title="Subscribe" class="button" type="submit"><span><span></span></span></button></div>
         <div class="v-fix">
@@ -9,7 +11,7 @@
     </div>
 </form>
 </div>
-<a href="{{store direct_url="privacy.html"}}"><div class="email-policy">Privacy Policy</div></a>
+<a href="<?php echo $url;?>/privacy.html"><div class="email-policy">Privacy Policy</div></a>
 <a href="javascript:void(0);" onclick="newsletter_popup_close();" ><div class="email-close">No, thanks</div></a>
 </div>
 <script type="text/javascript">
