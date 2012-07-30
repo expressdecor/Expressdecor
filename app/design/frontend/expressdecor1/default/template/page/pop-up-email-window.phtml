@@ -1,4 +1,8 @@
-<?php $url=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>
+<?php
+ $url=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
+ if(Mage::getSingleton('cms/page')->getIdentifier() == 'home'  &&
+ 		Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms') {
+?>
 
 <div class="emails-overlay" style="display:none;"></div>
 <div class="express-emails"  style="display:none;" >
@@ -41,4 +45,4 @@ var newsletterSubscriberFormDetail2 = new VarienForm('newsletter-validate-detail
         }
     });   
 </script>
- 
+ <?php } ?>
