@@ -4,7 +4,8 @@ require_once 'app/Mage.php';
 //Mage::getSingleton("customer/session", array("name" => "frontend"));
 $open=Mage::app()->getRequest()->getParam('customer_show');
 $expressmail=Mage::app()->getRequest()->getParam('show_express_email');
-$express_email=Mage::app()->getRequest()->getParam('email');
+$express_email=Mage::app()->getRequest()->getParam('email'); 
+
 
 if (isset($open) &&$open>=0) {
     Mage::run('','store');
@@ -12,11 +13,12 @@ if (isset($open) &&$open>=0) {
     Mage::getModel('customer/session')->setNeedHelp($open);
 }
 
+ 
 if (isset($expressmail) && $expressmail>=0) {
 	Mage::app ( 'default' );
 	
 	$time =60*60*24*7*4*$expressmail; // 4 Weeks
-	Mage::getModel('core/cookie')->set('express_mail5', $expressmail, $time);
+	Mage::getModel('core/cookie')->set('express_mail', $expressmail, $time);
 	 
 	if (isset($express_email) && strlen($express_email)>0) {				
 		Mage::getModel('core/cookie')->set('express_email', $express_email, $time);
