@@ -1,24 +1,48 @@
 <?php
-require_once 'app/Mage.php';
+/** 
+ * customer_show - left Need help Window
+ * express_mail_popup_window - popup window for email subscription 
+ */
 
+require_once 'app/Mage.php';
 //Mage::getSingleton("customer/session", array("name" => "frontend"));
+
 $open=Mage::app()->getRequest()->getParam('customer_show');
-$expressmail=Mage::app()->getRequest()->getParam('show_express_email');
+$expressmail_cookie_value=Mage::app()->getRequest()->getParam('show_express_email_set_cookie_value');
+$expressmail_show=Mage::app()->getRequest()->getParam('express_mail_show');
 $express_email=Mage::app()->getRequest()->getParam('email'); 
 
-
+/**
+ *  Parameter for left Need Help panel
+ */
 if (isset($open) &&$open>=0) {
     Mage::run('','store');
     Mage::getSingleton("customer/session", array("name" => "frontend"));
     Mage::getModel('customer/session')->setNeedHelp($open);
 }
 
+
+/**
+ * Ajax checking if popup windows wasn't already closed
+ */
+if (isset($expressmail_show) && $expressmail_show>=0) {
+	$mail=Mage::getModel('core/cookie')->get('express_mail_popup_window');
+	if ($mail>0){
+	    echo Mage::helper('core')->jsonEncode(array('show'=>'0'));
+	} else {
+		echo Mage::helper('core')->jsonEncode(array('show'=>'1'));
+	}
+}
  
-if (isset($expressmail) && $expressmail>=0) {
+
+/**
+ * Save cookie value if popup Window closed or customer was subscribed
+ */
+if (isset($expressmail_cookie_value) && $expressmail_cookie_value>=0) {
 	Mage::app ( 'default' );
 	
-	$time =60*60*24*7*4*$expressmail; // 4 Weeks
-	Mage::getModel('core/cookie')->set('express_mail', $expressmail, $time);
+	$time =60*60*24*7*4*$expressmail_cookie_value; // 4 Weeks
+	Mage::getModel('core/cookie')->set('express_mail_popup_window', $expressmail_cookie_value, $time);
 	 
 	if (isset($express_email) && strlen($express_email)>0) {				
 		Mage::getModel('core/cookie')->set('express_email', $express_email, $time);
