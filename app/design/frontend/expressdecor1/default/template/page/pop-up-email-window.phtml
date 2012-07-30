@@ -1,0 +1,42 @@
+<div class="emails-overlay" style="display:none;"></div>
+<div class="express-emails"  style="display:none;" >
+<div class="sign-up">
+<form id="newsletter-validate-detail2" method="post" action="http://dev.expressdecor.com/newsletter/subscriber/new/">
+    <div class="form-subscribe">
+          <button id="submit-button-signup"title="Subscribe" class="button" type="submit"><span><span></span></span></button></div>
+        <div class="v-fix">
+        <input   type="text" class="input-text required-entry validate-email" onblur="this.value==''?this.value='Enter your email address':''" onclick="this.value=='Enter your email address'?this.value='':''" value="Enter your email address" id="newsletter" name="email">                
+    </div>
+</form>
+</div>
+<a href="{{store direct_url="privacy.html"}}"><div class="email-policy">Privacy Policy</div></a>
+<a href="javascript:void(0);" onclick="newsletter_popup_close();" ><div class="email-close">No, thanks</div></a>
+</div>
+<script type="text/javascript">
+var newsletterSubscriberFormDetail2 = new VarienForm('newsletter-validate-detail2'); 
+     jQ("#submit-button-signup").click(function(event) {
+         event.preventDefault();
+        if (newsletterSubscriberFormDetail2.validator.validate()){    
+            var email_str=jQ("#newsletter").val();       
+            jQ.get('/set_session.php',  {show_express_email_set_cookie_value: 1000, email:email_str},function(data){
+                jQ("#newsletter-validate-detail2").submit();
+            });              
+        }
+    });    
+ 
+    function newsletter_popup_close(){
+            jQ.get('/set_session.php',  {show_express_email_set_cookie_value: 1},function(data){
+                jQ(".express-emails").hide();
+                jQ('.emails-overlay').hide();
+            });              
+    }
+
+    jQ.get('/set_session.php',  {express_mail_show: 1},function(data){
+        var result=JSON.parse( data );	
+        if (result.show>0) {
+       	jQ('.emails-overlay').show();
+        jQ(".express-emails").show();       
+        }
+    });   
+</script>
+ 
