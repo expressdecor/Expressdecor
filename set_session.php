@@ -29,7 +29,7 @@ if (isset($expressmail_show) && $expressmail_show>=0) {
 	$mail=Mage::getModel('core/cookie')->get('express_mail_popup_window');
 	if ($mail>0){
 	    echo Mage::helper('core')->jsonEncode(array('show'=>'0'));
-	} else {
+	} else {		
 		echo Mage::helper('core')->jsonEncode(array('show'=>'1'));
 	}
 }
