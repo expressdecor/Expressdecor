@@ -1,7 +1,9 @@
 <?php
 
 require_once 'app/Mage.php';
+
 Mage::app('default');
+//Mage::run('','store');
 
 error_reporting(-1);
 $conf['error_level'] = 2;
