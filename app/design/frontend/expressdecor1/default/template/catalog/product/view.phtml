@@ -266,7 +266,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                     <?php if (!$_taxHelper->displayBothPrices()): ?>
 <!--                    msrp price-->
 	<?php
-	If (!empty($msrp_price)) {
+	If (!empty($msrp_price) && ($msrp_price>$_price)) {
 	 	?>
 	 	  <p class="price-msrp-block">
                 <span class="price-label"><?php echo $this->__('Retail Price:') ?></span>
@@ -288,7 +288,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                     ?>
                 </span>
                  </p>
-                <?php 	If (!empty($msrp_price)) {
+                <?php 	If (!empty($msrp_price)  && ($msrp_price>$_price) ) {
 
                 	$save=$msrp_price-$_price;
                 ?>          
@@ -310,7 +310,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                  <?php if (!$_taxHelper->displayBothPrices()): ?>
                     
 
-               <?php  	If (!empty($msrp_price)) {
+               <?php  	If (!empty($msrp_price)  && ($msrp_price>$_price) ) {
 	 	?>
 	 	  <div class="price-msrp-block">
                 <span class="price-label"><?php echo $this->__('Retail Price:') ?></span>
@@ -339,7 +339,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                     <?php echo $_coreHelper->currency($_finalPrice,true,false) ?>                    
                 </span> 
                  </div>               
-               <?php  	If (!empty($msrp_price)) {
+               <?php  	If (!empty($msrp_price)  && ($msrp_price>$_price) ) {
 	 	?>
 	 	  <div class="price-save-block">
                    <span class="price-save-label"><?php echo $this->__('You Save ') ?></span>
