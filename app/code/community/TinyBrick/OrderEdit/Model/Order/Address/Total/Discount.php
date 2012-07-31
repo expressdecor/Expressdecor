@@ -112,7 +112,7 @@ class TinyBrick_OrderEdit_Model_Order_Address_Total_Discount extends TinyBrick_O
         if ($amount!=0) {
             $title = Mage::helper('sales')->__('Discount');
             if ($code = $address->getCouponCode()) {
-                $title = Mage::helper('sales')->__('Discount test(%s)', $code);
+                $title = Mage::helper('sales')->__('Discount (%s)', $code);
             }
             $address->addTotal(array(
                 'code'=>$this->getCode(),
