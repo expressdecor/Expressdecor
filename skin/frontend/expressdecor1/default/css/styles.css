@@ -2290,7 +2290,7 @@ ul.cms-menu.type-square ul { list-style-type:square; }
 .cart .crosssell .add-to-links li { margin:0; }
 
 /* Shopping Cart Totals */
-.cart .totals { float:right; width:275px; padding:23px 15px 0 15px; font-size:14px; }
+.cart .totals { float:right; width:275px; padding:23px 15px 0 15px; font-size: 12px; }
 .cart .totals table { width:100%; }
 .cart .totals table th,
 .cart .totals table td { padding:0 5px 5px; }
@@ -3647,7 +3647,7 @@ font-style:italic;
 
 
 .cart-save-price {
-color: #FF0000;
+ color: #008800;
  font-size: 13px;
   
 }
@@ -4259,3 +4259,6 @@ margin-top: 43px;
 .express-emails  .email-policy {width:100px; height:20px; background-color: #A6AAAB; color: #1E508B;position: absolute; left: 160px;bottom:14px; padding-top: 4px; font-weight: bold;font-size: 12px; text-align:center; }
 .express-emails .email-close {width:91px; height:20px; background-color: #A6AAAB; color: #1E508B;position: absolute;left: 270px; bottom:14px; padding-top: 4px; font-weight: bold;font-size: 12px;text-align:center;margin-left:23px;}
 .express-emails a { text-decoration:none;}
+
+/*checkout cart*/
+#shopping-cart-totals-table th, .discount-price {color: #007700;font-weight: bold;font-size: 14px;}

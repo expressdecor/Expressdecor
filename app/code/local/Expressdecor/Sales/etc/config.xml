@@ -17,6 +17,11 @@
                   <order_pdf_items_shipment_default>Expressdecor_Sales_Model_Order_Pdf_Items_Shipment_Default</order_pdf_items_shipment_default>
                </rewrite>
            </sales>
+           <salesrule>
+           		<rewrite>
+           			<quote_discount>Expressdecor_Sales_Model_Quote_Discount</quote_discount>
+           		</rewrite>
+           </salesrule>
         </models>
   </global>
 </config>

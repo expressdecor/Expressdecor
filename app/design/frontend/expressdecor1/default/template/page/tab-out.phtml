@@ -22,7 +22,7 @@ if (strpos($hours->customer_service_time->$last_day->end,'+')>0) {
 
 
 $is_open=Mage::getModel('core/session')->getNeedHelp();
-
+ 
 $end_time_config=$hours->customer_service_time->$day->end;
 $start_date=strtotime($hours->customer_service_time->$day->start);
 
