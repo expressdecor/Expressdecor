@@ -28,7 +28,7 @@
     <div class="form-subscribe">
    <div class="subscribe-title"> <?php echo $this->__('Sign up to get discounts:') ?></div>
         <label for="newsletter"><?php echo $this->__('Sign up to receive special offers and promotions:') ?></label>
-
+		<input type="hidden" name="source" value="footer" />
           <button type="submit" class="button" title="<?php echo $this->__('Subscribe') ?>"><span><span><?php echo $this->__('SEND') ?></span></span></button></div>
         <div class="v-fix">
         <input name="email" type="text" id="newsletter" value="<?php echo $this->__('Enter your email address') ?>" onclick="this.value=='<?php echo $this->__('Enter your email address') ?>'?this.value='':''" onblur="this.value==''?this.value='<?php echo $this->__('Enter your email address') ?>':''" class="input-text required-entry validate-email" />

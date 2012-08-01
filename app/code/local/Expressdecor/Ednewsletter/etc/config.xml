@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+	    <Expressdecor_Ednewsletter>
+	        <version>1.1.0</version>
+	    </Expressdecor_Ednewsletter>
+	</modules>
+	<global> 
+	  
+  <blocks>
+     <adminhtml>
+         <rewrite>
+            <newsletter_subscriber_grid>Expressdecor_Ednewsletter_Block_Adminhtml_Subscriber_Grid</newsletter_subscriber_grid>            
+         </rewrite>        
+     </adminhtml>
+  </blocks>   
+  
+	 <helpers>
+       <ednewsletter>
+           <class>Expressdecor_Ednewsletter_Helper</class>
+       </ednewsletter>
+     </helpers>  
+       
+ 	<models>
+        <ednewsletter>
+           <class>Expressdecor_Ednewsletter_Model</class>
+        </ednewsletter>
+     </models>
+     
+	       <resources> 
+            <ednewsletter_setup>
+                <setup>
+                    <module>Expressdecor_Ednewsletter</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ednewsletter_setup>
+            <ednewsletter_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ednewsletter_write>
+            <ednewsletter_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ednewsletter_read>			
+        </resources>       
+              
+        <events>   	 
+	    <newsletter_subscriber_save_before>
+	      <observers>
+	     	<newsletter_subscribe_observer>	      		 
+	     	 	<class>ednewsletter/expressdecor</class>
+	     	 	<method>Setupsource</method>
+	      	</newsletter_subscribe_observer>
+	      </observers>	      
+	    </newsletter_subscriber_save_before>	    
+	 </events>	
+	 
+  	</global>
+  	
+</config>
+
+
+	

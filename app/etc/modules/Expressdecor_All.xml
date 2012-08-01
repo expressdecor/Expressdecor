@@ -73,8 +73,13 @@
                 <Mage_Adminhtml />
                 <Mage_Cms />
                 <Mage_Widget />
-            </depends>
-			
-	    </Expressdecor_Tagsbanner>	
+            </depends>			
+	    </Expressdecor_Tagsbanner>
+	    
+	    <Expressdecor_Ednewsletter>
+			<active>true</active>
+			<codePool>local</codePool>
+	    </Expressdecor_Ednewsletter>
+	    	
 	</modules>
 </config>
