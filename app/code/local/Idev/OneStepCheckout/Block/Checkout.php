@@ -915,6 +915,10 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
                     if($result->getId() === NULL)   {
                         // Not subscribed, OK to subscribe
                         Mage::getModel('newsletter/subscriber')->subscribe($this->email);
+                        /**
+                         * Alex (Expressdecor) Add source for subscription
+                         */
+                        Mage::getModel('newsletter/subscriber')->loadByEmail($this->email)->setSource('checkout')->save();                        
                     }
                 }
             }
