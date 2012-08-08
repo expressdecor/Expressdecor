@@ -169,35 +169,39 @@ var google_conversion_value = 0;
 ?>
 <!-- START Trusted Stores Order -->
 <div id="gts-order" style="display:none;">
-
+number_format($number, 2, '.', '');
   <!-- start order and merchant information -->
   <span id="gts-o-id"><?php echo $orderId; ?></span>
   <span id="gts-o-domain">www.expressdecor.com</span>
   <span id="gts-o-email"><?php echo htmlentities($order->getCustomerEmail()); ?></span>
   <span id="gts-o-country"><?php echo htmlentities($address->getCountryId()); ?></span>
   <span id="gts-o-currency">USD</span>
-  <span id="gts-o-total"><?php echo $order->getGrandTotal(); ?></span>
-  <span id="gts-o-discounts">-<?php echo $order->getDiscountAmount(); ?></span>
-  <span id="gts-o-shipping-total"><?php echo $order->getShippingAmount(); ?></span>
-  <span id="gts-o-tax-total"><?php echo $order->getTaxAmount(); ?></span>
+  <span id="gts-o-total"><?php echo number_format($order->getGrandTotal(), 2, '.', ''); ?></span>
+  <span id="gts-o-discounts">-<?php echo number_format($order->getDiscountAmount(), 2, '.', ''); ?></span>
+  <span id="gts-o-shipping-total"><?php echo number_format($order->getShippingAmount(), 2, '.', ''); ?></span>
+  <span id="gts-o-tax-total"><?php echo number_format($order->getTaxAmount(), 2, '.', ''); ?></span>
   <span id="gts-o-est-ship-date"><?php echo $shipDate->toString('yyyy-MM-dd'); ?></span>
-  <span id="gts-o-has-preorder">false</span>
-  <span id="gts-o-has-digital">false</span>
+  <span id="gts-o-has-preorder">N</span>
+  <span id="gts-o-has-digital">N</span>
   <!-- end order and merchant information -->
 
   <!-- start repeated item specific information -->
-  <?php foreach ($order->getAllItems() as $item): ?>
+  <?php foreach ($order->getAllItems() as $item): 
+  if ($item->getBasePrice()>0) {
+  ?>
   <!-- item example: this area repeated for each item in the order -->
   <span class="gts-item">
     <span class="gts-i-name"><?php echo htmlentities($item->getName()); ?></span>
-    <span class="gts-i-price"><?php echo $item->getBasePrice(); ?></span>
+    <span class="gts-i-price"><?php echo number_format($item->getBasePrice(), 2, '.', ''); ?></span>
     <span class="gts-i-quantity"><?php echo (int)$item->getQtyOrdered(); ?></span>
     <span class="gts-i-prodsearch-id"><?php echo $item->getSku(); ?></span>
     <span class="gts-i-prodsearch-store-id">2600150</span>
     <span class="gts-i-prodsearch-country">US</span>
     <span class="gts-i-prodsearch-language">en</span>
   </span>
-  <?php endforeach; ?>
+  <?php
+  }
+   endforeach; ?>
   <!-- end item 1 example -->
   <!-- end repeated item specific information -->
 
