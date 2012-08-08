@@ -4262,3 +4262,15 @@ margin-top: 43px;
 
 /*checkout cart*/
 #shopping-cart-totals-table th, .discount-price {color: #007700;font-weight: bold;font-size: 14px;}
+
+/*paypal express review*/
+.paypal-express-review .box-content span{color: #000000;text-transform: none; font-size:13px;}
+.paypal-express-review .box-content .billing {min-height: 100px; padding-top:10px;  font-size:13px;}
+.paypal-express-review .box-content .shipping {min-height: 127px; padding-top:10px;  font-size:13px;}
+.paypal-express-review #details-reload {padding-top:20px;}
+.paypal-express-review .box-title {padding-top:20px; font-size:13px;}
+.paypal-express-review .info-set h2 {font-size:13px; font-weight:bold;}
+.paypal-express-review h3 {font-size:13px;}
+.paypal-express-review  .info-set {padding-bottom:20px;}
+.paypal-express-review #review_button span { padding-left: 0px; color: #4D6228;}
+.paypal-express-review #review_button span span {background: url("../images/addtocart.png") 0px 0px no-repeat; color: #4D6228; padding: 0px 18px 0px 14px; height:26px;}
