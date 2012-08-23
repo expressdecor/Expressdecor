@@ -169,7 +169,7 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
 </script>
 
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
-
+<div itemscope itemtype="http://data-vocabulary.org/Product">
 <div class="product-view">
     <form action="<?php echo $this->getAddToCartUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
         <div class="no-display">
@@ -189,16 +189,21 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
                 <div class="product-center">
                    
  <div class="product-name-d">
-    <h1><div class="manufacter-name"><?php    
+    <h1><div  itemprop="brand" class="manufacter-name"><?php    
     $name=$_helper->productAttribute($_product, $_product->getName(), 'name');
     echo $manufacturerName;
    ?>
- </div><div class="manufacter-full-name">
+ </div><div itemprop="name" class="manufacter-full-name">
    <?php
    // echo $manufacturerName;
    echo str_replace($manufacturerName,'',$name);
     ?></div>
-    <div class="manufater-sku">SKU#:  <?php echo $product_sku; ?></div>        
+    <div class="manufater-sku">SKU#: <span  itemprop="identifier" content="sku:<?php echo $product_sku; ?>"  > <?php echo $product_sku; ?></span></div>   
+    <?php if ( $_product->getUpcCode()) {    
+    ?><span class="upc" style="display:none;"  itemprop="identifier" content="upc:<?php echo $_product->getUpcCode(); ?>" ><?php echo $_product->getUpcCode(); ?></span>    
+    <?php } ?> 
+ 
+    
     </h1>
  </div>
                     
@@ -258,6 +263,8 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
 
  </div>    
 <!--                     end center-->
+ <span itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
+ <meta style="display:none;" itemprop="currency" content="USD" />
                 <div class="product-shop">          
                  <div class="product-main-info2">  
                           <div class="prices-box">            
@@ -287,6 +294,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                     echo $_coreHelper->currency($_price,true,true); //displays regular price
                     ?>
                 </span>
+                <span style="display:none;" itemprop="price"><?php  echo $_price;?></span>
                  </p>
                 <?php 	If (!empty($msrp_price)  && ($msrp_price>$_price) ) {
 
@@ -338,6 +346,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                 <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
                     <?php echo $_coreHelper->currency($_finalPrice,true,false) ?>                    
                 </span> 
+                <span style="display:none;" itemprop="price"><?php  echo $_finalPrice;?></span>
                  </div>               
                <?php  	If (!empty($msrp_price)  && ($msrp_price>$_price) ) {
 	 	?>
@@ -355,6 +364,8 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                  <?php endif; ?>             
          <?php endif; ?>                           
         </div>
+        <span style="display:none;" itemprop="seller">Expressdecor.com</span>
+        <span style="display:none;"  itemprop="condition" content="new">New</span>
         <div class='promo-txt'>
 <?php 
 if 	($customShipPrice > 0)	{
@@ -372,10 +383,11 @@ if 	($customShipPrice > 0)	{
         <?php  
         if ( (!empty($outofstockMsg)) || ($_product->getIsInStock()==0) ){
         	if(empty($outofstockMsg)) $outofstockMsg=$this->__('Product will be available soon');
-        	echo "<div class=\"out-stock\">".$outofstockMsg."</div>";
+        	echo "<div class=\"out-stock\">".$outofstockMsg."</div><span style='display:none;' itemprop='availability' content='out_of_stock'>Product will be available soon</span>";
         }else {?>
         <div class="in-stock-mes">
         <div class="in-stock">In Stock</div><div class="in-stock-ready"> Ready to ship </div>
+        <span style="display:none;" itemprop="availability" content="in_stock">In stock! Order now!</span>
           <div id='details_in_stock'></div>
           </div>
         <?php }?>
@@ -414,6 +426,8 @@ if(!empty( $promo ) ) { ?>
                     <?php echo $this->getChildHtml('extrahint') ?>                                                                           
            
                 </div>  
+<!--                 offer span ends -->
+                </span> 
                                 
         </div>    
                <?php if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')):?>
@@ -444,7 +458,7 @@ if(!empty( $promo ) ) { ?>
                         <?php if ($_product->getShortDescription()):?>
                         <dt class="tab"><span>Description</span></dt>
                         <dd class="tab-container">
-                           <div class="tab-content">                           
+                           <div itemprop="description" class="tab-content">                           
                                 <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
                            </div>
                         </dd>
@@ -524,6 +538,9 @@ if(!empty( $promo ) ) { ?>
         <?php //echo $this->getChildHtml('upsell_products') ?>
         <?php echo $this->getChildHtml('product_additional_data') ?>     
 </div>
+<!-- Google snippet end -->
+</div> 
+
     <?php echo $this->getChildHtml('other');?>     
 <script type="text/javascript">
 //<![CDATA[

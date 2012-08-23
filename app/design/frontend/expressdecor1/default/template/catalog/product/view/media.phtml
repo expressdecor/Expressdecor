@@ -52,7 +52,7 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
         <?php if ($_imgWidth > 300 && $_imgHeight > 300):?>
             <a class="product-image image-zoom" id="main-image" title="<?php echo $this->htmlEscape($_product->getImageLabel()); ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>" >
                 <?php
-                $_img = '<img id="main-image-img" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(300).'" height="300" width="300" alt="'.$this->htmlEscape($_product->getImageLabel()).'" title="'.$this->htmlEscape($_product->getImageLabel()).'" />';
+                $_img = '<img id="main-image-img" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(300).'" itemprop="image"  height="300" width="300" alt="'.$this->htmlEscape($_product->getImageLabel()).'" title="'.$this->htmlEscape($_product->getImageLabel()).'" />';
                 echo $_helper->productAttribute($_product, $_img, 'image-thumb');
                
                 ?>
@@ -79,7 +79,7 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
         <?php else: ?>
             <p class="product-image">
                 <?php
-                $_img = '<img id="main-image-img" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(300).'" height="300" width="300" alt="'.$this->htmlEscape($_product->getImageLabel()).'" title="'.$this->htmlEscape($_product->getImageLabel()).'" />';
+                $_img = '<img itemprop="image"  id="main-image-img" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(300).'" height="300" width="300" alt="'.$this->htmlEscape($_product->getImageLabel()).'" title="'.$this->htmlEscape($_product->getImageLabel()).'" />';
                 echo $_helper->productAttribute($_product, $_img, 'image-thumb');
                 ?>
             </p>
@@ -87,7 +87,7 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
     <?php else: ?>
         <p class="product-image">
             <?php
-            $_img = '<img id="main-image-img" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(300).'"  height="300" width="300" alt="'.$this->htmlEscape($_product->getImageLabel()).'" title="'.$this->htmlEscape($_product->getImageLabel()).'" />';
+            $_img = '<img itemprop="image"  id="main-image-img" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(300).'"  height="300" width="300" alt="'.$this->htmlEscape($_product->getImageLabel()).'" title="'.$this->htmlEscape($_product->getImageLabel()).'" />';
             echo $_helper->productAttribute($_product, $_img, 'image');
             ?>
         </p>

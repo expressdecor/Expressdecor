@@ -136,6 +136,7 @@ Default layout, loads most of the pages
             <block type="page/html_footer" name="footer" as="footer" template="page/html/footer.phtml">
                <!--<block type="page/template_links" name="footer_links" as="footer_links" after="footer.newsletter" template="page/template/links.phtml"/>
                 <block type="page/switch" name="store_switcher" as="store_switcher" after="-" template="page/switch/stores.phtml"/>-->
+                <block type="page/html" name="feedback"  as="feedback" template="page/feedback.phtml"></block>
             </block>
 
             <block type="core/text_list" name="before_body_end" as="before_body_end" translate="label">
