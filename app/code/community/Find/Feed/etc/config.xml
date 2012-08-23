@@ -95,7 +95,7 @@
             </resources>
         </acl>
     </adminhtml>
-    <crontab>
+ <crontab>
         <jobs>
             <find_feed_file_send>
                 <schedule>
@@ -106,7 +106,7 @@
                 </run>
             </find_feed_file_send>
         </jobs>
-    </crontab>
+    </crontab> 
     <admin>
         <routers>
              <adminhtml>
