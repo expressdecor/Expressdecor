@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Expressdecor_Bannersales>
+            <version>0.1.0</version>
+        </Expressdecor_Bannersales>
+    </modules>
+	 <global>
+        <models>
+    		<bannersales>
+           		<class>Expressdecor_Bannersales_Model</class>
+        	</bannersales>
+        </models>
+	</global>
+	<crontab>
+        <jobs>
+            <expressdecor_sync_coupons>
+                <schedule>
+                    <cron_expr>01 0 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>bannersales/syncbanners::scheduledsync</model>
+                </run>
+            </expressdecor_sync_coupons>
+        </jobs>
+    </crontab> 	
+</config>
+
+
+	

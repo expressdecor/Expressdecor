@@ -19,19 +19,13 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     enterprise_default
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 ?>
-<div class="footer-container">
-    <div class="footer">
-	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_links')->toHtml() ?>
-        
-    </div>
-</div>
-<?php echo $this->getChildHtml('feedback') ?>
-<address class="copyright"><?php echo $this->getCopyright() ?></address>
-
-<!--     </iframe> -->
-<!-- </div> -->
+<?php /* @var $this Mage_ProductAlert_Block_Product_View */?>
+<p class="<?php echo $this->getHtmlClass() ?>">
+   <button type="button" onclick="javascript:window.open('<?php echo $this->escapeHtml($this->getSignupUrl()) ?>','_self');" title="<?php echo $this->escapeHtml($this->__($this->getSignupLabel())); ?>" class="button btn-cart" ><span><span><?php echo $this->escapeHtml($this->__($this->getSignupLabel())); ?></span></span></button>    
+</p>
+ 

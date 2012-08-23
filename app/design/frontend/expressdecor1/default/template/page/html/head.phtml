@@ -61,7 +61,7 @@
 $productId  = (int) $this->getRequest()->getParam('id'); 
 
 $product = Mage::getModel('catalog/product')->load($productId);
-
+echo '<meta property="og:image" content="'.(string)Mage::helper('catalog/image')->init($product, 'image').'"/><meta property="og:type" content="product"/>';
 $manufacturerName = $product->getAttributeText('manufacturer');
 
 $categoryIds = $product->getCategoryIds();
@@ -123,6 +123,9 @@ $keywords = $title.", ".$manufacturerName." ".$product->getSku().", ".$manufactu
 
 <meta name="google-site-verification" content="0AdhzanyexvcTjd1QO4TjOK2pMzOYos-Je2Wv689jPc" />
 
+<meta property="og:title" content="<?php echo  $this->getTitle(); ?>"/>
+<meta property="og:url" content="<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>"/>
+<meta property="og:site_name" content="expressdecor.com"/>
 <!--[if lt IE 7]>
 
 <script type="text/javascript">

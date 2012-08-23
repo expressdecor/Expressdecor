@@ -1,0 +1,211 @@
+<div id="feedbackP">
+  
+</div>
+ 
+<div class="feedback-overlay" style="display:none;"></div>
+<div id="feedbackP_window">
+    <div id="feedbackButton"><?php echo $this->__('Feedback'); ?></div>
+<div id="feedback_hide" onclick="hide_feedback();"></div>
+<form action="/contacts/index/post/" class="feedback" id="feedbackForm" method="post">
+    
+<div class="feedback-fieldset">
+        <h2 class="legend"><?php echo Mage::helper('contacts')->__('Tell us about your shopping experience') ?></h2>
+        <ul class="form-list">
+
+        <li class="fields">
+         <div class="feedback-label"><span class="rate"> Rate Us:  </span></div>
+           <div id="score-radio" class="field-score">   
+     <div class="feed-star-left">Poor</div>
+     <div class="feed-star" id="star-1" onclick="star_click(1);" ></div>
+     <div class="feed-star" id="star-2"  onclick="star_click(2);" ></div>
+     <div class="feed-star" id="star-3" onclick="star_click(3);" ></div>
+     <div class="feed-star" id="star-4" onclick="star_click(4);" ></div>
+     <div class="feed-star"  id="star-5" onclick="star_click(5);" ></div>
+     <div class="feed-star-right">Excellent</div>
+			</div>
+                <div class="field">
+                   <div class="feedback-label"> <label for="name" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Name:') ?></label></div>
+                    <div class="input-box">
+                    	<input type="hidden" value="0" name="score" id="star-val" />
+                        <input name="feedback_name" id="feedback_name" title="<?php echo Mage::helper('contacts')->__('Name') ?>" value="" class="input-text required-entry" type="text" />
+                    </div>
+                </div>
+                <div class="field">
+                   <div class="feedback-label"> <label for="email" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Email:') ?></label></div>
+                    <div class="input-box">
+                        <input name="feedback_email" id="feedback_email" title="<?php echo Mage::helper('contacts')->__('Email') ?>" value="" class="input-text required-entry validate-email" type="text" />
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="feedback-label-comm"> <label for="comment" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Comment:') ?></label></div>
+                <div class="input-box">
+                    <textarea name="feedback_comment" id="feedback_comment" title="<?php echo Mage::helper('contacts')->__('Comment') ?>" class="required-entry input-text"  ></textarea>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="buttons-set form-buttons btn-only">       
+        <button type="button" id="FeedbackButtonpost" class="button" title="<?php echo Mage::helper('contacts')->__('Submit') ?>"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
+    </div>
+    <p class="required"><?php echo Mage::helper('contacts')->__('* Required Fields') ?></p>
+</form>
+<script type="text/javascript">
+jQuery("#feedbackP").click(function() {
+	  jQuery('#feedbackP_window').show();
+	  jQuery('.feedback-overlay').show();
+	});
+function hide_feedback() {
+	$('feedbackP').fade({ duration: .3 });		
+	  jQuery('#feedbackP_window').hide();
+	  jQuery('.feedback-overlay').hide();
+
+}
+
+function star_click(val) {
+
+	$('star-val').value=val;
+	var stars =$$('.field-score div');
+
+	for (i=0; i<=val; i++) {
+		stars[i].addClassName('star-active');
+		stars[i].stopObserving('mouseover');
+	}
+
+	for (i=val+1; i<=5; i++) {
+		stars[i].removeClassName('star-active');
+		stars[i].stopObserving('mouseover');
+	}
+}
+
+Event.observe('star-1', 'mouseover', function(event) {
+	var stars =$$('.field-score div');
+	for (i=0; i<=1; i++) {
+		stars[i].addClassName('star-hover');		
+	}
+	for (i=2; i<=5; i++) {
+		stars[i].removeClassName('star-hover');
+	}
+});
+
+Event.observe('star-2', 'mouseover', function(event) {
+	var stars =$$('.field-score div');
+	for (i=0; i<=2; i++) {
+		stars[i].addClassName('star-hover');		
+	}
+	for (i=3; i<=5; i++) {
+		stars[i].removeClassName('star-hover');
+	}
+});
+
+Event.observe('star-3', 'mouseover', function(event) {
+	var stars =$$('.field-score div');
+	for (i=0; i<=3; i++) {
+		stars[i].addClassName('star-hover');
+	}
+	for (i=4; i<=5; i++) {
+		stars[i].removeClassName('star-hover');
+	}
+});
+Event.observe('star-4', 'mouseover', function(event) {
+	var stars =$$('.field-score div');
+	for (i=0; i<=4; i++) {
+		stars[i].addClassName('star-hover');
+	}
+	for (i=5; i<=5; i++) {
+		stars[i].removeClassName('star-hover');
+	}
+});
+Event.observe('star-5', 'mouseover', function(event) {
+	var stars =$$('.field-score div');
+	for (i=0; i<=5; i++) {
+		stars[i].addClassName('star-hover');
+	}
+});
+
+Event.observe('star-1', 'mouseout', function(event) {
+		var stars =$$('.field-score div');
+	for (i=0; i<=5; i++) {
+		stars[i].removeClassName('star-hover');
+	}
+	});
+Event.observe('star-2', 'mouseout', function(event) {
+		var stars =$$('.field-score div');
+	for (i=0; i<=5; i++) {
+		stars[i].removeClassName('star-hover');
+	}
+	});
+Event.observe('star-3', 'mouseout', function(event) {
+		var stars =$$('.field-score div');
+	for (i=0; i<=5; i++) {
+		stars[i].removeClassName('star-hover');
+	}
+	});
+Event.observe('star-4', 'mouseout', function(event) {
+		var stars =$$('.field-score div');
+	for (i=0; i<=5; i++) {
+		stars[i].removeClassName('star-hover');
+	}
+	});
+Event.observe('star-5', 'mouseout', function(event) {
+		var stars =$$('.field-score div');
+	for (i=0; i<=5; i++) {
+		stars[i].removeClassName('star-hover');
+	}
+	});
+
+
+setInterval(function(){
+	if ($('feedbackP').getStyle('margin-left')!='-400px') {
+		new Effect.Pulsate("feedbackP", {pulses:2,duration:3});
+	}
+}, 10000);
+
+Event.observe('FeedbackButtonpost', 'click', function(event) {
+
+	var inputs = $$('.feedback input');
+	var error='';
+	var data='';
+	inputs.each(function(input, index) {
+
+		if (input.value=='' && input.type!='radio') {
+			error='Please fill your name and email! ';
+			return false;
+		}
+	});
+
+	var textarea=$('feedback_comment');
+	if (textarea.value=='') {
+		error=error+'Please enter your feedback!';
+	}
+
+	if (error == '') {
+		var name =$('feedback_name').value;
+		var email =$('feedback_email').value;
+		var comment =$('feedback_comment').value;
+
+		var score = $('star-val');
+
+		comment=' Stars: '+score.value+' '+comment;
+
+		var data='name='+name+'&email='+email+'&comment='+comment;
+
+		new Ajax.Request('/feedback.php',
+		{
+			method:'post',
+			parameters: data,
+			onSuccess: function(){
+				alert("Your feedack was added Succcefully. Thank you!");
+				  jQuery('#feedbackP_window').hide();
+				  jQuery('.feedback-overlay').hide();
+			},
+			onFailure: function(){ alert('Error with adding feedback, please try again.') }
+		});
+	} else {
+		alert(error);
+	}
+
+});
+
+</script>
+</div>

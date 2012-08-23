@@ -51,7 +51,7 @@
 ?>
 
 <?php if ($this->getReviewsCount()): ?>
-
+<span itemprop="review" itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
     <div class="ratings">
 
         <?php if ($this->getRatingSummary()):?>
@@ -59,13 +59,13 @@
             <div class="rating-box">
 
                 <div class="rating" style="width:<?php echo $this->getRatingSummary() ?>%"></div>
-
+				<span style="display:none;" itemprop="rating"><?php echo $this->getRatingSummary()/20; ?></span>
             </div>
 
         <?php endif;?>
 
         <p class="rating-links">
-
+			<span  style="display:none;" itemprop="count"><?php echo  $this->getReviewsCount() ?></span>
             <a rel="nofollow" href="#" onclick="show_review();"><?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?></a>
 
             <span class="separator">|</span>
@@ -75,6 +75,7 @@
         </p>
 
     </div>
+     </span>
   <script type="text/javascript">
   function show_review() {
 

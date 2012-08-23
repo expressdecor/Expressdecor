@@ -80,6 +80,10 @@
 			<active>true</active>
 			<codePool>local</codePool>
 	    </Expressdecor_Ednewsletter>
-	    	
+		
+	 	<Expressdecor_Bannersales>
+			<active>true</active>
+			<codePool>local</codePool>
+	    </Expressdecor_Bannersales>	    	
 	</modules>
 </config>
