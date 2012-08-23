@@ -86,10 +86,12 @@ Category default layout
         <reference name="breadcrumbs.container">
             
         </reference>
-        <reference name="content">
+        
+        <reference name="content">   
 		<block type="catalog/category_view" name="category.title" after="breadcrumbs" template="catalog/category/title.phtml"/>
             <block type="catalog/category_view" name="category.products" template="catalog/category/view.phtml">
                 <block type="catalog/product_list" name="product_list" template="catalog/product/list.phtml">
+
 				<action method="setColumnCount"><columns>5</columns></action>
                     <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml">
                         <block type="page/html_pager" name="product_list_toolbar_pager"/>
