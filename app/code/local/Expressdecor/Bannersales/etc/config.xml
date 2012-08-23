@@ -16,7 +16,7 @@
         <jobs>
             <expressdecor_sync_coupons>
                 <schedule>
-                    <cron_expr>*/1 * * * *</cron_expr>
+                    <cron_expr>01 0 * * *</cron_expr>
                 </schedule>
                 <run>
                     <model>bannersales/syncbanners::scheduledsync</model>
