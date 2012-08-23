@@ -220,7 +220,7 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
                             </div>
                         <?php endif;?> 
 <!--/Options end-->
-<?php echo $this->getChildHtml('alert_urls'); ?>                       
+                      
                                             <div class="calc-tab">
 <!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style ">
@@ -391,9 +391,11 @@ if 	($customShipPrice > 0)	{
           <div id='details_in_stock'></div>
           </div>
         <?php }?>
+        <?php  echo $this->getChildHtml('alert_urls'); ?>  
         </div> 
-        
+       
 <?php
+
 $promo=$this->getChildHtml('addtopromo');
 if(!empty( $promo ) ) { ?>
   <div class="product-discount">

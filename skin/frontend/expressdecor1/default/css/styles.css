@@ -1368,6 +1368,10 @@ padding-bottom: 6px;
 padding-top: 0px;
 border-bottom: 1px dotted #A9A9A9;
 }
+
+.stock-container .alert-stock button {
+	margin-left:61px;
+}
 .in-stock-mes {
 height:17px;
 }
