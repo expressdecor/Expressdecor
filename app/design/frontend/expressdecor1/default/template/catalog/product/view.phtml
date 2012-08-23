@@ -384,6 +384,8 @@ if 	($customShipPrice > 0)	{
         if ( (!empty($outofstockMsg)) || ($_product->getIsInStock()==0) ){
         	if(empty($outofstockMsg)) $outofstockMsg=$this->__('Product will be available soon');
         	echo "<div class=\"out-stock\">".$outofstockMsg."</div><span style='display:none;' itemprop='availability' content='out_of_stock'>Product will be available soon</span>";
+        	if (!strpos(strtolower($outofstockMsg), 'discontinued'))
+        		echo $this->getChildHtml('alert_urls');
         }else {?>
         <div class="in-stock-mes">
         <div class="in-stock">In Stock</div><div class="in-stock-ready"> Ready to ship </div>
@@ -391,7 +393,7 @@ if 	($customShipPrice > 0)	{
           <div id='details_in_stock'></div>
           </div>
         <?php }?>
-        <?php  echo $this->getChildHtml('alert_urls'); ?>  
+
         </div> 
        
 <?php

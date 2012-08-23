@@ -38,7 +38,7 @@
                     <block type="productalert/product_view" name="productalert.stock" as="productalert_stock" template="productalert/product/view.phtml">
                         <action method="prepareStockAlertData"/>
                         <action method="setHtmlClass"><value>alert-stock link-stock-alert</value></action>
-                        <action method="setSignupLabel" translate="value"><value>Get notified</value></action>
+                        <action method="setSignupLabel" translate="value"><value>Notify me</value></action>
                     </block>
                 </reference>
             </reference>
