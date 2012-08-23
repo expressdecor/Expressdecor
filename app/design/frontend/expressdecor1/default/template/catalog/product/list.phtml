@@ -150,25 +150,7 @@
     <script type="text/javascript">decorateList('products-list', 'none-recursive')</script>
 <?php else: ?>
 <?php // Grid Mode ?>
-<?php //Alex
-/*$catalogrule=Mage::getModel('catalogrule/rule')->getCollection()->setOrder('rule_id','DESC');
- foreach ($catalogrule as $c_rule) {
- 	if ($c_rule->getIsActive()) {
- 		echo $c_rule->getName();
- 	 	print_r($c_rule->getMatchingProductIds());die();
- 	}
- }
- 
- $salesrule=Mage::getModel('salesrule/rule')->getCollection()->setOrder('rule_id','ASC');
- foreach ($salesrule as $s_rule) {
- 	if ($s_rule->getIsActive()) {
- 		echo $s_rule->getName();
- 		print_r($s_rule->getConditions()->getData());die();
- 		//print_r($s_rule->getMatchingProductIds());die();
- 	}
- }
- */
-?>
+
 <?php $_collectionSize = $_productCollection->count() ?>
 
 <?php $_columnCount = $this->getColumnCount(); ?>
