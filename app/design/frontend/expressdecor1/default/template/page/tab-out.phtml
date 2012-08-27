@@ -1,97 +1,64 @@
+<div  class="tabout-left-button" ></div>
+<div class="tabout-overlay" style="display:none;"></div>
 
-<?php 
-$hours=array();
-$hours=Mage::getStoreConfig('expressdecor/customer_service/service_hours',Mage::app()->getStore());
-$hours=json_decode($hours);
-$day=date('D', Mage::getModel('core/date')->timestamp(time()));
-$last_day=date('D',strtotime('-1 day',Mage::getModel('core/date')->timestamp(time())));
-
-if (strpos($hours->customer_service_time->$last_day->end,'+')>0) {
-
-	$end_time_config_last=$hours->customer_service_time->$last_day->end;
-	$end_time_config_last=str_replace('+','',$end_time_config_last);
-	
-	$h_l=substr($end_time_config_last,0,strpos($end_time_config_last,':'));
-	$m_l=substr($end_time_config_last,strpos($end_time_config_last,':')+1,strlen($end_time_config_last)-strpos($end_time_config_last,':')-1);
-	
-	if (strtotime(date("M-d-Y H:i:s", Mage::getModel('core/date')->timestamp(time())))<mktime($h_l,$m_l,date("s", Mage::getModel('core/date')->timestamp(time())),date("m", Mage::getModel('core/date')->timestamp(time())),date("d", Mage::getModel('core/date')->timestamp(time())),date("Y", Mage::getModel('core/date')->timestamp(time())))) {
-		$day=$last_day;
-	}
-}
-
-
-
-$is_open=Mage::getModel('core/session')->getNeedHelp();
- 
-$end_time_config=$hours->customer_service_time->$day->end;
-$start_date=strtotime($hours->customer_service_time->$day->start);
-
-if(strpos($end_time_config,"+")>0)
-{
-	
-	$end_time_config=str_replace('+','',$end_time_config);
-	$h=substr($end_time_config,0,strpos($end_time_config,':'));
-	$m=substr($end_time_config,strpos($end_time_config,':')+1,strlen($end_time_config)-strpos($end_time_config,':')-1);
-	$end_time=mktime($h,$m,date("s", Mage::getModel('core/date')->timestamp(time())),date("m", Mage::getModel('core/date')->timestamp(time())),date("d", Mage::getModel('core/date')->timestamp(time()))+1,date("Y", Mage::getModel('core/date')->timestamp(time())));
-	$start_date='0:00';
-	
-} else {
-	$h=substr($end_time_config,0,strpos($end_time_config,':'));
-	$m=substr($end_time_config,strpos($end_time_config,':')+1,strlen($end_time_config)-strpos($end_time_config,':')-1);
-	$end_time=mktime($h,$m,date("s", Mage::getModel('core/date')->timestamp(time())),date("m", Mage::getModel('core/date')->timestamp(time())),date("d", Mage::getModel('core/date')->timestamp(time())),date("Y", Mage::getModel('core/date')->timestamp(time())));
-	
-}
-if (!isset($is_open)) {
-	if ( ($start_date < strtotime(date('H:i', Mage::getModel('core/date')->timestamp(time()))) ) && ( strtotime(date("M-d-Y H:i:s", Mage::getModel('core/date')->timestamp(time()))) < $end_time )  ) {
-		$is_open=1;
-		Mage::getModel('core/session')->setNeedHelp(1);
-	} else {
-		$is_open=0;
-		Mage::getModel('core/session')->setNeedHelp(0);
-	}
-}
-
-
-
-?>
-<div  id="tabout-left-<?php if ( ($start_date < strtotime(date('H:i', Mage::getModel('core/date')->timestamp(time()))) ) && ( strtotime(date("M-d-Y H:i:s", Mage::getModel('core/date')->timestamp(time()))) < $end_time) ) {   ?>aviable<?php } else {   ?>off<?php } ?>" >          
-    <div id="handle">   
-    </div>    
-    <div onclick='simulate(document.getElementById("handle"), "click");' id="express_hide"></div>
-<div class="express-title">Customer Service</div>
-<?php if ( ($start_date < strtotime(date('H:i', Mage::getModel('core/date')->timestamp(time()))) ) && ( strtotime(date("M-d-Y H:i:s", Mage::getModel('core/date')->timestamp(time()))) < $end_time) ) {   ?>
-    <a onclick="lpButtonCTTUrl = 'https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson&amp;referrer='+escape(document.location); lpButtonCTTUrl = (typeof(lpAppendVisitorCookies) != 'undefined' ? lpAppendVisitorCookies(lpButtonCTTUrl) : lpButtonCTTUrl); lpButtonCTTUrl = ((typeof(lpMTag)!='undefined' &amp;&amp; typeof(lpMTag.addFirstPartyCookies)!='undefined')?lpMTag.addFirstPartyCookies(lpButtonCTTUrl):lpButtonCTTUrl);window.open(lpButtonCTTUrl,'chat33660894','width=475,height=400,resizable=yes');return false;" href="https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;byhref=1&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson">
-      <div class="livechat-img-custom" ></div>
-                 </a> 
-           <div class="livechat-img-right-custom" ></div>
-    <?php } else {   ?>
-    <div class="express-offline">Currently offline</div>
-     <div class="express-email"><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>contacts" >
-    Send us an Email
-      </a> </div>
-    <?php } ?>
-	     
-
-           <div class="express-text">Hours of Operation:</div>
-           <div class="express-text"> Today <? echo date('g A',strtotime($hours->customer_service_time->$day->start))?>  to  <?=date('g A',$end_time)?> EST </div>    
+<div class="tabout_window">
+    <div class="tabout_title"><?php echo $this->__('Customer Service'); ?></div>
+<div class="tabout_hide" onclick="hide_tabout();"></div>
+	<div class="online-content">
+	<div class="contact-block call">
+		<div class="call-icon"></div>
+		<div class="call-us">Call Us</div>
+		<div class="inside-text"> Monday - Friday<br>
+			<span class="time-working-2">from 9AM to 6PM EST</span>
+		</div>
+		<div class="phone-icon"></div>
+	</div>
+	<div class="contact-block chat">
+		<div class="chat-icon"></div>
+		<div class="live-us">Live Chat with Us</div>
+		<div class="inside-text"> Monday - Friday<br>
+			<span class="time-working">from 9AM to 6PM EST</span>
+		</div>
+		<a onclick="lpButtonCTTUrl = 'https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson&amp;referrer='+escape(document.location); lpButtonCTTUrl = (typeof(lpAppendVisitorCookies) != 'undefined' ? lpAppendVisitorCookies(lpButtonCTTUrl) : lpButtonCTTUrl); lpButtonCTTUrl = ((typeof(lpMTag)!='undefined' &amp;&amp; typeof(lpMTag.addFirstPartyCookies)!='undefined')?lpMTag.addFirstPartyCookies(lpButtonCTTUrl):lpButtonCTTUrl);window.open(lpButtonCTTUrl,'chat33660894','width=475,height=400,resizable=yes');return false;" href="https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;byhref=1&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson">
+			<div class="chat-button"></div>
+		</a>
+	</div>
+	 
+	</div>       
+	<div class="offline-content" >    
+		<div class="contact-block last email">
+			<div class="email-icon"></div>
+			<div class="email-us">Email Us</div>
+			<div class="inside-text">Anytime</div>
+			<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>contacts"><div class="email-button"></div></a>
+		</div>
+	</div> 	 
+    <div class="express-text">Hours of Operation:</div>
+    <div class="express-text time-text"> Today    to    EST </div>    
 </div>
 
-<script type="text/javascript">Event.observe('handle', 'click',Element.toggleClassName.curry("tabout-left-<?php if ( ($start_date < strtotime(date('H:i', Mage::getModel('core/date')->timestamp(time()))) ) && (  strtotime(date("M-d-Y H:i:s", Mage::getModel('core/date')->timestamp(time()))) < $end_time) ) {   ?>aviable<?php } else {   ?>off<?php } ?>", 'open'));</script>
-
-<?php 
-if ($is_open==1) {
-
-	?>
- 
-	<script type="text/javascript">
-	Event.observe('handle', 'click',function(event) {
-		new Ajax.Request('/set_session.php',
-		{
-			method:'get',
-			parameters: {customer_show: 0}
-		});
-
+<script type="text/javascript">
+jQuery(".tabout-left-button").click(function() {
+	  jQuery('.tabout_window').show();
+	  jQuery('.tabout-overlay').show();
 	});
-</script>
+	
+function hide_tabout() {	 
+	  jQuery('.tabout_window').hide();
+	  jQuery('.tabout-overlay').hide();
+}
 
-<?php }  ?>
+jQuery.get('/set_session.php',  {customer_servive_is_online: 1},function(data){
+    var result=JSON.parse( data );	
+    if (result.customer_service_online>0) {
+    	jQuery('.online-content').show();
+    	jQuery(".offline-content").hide();       
+    } else {
+    	jQuery('.online-content').hide();
+    	jQuery(".offline-content").show(); 
+    }
+    jQuery('.time-text').html('Today '+result.time_from+' to '+result.time_to+' EST');    
+    jQuery('.time-working').html('from '+result.time_from+' to '+result.time_to+' EST');
+    jQuery('.time-working-2').html('from '+result.time_from+' to '+result.time_to+' EST');
+});  
+</script>

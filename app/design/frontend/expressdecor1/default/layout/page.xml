@@ -81,8 +81,7 @@ Default layout, loads most of the pages
                 <label>Page Top</label>
             </block>
 
-              <block type="page/html" name="tabs_out" as="tabs_out" template="page/tab-out.phtml">
-              </block>
+              
               <block type="page/html" name="pop-up-window"  as="pop-up-window" template="page/pop-up-email-window.phtml">
               </block>
               <block type="page/html" name="page_up" as="page_up" template="page/page_up.phtml">
@@ -136,6 +135,7 @@ Default layout, loads most of the pages
             <block type="page/html_footer" name="footer" as="footer" template="page/html/footer.phtml">
                <!--<block type="page/template_links" name="footer_links" as="footer_links" after="footer.newsletter" template="page/template/links.phtml"/>
                 <block type="page/switch" name="store_switcher" as="store_switcher" after="-" template="page/switch/stores.phtml"/>-->
+                <block type="page/html" name="tabs_out" as="tabs_out" template="page/tab-out.phtml"></block>
                 <block type="page/html" name="feedback"  as="feedback" template="page/feedback.phtml"></block>
             </block>
 

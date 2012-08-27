@@ -1188,13 +1188,13 @@ font-weight: bold;}
 #messages_product_view .messages { margin:0 0 1px; }
 #messages_product_view .messages li { margin:0; position:relative; z-index:1; }
 
-.product-essential { float: left; clear: left; }
+.product-essential { /*float: left; */clear: left;  min-height:100px; }
 
-.product-collateral-wrapper { float:left; width:938px; padding: 25px 0px 0px;}
+.product-collateral-wrapper { /*float:left; */width:938px; padding: 25px 0px 0px;  min-height:120px;  }
 .category-view .product-collateral-wrapper { float:left; width:auto; padding: 25px 0px 0px;}
-.product-collateral { float:right; width:625px; }
+.product-collateral { float:right; width:625px;  }
 .product-collateral .emailto-link { font-size:11px; margin:0; background:url(../images/bkg_arrow-bullet.gif) no-repeat 0 4px; padding-left:12px; }
-.category-view .product-collateral { float:right; width:600px; }
+.category-view .product-collateral { float:right; width:600px; min-height:120px; }
 
 .box-collateral { background:#fff; }
 .box-collateral .box-title { border-bottom:1px solid #000000;
@@ -1215,7 +1215,7 @@ line-height:1.2; }
 .tab-list .tab-container { position:absolute; left:0; width:100%; }
 .tab-list .tab-content {}
 
-.collateral-tabs { padding-bottom:20px; margin:0; width: 600px; height: 610px;}
+.collateral-tabs { padding-bottom:20px; margin:0; width: 600px; min-height: 610px; overflow-x: hidden; overflow-y: auto;}
 .collateral-tabs .std ul li {
 color: #000000;
 }
@@ -1265,15 +1265,17 @@ font-family:arial;
 padding-bottom:1px;
 text-transform:uppercase;
 	}
-.collateral-tabs .tab-container { z-index:1; top:24px; background:#fff;  top: 26px;}
+.collateral-tabs .tab-container { z-index:1;  background:#fff;  top: 26px;}
 .category-view .collateral-tabs .tab-container { z-index:1; top:24px; background:#fff;  top: 26px;padding-left:0px;}
 .collateral-tabs .tab-content { 
+	
 padding:30px 25px; 
 background:#FFFFFF; 
 border:1px solid #D3D3D3;
  margin-top: 6px;
 font-size:12px;
  width: 570px;
+ 
  }
 .collateral-tabs .tab-content object,
 .collateral-tabs .tab-content embed { width:100% !important; height:auto !important; }
@@ -1344,7 +1346,7 @@ p.product-image { cursor:default !important; }
 /* Product Shop */
 .prod-details { font-family: arial,helvetica; font-size:16px; font-weight:bold;padding-bottom:16px; color:#000000;}
 .guide a { line-height:19px;padding-left:11px; font-weight:bold;}
-.product-helpful-links { }
+.product-helpful-links a  {text-decoration:none; }
 .out-stock { 
 color: red;
 font-size: 12px;
@@ -2242,7 +2244,7 @@ ul.cms-menu.type-square ul { list-style-type:square; }
 .cart .title-buttons { padding-right:15px; }
 .cart .messages,
 .cart .messages li { margin:0; }
-.cart .checkout-types { float:right; text-align:center; }
+.cart .checkout-types {/* float:right;*/ text-align:center; }
 .cart .checkout-types .paypal-or { margin:0 8px; line-height:2.3; }
 .cart .checkout-types fieldset { display:inline; }
 .cart .checkout-types .btn-proceed-checkout span { background-image:url(../images/bkg_btn-co-1.gif); height:27px !important; padding:0 0 0 13px !important; }
@@ -3809,8 +3811,8 @@ margin-right:5px;
    padding: 5px;       
    box-shadow: 0 0 20px #CCCCCC;
 }
-
-#feedback_hide {
+#feedbackP_window .ajax-loading {position: absolute; top: 108px; z-index:999;}
+ #feedback_hide {
  background-image: url("../images/close_button_red.png");
 width:14px;
 height:14px;
@@ -4036,89 +4038,76 @@ background-repeat:no-repeat;
 /*end product page slider*/
 
 /*Tabs out */
-#tabout-left-off {
-background-image: url("../images/help-backgr-off.png");
-}
-#tabout-left-aviable {
-background-image: url("../images/help-backgr-on.png");
-}
-#tabout-left-aviable, #tabout-left-off {
- z-index: 9999;
-background-repeat: no-repeat;  
-    position: fixed;
-    left: -196px;
-    width: 220px;
-    height: 200px;
-    top: 248px;
-    -webkit-transition: left 0.5s ease-in-out;
-    -moz-transition: left 0.5s ease-in-out;
-    -o-transition: left 0.5s ease-in-out;
-    -ms-transition: left 0.5s ease-in-out;
-    transition: left 0.5s ease-in-out;
-     
-   border-radius:  0 10px 10px 0 ;     
-   -moz-border-radius: 0 10px 10px 0 ; /* Firefox */
-   -webkit-border-radius:  0 10px 10px 0 ; /* Safari, Chrome */
-   -khtml-border-radius:  0 10px 10px 0 ; /* KHTML */      
-}
-#tabout-left-aviable.open, #tabout-left-off.open {
-    left: 0;
-}
-#handle {
-
-    width: 24px;
-    height: 200px;
-    float: right;
-    cursor: pointer;
-   border-radius:  0 10px 10px 0 ;     
-   -moz-border-radius: 0 10px 10px 0 ; /* Firefox */
-   -webkit-border-radius:  0 10px 10px 0 ; /* Safari, Chrome */
-   -khtml-border-radius:  0 10px 10px 0 ; /* KHTML */  
-}
-.open #handle {
+.tabout-overlay {position: fixed;z-index: 13;height: 100%;width: 100%;background-color: #000000; opacity: 0.7; top:0; left:0;}
+.tabout-left-button{
+    width : 35px;
+    height : 137px;
+    position : fixed; 
+    z-index : 10;
  
+	background: url("../images/newbtn-12.png") 0% 0% transparent no-repeat;
+    top : 278px; 
+    left : 0px;
+ 	cursor:pointer;
+}
+.tabout-left-button:hover{ background: url("../images/newbtn-12.png") 0% 100% transparent no-repeat;}
+.tabout_window{
+    width : 400px;
+    height : 272px;
+    position : fixed; /* position in window */
+    z-index : 50;
+    background-color: #EFEFDF;
+    top : 35%; 
+    left : 40%;
+	display:none;
+    border : 2px solid;
+    border-radius: 10px;       
+   -moz-border-radius: 10px; /* Firefox */
+   -webkit-border-radius: 10px; /* Safari, Chrome */
+   -khtml-border-radius: 10px; /* KHTML */       
+   padding: 5px;       
+   box-shadow: 0 0 20px #CCCCCC;
+}
+.tabout_window .online-content {min-height:100px;overflow-y:auto; padding:48px 0px 50px 0px;}
+.tabout_window .offline-content {min-height:100px;overflow-y:auto; padding:48px 0px 50px 0px;}
+.tabout_window .online-content .contact-block  {padding:0px 0px 0px 0px;}
+.tabout_window .online-content .call {float:left; padding: 0px 16px;}
+.tabout_window .online-content .chat {padding:0px 15px; border-right:0px;}
+.tabout_window .offline-content .email {float:none;margin:auto;padding:0px 36px 0px 0px;}
+.tabout_window .offline-content {display:none;}
+.tabout_hide {
+ background-image: url("../images/close_button_red.png");
+width:14px;
+height:14px;
+background-repeat: no-repeat;
+background-size: 14px;
+margin-left: 369px;
+    margin-top: -16px;
+    cursor: pointer;
 }
 
-#tabout-left-aviable .express-text, #tabout-left-off .express-text{
+.tabout_title{
+    font-weight : bold;
+    margin-left : 10px;
+    margin-top : -6px;
+    border : 1px solid #717277;
+    border-radius : 0px 0px 10px 10px;
+    text-align : center;
+    width : 115px;
+    margin-bottom : 5px;
+    color : #FFFFFF;
+    background : #A00327;
+}
+
+.tabout_window .express-text{
  font-size: 13px;
 padding-top: 4px;
 font-weight: bold;
 color: #444;
 }
 
-#tabout-left-aviable .express-title, #tabout-left-off .express-title{
-font-size: 16px;
-margin-top: -15px;
-width: 130px;
-margin-left:35px;
-
-}
-.express-offline {
-color: #FF0000;
-    font-weight: bold;
-    font-size: 13px;
-    margin-bottom: 19px;
-    margin-top: 11px;
-}
-
-.express-email {
-  font-weight: bold;
-    font-size: 14px;
-  margin-bottom: 23px;
-    margin-top: 11px;
-}
 
 
-#express_hide {
- background-image: url("../images/close_button_red.png");
-width:14px;
-height:14px;
-background-repeat: no-repeat;
-background-size: 14px;
-margin-left: 172px;
-    margin-top: 13px;
-    cursor: pointer;
-}
 /* end tabs out*/ 
 
 .category-view p{padding: 0px 10px;font-size: 12px;}
@@ -4257,7 +4246,7 @@ margin-top: 43px;
 
 /*checkout cart*/
 #shopping-cart-totals-table th, .discount-price {color: #007700;font-weight: bold;font-size: 14px;}
-.totals .get-more {font-size:12px;padding:10px 0; text-align:right; font-weight:bold; color: #008800;}
+.totals .get-more {font-size:12px;padding-bottom:10px; text-align:right; font-weight:bold; color: #008800;}
 /*paypal express review*/
 .paypal-express-review .box-content span{color: #000000;text-transform: none; font-size:13px;}
 .paypal-express-review .box-content .billing {min-height: 100px; padding-top:10px;  font-size:13px;}
