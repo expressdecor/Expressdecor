@@ -9,6 +9,7 @@
 <form action="/contacts/index/post/" class="feedback" id="feedbackForm" method="post">
     
 <div class="feedback-fieldset">
+		<img  style="display:none;" class="ajax-loading" src="<?php echo $this->getSkinUrl('images/ajax-loader2.gif'); ?>" />
         <h2 class="legend"><?php echo Mage::helper('contacts')->__('Tell us about your shopping experience') ?></h2>
         <ul class="form-list">
 
@@ -185,7 +186,7 @@ Event.observe('FeedbackButtonpost', 'click', function(event) {
 		var comment =$('feedback_comment').value;
 
 		var score = $('star-val');
-
+		 jQuery('.ajax-loading').show();
 		comment=' Stars: '+score.value+' '+comment;
 
 		var data='name='+name+'&email='+email+'&comment='+comment;
@@ -198,6 +199,7 @@ Event.observe('FeedbackButtonpost', 'click', function(event) {
 				alert("Your feedack was added Succcefully. Thank you!");
 				  jQuery('#feedbackP_window').hide();
 				  jQuery('.feedback-overlay').hide();
+				  jQuery('.ajax-loading').hide();
 			},
 			onFailure: function(){ alert('Error with adding feedback, please try again.') }
 		});
