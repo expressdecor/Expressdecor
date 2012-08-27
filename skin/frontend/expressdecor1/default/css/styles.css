@@ -1188,7 +1188,7 @@ font-weight: bold;}
 #messages_product_view .messages { margin:0 0 1px; }
 #messages_product_view .messages li { margin:0; position:relative; z-index:1; }
 
-.product-essential { /*float: left; */clear: left;  min-height:100px; }
+.product-essential { /*float: left; */clear: left;  min-height:100px; overflow:auto;}
 
 .product-collateral-wrapper { /*float:left; */width:938px; padding: 25px 0px 0px;  min-height:120px;  }
 .category-view .product-collateral-wrapper { float:left; width:auto; padding: 25px 0px 0px;}
