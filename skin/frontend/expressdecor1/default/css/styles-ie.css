@@ -92,6 +92,7 @@ z-index:9999;
 #product_addtocart_form div.product-essential div.product-shop div.product-main-info2 div.addto-chat div.addto-bg {float: left;margin: 93px 0 0 -531px;}
 #product_addtocart_form div.product-essential div.product-shop div.product-main-info2 div.addto-chat div.addto-chat-elem3 ul.add-to-links { float: none; margin-left: -370px;
 }
+
 #cat-brands.brands div.sub div.row div div#subcat-box-brands a.subtext-brands { float:left; position:absolute; margin-left:-180px;}
 ul#pronav {padding: 0 4px 0px;}
 .scan {
@@ -324,4 +325,5 @@ iframe.hover-fix { position:absolute; left:-1px; top:-1px; z-index:-1; backgroun
 .special-price-sale .price { margin-top: -10px; }
 #feedbackButton {margin-left:-280px; }
 #feedbackP {border: 1px solid }
-}
+
+ 
