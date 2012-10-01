@@ -115,7 +115,7 @@ class Expressdecor_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block
 		'index'     => 'channel',
 		'type'  => 'options',
 		'width' => '70px',
-		'options'   => array('Amazon' => 'Amazon', 'Sears' => 'Sears', 'Ebay'=>'Ebay', 'Ebayrefurb'=>'Ebay Refurb')
+		'options'   => array('Amazon' => 'Amazon', 'Sears' => 'Sears', 'Ebay'=>'Ebay', 'Ebayrefurb'=>'Ebay Refurb','Buycom'=>'Buy.com')
 		));
 
 				$this->addColumn('Promo code', array(
