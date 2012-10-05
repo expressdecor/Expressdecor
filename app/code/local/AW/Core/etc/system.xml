@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config>
+	<sections>
+		<awall translate="label" module="awall">
+			<groups>
+                <awcore translate="label">
+                    <label>aheadWorks Extensions logging</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>awcore/adminhtml_system_config_form_fieldset</frontend_model>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+					<fields>
+						<logger_enabled translate="label">
+							<label>Enable</label>
+							<comment>Will log all aheadWorks extensions events</comment>
+							<frontend_type>select</frontend_type>
+							<sort_order>90</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+						</logger_enabled>
+						<logger_store_days>
+							<label>Keep log for, days</label>
+							<comment></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</logger_store_days>			
+					</fields>	
+					
+                </awcore>
+				
+			</groups>
+		</awall>
+	</sections>
+</config>

@@ -1,0 +1,12 @@
+id1:
+ value_before: 1
+ value_after: 2
+id2:
+ value_before: null
+ value_after: 2
+id3:
+ value_before: 1
+ value_after: null
+id4:
+ value_before: null
+ value_after: null

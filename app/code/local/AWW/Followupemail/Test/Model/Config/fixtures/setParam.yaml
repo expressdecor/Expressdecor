@@ -1,0 +1,5 @@
+tables:
+  followupemail/config:
+    -
+      name: 'email_sender_last_exec_time'
+      value: 1

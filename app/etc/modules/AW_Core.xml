@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AW_Core>
+            <active>true</active>
+            <codePool>local</codePool>
+        </AW_Core>
+    </modules>
+</config>

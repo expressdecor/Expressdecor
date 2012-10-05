@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<config>
+    <translate>
+        <modules>
+            <AWW_Followupemail>
+                <files>
+                    <default>AWW_Followupemail.csv</default>
+                </files>
+            </AWW_Followupemail>
+        </modules>
+    </translate>
+    <menu>
+        <followupemail module="followupemail">
+            <title>Follow Up Email</title>
+            <sort_order>71</sort_order>
+            <children>
+                <items module="followupemail">
+                    <title>Manage Rules</title>
+                    <sort_order>10</sort_order>
+                    <action>followupemail/adminhtml_rules</action>
+                </items>
+                <entries module="followupemail">
+                    <title>Mail log</title>
+                    <sort_order>20</sort_order>
+                    <action>followupemail/adminhtml_queue</action>
+                </entries>
+                <linktracking module="followupemail">
+                    <title>Link Tracking</title>
+                    <sort_order>30</sort_order>
+                    <action>followupemail/adminhtml_linktracking</action>
+                </linktracking>
+                <coupons module="followupemail">
+                    <title>Coupons</title>
+                    <sort_order>40</sort_order>
+                    <action>followupemail/adminhtml_coupons</action>
+                </coupons>
+                <settings module="followupemail">
+                    <title>Settings</title>
+                    <sort_order>50</sort_order>
+                    <action>adminhtml/system_config/edit/section/followupemail</action>
+                </settings>
+            </children>
+        </followupemail>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+                <admin>
+                    <children>
+                        <followupemail>
+                            <title>Followupemail Module</title>
+                            <sort_order>10</sort_order>
+                            <children>
+                                <items>
+                                    <title>Rules manager</title>
+                                </items>
+                                <entries>
+                                    <title>Email queue</title>
+                                </entries>
+                                <linktracking>
+                                    <title>Link tracking</title>
+                                </linktracking>
+                                <coupons>
+                                    <title>Coupons Management</title>
+                                </coupons>
+                                <settings>
+                                    <title>Settings</title>
+                                </settings>
+                            </children>
+                        </followupemail>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <followupemail>
+                                            <title>aheadWorks - Follow Up Email Section</title>
+                                        </followupemail>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+        </resources>
+    </acl>
+    <layout>
+        <updates>
+            <followupemail>
+                <file>followupemail.xml</file>
+            </followupemail>
+        </updates>
+    </layout>
+</config>

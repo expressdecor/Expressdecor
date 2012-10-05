@@ -1,0 +1,140 @@
+<?php
+/**
+* aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE-COMMUNITY.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * aheadWorks does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * aheadWorks does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AWW_Followupemail
+ * @version    3.4.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE-COMMUNITY.txt
+ */
+?>
+<?php
+
+$statuses = AWW_Followupemail_Model_Source_Queue_Status::toOptionArray();
+$id = $this->getId();
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en">
+<head>
+    <title><?php echo $this->__('Follow Up Email Preview'); ?></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('reset.css', array()); ?>" media="all" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('boxes.css', array()); ?>" media="all" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('followupemail.css', array()); ?>" media="all" />
+    <script type="text/javascript" src="<?php echo Mage::helper('core/js')->getJsUrl('prototype/prototype.js'); ?>"></script>
+</head>
+<body>
+<script type="text/javascript">
+    doAction = function(action) {
+        $('loading-mask').style.display = '';
+        new Ajax.Request('<?php echo Mage::getSingleton('adminhtml/url')->getUrl('*/*/update', array('id' => $id)) ?>',
+            {
+                parameters: {action: action},
+                method:'get',
+                onSuccess: function(transport) {
+                    try {
+                        if (transport.responseText.isJSON()) {
+                            var response = transport.responseText.evalJSON()
+                            if(response.ajaxExpired && response.ajaxRedirect) setLocation(response.ajaxRedirect);
+                            if(response.error) alert(response.message);
+                            if('success' != response.result) alert(response.message);
+                            if(action == 'delete') {
+                                if (window.opener != null) {
+                                    if(window.opener.FUE_QueueGridJsObject)
+                                        window.opener.FUE_QueueGridJsObject.reload();
+                                    else
+                                        if(window.opener.FUE_LinkTrackingGridJsObject)
+                                            window.opener.FUE_LinkTrackingGridJsObject.reload();
+                                    window.opener.focus();
+                                    window.close();
+                                }
+                                else {
+                                    document.location = '<?php echo Mage::getSingleton('adminhtml/url')->getUrl('*/*/index') ?>';
+                                }
+                                return;
+                            }
+                            document.location.reload();
+                            if ( window.opener != null) {
+                                window.opener.FUE_QueueGridJsObject.reload();
+                            }
+                        }
+                    }
+                    catch (e) { alert(transport.responseText); }
+                }
+            }
+        );
+    }
+    closeWindow = function(){
+        if (window.opener != null){
+            window.close();
+        }
+        else{
+            document.location = '<?php echo Mage::getSingleton('adminhtml/url')->getUrl('*/*/index') ?>';
+        }
+    }
+</script>
+<?php 
+echo $this->getLayout()->createBlock('core/messages')
+        ->setMessages(Mage::getSingleton('adminhtml/session')->getMessages(true))
+        ->toHtml();
+?>
+<div height="100%">
+    <table class="massaction" cellspacing=0 cellpadding=0 width="100%"><tbody><tr>
+        <td class="status" align="center" style="width:200px">Status: <?php echo $statuses[$this->getStatus()] ?></td>
+        <td class="status right" style="width:auto"><div class="right">
+
+            <span class="field-row"><button id="" class="scalable back" style="" onclick="closeWindow();" type="button"><span><?php echo $this->__('Close window')?></span></button></span>
+
+            <?php if(AWW_Followupemail_Model_Source_Queue_Status::QUEUE_STATUS_READY == $this->getStatus()): ?>
+            <span class="field-row"><button id="" class="scalable cancel" style="" onclick="doAction('cancel')" type="button"><span><?php echo $this->__('Cancel')?></span></button></span>
+            <?php endif ?>
+
+        <span class="field-row"><button id="" class="scalable delete" style="" onclick="if(confirm('<?php echo $this->__('Are you sure you want to delete the email?')?>')) doAction('delete');" type="button"><span><?php echo $this->__('Delete from queue')?></span></button></span>
+
+            <?php if(AWW_Followupemail_Model_Source_Queue_Status::QUEUE_STATUS_SENT != $this->getStatus()): ?>
+            <span class="field-row"><button id="" class="scalable save" style="" onclick="if(confirm('<?php echo $this->__('Are you sure you want to send the email immediately ?')?>')) doAction('send');" type="button"><span><?php echo $this->__('Send now')?></span></button></span>
+            <?php endif ?>
+
+        </div></td>
+    </tr>
+    </table>
+
+    <table class="email" cellspacing="0" width="100%">
+        <col width="5%"/>
+        <col />
+        <tbody>
+            <tr><th>From:</th><td><?php echo $this->getSenderName() ?> <a href="mailto:<?php echo $this->getSenderEmail() ?>"><?php echo $this->getSenderEmail() ?></a></?php></td></tr>
+            <tr><th>To:</th><td><?php echo $this->getRecipientName()?> <a href="mailto:<?php echo $this->getRecipientEmail() ?>"><?php echo $this->getRecipientEmail() ?></a></td></tr>
+            <tr><th>Bcc:</th><td><?php echo $this->getEmailCopyTo() ?></td></tr>
+            <tr><th>Subject:</th><td><?php echo $this->getSubject() ?></td></tr>
+            <tr><th>Content:</th><td><?php echo $this->getContent() ?></td></tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div style="left: -2px; top: 0px; width: 960px; height: 829px; display: none;" id="loading-mask">
+    <p id="loading_mask_loader" class="loader"><img alt="<?php echo $this->__('Loading...') ?>" src="<?php echo $this->getSkinUrl('images/ajax-loader-tr.gif') ?>" /><br>&nbsp; <?php echo $this->__('Please wait...') ?></p>
+</div>
+
+</body>
+</html>

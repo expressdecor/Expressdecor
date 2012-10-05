@@ -1,0 +1,308 @@
+<?xml version="1.0"?>
+<templates>
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+    <template>
+        <template_code>AW Happy Birthday</template_code>
+        <template_subject>Happy Birthday</template_subject>
+        <template_sender_name>AW</template_sender_name>
+        <template_sender_email>aw@aw.com</template_sender_email>
+        <template_text><![CDATA[
+<h1 style="color:#184AA4; size:large;">Dear {{var customer_name}}!</h1>
+<p>Here's wishing that your Birthday<br />
+Is just as special as you.<br />
+A day packed full of happiness,<br />
+That will last the whole year through.</p>
+{{depend has_coupon}}<p>Your coupon code is: {{var coupon.code}}, expires at {{var coupon.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.1.code}}, expires at {{var coupons.1.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.2.code}}, expires at {{var coupons.2.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.test.code}}, expires at {{var coupons.test.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.test_alias.code}}, expires at {{var coupons.test_alias.expiration_date}}</p>
+{{/depend}}
+<br />
+<img src="{{skin url='images/699.jpg'}}" border="0" width="322" height="448" align="center" />
+]]></template_text>
+    </template>
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+    <template>
+        <template_code>AW Birthday 2</template_code>
+        <template_subject>Happy Birthday</template_subject>
+        <template_sender_name>AW</template_sender_name>
+        <template_sender_email>aw@aw.com</template_sender_email>
+        <template_text><![CDATA[
+<h1 style="color:#E63513; size:large;">Dear {{var customer_name}}!</h1>
+<p>In soft gleaming night of stars,<br />
+May all your dreams come true.<br />
+May every star of every night,<br />
+Bring love and joy to you!</p>
+{{depend has_coupon}}<p>Your coupon code is: {{var coupon.code}}, expires at {{var coupon.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.1.code}}, expires at {{var coupons.1.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.2.code}}, expires at {{var coupons.2.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.test.code}}, expires at {{var coupons.test.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.test_alias.code}}, expires at {{var coupons.test_alias.expiration_date}}</p>
+{{/depend}}
+<br />
+<img src="{{skin url='images/BD.jpg'}}" border="0" />
+]]></template_text>
+    </template>
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+    <template>
+        <template_code>AW Customer log in</template_code>
+        <template_subject>Customer log in</template_subject>
+        <template_sender_name>AW</template_sender_name>
+        <template_sender_email>aw@aw.com</template_sender_email>
+        <template_text><![CDATA[
+<p>Dear {{var customer_name}}!</p>
+<p>Thank you for coming back to us!</p>
+{{depend has_coupon}}<p>Your coupon code is: {{var coupon.code}}, expires at {{var coupon.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.1.code}}, expires at {{var coupons.1.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.2.code}}, expires at {{var coupons.2.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.test.code}}, expires at {{var coupons.test.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.test_alias.code}}, expires at {{var coupons.test_alias.expiration_date}}</p>
+{{/depend}}
+]]></template_text>
+    </template>
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+    <template>
+        <template_code>AW Not logged in for some time</template_code>
+        <template_subject>Not logged in for some time</template_subject>
+        <template_sender_name>AW</template_sender_name>
+        <template_sender_email>aw@aw.com</template_sender_email>
+        <template_text><![CDATA[
+<p>Dear {{var customer_name}}!</p>
+<p>You have a membership account in the YOUR STORE NAME.</p>
+<p>New products that can awake your interest have appeared in our store since your last visit.</p>
+<p>Please follow the link to find out all the changes:<br />
+<a href="{{store url=""}}/">YOUR STORE</a></p>
+{{depend has_coupon}}<p>Your coupon code is: {{var coupon.code}}, expires at {{var coupon.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.1.code}}, expires at {{var coupons.1.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.2.code}}, expires at {{var coupons.2.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.test.code}}, expires at {{var coupons.test.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.test_alias.code}}, expires at {{var coupons.test_alias.expiration_date}}</p>
+{{/depend}}
+]]></template_text>
+    </template>
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+    <template>
+        <template_code>AW Your cart has been abandoned</template_code>
+        <template_subject>You have abandoned your cart in our store</template_subject>
+        <template_sender_name>AW</template_sender_name>
+        <template_sender_email>aw@aw.com</template_sender_email>
+        <template_text><![CDATA[
+<h1>Dear {{var customer_name}}!</h1>
+
+<p>On {{var quote.updatedAt|formatDateTime:long}} you left a cart in our shop with the following content:</p>
+
+<table width=100% border=1 cellspacing=1 cellpadding=5>
+<tr>
+  <th>No</th>
+  <th>Product</th>
+  <th>Image</th>
+  <th>Description</th>
+  <th>SKU</th>
+  <th>Price</th>
+  <th>Qty</th>
+  <th>Row Total</th>
+</tr>
+
+{{foreach var="$quote.getAllVisibleItems()" template="nsltr:AW Abandoned cart row"}}
+
+<tr>
+  <th colspan=5 align=left>Rows total: {{var row_item_row_number}}</th>
+  <th colspan=3>
+    <table width=100% cellspacing=0 cellpadding="10" style="background-color:yellow">
+        <tr>
+            <td align="left">Discount:</td>
+            <td align="right">{{var quote.totalDiscount|formatPrice}}</td>
+        </tr>
+        <tr>
+            <td align="left">Total:</td>
+            <td align="right">{{var quote.grandTotal|formatPrice}}</td>
+        </tr>
+    </table>
+</tr>
+</table>
+
+<p>Please come back and take it here: <a href="{{var url_resume}}">Your cart link</a></p>
+{{depend has_coupon}}<p>Your coupon code is: {{var coupon.code}}, expires at {{var coupon.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.1.code}}, expires at {{var coupons.1.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.2.code}}, expires at {{var coupons.2.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.test.code}}, expires at {{var coupons.test.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.test_alias.code}}, expires at {{var coupons.test_alias.expiration_date}}</p>
+{{/depend}}
+<br>
+<a href="{{var url_unsubscribe}}">Unsubscribe</a><br>
+<br>
+<br>
+<hr>
+]]></template_text>
+    </template>
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+    <template>
+        <template_code>AW Abandoned cart row</template_code>
+        <template_subject>Abandoned cart row</template_subject>
+        <template_sender_name>AW</template_sender_name>
+        <template_sender_email>aw@aw.com</template_sender_email>
+        <template_text><![CDATA[
+<tr>
+  <td>{{var row_item_row_number}}</td>
+  <td><a href="{{store url="catalog/product/view" id="$row_item.product.id"}}">{{var row_item.name}}</a></td>
+  <td align="center"><img src="{{thumbnail size="75" source="row_item.product"}}"/></td>
+  <td>{{var row_item.product.description}}&nbsp;</td>
+  <td>{{var row_item.sku}}</td>
+  <td align="right"><nobr>{{var row_item.priceInclTax|formatPrice}}</nobr></td>
+  <td align="right"><nobr>{{var row_item.qty|formatDecimal}}</nobr></td>
+  <td align="right"><nobr>{{var row_item.row_totalInclTax|formatPrice}}</nobr></td>
+</tr>
+]]></template_text>
+    </template>
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+    <template>
+        <template_code>AW Order changed its status</template_code>
+        <template_subject>Order changed its status</template_subject>
+        <template_sender_name>AW</template_sender_name>
+        <template_sender_email>aw@aw.com</template_sender_email>
+        <template_text><![CDATA[
+<h1>Dear {{var customer_name}}!</h1>
+
+<p>On {{var order.updatedAt|formatDateTime:long}} an order status has been changed to {{var order.status}}</p>
+
+<p>The order contain the following items:</p>
+<table width=100% border=1 cellspacing=1 cellpadding=5>
+<tr>
+  <th>No</th>
+  <th>Product</th>
+  <th>Image</th>
+  <th>Description</th>
+  <th>Price</th>
+  <th>Qty</th>
+  <th>Row Total</th>
+</tr>
+
+{{foreach var="$order.getAllVisibleItems()" template="nsltr:AW Order row"}}
+
+<tr>
+  <th colspan=4 align=left>Rows total: {{var row_item_row_number}}</th>
+  <th colspan=3>
+    <table width=100% cellspacing=0 cellpadding="10" style="background-color:yellow">
+        <tr>
+            <td align="left">Discount:</td>
+            <td align="right">{{var order.discountAmount|formatPrice}}</td>
+        </tr>
+        <tr>
+            <td align="left">Total:</td>
+            <td align="right">{{var order.grandTotal|formatPrice}}</td>
+        </tr>
+    </table>
+</tr>
+</table>
+
+<p>Please come back and take it here: <a href="{{var url_resume}}">Your cart link</a></p>
+{{depend has_coupon}}<p>Your coupon code is: {{var coupon.code}}, expires at {{var coupon.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.1.code}}, expires at {{var coupons.1.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.2.code}}, expires at {{var coupons.2.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.test.code}}, expires at {{var coupons.test.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.test_alias.code}}, expires at {{var coupons.test_alias.expiration_date}}</p>
+{{/depend}}
+<br>
+<a href="{{var url_unsubscribe}}">Unsubscribe</a><br>
+<br>
+<br>
+<hr>
+]]></template_text>
+    </template>
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+    <template>
+        <template_code>AW Order row</template_code>
+        <template_subject>Order row</template_subject>
+        <template_sender_name>AW</template_sender_name>
+        <template_sender_email>aw@aw.com</template_sender_email>
+        <template_text><![CDATA[
+<tr>
+  <td>{{var row_item_row_number}}</td> 
+  <td><a href="{{store url="catalog/product/view" id="$row_item.product.id"}}">{{var row_item.name}}</a></td>
+  <td align="center"><img src="{{thumbnail size="75" source="row_item.product"}}"/></td>
+  <td>{{var row_item.product.description}}&nbsp;</td>
+  <td align="right"><nobr>{{var row_item.price|formatPrice}}</nobr></td>
+  <td align="right"><nobr>{{var row_item.qtyOrdered|formatDecimal}}</nobr></td>
+  <td align="right"><nobr>{{var row_item.row_total|formatPrice}}</nobr></td>
+</tr>
+]]></template_text>
+    </template>
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+    <template>
+        <template_code>AW Wishlist was shared</template_code>
+        <template_subject>Wishlist was shared</template_subject>
+        <template_sender_name>AW</template_sender_name>
+        <template_sender_email>aw@aw.com</template_sender_email>
+        <template_text><![CDATA[
+<h1>Dear {{var customer.Name}}!</h1>
+
+<p>Your wishlist contains the following items:</p>
+<table width=100% border=1 cellspacing=1 cellpadding=5>
+<tr>
+  <th>No</th>
+  <th>Product</th>
+  <th>Image</th>
+  <th>Product description</th>
+  <th>Wishlist comment</th>
+  <th>Price</th>
+  <th>Added at</th>
+</tr>
+
+{{foreach var="$wishlist.itemCollection.items" template="nsltr:AW Wishlist row"}}
+
+</table>
+
+<p><a href="{{var url_resume}}goto/wishlist/">Your wishlist link</a></p>
+{{depend has_coupon}}<p>Your coupon code is: {{var coupon.code}}, expires at {{var coupon.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.1.code}}, expires at {{var coupons.1.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.2.code}}, expires at {{var coupons.2.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.test.code}}, expires at {{var coupons.test.expiration_date}}</p>
+<p>Your coupon code is: {{var coupons.test_alias.code}}, expires at {{var coupons.test_alias.expiration_date}}</p>
+{{/depend}}
+<br>
+<a href="{{var url_unsubscribe}}">Unsubscribe</a><br>
+]]></template_text>
+    </template>
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+    <template>
+        <template_code>AW Wishlist row</template_code>
+        <template_subject>Wishlist row</template_subject>
+        <template_sender_name>AW</template_sender_name>
+        <template_sender_email>aw@aw.com</template_sender_email>
+        <template_text><![CDATA[
+<tr>
+  <td>{{var row_item_row_number}}</td>
+  <td><a href="{{store url="catalog/product/view" id="$row_item.product.id"}}">{{var row_item.product.name}}</a></td>
+  <td align="center"><img src="{{thumbnail size="75" source="row_item.product"}}"/></td>
+  <td>{{var row_item.product.description}}&nbsp;</td>
+  <td align="right"><nobr>{{var row_item.description}}</nobr>&nbsp;</td>
+  <td align="right"><nobr>{{var row_item.product.price|formatPrice}}</nobr></td>
+  <td align="right"><nobr>{{var row_item.addedAt|formatDateTime:long}}</nobr></td>
+</tr>
+]]></template_text>
+    </template>
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+</templates>
