@@ -1,0 +1,44 @@
+<?php
+/**
+* aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE-COMMUNITY.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * aheadWorks does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * aheadWorks does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AWW_Followupemail
+ * @version    3.4.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE-COMMUNITY.txt
+ */
+?>
+<?php
+
+$element = $this->getElement();
+
+?>
+<tr id="sale_amount_container">
+    <td class="label"><label for="sale_amount_condition"><?php echo $element->getLabel() ?></label></td>
+    <td colspan="2" class="value" style="white-space:nowrap;width:auto;">
+        <select id="sale_amount_condition" class="select" name="sale_amount_condition">
+            <?php foreach($element->getConditions() as $k => $v):?>
+                <option <?php echo ($k == $element->getCondition())?'selected="selected"':'' ?> value="<?php echo $k ?>"><?php echo $v ?></option>
+            <?php endforeach ?>
+        </select>
+        <input style="width:190px; margin-left: 2px;" class="input-text" id="sale_amount_value" value="<?php echo $element->getValue() ?>" name="sale_amount_value"/>
+    </td>
+</tr>

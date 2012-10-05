@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+   <followupemail_admin_adminhtml_rules_index>
+      <reference name="content">
+         <block type="followupemail/adminhtml_rule" name="followupemail.rule" />
+      </reference>
+   </followupemail_admin_adminhtml_rules_index>
+   <followupemail_admin_adminhtml_queue_index>
+      <reference name="head">
+         <action method="addJs"><script>aw_followupemail/adminhtml/grid.js</script></action>
+      </reference>
+      <reference name="content">
+         <block type="followupemail/adminhtml_queue" name="followupemail.queue" />
+      </reference>
+   </followupemail_admin_adminhtml_queue_index>
+   <followupemail_admin_adminhtml_linktracking_index>
+      <reference name="head">
+         <action method="addJs"><script>aw_followupemail/adminhtml/grid.js</script></action>
+      </reference>
+      <reference name="content">
+         <block type="followupemail/adminhtml_linktracking" name="followupemail.linktracking" />
+      </reference>
+   </followupemail_admin_adminhtml_linktracking_index>
+   <followupemail_admin_adminhtml_coupons_index>
+       <reference name="content">
+           <block type="followupemail/adminhtml_coupons" name="fue.coupons" />
+       </reference>
+   </followupemail_admin_adminhtml_coupons_index>
+</layout>

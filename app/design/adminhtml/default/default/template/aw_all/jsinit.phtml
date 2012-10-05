@@ -1,0 +1,60 @@
+<?php
+/**
+* aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE-COMMUNITY.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * aheadWorks does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * aheadWorks does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_All
+ * @version    2.2.1
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE-COMMUNITY.txt
+ */
+?>
+<?php if ($this->_section == 'awall'): ?>
+<div id="awall_extensions_table">
+    <table class="form-list">
+        <tbody>
+            <?php foreach ($this->getExtensions() as $Extension): ?>
+        <tr>
+            <td><img src="<?php echo $this->getIcon($Extension)->getSource()?>"
+                     alt="<?php echo $this->getIcon($Extension)->getTitle()?>"/></td>
+            <td><a href="<?php echo $Extension->getFeedInfo()->getUrl()?>"
+                   onclick="this.target = '_blank'"><?php echo $Extension->getFeedInfo()->getDisplayName()?></a></td>
+            <td><?php echo $Extension->getVersion()?></td>
+            <td>
+                <a href="http://doc.aheadworks.com/magento-extensions/<?php echo $Extension->getName()?>-<?php echo $Extension->getVersion()?>/readme.html"
+                   onclick="this.target = '_blank'"><img
+                        src="<?php echo $this->getSkinUrl('aw_all/images/readme.png')?>"/></a></td>
+        </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<?php endif; ?>
+<?php if ($this->_section == 'awstore'): ?>
+<div id="awall_store_response">
+
+    <?php echo $this->_getStoreData()->getTextResponse()?>
+</div>
+<?php endif; ?>
+
+
+<script type="text/javascript">
+    _section = '<?php echo $this->_section?>';
+</script>

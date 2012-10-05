@@ -1,0 +1,152 @@
+body {
+	margin:10px 10px 11px;
+	background-color:white;
+	background-image:url(images/footer_bg.gif);
+	background-repeat: repeat-x;
+	background-attachment:scroll;
+	background-position:bottom;
+}
+
+.massaction {
+	background:#EBEBEB url(images/massaction_bg.gif) repeat-x scroll 0 100%;
+	border-color:#D1CFCF #D1CFCF -moz-use-text-color;
+	border:1px solid #FFFFFF;
+	border-style: none;
+	border-bottom: none;
+	font-size:0.9em;
+	height:26px;
+	vertical-align:middle;
+	width:100%;
+}
+
+.f-right, .right {
+	float:right;
+	padding: 2px 12px;
+}
+
+.email table {
+	border-color:#CBD3D4 #CBD3D4 -moz-use-text-color;
+	border-style:solid solid none;
+	border-width:1px 1px medium;
+	width:100%;
+}
+
+.email th {
+	background-color:#D1CFCF;
+	border-color:#F9F9F9 #D1CFCF #F9F9F9 #F9F9F9;
+	border-style:solid;
+	border-width:1px;
+	font-size:0.9em;
+	padding-bottom:0;
+	padding-top:1px;
+	text-align:left;
+	vertical-align:top;
+	white-space:nowrap;
+}
+
+.email th {
+	border-style: solid none none;
+	border-top:solid 1px #DADFE0;
+}
+
+.email th, .email td {
+	padding:2px 4px;
+}
+
+.email th span.nobr {
+	display:block;
+}
+
+.email td {
+	border-color:#DADFE0;
+	border-style:solid;
+	border-width:0 1px 1px 0;
+}
+
+.a-left {
+	text-align:left !important;
+}
+
+.status {
+	text-align:center;
+	font-weight:bold;
+}
+
+.field-row {
+	display:inline;
+}
+td {
+	padding:0;
+	vertical-align:middle;
+}
+
+button, .form-button {
+	background:#FFAC47 url(images/btn_bg.gif) repeat-x scroll 0 100%;
+	border-color:#ED6502 #A04300 #A04300 #ED6502;
+	border-style:solid;
+	border-width:1px;
+	color:#FFFFFF;
+	cursor:pointer;
+	font-family:arial,helvetica,sans-serif;
+	font-size:12px;
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:bold;
+	line-height:normal;
+	padding:0 7px 1px;
+	text-align:center !important;
+	white-space:nowrap;
+}
+
+button span {
+	background-position:0 50%;
+	background-repeat:no-repeat;
+	margin:0;
+	padding:0;
+	padding-left:20px;
+}
+
+button.delete {
+	background-color:#FCAF81;
+	background-image:url(images/cancel_btn_bg.gif);
+	border-color:#D24403 #A92000 #A92000 #D24403;
+	color:#FFFFFF;
+}
+
+button.cancel {
+	background-color:yellow;
+	background-image:url(images/btn_over_bg.gif);
+	border-color:#D24403 #A92000 #A92000 #D24403;
+	color:#FFFFFF;
+}
+
+button.back {
+	background-color:#FFFFFF;
+	background-image:url(images/btn_back_bg.gif);
+	border-color:#CCCCCC #AAAAAA #AAAAAA #CCCCCC;
+	color:#555555;
+}
+
+button.back span {
+	background-image:url(images/icon_btn_back.gif);
+}
+
+button.delete span {
+	background-image:url(images/cancel_btn_icon.gif);
+}
+
+button.cancel span {
+	background-image:url(images/warning_msg_icon.gif);
+}
+
+button.save span {
+	background-image:url(images/icon_export.gif);
+}
+
+button:hover { background:#f77c16 url(images/btn_over_bg.gif) repeat-x 0 0; }
+button:active { background:#f77c16 url(images/btn_on_bg.gif) repeat-x 0 0; }
+button.back:hover { background-image:url(images/btn_back_over_bg.gif); }
+button.cancel:hover,
+button.delete:hover { background-image:url(images/cancel_btn_over_bg.gif); }

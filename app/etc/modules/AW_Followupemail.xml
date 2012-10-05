@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AWW_Followupemail>
+            <active>true</active>
+            <codePool>local</codePool>
+        </AWW_Followupemail>
+    </modules>
+</config> 

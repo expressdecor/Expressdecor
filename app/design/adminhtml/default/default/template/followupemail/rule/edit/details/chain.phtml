@@ -1,0 +1,203 @@
+<?php
+/**
+* aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE-COMMUNITY.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * aheadWorks does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * aheadWorks does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AWW_Followupemail
+ * @version    3.4.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE-COMMUNITY.txt
+ */
+?>
+<?php
+
+$_htmlId    = $this->getElement()->getHtmlId();
+$_htmlClass = $this->getElement()->getClass();
+$_htmlName  = $this->getElement()->getName();
+
+?>
+<tr>
+    <td class="label"><?php echo $this->getElement()->getLabel() ?></td>
+    <td colspan="10" class="grid tier">
+    <table cellspacing="0" class="data border" id="chain_tiers_table">
+        <col width="75" />
+        <col width="50" />
+        <col width="50" />
+        <col width="50" />
+        <col />
+        <col width="50" />
+        <thead>
+            <tr class="headings">
+                <th><?php echo $this->__('Send') ?></th>
+                <th><?php echo $this->__('Days') ?></th>
+                <th><?php echo $this->__('Hours') ?></th>
+                <th><?php echo $this->__('Minutes') ?></th>
+                <th><?php echo $this->__('Template') ?></th>
+                <th class="last"><?php echo $this->__('Action') ?></th>
+            </tr>
+            <tr id="<?php echo $_htmlId ?>_add_template" class="template no-display">
+                <td class="nobr">
+                    <select disabled="no-template" class="<?php echo $_htmlClass ?> custgroup" name="<?php echo $_htmlName ?>[__index__][BEFORE]" id="chain_row___index___BEFORE">
+                        <option value="1"><?php echo $this->__('After'); ?></option>
+                        <option value="-1" disabled="disabled"><?php echo $this->__('Before'); ?></option>
+                    </select>
+                </td>
+                <td class="nobr">
+                    <input disabled="no-template" class="<?php echo $_htmlClass ?> required-entry" type="text" name="<?php echo $_htmlName ?>[__index__][DAYS]" value="'#{DAYS}'" id="chain_row___index___DAYS" />
+                </td>
+                <td class="nobr">
+                    <select select disabled="no-template" class="<?php echo $_htmlClass ?> custgroup" name="<?php echo $_htmlName ?>[__index__][HOURS]" id="chain_row___index___HOURS">
+                        <?php for($i = 0; $i<=23; $i++) : ?>
+                        <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                        <?php endfor; ?>
+                    </select>
+                </td>
+                <td class="nobr">
+                    <select select disabled="no-template" class="<?php echo $_htmlClass ?> custgroup" name="<?php echo $_htmlName ?>[__index__][MINUTES]" id="chain_row___index___MINUTES">
+                        <?php for($i = 0; $i<=55; $i+=5) : ?>
+                        <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                        <?php endfor; ?>
+                    </select>
+                </td>
+                <td>
+                    <select disabled="no-template" class="<?php echo $_htmlClass ?> custgroup required-entry" name="<?php echo $_htmlName ?>[__index__][TEMPLATE_ID]" id="chain_row___index___TEMPLATE">
+                        <?php $optGroup = false;
+                        foreach ($this->getEmailTemplates() as $__templateID => $__templateName):
+                            if($__templateID && false === strpos($__templateID, AWW_Followupemail_Model_Source_Rule_Template::TEMPLATE_SOURCE_SEPARATOR)):
+                                if($optGroup) echo '</optgroup>';
+                                $optGroup = true; ?>
+                                <optgroup label="<?php echo htmlspecialchars($__templateName) ?>">
+                            <?php else: ?>
+                                <option value="<?php echo $__templateID ?>"><?php echo htmlspecialchars($__templateName) ?></option>
+                            <?php endif ?>
+                        <?php endforeach ?>
+                        <?php if($optGroup) echo '</optgroup>'; ?>
+                    </select>
+                </td>
+                <td class="last"><input type="hidden" name="<?php echo $_htmlName ?>[__index__][delete]" class="delete" disabled="no-template" value="" /><button title="Delete email" class="scalable delete icon-btn delete-product-option" onclick="emailsControl.deleteItem(event);return false"><span>Delete</span></button></td>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td colspan="6" class="a-right"><?php echo $this->getAddButtonHtml() ?></td>
+            </tr>
+        </tfoot>
+        <tbody id="<?php echo $_htmlId ?>_container">
+            <?php $index = 0; ?>
+            <?php foreach ($this->getValues() as $_item) : ?>
+            <tr>
+                <td class="nobr">
+                    <select class="<?php echo $_htmlClass ?> custgroup" name="<?php echo $_htmlName ?>[<?php echo $index ?>][BEFORE]" id="chain_row_<?php echo $index ?>_BEFORE">
+                        <option value="1"<?php if($_item['BEFORE']==1) : ?> selected="selected"<?php endif; ?>><?php echo $this->__('After'); ?></option>
+                        <option value="-1" disabled="disabled"<?php if($_item['BEFORE']!=1) : ?> selected="selected"<?php endif; ?>><?php echo $this->__('Before'); ?></option>
+                    </select>
+                </td>
+                <td class="nobr">
+                    <input class="<?php echo $_htmlClass ?> required-entry" type="text" name="<?php echo $_htmlName ?>[<?php echo $index ?>][DAYS]" value="<?php echo $_item['DAYS'] ?>" id="chain_row_<?php echo $index ?>_DAYS" />
+                </td>
+                <td class="nobr">
+                    <select class="<?php echo $_htmlClass ?> custgroup" name="<?php echo $_htmlName ?>[<?php echo $index ?>][HOURS]" id="chain_row_<?php echo $index ?>_HOURS">
+                        <?php for($i = 0; $i<=23; $i++) : ?>
+                        <option value="<?php echo $i ?>"<?php if($i==$_item['HOURS']) : ?> selected="selected"<?php endif; ?>><?php echo $i ?></option>
+                        <?php endfor; ?>
+                    </select>
+                </td>
+                <td class="nobr">
+                    <select class="<?php echo $_htmlClass ?> custgroup" name="<?php echo $_htmlName ?>[<?php echo $index ?>][MINUTES]" id="chain_row_<?php echo $index ?>_MINUTES">
+                        <?php for($i = 0; $i<=55; $i+=5) : ?>
+                        <option value="<?php echo $i ?>"<?php if($i==$_item['MINUTES']) : ?> selected="selected"<?php endif; ?>><?php echo $i ?></option>
+                        <?php endfor; ?>
+                    </select>
+                </td>
+                <td>
+                    <select class="<?php echo $_htmlClass ?> custgroup required-entry" name="<?php echo $_htmlName ?>[<?php echo $index ?>][TEMPLATE_ID]" id="chain_row_<?php echo $index ?>_TEMPLATE">
+                        <?php $optGroup = false;
+                        foreach ($this->getEmailTemplates() as $__templateID => $__templateName):
+                            if($__templateID && false === strpos($__templateID, AWW_Followupemail_Model_Source_Rule_Template::TEMPLATE_SOURCE_SEPARATOR)):
+                                if($optGroup) echo '</optgroup>';
+                                $optGroup = true; ?>
+                                <optgroup label="<?php echo htmlspecialchars($__templateName) ?>">
+                            <?php else: ?>
+                                <option value="<?php echo $__templateID ?>"<?php if($__templateID==$_item['TEMPLATE_ID']) : ?> selected="selected"<?php endif ?>><?php echo htmlspecialchars($__templateName) ?></option>
+                            <?php endif ?>
+                        <?php endforeach ?>
+                        <?php if($optGroup) echo '</optgroup>'; ?>
+                    </select>
+                </td>
+                <td class="last"><input type="hidden" name="<?php echo $_htmlName ?>[<?php echo $index ?>][delete]" class="delete" value="" /><button title="Delete email" class="scalable delete icon-btn delete-product-option" onclick="emailsControl.deleteItem(event);return false"><span>Delete</span></button></td>
+            </tr>
+            <?php $index++; ?>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+<script type="text/javascript">
+//<![CDATA[
+
+    var emailsControl = {
+        itemsCount   : <?php echo count($this->getValues()) ?>,
+        deleteButton : false,
+
+        addItem      : function () {
+            var data = {};
+            data.BEFORE = 1;
+            data.DAYS = 1;
+            data.HOURS = 0;
+            data.MINUTES = 0;
+            data.TEMPLATE_ID = 0;
+            data.index = this.itemsCount++;
+            if (arguments.length == 5) {
+                data.BEFORE = arguments[0];
+                data.DAYS = arguments[1];
+                data.HOURS = arguments[2];
+                data.MINUTES = arguments[3];
+                data.TEMPLATE_ID = arguments[4];
+            }
+
+            var s = '<tr>' + $('<?php echo $_htmlId ?>_add_template').innerHTML.replace(/__index__/g, '#{index}').replace(/\sdisabled="?no-template"?/g, ' ').replace(/disabled/g, ' ').replace(/="'([^']*)'"/g, '="$1"') + '</tr>';
+
+            var template = new Template(s);
+
+            Element.insert($('<?php echo $_htmlId ?>_container'), {'bottom': template.evaluate(data)});
+            $('chain_row_'+data.index+'_BEFORE').value = data.BEFORE;
+            $('chain_row_'+data.index+'_DAYS').value = data.DAYS;
+            $('chain_row_'+data.index+'_HOURS').value = data.HOURS;
+            $('chain_row_'+data.index+'_MINUTES').value = data.MINUTES;
+            $('chain_row_'+data.index+'_TEMPLATE').value = data.TEMPLATE_ID;
+            maxItemsCount++;
+            if(typeof(doBirthdayChanges) != 'undefined') doBirthdayChanges();
+        },
+
+        deleteItem : function(event) {
+            var tr = Event.findElement(event, 'tr');
+            if (tr) {
+                Element.select(tr, '.delete').each(function(elem){elem.value='1'});
+                Element.select(tr, ['input', 'select']).each(function(elem){elem.hide()});
+                Element.hide(tr);
+                Element.addClassName(tr, 'no-display template');
+            }
+        }
+    }
+    var maxItemsCount = <?php echo count($this->getValues()) ?>;
+//]]>
+</script>
+</td>
+</tr>

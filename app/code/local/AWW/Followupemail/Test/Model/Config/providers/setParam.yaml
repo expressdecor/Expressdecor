@@ -1,0 +1,16 @@
+-
+  - 1
+  - 'email_sender_last_exec_time'
+  - 2
+-
+  - 2
+  - 'last_exec_time'
+  - 2
+#-
+#  - 3
+#  - 'email_sender_last_exec_time'
+#  - null
+-
+  - 4
+  - 'last_exec_time'
+  - null
