@@ -69,7 +69,22 @@
     $_productCollection=$this->getLoadedProductCollection();
 
     $_helper = $this->helper('catalog/output');
-
+    /* Alex catalog rule Module*/
+    $catalog_rules=array();
+    $coupon_collection=Mage::getModel('catalogrule/rule')->getCollection()->addFieldToFilter('is_active', 1);
+  	foreach ($coupon_collection as $coupon) {  	
+  		$associated_products=array();
+  		// if only applies by discount 
+  		if ($coupon->getSimpleAction()=='by_percent' && $coupon->getDiscountAmount()>0){
+  			$associated_products=$coupon->getMatchingProductIds();
+  			$associated_products['discount_amount']=$coupon->getDiscountAmount();
+  		}
+  		
+  		array_push($catalog_rules, $associated_products);
+  		unset($associated_products);  	
+  	}  					
+  	/* Alex catalog rule Module*/
+  //  print_r($catalog_rules);
 ?>
 
  <?php if(!$_productCollection->count()): ?>
@@ -156,7 +171,37 @@
 <?php $_columnCount = $this->getColumnCount(); ?>
 
 <?php $i=0; foreach ($_productCollection as $_product): ?>
+<?php
+$catalog_rule_discount="";
+$under_catalog_rule_promotion=0; 
+foreach ($catalog_rules as $catalog_rule){
+ 
+	if (in_array($_product->getId(), $catalog_rule)){
+		$catalog_rule_discount=$catalog_rule['discount_amount'];
+		$under_catalog_rule_promotion=1;
+		break;
+	}
+}
 
+/* Price Range*/
+global $price_to;
+$price_to=0;
+if ($_product->getTypeId() =='configurable' && $under_catalog_rule_promotion==0) {
+	$childProducts = Mage::getModel('catalog/product_type_configurable')
+	->getUsedProducts(null,$_product);
+	if (count($childProducts) > 0) { 	
+		foreach ($childProducts as $childproduct) {
+			$child_price=$childproduct->getPrice();
+			if ($child_price>$price_to && $child_price>$_product->getPrice() ) {
+				$price_to=$child_price;
+			}
+		}
+		 
+	}
+}
+ 
+/* Price Range*/
+?>
     <?php if ($i++%$_columnCount==0): ?>
  
     <ul class="products-grid">
@@ -165,7 +210,11 @@
 
         <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
 
-            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(170); ?>" width="170" height="170" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
+            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(170); ?>" width="170" height="170" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+            <?php if ($under_catalog_rule_promotion) { 
+            	$catalog_rule_discount=round($catalog_rule_discount,0);
+            	?><div class="star<?php echo $catalog_rule_discount; ?>"></div> <?php  } ?>
+            </a>
 
              <div class="grid-product-name"><strong class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></strong></div>
 
@@ -177,7 +226,13 @@
 
             <?php  endif; ?>
 
-            <?php echo $this->getPriceHtml($_product, true) ?>
+             <?php if ($under_catalog_rule_promotion) { ?>
+             <div class="line-through">
+             <?php echo $this->getPriceHtml($_product, true); ?>
+             </div>
+             <?php } else {
+             	echo $this->getPriceHtml($_product, true);
+             } ?>
             <div class="actions">
                 <?php if($_product->isSaleable()): ?>
                     <button type="button" title="<?php echo $this->__('Details') ?>" class="button btn-cart" onclick="setLocation('<?php echo $_product->getProductUrl() ?>')"><span><span><?php echo $this->__('Details') ?></span></span></button>

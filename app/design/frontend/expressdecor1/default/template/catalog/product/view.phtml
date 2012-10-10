@@ -145,6 +145,28 @@ if ($_product->getTypeId() =='configurable') {
 		echo '</script>';
 	}
 }
+
+/*Alex Catalog Rule Price code*/
+global $catalog_rule_discount;
+$catalog_rule_discount="";
+global $under_catalog_rule_promotion;
+  $under_catalog_rule_promotion=0;
+
+$coupon_collection=Mage::getModel('catalogrule/rule')->getCollection()->addFieldToFilter('is_active', 1);
+foreach ($coupon_collection as $coupon) {
+	// if only applies by discount
+	if ($coupon->getSimpleAction()=='by_percent' && $coupon->getDiscountAmount()>0){
+		if (in_array($_product->getId(), $coupon->getMatchingProductIds())){
+			
+			$catalog_rule_discount=$coupon['discount_amount'];
+			
+			$under_catalog_rule_promotion=1;
+			break;
+		}		
+	}
+
+}
+/*Alex Catalog Rule Price code*/
 ?>
 <script type="text/javascript">
 jQuery(document).ready(function(){
@@ -160,6 +182,13 @@ jQuery(document).ready(function(){
 		fixed: true,
 		persistent: true,
 		position: ["-200", "20"]
+	});
+
+	jQuery("#origprice").simpletip({
+		content: "<b>Why don't we show the price?</b><br/><br/><br/><p>To see  the price: Add the item to your cart, then click Checkout. Don't worry, you can remove the item from your cart at any time, if you decide not to buy it. </p>",
+		fixed: true,
+		persistent: true,
+		position: ["-10", "20"]
 	});
 
 });
@@ -226,14 +255,18 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
 <div class="addthis_toolbox addthis_default_style ">
 <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
 <a class="addthis_button_tweet"></a>
-<a class="addthis_button_pinterest_pinit"></a>
+<!--  <a class="addthis_button_pinterest_pinit"></a>-->
 <a class="addthis_counter addthis_pill_style"></a>
-
+ <a style="padding-left:5px;" href="http://pinterest.com/pin/create/button/?url=<?php echo rawurlencode(Mage::helper('core/url')->getCurrentUrl());?>&media=<?php echo rawurlencode(Mage::getModel('catalog/product_media_config')->getMediaUrl($_product->getImage()));?>&description=<?php echo $_product->getName();?>" class="pin-it-button" count-layout="horizontal" target="_blank" ><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>                    
+ 
 </div>
-<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f07749b0bd1cf94"></script>
-<!-- AddThis Button END -->                                
-                    </div> 
-                                   
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f07749b0bd1cf94"></script>
+<!-- AddThis Button END -->
+
+ </div> 
+    
+                                 
 <div class="addone">
 
 <?php $from=$_product->getNewsFromDate();
@@ -332,20 +365,31 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                } else {
                	$msrp_price=0;
                }
-	?>
+	?> 
+		<?php if (!$under_catalog_rule_promotion) {?>
 	         <div class="price-discount-block">
                 <span class="price-label"><?php echo $this->__('Regular Price:') ?></span>
                  <span class="price" id="old-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
                   <?php  echo $_coreHelper->currency($_regularPrice,true,false) ?>
                  </span>                          
-               </div>                      
+               </div>               
+              <?php } ?>        
             <div class="special-price-sale">
                <span class="price-label"><?php echo $this->__('Sale Price:') ?></span>
-                <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
-                    <?php echo $_coreHelper->currency($_finalPrice,true,false) ?>                    
-                </span> 
-                <span style="display:none;" itemprop="price"><?php  echo $_finalPrice;?></span>
-                 </div>               
+                <span class="price <?php if ($under_catalog_rule_promotion) { echo "price-line-through"; }?> " id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?> ">
+                 <?php if (!$under_catalog_rule_promotion) { 
+                 		echo $_coreHelper->currency($_finalPrice,true,false);
+                 } else {
+                 	echo trim($_coreHelper->currency($_regularPrice,true,false));
+                  
+                 }
+                  ?>                    
+                </span>           
+                <?php if (!$under_catalog_rule_promotion) { ?> <span style="display:none;" itemprop="price"><?php  echo $_finalPrice;?></span><?php } ?>
+                 </div> 
+                <?php if ($under_catalog_rule_promotion) { 
+                	echo "<div id=\"origprice\" class=\"catalogrule\">See original price at checkout</div>";
+                }?>              
                <?php  	If (!empty($msrp_price)  && ($msrp_price>$_price) ) {
 	 	?>
 	 	  <div class="price-save-block">

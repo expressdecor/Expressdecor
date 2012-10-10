@@ -38,7 +38,7 @@
 						<title>Fix Urls Rewrite</title>
 						<sort_order>0</sort_order>
 						<action>fixurl/adminhtml_fixurlbackend</action>
-					</fixurlbackend>
+				</fixurlbackend>
 				</children>
 			</fixurl>
 		</menu>
