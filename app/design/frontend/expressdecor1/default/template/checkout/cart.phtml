@@ -102,7 +102,9 @@
             <script type="text/javascript">decorateTable('shopping-cart-table')</script>
         </fieldset>
     </form>
+   
     <div class="totals">
+     
         <?php echo $this->getChildHtml('totals'); ?>
         <?php if(!$this->hasError()): ?>
         <ul class="checkout-types">
@@ -113,6 +115,61 @@
         <?php endforeach; ?>
         </ul>
         <?php endif; ?>
+        <?php 
+    //Alex 
+    $coupon_message="";
+    $coupon_collection=Mage::getModel('salesrule/rule')->getCollection()->addFieldToFilter('coupon_type', 1)
+    															 		->addFieldToFilter('is_active', 1); // Where without coupon code    
+    foreach($this->getTotals() as $total)
+    {
+    	if ($total->getCode() == 'subtotal')
+    	{
+    		$subtotal = $total->getValue();
+    		break;
+    	}
+    }
+             
+    foreach ($coupon_collection as $coupon) {
+    	$conditions = $coupon->getConditionsSerialized();
+    	$unserialized_conditions = unserialize($conditions);
+     
+    	if (count($unserialized_conditions['conditions'])==1 && $unserialized_conditions['conditions'][0]['attribute']=='base_subtotal') {
+    		// Only for one conditions based on subtotal
+    		$discount_subtotal=$unserialized_conditions['conditions'][0]['value'];
+    		if ($discount_subtotal>$subtotal){
+    			$discount_subtotal_delta='$'.number_format($discount_subtotal-$subtotal,0);
+    			$unserialized_actions=unserialize($coupon->getActionsSerialized());
+	    		$discount_amount=number_format($coupon->getDiscountAmount(),0);
+    			if ($coupon['simple_action']=='by_percent') {
+    				$discount_amount=$discount_amount.'%';
+    			} else {
+	    			$discount_amount='$'.$discount_amount;
+    			}
+    			$coupon_message="<div class='get-discount'>".$this->__('Only '.$discount_subtotal_delta.'  more for '.$discount_amount.' OFF')."</div>";
+    		}
+    	}    	     	  
+    }
+      
+    if ($subtotal<100) { // Show message only when orders  summ less than 100$
+    	$show_shipping_message=true;
+    	foreach($this->getItems() as $_item) {
+    		$_product = Mage::getModel('catalog/product')->load($_item->getProduct()->getId());
+    		$freight_shipping_cost=$_product->getResource()->getAttribute('custom_ship_price')->getFrontend()->getValue($_product);    	
+    		if ($freight_shipping_cost){ // Not show message if product contain custom shipping cost
+    			$show_shipping_message=false;
+    		}
+    	}
+    	if ($show_shipping_message){
+    		$shipping_delta='$'.number_format(100-$subtotal,2);
+    		if ($coupon_message) {
+    			$coupon_message.="<br/>";
+    		}
+	    	  $coupon_message.="<div class='get-free-shipping'>".$this->__('Only '.$shipping_delta. ' more for Free Shipping')."</div>";
+    	}    	
+    }
+    echo "<div class='get-more'>".$coupon_message."</div>";
+    ?>
+    
     </div>
     <div class="cart-collaterals<?php if($this->getChildHtml('crosssell')) echo ' cross-inside'; ?>">
         <?php echo $this->getChildHtml('crosssell') ?>
@@ -120,7 +177,7 @@
             <?php echo $this->getChildHtml('coupon'); ?>
             <?php   echo $this->getChildHtml('giftcards'); ?>
         </div>
-        <?php // if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
+        <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
     </div>
 
 </div>
