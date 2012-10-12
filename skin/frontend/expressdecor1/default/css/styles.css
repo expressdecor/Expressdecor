@@ -1135,8 +1135,17 @@ margin: 0 0 0 -8px;
 font-size: 13px;
 font-weight: bold;}
 .category-products .price-box { font-size:12px; }
+/*stars*/
 .product-img-box .star10 ,
-.products-grid .item .star10 {height: 69px; width:69px;position:absolute;top:0px;right:0px;  background:url(../images/10off.png) 0 0 no-repeat; margin-right:5px;}
+.products-grid .item .star10 {height: 54px; width:48px;position:absolute;top:0px;right:0px;  background:url(../images/header_footer_sprite1.png) -630px -103px no-repeat;}
+ 
+.product-img-box .star5 ,
+.products-grid .item .star5 {height: 54px; width:48px;position:absolute;top:0px;right:0px;  background:url(../images/header_footer_sprite1.png) -557px -103px no-repeat;}
+ 
+ .product-img-box .star15 ,
+.products-grid .item .star15 {height: 54px; width:48px;position:absolute;top:0px;right:0px;  background:url(../images/header_footer_sprite1.png) -704px -103px no-repeat;}
+ 
+ 
 /* View Type: Grid */
 .products-grid { padding:0 0 0 20px; margin:0 0 40px 0; }
 .products-grid li.item { float:left; width:171px; margin-right:16px;  }
