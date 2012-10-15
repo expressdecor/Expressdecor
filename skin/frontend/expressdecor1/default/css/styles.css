@@ -1137,7 +1137,7 @@ font-weight: bold;}
 .category-products .price-box { font-size:12px; }
 /*stars*/
 .product-img-box .star10 ,
-.products-grid .item .star10 {height: 54px; width:48px;position:absolute;top:0px;right:0px;  background:url(../images/header_footer_sprite1.png) -630px -103px no-repeat;}
+.products-grid .item .star10 {height: 54px; width:48px;position:absolute;top:0px;right:0px;  background:url(../images/header_footer_sprite1.png) -630px -103px no-repeat; margin: -3px -3px 0px 0px;}
  
 .product-img-box .star5 ,
 .products-grid .item .star5 {height: 54px; width:48px;position:absolute;top:0px;right:0px;  background:url(../images/header_footer_sprite1.png) -557px -103px no-repeat;}
@@ -1673,6 +1673,7 @@ white-space: nowrap; }
 font-size: 13px;
 font-weight: bold; }
 .line-through .special-price .price  {text-decoration:line-through;}
+.price-line-through span {text-decoration:line-through;}
 .sidebar .special-price .price-label { display:none !important; }
 
 /* Minimal price (as low as) */
@@ -3084,43 +3085,43 @@ width:49%;
 .footer .footer-social-twitter{
 padding:0px;
 background-image: url("../images/header_footer_sprite1.png");
-background-position: -4px -97px;
+background-position: -5px -97px;
 margin-left: 17px;
 height: 27px;
-width:91px;
+width:74px;
 }
 
 .footer .footer-social-facebook{
 padding:0px;
 background-image: url("../images/header_footer_sprite1.png");
-background-position: -100px -97px;
+background-position: -81px -97px;
 margin-left: 17px;
 height: 31px;
-width:79px;
+width:87px;
 }
 
 .footer .footer-social-youtube{
 padding:0px;
 background-image: url("../images/header_footer_sprite1.png");
-background-position: -356px -97px;
+background-position: -294px -129px;
 margin-left: 17px;
 height: 33px;
-width:89px;
+width:81px;
 }
 
 .footer .footer-social-pinterest{
 padding:0px;
 background-image: url("../images/header_footer_sprite1.png");
-background-position: -183px -97px;
+background-position: -170px -97px;
 margin-left: 17px;
 height: 33px;
-width:75px;
+width:86px;
 }
 
 .footer .footer-social-houzz{
 padding:0px;
 background-image: url("../images/header_footer_sprite1.png");
-background-position: -262px -97px;
+background-position: -259px -97px;
 margin-left: 17px;
 height: 33px;
 width:89px;
