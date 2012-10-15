@@ -1140,10 +1140,10 @@ font-weight: bold;}
 .products-grid .item .star10 {height: 54px; width:48px;position:absolute;top:0px;right:0px;  background:url(../images/header_footer_sprite1.png) -630px -103px no-repeat; margin: -3px -3px 0px 0px;}
  
 .product-img-box .star5 ,
-.products-grid .item .star5 {height: 54px; width:48px;position:absolute;top:0px;right:0px;  background:url(../images/header_footer_sprite1.png) -557px -103px no-repeat;}
+.products-grid .item .star5 {height: 54px; width:48px;position:absolute;top:0px;right:0px;  background:url(../images/header_footer_sprite1.png) -557px -103px no-repeat; margin: -3px -3px 0px 0px;}
  
  .product-img-box .star15 ,
-.products-grid .item .star15 {height: 54px; width:48px;position:absolute;top:0px;right:0px;  background:url(../images/header_footer_sprite1.png) -704px -103px no-repeat;}
+.products-grid .item .star15 {height: 54px; width:48px;position:absolute;top:0px;right:0px;  background:url(../images/header_footer_sprite1.png) -704px -103px no-repeat; margin: -3px -3px 0px 0px;}
  
  
 /* View Type: Grid */
@@ -4300,7 +4300,7 @@ margin-top: 43px;
 
 /*checkout cart*/
 #shopping-cart-totals-table th, .discount-price {color: #007700;font-weight: bold;font-size: 14px;}
-.totals .get-more {font-size:12px;padding-bottom:10px; text-align:right; font-weight:bold; color: #008800;}
+  .get-more {font-size:14px;  text-align:center; font-weight:bold; color: #008800; float:left; margin-left:198px;}
 /*paypal express review*/
 .paypal-express-review .box-content span{color: #000000;text-transform: none; font-size:13px;}
 .paypal-express-review .box-content .billing {min-height: 100px; padding-top:10px;  font-size:13px;}

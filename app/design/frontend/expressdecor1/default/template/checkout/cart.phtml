@@ -87,36 +87,10 @@
                     <tr>
                         <td colspan="50" class="a-right">
                             <?php if($this->getContinueShoppingUrl()): ?>
-                                <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="button btn-continue" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+                                <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="button btn-continue" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>                                
                             <?php endif; ?>
-                            <button type="submit" title="<?php echo $this->__('Update Shopping Cart') ?>" class="button btn-update"><span><span><?php echo $this->__('Update Shopping Cart') ?></span></span></button>
-                        </td>
-                    </tr>
-                </tfoot>
-                <tbody>
-                <?php foreach($this->getItems() as $_item): ?>
-                    <?php echo $this->getItemHtml($_item) ?>
-                <?php endforeach ?>
-                </tbody>
-            </table>
-            <script type="text/javascript">decorateTable('shopping-cart-table')</script>
-        </fieldset>
-    </form>
-   
-    <div class="totals">
-     
-        <?php echo $this->getChildHtml('totals'); ?>
-        <?php if(!$this->hasError()): ?>
-        <ul class="checkout-types">
-        <?php foreach ($this->getMethods('methods') as $method): ?>
-            <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
-            <li><?php echo $methodHtml; ?></li>
-            <?php endif; ?>
-        <?php endforeach; ?>
-        </ul>
-        <?php endif; ?>
-        <?php 
-    //Alex 
+                                <?php 
+    //Alex Coupon message
     $coupon_message="";
     $coupon_collection=Mage::getModel('salesrule/rule')->getCollection()->addFieldToFilter('coupon_type', 1)
     															 		->addFieldToFilter('is_active', 1); // Where without coupon code    
@@ -168,7 +142,35 @@
     	}    	
     }
     echo "<div class='get-more'>".$coupon_message."</div>";
+    //Alex Coupon message
     ?>
+                            <button type="submit" title="<?php echo $this->__('Update Shopping Cart') ?>" class="button btn-update"><span><span><?php echo $this->__('Update Shopping Cart') ?></span></span></button>
+                        </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                <?php foreach($this->getItems() as $_item): ?>
+                    <?php echo $this->getItemHtml($_item) ?>
+                <?php endforeach ?>
+                </tbody>
+            </table>
+            <script type="text/javascript">decorateTable('shopping-cart-table')</script>
+        </fieldset>
+    </form>
+   
+    <div class="totals">
+     
+        <?php echo $this->getChildHtml('totals'); ?>
+        <?php if(!$this->hasError()): ?>
+        <ul class="checkout-types">
+        <?php foreach ($this->getMethods('methods') as $method): ?>
+            <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
+            <li><?php echo $methodHtml; ?></li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        </ul>
+        <?php endif; ?>
+    
     
     </div>
     <div class="cart-collaterals<?php if($this->getChildHtml('crosssell')) echo ' cross-inside'; ?>">
@@ -177,7 +179,7 @@
             <?php echo $this->getChildHtml('coupon'); ?>
             <?php   echo $this->getChildHtml('giftcards'); ?>
         </div>
-        <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
+        <?php // if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
     </div>
 
 </div>
