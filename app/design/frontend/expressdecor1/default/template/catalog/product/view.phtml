@@ -329,7 +329,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                 <span style="display:none;" itemprop="price"><?php  echo $_price;?></span>
                  </p>
                  <?php  if ($under_catalog_rule_promotion) { 
-                	echo "<div id=\"origprice\" class=\"catalogrule\">See original price at checkout</div>";
+                	echo "<div id=\"origprice\" class=\"catalogrule\">". $this->__("See final sale price at checkout")."</div>";
                 }
                 ?>    
                 <?php 	If (!empty($msrp_price)  && ($msrp_price>$_price) ) {
