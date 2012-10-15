@@ -166,6 +166,7 @@ foreach ($coupon_collection as $coupon) {
 	}
 
 }
+
 /*Alex Catalog Rule Price code*/
 ?>
 <script type="text/javascript">
@@ -185,7 +186,7 @@ jQuery(document).ready(function(){
 	});
 
 	jQuery("#origprice").simpletip({
-		content: "<b>Why don't we show the price?</b><br/><br/><br/><p>To see  the price: Add the item to your cart, then click Checkout. Don't worry, you can remove the item from your cart at any time, if you decide not to buy it. </p>",
+		content: "<?php echo $this->__('MAP_PRICE_PRODUCT_TEXT'); ?>",
 		fixed: true,
 		persistent: true,
 		position: ["-10", "20"]
@@ -303,7 +304,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
 			   $price_for_shipping=$_price; ?>
                     <?php if (!$_taxHelper->displayBothPrices()): ?>
 <!--                    msrp price-->
-	<?php
+	<?php  
 	If (!empty($msrp_price) && ($msrp_price>$_price)) {
 	 	?>
 	 	  <p class="price-msrp-block">
@@ -320,13 +321,17 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
 	?>       		
                    <p class="special-price-sale">
                     <span class="price-label"><?php echo $this->__('Sale Price:') ?></span>
-                    <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">                     
+                    <span class="price <?php if ($under_catalog_rule_promotion) { echo "price-line-through"; }?>" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">                     
                     <?php        
                     echo $_coreHelper->currency($_price,true,true); //displays regular price
                     ?>
                 </span>
                 <span style="display:none;" itemprop="price"><?php  echo $_price;?></span>
                  </p>
+                 <?php  if ($under_catalog_rule_promotion) { 
+                	echo "<div id=\"origprice\" class=\"catalogrule\">See original price at checkout</div>";
+                }
+                ?>    
                 <?php 	If (!empty($msrp_price)  && ($msrp_price>$_price) ) {
 
                 	$save=$msrp_price-$_price;
@@ -340,12 +345,12 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
 					 </script>
 					  </p>
                <?php } ?>
-                
+                 
             <?php endif; ?>
          <?php else: /* if ($_finalPrice == $_price): */ 
          $price_for_shipping=$_finalPrice;
          ?>
-              
+               
                  <?php if (!$_taxHelper->displayBothPrices()): ?>
                     
 
@@ -387,7 +392,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                 </span>           
                 <?php if (!$under_catalog_rule_promotion) { ?> <span style="display:none;" itemprop="price"><?php  echo $_finalPrice;?></span><?php } ?>
                  </div> 
-                <?php if ($under_catalog_rule_promotion) { 
+                <?php  if ($under_catalog_rule_promotion) { 
                 	echo "<div id=\"origprice\" class=\"catalogrule\">See original price at checkout</div>";
                 }?>              
                <?php  	If (!empty($msrp_price)  && ($msrp_price>$_price) ) {
