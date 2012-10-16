@@ -69,22 +69,7 @@
     $_productCollection=$this->getLoadedProductCollection();
 
     $_helper = $this->helper('catalog/output');
-    /* Alex catalog rule Module*/
-    $catalog_rules=array();
-    $coupon_collection=Mage::getModel('catalogrule/rule')->getCollection()->addFieldToFilter('is_active', 1);
-  	foreach ($coupon_collection as $coupon) {  	
-  		$associated_products=array();
-  		// if only applies by discount 
-  		if ($coupon->getSimpleAction()=='by_percent' && $coupon->getDiscountAmount()>0){
-  			$associated_products=$coupon->getMatchingProductIds();
-  			$associated_products['discount_amount']=$coupon->getDiscountAmount();
-  		}
-  		
-  		array_push($catalog_rules, $associated_products);
-  		unset($associated_products);  	
-  	}  					
-  	/* Alex catalog rule Module*/
-  //  print_r($catalog_rules);
+  
 ?>
 
  <?php if(!$_productCollection->count()): ?>
@@ -174,14 +159,15 @@
 <?php
 $catalog_rule_discount="";
 $under_catalog_rule_promotion=0; 
-foreach ($catalog_rules as $catalog_rule){
- 
-	if (in_array($_product->getId(), $catalog_rule)){
-		$catalog_rule_discount=$catalog_rule['discount_amount'];
-		$under_catalog_rule_promotion=1;
-		break;
-	}
+
+if ($_product->getFinalPrice() != $_product->getPrice())
+{
+	$discount=round(((($_product->getPrice()-$_product->getFinalPrice()) / $_product->getPrice()) * 100),1) ;
+	 
+	$catalog_rule_discount=$discount;
+	$under_catalog_rule_promotion=1;
 }
+ 
 
 /* Price Range*/
 global $price_to;

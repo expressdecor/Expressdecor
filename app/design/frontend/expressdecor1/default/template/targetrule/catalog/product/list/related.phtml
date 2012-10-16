@@ -30,94 +30,38 @@
 <?php if ($this->hasItems()):?>
     <div class="box-related-header">You may also like</div>
     <div class="box-collateral box-related">
-        <?php $i=0; foreach($this->getItemCollection() as $_item): ?>            
+        <?php $i=0; foreach($this->getItemCollection() as $_item): ?> 
+        <?php 
+        $catalog_rule_discount="";
+        $under_catalog_rule_promotion=0;
+       
+        if ($_item->getFinalPrice() != $_item->getPrice())
+        {
+        	$discount=round(((($_item->getPrice()-$_item->getFinalPrice()) / $_item->getPrice()) * 100),1) ;
+        
+        	$catalog_rule_discount=$discount;
+        	$under_catalog_rule_promotion=1;
+        }
+        ?>           
                 <div class="item-info">
                     <div class="product-picture">
-                        <a href="<?php echo $this->getProductUrl($_item) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(100) ?>" width="100" height="100" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>" /></a>
+                        <a href="<?php echo $this->getProductUrl($_item) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(100) ?>" width="100" height="100" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>" />
+                        <?php if ($under_catalog_rule_promotion) { 
+            	$catalog_rule_discount=round($catalog_rule_discount,0);
+            	?><div class="star<?php echo $catalog_rule_discount; ?>"></div> <?php  } ?>
+                        </a>
                     </div>
                     <div class="product-details">
                         <h3 class="product-name"><a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->htmlEscape($_item->getName()) ?></a></h3>
-                        <?php echo $this->getPriceHtml($_item, true, '-related') ?>
-                        <?php /*if ($this->helper('wishlist')->isAllow()) : ?>
-                            <p><a href="<?php echo $this->getAddToWishlistUrl($_item) ?>"><?php echo $this->__('Add to Wishlist') ?></a></p>
-                        <?php endif; */ ?>
+                        <?php if ($under_catalog_rule_promotion) { ?>
+             <div class="line-through">
+             <?php  echo $this->getPriceHtml($_item, true, '-related');?>
+             </div>
+             <?php } else {
+                   echo $this->getPriceHtml($_item, true, '-related');
+                  } ?>
                     </div>
                 </div>                
         <?php endforeach ?>
     </div>
 <?php endif; ?>    
-
-
-
-<?php /* if ($this->hasItems()):?>
-<div class="box-collateral box-related">
-    <div class="box-title">
-        <h2><?php echo $this->__('Related Products') ?></h2>
-    </div>
-    <p class="note"><?php echo $this->__('Check items to add to the cart or') ?>&nbsp;<a href="#" onclick="selectAllRelated(this); return false;"><strong><?php echo $this->__('select all') ?></strong></a></p>
-    <?php $i=0; foreach($this->getItemCollection() as $_item): ?>
-        <?php if ($i++ % $this->getColumnCount() == 0): ?>
-        <ul class="box-content">
-        <?php endif ?>
-        <li class="item<?php if (($i - 1) % $this->getColumnCount() == 0):?> first<?php elseif ($i % $this->getColumnCount() == 0): ?> last<?php endif; ?>">
-        <?php if(!$_item->isComposite() && $_item->isSaleable()): ?>
-            <?php if (!$_item->getRequiredOptions()): ?>
-                <input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" />
-            <?php endif; ?>
-        <?php endif; ?>
-            <div class="item-info">
-                <a href="<?php echo $this->getProductUrl($_item) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(100) ?>" width="100" height="100" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>" /></a>
-                <div class="product-details">
-                    <h3 class="product-name"><a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->htmlEscape($_item->getName()) ?></a></h3>
-                    <?php echo $this->getPriceHtml($_item, true, '-related') ?>
-                    <?php if ($this->helper('wishlist')->isAllow()) : ?>
-                        <p><a href="<?php echo $this->getAddToWishlistUrl($_item) ?>"><?php echo $this->__('Add to Wishlist') ?></a></p>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </li>
-        <?php if ($i % $this->getColumnCount() == 0 || $i == $this->getItemsCount()): ?>
-        </ul>
-        <?php endif ?>
-    <?php endforeach ?>
-    <script type="text/javascript">decorateGeneric($$('.box-related ul.box-content'), ['odd','even','first','last'])</script>
-
-    <script type="text/javascript">
-    //<![CDATA[
-    $$('.related-checkbox').each(function(elem){
-        Event.observe(elem, 'click', addRelatedToProduct)
-    });
-    
-    var relatedProductsCheckFlag = false;
-    function selectAllRelated(txt){
-        if (relatedProductsCheckFlag == false) {
-            $$('.related-checkbox').each(function(elem){
-                elem.checked = true;
-            });
-            relatedProductsCheckFlag = true;
-            txt.innerHTML="<strong><?php echo $this->__('unselect all') ?><\/strong>";
-        } else {
-            $$('.related-checkbox').each(function(elem){
-                elem.checked = false;
-            });
-            relatedProductsCheckFlag = false;
-            txt.innerHTML="<strong><?php echo $this->__('select all') ?><\/strong>";
-        }
-        addRelatedToProduct();
-    }
-    
-    function addRelatedToProduct(){
-        var checkboxes = $$('.related-checkbox');
-        var values = [];
-        for(var i=0;i<checkboxes.length;i++){
-            if(checkboxes[i].checked) values.push(checkboxes[i].value);
-        }
-        if($('related-products-field')){
-            $('related-products-field').value = values.join(',');
-        }
-    }
-    //]]>
-    </script>
-</div>
-<?php endif; */
-?>
