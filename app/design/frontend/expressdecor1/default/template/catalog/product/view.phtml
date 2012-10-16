@@ -254,7 +254,7 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
  <a style="padding-left:5px;" href="http://pinterest.com/pin/create/button/?url=<?php echo rawurlencode(Mage::helper('core/url')->getCurrentUrl());?>&media=<?php echo rawurlencode(Mage::getModel('catalog/product_media_config')->getMediaUrl($_product->getImage()));?>&description=<?php echo $_product->getName();?>" class="pin-it-button" count-layout="horizontal" target="_blank" ><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>                    
  
 </div>
-<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>
 <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f07749b0bd1cf94"></script>
 <!-- AddThis Button END -->
 
