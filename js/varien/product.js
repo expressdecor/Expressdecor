@@ -649,7 +649,7 @@ Product.OptionsPrice.prototype = {
                 if (pair.value == 'old-price-'+this.productId && this.productOldPrice != this.productPrice) {
                     _productPrice = this.productOldPrice;
                     _plusDisposition = this.oldPlusDisposition;
-                    _minusDisposition = this.oldMinusDisposition;
+                    _minusDisposition = this.oldMinusDisposition; 
                     //alex
                 } else 	if (pair.value == 'old-price2-'+this.productId) {
 					_productPrice = msrp_price;
@@ -661,8 +661,10 @@ Product.OptionsPrice.prototype = {
 					_plusDisposition = this.plusDisposition;
 					_minusDisposition = this.minusDisposition;
 					
-                } else {
-                    _productPrice = this.productPrice;
+                } else {  
+                    _productPrice = this.productOldPrice;
+                    // Alex for catalorrule prices 
+                    //_productPrice = this.productPrice;
                     _plusDisposition = this.plusDisposition;
                     _minusDisposition = this.minusDisposition;
                 }
@@ -680,7 +682,7 @@ Product.OptionsPrice.prototype = {
 				} else if (pair.value == 'disc-price-'+this.productId ) {
 					price = optionOldPrice-optionPrices+parseFloat(_productPrice);
                     
-                } else {
+                } else {  
                     price = optionPrices+parseFloat(_productPrice);
                     _priceInclTax += parseFloat(_productPrice) * (100 + this.currentTax) / 100;
                 }
