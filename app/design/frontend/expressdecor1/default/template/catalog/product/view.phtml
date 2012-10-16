@@ -152,21 +152,14 @@ $catalog_rule_discount="";
 global $under_catalog_rule_promotion;
   $under_catalog_rule_promotion=0;
 
-$coupon_collection=Mage::getModel('catalogrule/rule')->getCollection()->addFieldToFilter('is_active', 1);
-foreach ($coupon_collection as $coupon) {
-	// if only applies by discount
-	if ($coupon->getSimpleAction()=='by_percent' && $coupon->getDiscountAmount()>0){
-		if (in_array($_product->getId(), $coupon->getMatchingProductIds())){
-			
-			$catalog_rule_discount=$coupon['discount_amount'];
-			
-			$under_catalog_rule_promotion=1;
-			break;
-		}		
-	}
-
+ 
+if ($_product->getFinalPrice() != $_product->getPrice())
+{
+	$discount=round(((($_product->getPrice()-$_product->getFinalPrice()) / $_product->getPrice()) * 100),1) ;
+ 
+	$catalog_rule_discount=$discount;
+	$under_catalog_rule_promotion=1;
 }
-
 /*Alex Catalog Rule Price code*/
 ?>
 <script type="text/javascript">
@@ -322,9 +315,10 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                    <p class="special-price-sale">
                     <span class="price-label"><?php echo $this->__('Sale Price:') ?></span>
                     <span class="price <?php if ($under_catalog_rule_promotion) { echo "price-line-through"; }?>" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">                     
-                    <?php        
+                   <?php        
                     echo $_coreHelper->currency($_price,true,true); //displays regular price
                     ?>
+                   
                 </span>
                 <span style="display:none;" itemprop="price"><?php  echo $_price;?></span>
                  </p>
@@ -381,14 +375,14 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
               <?php } ?>        
             <div class="special-price-sale">
                <span class="price-label"><?php echo $this->__('Sale Price:') ?></span>
-                <span class="price <?php if ($under_catalog_rule_promotion) { echo "price-line-through"; }?> " id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?> ">
-                 <?php if (!$under_catalog_rule_promotion) { 
+                <span class="price <?php if ($under_catalog_rule_promotion) { echo "price-line-through"; }?> " id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+              <?php if (!$under_catalog_rule_promotion) { 
                  		echo $_coreHelper->currency($_finalPrice,true,false);
                  } else {
                  	echo trim($_coreHelper->currency($_regularPrice,true,false));
                   
                  }
-                  ?>                    
+                  ?>                     
                 </span>           
                 <?php if (!$under_catalog_rule_promotion) { ?> <span style="display:none;" itemprop="price"><?php  echo $_finalPrice;?></span><?php } ?>
                  </div> 
