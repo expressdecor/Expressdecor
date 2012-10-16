@@ -46,9 +46,7 @@
                 <div class="item-info">
                     <div class="product-picture">
                         <a href="<?php echo $this->getProductUrl($_item) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(100) ?>" width="100" height="100" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>" />
-                        <?php if ($under_catalog_rule_promotion) { 
-            	$catalog_rule_discount=round($catalog_rule_discount,0);
-            	?><div class="star<?php echo $catalog_rule_discount; ?>"></div> <?php  } ?>
+                       
                         </a>
                     </div>
                     <div class="product-details">
