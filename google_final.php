@@ -50,7 +50,7 @@ foreach ( $products as $prod ) {
 	/*Prices block*/
 	$price = $prod->getPrice();
 	$_finalPrice = 0;
-	$resource = Mage::getResourceModel ( 'catalogrule/rule' );
+	/*$resource = Mage::getResourceModel ( 'catalogrule/rule' );
 
 	$rules = $resource->getRulesForProduct ( $dateTs, $websiteId, $prod->getId() );
 	if (count( $rules ) > 0) {
@@ -59,6 +59,8 @@ foreach ( $products as $prod ) {
 
 	if ($_finalPrice > 0 && $price > $_finalPrice)
 		$price = $_finalPrice;
+	*/
+	/*price change*/
 	
 	/* Custom shipping price*/
 	$custom_ship_price = $prod->getResource()->getAttribute ( 'custom_ship_price' )->getFrontend()->getValue ( $prod );

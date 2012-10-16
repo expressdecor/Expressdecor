@@ -1475,6 +1475,7 @@ font-size:14px;
 margin-right:10px;
 }
 #origprice {text-align:right;padding:0px 0px 4px 0px; font-size: 11px;  color: #555555; text-decoration:underline; cursor:pointer;}
+.catalogrule .tooltip {height:120px;}
 #details_free_shipping{  
  float: left;
 cursor: pointer;
