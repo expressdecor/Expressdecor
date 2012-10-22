@@ -79,13 +79,13 @@ $video = $_product->getResource()->getAttribute('video_product')->getFrontend()-
             <p class="notice"><?php echo $this->__('Click on image to zoom'); ?></p>
        
         <?php else: ?>
-            <p class="product-image">
-                <?php
+             
+                <a class="product-image" href="#"> <?php
                 $_img = '<img itemprop="image"  id="main-image-img" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(300).'" height="300" width="300" alt="'.$this->htmlEscape($_product->getImageLabel()).'" title="'.$this->htmlEscape($_product->getImageLabel()).'" />';
                 echo $_helper->productAttribute($_product, $_img, 'image-thumb');
 				 if ($under_catalog_rule_promotion) { $catalog_rule_discount=round($catalog_rule_discount,0); echo"<div class=\"star".$catalog_rule_discount."\"></div>";}
                 ?>
-            </p>
+            </a>
         <?php endif; ?>
     <?php else: ?>
         <p class="product-image">
