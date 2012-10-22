@@ -204,7 +204,7 @@
                     ////////////////////////////////////////////////////////////////////////////
                     $product = Mage::getModel('catalog/product')->load($_product->getId());
                     
-                    if($product->getOptions()) {
+                    if($product->getOptions()) { //Looks like no used anymore.
                         $html = '';
     
                         $prodPrice = $product->getPrice();
@@ -255,12 +255,15 @@
                         echo $html;
                     }
                     else {
-                         echo $_coreHelper->currency($_price,true,true); //displays regular price 
+                         echo $_coreHelper->currency($_price,true,true); //displays regular price
+                         global $price_to; 
+                         
+                         if ($price_to !=0 ) echo '-'.$_coreHelper->currency($price_to,true,false); // displays range
                     }
                     //////////////////////////////////////////////////////////////////////////// 
                     ?>
                 </span>
-                <?php  	If (!empty($msrp_price)) {
+                <?php  	If (!empty($msrp_price)  && ($msrp_price>$_finalPrice) ) {
                       
                 	$save=100-round($_finalPrice*100/$msrp_price);
                 	?>
@@ -429,13 +432,21 @@
             <p class="special-price">
 <!--               <span class="price-label"><?php echo $this->__('Price:') ?></span>-->
                 <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
-                    <?php echo $_coreHelper->currency($_finalPrice,true,false) ?>                    
+                    <?php // echo $_coreHelper->currency($_finalPrice,true,false) Disable that we Always show regular price?>   
+                    <?php 
+                    global $price_to;  // Price Ranges
+                    echo trim($_coreHelper->currency($_regularPrice,true,false)); 
+                    if ($price_to !=0 ) echo '-'.$_coreHelper->currency($price_to,true,false); // Price Ranges
+                    ?>                    
                 </span>
                 <?php  	If (!empty($msrp_price)) {
                 	$save=100-round($_finalPrice*100/max($msrp_price,$_regularPrice));
                 } else {
                 	$save=100-round($_finalPrice*100/$_regularPrice);
                 }
+            /*    echo $msrp_price."<br/>";
+                echo $_finalPrice." final<br/>";
+                echo $_regularPrice."regular<br/>"; */
                 ?>
                      <span class="price-discount">(<?php echo $save; ?>% OFF)</span>
                 </p>

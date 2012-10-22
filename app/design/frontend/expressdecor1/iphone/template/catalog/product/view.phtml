@@ -110,6 +110,23 @@ if ($_product->getTypeId() =='configurable') {
 		echo '</script>';
 	}
 }
+
+/*Alex Catalog Rule Price code*/
+global $catalog_rule_discount;
+$catalog_rule_discount="";
+global $under_catalog_rule_promotion;
+$under_catalog_rule_promotion=0;
+
+
+if ($_product->getFinalPrice() != $_product->getPrice())
+{
+	$discount=round(((($_product->getPrice()-$_product->getFinalPrice()) / $_product->getPrice()) * 100),1) ;
+
+	$catalog_rule_discount=$discount;
+	$under_catalog_rule_promotion=1;
+}
+/*Alex Catalog Rule Price code*/
+
 ?>
 <script type="text/javascript">
 var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
@@ -164,13 +181,13 @@ $_img = '<img width="200" id="full-image" src="'.$this->helper('catalog/image')-
 </div>
 <?php endif; ?>
 <!-- prices-->
-        <div class="prices-box">            
+      <div class="prices-box">            
 			   <?php if ($_finalPrice == $_price): 
 			   $price_for_shipping=$_price; ?>
                     <?php if (!$_taxHelper->displayBothPrices()): ?>
 <!--                    msrp price-->
-	<?php
-	If (!empty($msrp_price)) {
+	<?php  
+	If (!empty($msrp_price) && ($msrp_price>$_price)) {
 	 	?>
 	 	  <p class="price-msrp-block">
                 <span class="price-label"><?php echo $this->__('Retail Price:') ?></span>
@@ -179,42 +196,48 @@ $_img = '<img width="200" id="full-image" src="'.$this->helper('catalog/image')-
                  </span>
                    <script type="text/javascript"  >
                    var msrp_price=document.getElementById('old-price2-<?php echo $_id ?>').innerHTML;
-                   msrp_price=parseFloat(msrp_price.replace("$",""));
+                   msrp_price=parseFloat(msrp_price.replace("$","").replace(",",""));
 					 </script>                  
 	 	<?php
 	}
 	?>       		
                    <p class="special-price-sale">
                     <span class="price-label"><?php echo $this->__('Sale Price:') ?></span>
-                    <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">                     
-                    <?php        
+                    <span class="price <?php if ($under_catalog_rule_promotion) { echo "price-line-through"; }?>" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">                     
+                   <?php        
                     echo $_coreHelper->currency($_price,true,true); //displays regular price
                     ?>
+                   
                 </span>
+                <span style="display:none;" itemprop="price"><?php  echo $_price;?></span>
                  </p>
-                <?php 	If (!empty($msrp_price)) {
+                 <?php  if ($under_catalog_rule_promotion) { 
+                	echo "<div id=\"origprice\" class=\"catalogrule\">". $this->__("See final sale price at checkout")."</div>";
+                }
+                ?>    
+                <?php 	If (!empty($msrp_price)  && ($msrp_price>$_price) ) {
 
                 	$save=$msrp_price-$_price;
                 ?>          
                    <p class="price-save-block">  
                   <span class="price-save-label"><?php echo $this->__('You Save ') ?></span>
-                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo $save; ?></span> 
+                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo round($save,2); ?></span> 
                              <script type="text/javascript"  >
                              var disc_price=document.getElementById('disc-price-<?php echo $_id ?>').innerHTML;
-                             disc_price=parseFloat(disc_price.replace("$",""));
+                             disc_price=parseFloat(disc_price.replace("$","").replace(",",""));
 					 </script>
 					  </p>
                <?php } ?>
-                
+                 
             <?php endif; ?>
          <?php else: /* if ($_finalPrice == $_price): */ 
          $price_for_shipping=$_finalPrice;
          ?>
-              
+               
                  <?php if (!$_taxHelper->displayBothPrices()): ?>
                     
 
-               <?php  	If (!empty($msrp_price)) {
+               <?php  	If (!empty($msrp_price)  && ($msrp_price>$_price) ) {
 	 	?>
 	 	  <div class="price-msrp-block">
                 <span class="price-label"><?php echo $this->__('Retail Price:') ?></span>
@@ -223,34 +246,46 @@ $_img = '<img width="200" id="full-image" src="'.$this->helper('catalog/image')-
                  </span>
                    <script type="text/javascript"  >
                    var msrp_price=document.getElementById('old-price2-<?php echo $_id ?>').innerHTML;
-                   msrp_price=parseFloat(msrp_price.replace("$",""));
+                   msrp_price=parseFloat(msrp_price.replace("$","").replace(",",""));
 					 </script>      
 					 </div>            
 	 	<?php
                } else {
                	$msrp_price=0;
                }
-	?>
+	?> 
+		<?php if (!$under_catalog_rule_promotion) {?>
 	         <div class="price-discount-block">
                 <span class="price-label"><?php echo $this->__('Regular Price:') ?></span>
                  <span class="price" id="old-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
                   <?php  echo $_coreHelper->currency($_regularPrice,true,false) ?>
                  </span>                          
-               </div>                      
+               </div>               
+              <?php } ?>        
             <div class="special-price-sale">
                <span class="price-label"><?php echo $this->__('Sale Price:') ?></span>
-                <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
-                    <?php echo $_coreHelper->currency($_finalPrice,true,false) ?>                    
-                </span> 
-                 </div>               
-               <?php  	If (!empty($msrp_price)) {
+                <span class="price <?php if ($under_catalog_rule_promotion) { echo "price-line-through"; }?> " id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+              <?php if (!$under_catalog_rule_promotion) { 
+                 		echo $_coreHelper->currency($_finalPrice,true,false);
+                 } else {
+                 	echo trim($_coreHelper->currency($_regularPrice,true,false));
+                  
+                 }
+                  ?>                     
+                </span>           
+                <?php if (!$under_catalog_rule_promotion) { ?> <span style="display:none;" itemprop="price"><?php  echo $_finalPrice;?></span><?php } ?>
+                 </div> 
+                <?php  if ($under_catalog_rule_promotion) { 
+                	echo "<div id=\"origprice\" class=\"catalogrule\">". $this->__('See final sale price at checkout')."</div>";
+                }?>              
+               <?php  	If (!empty($msrp_price)  && ($msrp_price>$_price) ) {
 	 	?>
 	 	  <div class="price-save-block">
                    <span class="price-save-label"><?php echo $this->__('You Save ') ?></span>
-                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo (max($_regularPrice,$msrp_price)-$_finalPrice); ?></span>
+                 <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo round((max($_regularPrice,$msrp_price)-$_finalPrice),2); ?></span>
                       <script type="text/javascript"  >
                       var disc_price=document.getElementById('disc-price-<?php echo $_id ?>').innerHTML;
-                      disc_price=parseFloat(disc_price.replace("$",""));
+                      disc_price=parseFloat(disc_price.replace("$","").replace(",",""));
 					 </script>
 					  </div>
 					 <?php
@@ -259,6 +294,8 @@ $_img = '<img width="200" id="full-image" src="'.$this->helper('catalog/image')-
                  <?php endif; ?>             
          <?php endif; ?>                           
         </div>
+        <span style="display:none;" itemprop="seller">Expressdecor.com</span>
+        <span style="display:none;"  itemprop="condition" content="new">New</span>
      
 <?php
 $promo=$this->getChildHtml('addtopromo');
