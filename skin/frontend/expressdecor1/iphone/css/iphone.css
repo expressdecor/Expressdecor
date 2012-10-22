@@ -700,7 +700,9 @@ background-repeat:no-repeat;
 #express-brands .item .icon  .brand-13 {background-position: -600px -489px;}
 
 /* end of express carousel*/
-
+.line-through .special-price .price  {text-decoration:line-through;}
+.price-line-through span {text-decoration:line-through;}
+.prices-box .price-line-through {text-decoration:line-through !important;}
 /*no-route page*/
 .category-view .subcat-box {padding: 10px;}
 .category-view .subcat-box .subtext {  display: block;}
