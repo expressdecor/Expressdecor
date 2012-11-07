@@ -1,3 +1,6 @@
 "Keep your eyes open for our special Back to School items and save A LOT!","Keep your eyes open for our special Back to School items and save A LOT!"
 "Discount (%s)","<span style='color: #007700;font-weight: bold;font-size: 14px;'>Coupons:<br />(%s)</span>"
 "MAP_PRICING_POLICY","<b>Why don't we show the price?</b><p>We wish we could. But because our price on this item is lower than the manufacturer's suggested price, the manufacturer does not allow us to show you our price until you take a couple more steps.</p><br /><p>To see the discounted price, please add the item to your cart. Don't worry, you can remove the item from your cart at any time, if you decide not to buy it. </p>"
+"UPS Ground", "<b> - Standart Ground</b> <br/> <span class='meth-sub-title'>(5-7 Business Days)</span>"
+"UPS Second Day Air", "<b> - Second Day Air</b> <br/> <span class='meth-sub-title'>(2 Business Days)</span>"
+"UPS Next Day Air", "<b> - Next Day Air</b> <br/> <span class='meth-sub-title'>(1 Business Day)</span>"

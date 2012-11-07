@@ -366,8 +366,9 @@ fieldset.group-select {
     margin: 0 !important;
     margin-bottom: 3px;
     margin-top: 7px;
+	padding-bottom:5px;
 }
-
+.shipment-methods .meth-sub-title {padding-left:20px;}
 p.checkout-choose-payment-method,p.checkout-choose-shipping-method {
     margin-top: 1em;
     font-size: 14px;
