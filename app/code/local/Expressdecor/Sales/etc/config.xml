@@ -15,6 +15,7 @@
                   <order_pdf_invoice>Expressdecor_Sales_Model_Order_Pdf_Invoice</order_pdf_invoice> 
                   <order_pdf_items_invoice_default>Expressdecor_Sales_Model_Order_Pdf_Items_Invoice_Default</order_pdf_items_invoice_default>
                   <order_pdf_items_shipment_default>Expressdecor_Sales_Model_Order_Pdf_Items_Shipment_Default</order_pdf_items_shipment_default>
+                  <quote_address_total_shipping>Expressdecor_Sales_Model_Quote_Shipping</quote_address_total_shipping>
                </rewrite>
            </sales>
            <salesrule>
