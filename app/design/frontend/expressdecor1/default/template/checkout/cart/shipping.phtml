@@ -82,9 +82,10 @@ $nGrandTotal = Mage::getSingleton('checkout/cart')->getQuote()->getGrandTotal();
 <form id="co-shipping-method-form" action="<?php echo $this->getUrl('checkout/cart/estimateUpdatePost') ?>">
     <fieldset>
         <dl class="sp-methods">
+        <dt><?php  echo $this->__('Select Shipping Method'); ?></dt>
             <?php foreach ($_shippingRateGroups as $code => $_rates): ?>
                 
-                <dt><?php echo $this->getCarrierName($code) ?></dt>
+                <!-- <dt><?php // echo $this->getCarrierName($code) ?></dt> -->
                 <dd>
                     <ul>
                     <?php foreach ($_rates as $_rate): ?>
@@ -93,13 +94,14 @@ $nGrandTotal = Mage::getSingleton('checkout/cart')->getQuote()->getGrandTotal();
                                 <?php echo $_rate->getErrorMessage() ?>
                            <?php else: ?>
                                 <input name="estimate_method" type="radio" value="<?php echo $this->htmlEscape($_rate->getCode()) ?>" id="s_method_<?php echo $_rate->getCode() ?>"<?php if($_rate->getCode()===$this->getAddressShippingMethod()) echo ' checked="checked"' ?> class="radio" />
-                                <label for="s_method_<?php echo $_rate->getCode() ?>"><?php echo $_rate->getMethodTitle() ?>
                                 <?php $_excl = $this->getShippingPrice($_rate->getPrice(), $this->helper('tax')->displayShippingPriceIncludingTax()); ?>
                                 <?php $_incl = $this->getShippingPrice($_rate->getPrice(), true); ?>
                                 <?php echo $_excl; ?>
                                 <?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
                                     (<?php echo $this->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
-                                <?php endif; ?>
+                                <?php endif; ?>                                
+                                <label for="s_method_<?php echo $_rate->getCode() ?>"><?php echo $_rate->getMethodTitle() ?>
+                               
                                 </label>
                            <?php endif ?>
                         </li>

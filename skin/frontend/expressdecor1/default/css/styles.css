@@ -2475,9 +2475,10 @@ ul.cms-menu.type-square ul { list-style-type:square; }
 
 /********** < Common Checkout Styles */
 /* Shipping and Payment methods */
-.sp-methods dt { font-weight:bold; margin-bottom:5px; }
+.sp-methods dt { font-weight:bold; margin-bottom:5px; padding-bottom:5px;}
 .sp-methods dd { margin:0 0 7px; }
-.sp-methods dd li { margin:5px 0; }
+.sp-methods dd li { margin:5px 0; border-bottom: 1px dotted #AAA;padding-bottom:5px;}
+.sp-methods dd li .meth-sub-title {padding-left:20px;}
 .sp-methods .price { font-weight:bold; }
 .sp-methods .form-list { padding-left:20px; margin:15px 0; }
 .sp-methods .form-list .input-text { width:250px; }
