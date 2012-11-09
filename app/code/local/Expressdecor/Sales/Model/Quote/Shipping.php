@@ -14,7 +14,8 @@ class Expressdecor_Sales_Model_Quote_Shipping extends Mage_Sales_Model_Quote_Add
 		if ($amount != 0 || $address->getShippingDescription()) {
 			$title = Mage::helper('sales')->__('Shipping & Handling');
 			if ($address->getShippingDescription()) {
-				$title .= '' . $address->getShippingDescription() . '';
+				$descr=substr($address->getShippingDescription(), strpos($address->getShippingDescription(), '- ')+2, strlen($address->getShippingDescription())-strpos($address->getShippingDescription(), '- ')+2);
+				$title .= '' . $descr . '';
 			}
 			$address->addTotal(array(
 					'code' => $this->getCode(),
