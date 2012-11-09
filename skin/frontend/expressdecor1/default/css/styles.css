@@ -2480,7 +2480,7 @@ ul.cms-menu.type-square ul { list-style-type:square; }
 .sp-methods dd li { margin:5px 0; border-bottom: 1px dotted #AAA;padding-bottom:5px;}
 .sp-methods dd li .meth-sub-title {padding-left:20px;}
  .meth-sub-title {font-size: 11px;}
-.shipping-message {padding-bottom:10px;}
+.shipping-message {padding-bottom:10px; padding-left:0px !important;}
 .sp-methods .price { font-weight:bold; }
 .sp-methods .form-list { padding-left:20px; margin:15px 0; }
 .sp-methods .form-list .input-text { width:250px; }
