@@ -168,7 +168,9 @@ class Unirgy_RapidFlow_Model_Rule_Condition_Product extends Mage_CatalogRule_Mod
                 $dt = strpos($sql, "`_table_{$a}_default`")!==false;
                 $dw = str_replace('{{ta}}', "_table_{$a}_default.value", $wt);
                 $st = strpos($sql, "`_table_{$a}`")!==false;
-                $sw = str_replace('{{ta}}', "_table_{$a}.value", $wt);
+//                $sw = str_replace('{{ta}}', "_table_{$a}.value", $wt);
+print_r($sql);
+echo $sql;
                 if ($dt && $st) {
                     $w = "ifnull({$sw}, {$dw})";
                 } elseif ($dt && !$st) {

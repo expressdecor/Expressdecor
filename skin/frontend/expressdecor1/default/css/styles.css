@@ -2480,6 +2480,7 @@ ul.cms-menu.type-square ul { list-style-type:square; }
 .sp-methods dd li { margin:5px 0; border-bottom: 1px dotted #AAA;padding-bottom:5px;}
 .sp-methods dd li .meth-sub-title {padding-left:20px;}
  .meth-sub-title {font-size: 11px;}
+.shipping-message {padding-bottom:10px;}
 .sp-methods .price { font-weight:bold; }
 .sp-methods .form-list { padding-left:20px; margin:15px 0; }
 .sp-methods .form-list .input-text { width:250px; }
@@ -3595,9 +3596,10 @@ background-repeat:no-repeat;
   float:left;
   padding: 5px;
   width: 150px;
-  border:1px solid #c9c9c9;
+  border:1px solid #e9e9e9;
   margin: 10px;
-  background-color: #d9d9d9;
+  
+  background-color: #f1f1f1;
   height: 175px;
 }
 
