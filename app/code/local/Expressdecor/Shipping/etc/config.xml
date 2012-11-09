@@ -13,7 +13,11 @@
                   <carrier_flatrate>Expressdecor_Shipping_Model_Carrier_Flatrate</carrier_flatrate> 
                </rewrite>                                            
            </shipping>    
-                     
+           <usa>
+              <rewrite>
+                  <shipping_carrier_ups>Expressdecor_Shipping_Model_Carrier_Ups</shipping_carrier_ups> 
+               </rewrite>                                            
+           </usa>                       
            </models>
   </global>
 </config>
