@@ -41,6 +41,7 @@
 <?php else: ?>
 <dl class="shipment-methods">
  <dd><?php echo $this->__('Select Shipping Method'); ?></dd>
+ <div class="shipping-message meth-sub-title"><?php echo $this->__('Delivery estimates are for orders  paced before 12 PM EST Monday to Friday'); ?></div>
         <?php foreach ($_shippingRateGroups as $code => $_rates): ?>
                     <!-- <dd><?php echo $this->getCarrierName($code) ?></dd> -->
                 <?php foreach ($_rates as $_rate): ?>
