@@ -558,7 +558,34 @@ class AWW_Followupemail_Model_Rule extends Mage_Core_Model_Abstract
         if ($this->getSenderName()) $content['sender_name'] = $this->getSenderName();
         if ($this->getSenderEmail()) $content['sender_email'] = $this->getSenderEmail();
 
-        $this->_getProcessor()->setVariables($objects);
+	        //Alex   
+        		$items=$objects['order']->getAllItems();
+        		$param_val="<table>";
+        		foreach ($items as $itemId => $item)
+        		{        
+        			if ($item->getProduct()->getTypeId() =='simple') {
+        			$image_url = Mage::helper('catalog/image')
+        			->init($item->getProduct(), 'image', $item->getProduct()->getImage())
+        			->resize(70);        			
+        			$param_val.='<tr>';
+        			$param_val.='<td><img src="'.$image_url.'" /></td>';
+        			$param_val.='<td>'.$item->getProduct()->getName().'</td>';
+        			$product_id=$item->getProduct()->getId();        			         			 	
+        				$configurable_product_model = Mage::getModel('catalog/product_type_configurable');
+        				$parentId = $configurable_product_model->getParentIdsByChild($product_id);        				
+        				if(isset($parentId[0])){        					         			
+        					//if this product has a parent        					
+        					$product_id =$parentId[0];        					         	 
+        				}        			        			       			
+        			$param_val.='<td><a target="_blank" href="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'review/product/list/id/'. $product_id.'/#review-form" >Review</a></td>';        			 
+        			$param_val.='</tr>';
+        			}
+        		}
+        		$param_val.="</table>";
+        		$objects['product_grid']=$param_val;
+        		//Alex
+        
+        $this->_getProcessor()->setVariables($objects);  
         $this->_getProcessor()->setStoreId($objects['store_id']);
 
         $currentDesign = Mage::getDesign()->setAllGetOld(array(
