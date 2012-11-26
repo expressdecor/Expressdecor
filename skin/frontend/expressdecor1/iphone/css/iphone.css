@@ -306,7 +306,7 @@ p { padding:0; margin:5px 0; }
 .product-view .product-main-info .review-summary-table { margin:0px 0; }
 .review-summary-table { border:0; margin:0 0 0px; }
 .review-summary-table th,
-.review-summary-table td { padding:2px 5px; }
+.review-summary-table td { padding:0px 0px; }
 .review-summary-table tr.last td { border:0; }
 .review-summary-table th.label,
 .review-summary-table td.label { width:1px; white-space:nowrap; padding-left:0; background:none; }
@@ -316,7 +316,7 @@ p { padding:0; margin:5px 0; }
     padding-bottom: 0;
     padding-left: 0;
     padding-top: 2px;
-    width: 77px;
+  /*  width: 77px;*/
 }
 .input-box-rating {
   margin-left: 20px;
