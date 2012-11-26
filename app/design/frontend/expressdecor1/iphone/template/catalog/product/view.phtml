@@ -212,7 +212,7 @@ $_img = '<img width="200" id="full-image" src="'.$this->helper('catalog/image')-
                 <span style="display:none;" itemprop="price"><?php  echo $_price;?></span>
                  </p>
                  <?php  if ($under_catalog_rule_promotion) { 
-                	echo "<div id=\"origprice\" class=\"catalogrule\">". $this->__("See final sale price at checkout")."</div>";
+                	echo "<div id=\"origprice\" class=\"catalogrule\">". $this->__("See final sale price at checkout. <font color=\"red\">Get extra %s&#37; OFF </font>",$catalog_rule_discount)."</div>";
                 }
                 ?>    
                 <?php 	If (!empty($msrp_price)  && ($msrp_price>$_price) ) {
@@ -276,7 +276,7 @@ $_img = '<img width="200" id="full-image" src="'.$this->helper('catalog/image')-
                 <?php if (!$under_catalog_rule_promotion) { ?> <span style="display:none;" itemprop="price"><?php  echo $_finalPrice;?></span><?php } ?>
                  </div> 
                 <?php  if ($under_catalog_rule_promotion) { 
-                	echo "<div id=\"origprice\" class=\"catalogrule\">". $this->__('See final sale price at checkout')."</div>";
+                	echo "<div id=\"origprice\" class=\"catalogrule\">". $this->__('See final sale price at checkout. <font color="red">Get extra %s&#37; OFF </font>',$catalog_rule_discount)."</div>";
                 }?>              
                <?php  	If (!empty($msrp_price)  && ($msrp_price>$_price) ) {
 	 	?>
@@ -328,7 +328,11 @@ if(!empty( $promo ) ) { ?>
 
 </div>
 <!-- end of first-->
-
+<!-- reviews -->
+<div class="additional-info">
+<?php echo $this->getChildHtml('product_additional_data') ?>  
+</div>
+<!-- end of reviews -->
 <div class="add-options">
 <!-- Start of  page: #Details -->
 <div id="details_header" class="product-info-tab">
@@ -418,7 +422,7 @@ Reviews
 	 //]]>
     </script>
 	<?php endif;?>  		
-		                                         
+	   	                                         
 </div>
  <script type="text/javascript">
  //<![CDATA[
