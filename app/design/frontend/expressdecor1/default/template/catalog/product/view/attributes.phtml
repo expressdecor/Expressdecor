@@ -79,17 +79,28 @@
             <?php if(($_data['value']) != 'N/A' && ($_data['value']) != 'No' && (trim($_data['value']))!= '<span class="price">$0.00</span>' && !empty($_data['value']) ): ?>
 
 <?php
-$attribute_cat_views=$_product->getResource()->getAttribute($_data['code'])->getAttributeSetViews();
-$cat_views_obj=json_decode(json_decode($attribute_cat_views)->arr_views);
-$label="";
-foreach ($cat_views_obj as $view) {
-	if ($view->catid==0) {
-		$label=$view->view_label;
-	}
-}
-if (empty($label)) {
-	$label=$this->__($_data['label']);
-}
+/**
+         *   Attribute View
+         *
+         */
+        $attribute_cat_views=$_product->getResource()->getAttribute($_data['code'])->getAttributeSetViews();
+        $cat_views_obj=json_decode($attribute_cat_views)->arr_views;
+        $label="";   
+       
+        //check if exists and change label
+        foreach ( $cat_views_obj as $view_obj ) {  
+        	if ($view_obj->catid == 0) {
+        		$label = $view_obj->view_label;
+        	}
+        }      
+        
+        if (empty($label)) {
+        	$label=$this->__($_data['label']);
+        }
+        /**
+         * End of   Attrbiute View
+         * 
+         */
 ?>
 <div class="attr-container">
 
