@@ -66,6 +66,176 @@
     </div>
 </div>
 <br/>
+<!--    Attriute View labels -->
+<script  type="text/javascript">
+var JSONobj = new Object;
+JSONobj.arr_views=new Array();
+JSONobj.arr_views_tag=new Array();
+
+function delete_view(opt_id,type){
+	$('view_attr_upd_'+type+'_'+opt_id).remove();
+	 if (type=="category") {		
+		JSONobj.arr_views.each(function(obj,index) {
+			  if (obj.catid==opt_id) {				   
+				  delete JSONobj.arr_views[index];
+				  JSONobj.arr_views=JSONobj.arr_views.compact();				 
+			  }
+		});
+	 } else {
+			JSONobj.arr_views_tag.each(function(obj,index) {
+				  if (obj.tagid==opt_id) {				   
+					  delete JSONobj.arr_views_tag[index];
+					  JSONobj.arr_views_tag=JSONobj.arr_views_tag.compact();				 
+				  }
+			});		 
+	 }
+	$('attribute_set_views_id').value=JSON.stringify(JSONobj);
+}
+
+function add_view(opt_label,opt,label,type) {
+	if (type=="category") {
+		var width=396;
+	} else {
+        var width=161;
+		}
+	if ($('view_attr_upd_'+type+'_'+opt) != null) {
+	delete_view(opt,type);
+	}
+	
+	var new_opt="<tr id='view_attr_upd_"+type+"_"+opt+"'><td width='"+width+"px'>"+opt_label+"</td><td width='94px'>"+label+"</td><td width='*%'><button onclick=\"delete_view("+opt+",'"+type+"')\" class='scalable delete' type='button' ><span>Remove View Label</span></button></td></tr>";
+	if (type=="category") {
+	var options=$('views_labels').innerHTML;
+	$('views_labels').innerHTML=options+new_opt;		
+	JSONobj.arr_views.push({catid:opt,view_label:label,type:type});
+	$('att_category_view').value="";
+	} else {
+	var options=$('views_labels_tag').innerHTML;
+	$('views_labels_tag').innerHTML=options+new_opt;
+	JSONobj.arr_views_tag.push({tagid:opt,view_label:label,type:type});
+	$('att_tag_view').value="";
+	}			
+	$('attribute_set_views_id').value=JSON.stringify(JSONobj);
+	
+}
+</script>
+<!--  Categories  -->
+<div class="entity-edit">
+<div class="entry-edit-head">
+<h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('catalog')->__('Manage Titles on Categories') ?></h4>
+</div>
+<div class="box">
+<div class="hor-scroll">
+<table class="dynamic-grid" cellspacing="0" id="attribute-labels-table">
+	<tr>
+		<th>Category</th>
+		<th>View label</th>
+		<th>Action</th>
+	</tr>
+	<tr>
+		<td><select id="category_view_select">
+		<option value="0" >Product Page</option>
+                     <?php 
+                     $categories=Mage::getModel('catalog/category')->getCollection()
+                     ->addAttributeToSelect('*')
+                     ->addIsActiveFilter();
+                     foreach ($categories as $cat) {
+                     	  if ($cat->getId()>0) {                   
+                     ?>
+  <option value="<?php echo $cat->getId(); ?>"><?php echo $cat->getName(); ?></option>
+  <?php } } ?>
+</select></td>
+
+		<td><input id="att_category_view" class="input-text" type="text" name="frontend_category[]" value="" /></td>
+		<td>
+		<button style="" onclick="add_view($('category_view_select').options[$('category_view_select').selectedIndex].text,$('category_view_select').options[$('category_view_select').selectedIndex].value,$('att_category_view').value,'category')" class="scalable add" type="button" id="add_new_view_button"><span>Add View Label</span></button>
+		</td>
+	</tr>
+
+</table>
+<input id="attribute_set_views_id" type="hidden" name="attribute_set_views" value="" />
+<table id="views_labels" class="dynamic-grid" cellspacing="0">
+<?php
+ $attribute_cat_views=$this->getAttributeObject()->getAttributeSetViews();
+ $cat_views_obj=json_decode($attribute_cat_views)->arr_views;
+ 
+ foreach ($cat_views_obj as $arr) {
+ 	if ($arr->catid==0){ 
+ 		echo '<script type="text/javascript">add_view("Product Page","'.$arr->catid.'","'.$arr->view_label.'","category");</script>';	
+ 	} else {
+ 		$cat=Mage::getModel('catalog/category')->load($arr->catid);
+?>
+		<script type="text/javascript">
+			add_view("<?php echo $cat->getName(); ?>","<?php echo $arr->catid; ?>","<?php echo $arr->view_label; ?>","category");
+		</script>
+<?php
+ 	}
+  }
+?>
+</table>
+</div>
+</div>
+</div>
+
+<br />
+<!--  Tags-->
+<?php 
+ $tags=Mage::getModel('tag/tag')->getCollection(); 
+ 
+?>
+<div class="entity-edit" <?php if (count($tags<1)) echo 'style="display:none;"';?>>
+<div class="entry-edit-head">
+<h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('catalog')->__('Manage Titles on Tags') ?></h4>
+</div>
+<div class="box">
+<div class="hor-scroll">
+<table class="dynamic-grid" cellspacing="0" id="attribute-labels-table">
+	<tr>
+		<th>Tag</th>
+		<th>View label</th>
+		<th>Action</th>
+	</tr>
+	<tr>
+		<td><select id="tag_view_select">
+<?php                        
+foreach ($tags as $tag) {                    	                     
+?>
+  <option value="<?php echo $tag->getId(); ?>"><?php echo $tag->getName(); ?></option>
+  <?php } ?>
+</select></td>
+
+		<td><input id="att_tag_view" class="input-text" type="text" name="frontend_tag[]" value="" /></td>
+		<td>
+		<button style=""
+			onclick="add_view($('tag_view_select').options[$('tag_view_select').selectedIndex].text,$('tag_view_select').options[$('tag_view_select').selectedIndex].value,$('att_tag_view').value,'tag')"
+			class="scalable add" type="button" id="add_new_view_button"><span>Add
+		View Label</span></button>
+		</td>
+	</tr>
+
+</table>
+
+<table id="views_labels_tag" class="dynamic-grid" cellspacing="0">
+<?php
+ $attribute_tag_views=$this->getAttributeObject()->getAttributeSetViews();
+ $tag_views_obj=json_decode($attribute_tag_views)->arr_views_tag;
+
+ foreach ($tag_views_obj as $tag_arr) {
+ 	$tag_model=Mage::getModel('tag/tag')->load($tag_arr->tagid);
+?>
+<script>
+add_view("<?php echo $tag_model->getName(); ?>","<?php echo $tag_arr->tagid; ?>","<?php echo $tag_arr->view_label; ?>","tag");
+</script>
+<?php  } ?> 
+</table>
+</div>
+</div>
+</div>
+<br />
+
+
+<!-- end of     Attriute View labels -->
+
+
 <div class="entity-edit" id="matage-options-panel">
     <div class="entry-edit-head">
     <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('catalog')->__('Manage Options (values of your attribute)') ?></h4>
