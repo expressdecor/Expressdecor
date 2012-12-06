@@ -42,7 +42,12 @@
 <dl class="shipment-methods">
  <dd><?php echo $this->__('Select Shipping Method'); ?></dd>
  <div class="shipping-message meth-sub-title"><?php echo $this->__('Delivery estimates are for orders  paced before 12 PM EST Monday to Friday'); ?></div>
-        <?php foreach ($_shippingRateGroups as $code => $_rates): ?>
+        <?php 
+        $rate_counter=0;
+        foreach ($_shippingRateGroups as $code => $_rates):
+        
+        $rate_counter++;
+        ?>
                     <!-- <dd><?php echo $this->getCarrierName($code) ?></dd> -->
                 <?php foreach ($_rates as $_rate): ?>
                     <dt style="margin-bottom: 5px;">
@@ -51,7 +56,7 @@
                         <ul class="messages"><li class="error-msg"><ul><li><?php echo $_rate->getErrorMessage() ?></li></ul></li></ul>
                        <?php else: ?>
                        
-                            <input name="shipping_method" type="radio" class="validate-one-required-by-name" value="<?php echo $_rate->getCode() ?>" id="s_method_<?php echo $_rate->getCode() ?>"<?php if($_rate->getCode()===$this->getAddressShippingMethod()) echo ' checked="checked"' ?> />
+                            <input name="shipping_method" type="radio" class="validate-one-required-by-name" value="<?php echo $_rate->getCode() ?>" id="s_method_<?php echo $_rate->getCode() ?>"<?php if($_rate->getCode()===$this->getAddressShippingMethod() || ( $this->getAddressShippingMethod()=='' && $rate_counter==1  ) ) echo ' checked="checked"' ?> />
                                                         <strong>
                            <?php $_excl = $this->getShippingPrice($_rate->getPrice(), $this->helper('tax')->displayShippingPriceIncludingTax()); ?>
                             <?php $_incl = $this->getShippingPrice($_rate->getPrice(), true); ?>

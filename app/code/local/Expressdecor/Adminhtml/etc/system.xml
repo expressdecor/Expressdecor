@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config>
-  <tabs>
+   <tabs>
    <Expressdecor  translate="label">
           <label>Expressdecor</label> 
             <sort_order>100</sort_order>
