@@ -49,13 +49,11 @@ Default layout, loads most of the pages
     <default>
         <!-- Mage_Customer -->
         <reference name="top.links">
-            <action method="addLink" translate="label title" module="customer"><label>My Account</label><url helper="customer/getAccountUrl"/><title>My Account</title><prepare/><urlParams/><position>10</position></action>
+            <action method="addLink" translate="label title" module="customer"><label>My Account</label><url>#</url><title>My Account</title><prepare/><urlParams/><position>10</position><a>onclick="sign_in();" </a></action>
         </reference>
-<!--         <reference name="header">
-            <remove name="top.container"/>
-        </reference> -->
+ 
         <reference name="account.links">
-            <action method="addLink" translate="label title before_text" module="customer"><label>Register</label><url helper="customer/getRegisterUrl" /><title>Register</title><prepare/><urlParams/><position>100</position><li/><a/><before_text> | </before_text></action>
+            <action method="addLink" translate="label title before_text" module="customer"><label>Register</label><url>#register</url> <title>Register</title><prepare/><urlParams/><position>100</position><li/><a>onclick="join_us();" </a><before_text> | </before_text></action>
         </reference>
     </default>
 
@@ -65,8 +63,9 @@ Load this update on every page when customer is logged in
 
     <customer_logged_in>
         <reference name="account.links">
+        	<action method="addLink" translate="label title" module="customer"><label>My Account</label><url helper="customer/getLoginUrl"/><title>My Account</title><prepare/><urlParams/><position>1</position></action>           
             <action method="addLink" translate="label title" module="customer"><label>Log Out</label><url helper="customer/getLogoutUrl"/><title>Log Out</title><prepare/><urlParams/><position>2</position></action>
-            <action method="removeLinkByUrl"><url helper="customer/getRegisterUrl" /></action>
+            <action method="removeLinkByUrl"><url>#register</url></action>
         </reference>
     </customer_logged_in>
 
@@ -76,7 +75,7 @@ Load this update on every page when customer is logged out
 
     <customer_logged_out>
         <reference name="account.links">
-            <action method="addLink" translate="label title" module="customer"><label>My Account</label><url helper="customer/getLoginUrl"/><title>My Account</title><prepare/><urlParams/><position>1</position></action>
+            <action method="addLink" translate="label title" module="customer"><label>My Account</label><url>#</url><title>My Account</title><prepare/><urlParams/><position>1</position><a>onclick="sign_in();"</a></action>
             <action method="removeLinkByUrl" ifconfig="enterprise_invitation/general/registration_required_invitation"><url helper="customer/getRegisterUrl" /></action>
             <!-- <action method="addLink" translate="label title" module="customer"><label>register</label><url helper="customer/getRegisterUrl" /><title>register</title><prepare/><urlParams/><position>100</position><li/><a/><before_text> or </before_text><after_text>.</after_text></action> -->
         </reference>
