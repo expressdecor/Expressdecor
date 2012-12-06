@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
- 
+<?xml version="1.0"?> 
 <config>
     <sections>
         <facebook translate="label">
@@ -14,7 +13,7 @@
                 <settings translate="label">
                     <label>Settings</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>100</sort_order>
+                    <sort_order>105</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -46,6 +45,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                        </secret>
                     </fields>
                 </settings>                
             </groups>
