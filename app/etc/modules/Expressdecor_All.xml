@@ -45,7 +45,7 @@
 	    </Expressdecor_Googleanalytics>
 	    	   
 	    <Expressdecor_Fixurl>
-			<active>true</active>
+			<active>false</active>
 			<codePool>local</codePool>
 	    </Expressdecor_Fixurl>
 	    
@@ -84,6 +84,11 @@
 	 	<Expressdecor_Bannersales>
 			<active>true</active>
 			<codePool>local</codePool>
-	    </Expressdecor_Bannersales>	    	
+	    </Expressdecor_Bannersales>	    	    
+	    	    	    		    
+	 	<Expressdecor_Facebook>
+			<active>true</active>
+			<codePool>local</codePool>
+	    </Expressdecor_Facebook>	  
 	</modules>
 </config>

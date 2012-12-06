@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+ 
+<layout version="0.1.0">
+	<default>
+		<reference name="root">
+			<block type="facebook/facebook" name="pop-up-window"  as="pop-up-window" template="page/pop-up-email-window.phtml"></block>
+		</reference>
+	</default>
+	<!--  
+     <customer_account_login translate="label">
+        <reference name="customer_form_login">
+            <block type="customer/form_login" name="customer_form_login" template="customer/form/login.phtml">
+                <action method="setTemplate" ifconfig="facebookfree/settings/enabled" ifvalue="1">
+                    <template>facebookfree/login.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </customer_account_login>
+
+    <checkout_onepage_index translate="label">
+        <reference name="checkout.onepage">
+            <block type="checkout/onepage_login" name="checkout.onepage.login" as="login" template="checkout/onepage/login.phtml">
+                <action method="setTemplate" ifconfig="facebookfree/settings/enabled" ifvalue="1">
+                    <template>facebookfree/checkoutlogin.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </checkout_onepage_index> -->
+</layout>

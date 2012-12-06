@@ -1,61 +1,445 @@
-<?php
- $url=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
- if(Mage::getSingleton('cms/page')->getIdentifier() == 'home'  &&
- 		Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms') {
-?>
+<!-- facebook  -->
+<script language="JavaScript" type="text/javascript">
+/*<![CDATA[*/
+window.fbAsyncInit = function() {
+	FB.init({appId: '<?php echo Mage::helper('facebook')->getAppId()?>',             
+	    status     : true, 
+            cookie     : true,
+            xfbml      : true,
+            oauth      : true});
+  
+};
+(function(d){
+           var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+           js = d.createElement('script'); js.id = id; js.async = true;
+           js.src = "//connect.facebook.net/<?php echo Mage::app()->getLocale()->getLocaleCode()?>/all.js";
+           d.getElementsByTagName('head')[0].appendChild(js);
+         }(document));
+ 
+ 
+    function fblogin(){
+        FB.login(function(response) {
 
-<div class="emails-overlay" style="display:none;"></div>
-<div class="express-emails"  style="display:none;" >
-<div class="sign-up">
-<form id="newsletter-validate-detail2" method="post" action="">
-    <div class="form-subscribe">
-          <button id="submit-button-signup"title="Subscribe" class="button" type="submit"><span><span></span></span></button></div>
-        <div class="v-fix">
-        <input type="hidden" name="source" value="pop-up" />
-        <input   type="text" class="input-text required-entry validate-email" onblur="this.value==''?this.value='Enter your email address':''" onclick="this.value=='Enter your email address'?this.value='':''" value="Enter your email address" id="newsletter" name="email">                
-    </div>
-</form>
-</div>
-<a href="<?php echo $url;?>/privacy.html"><div class="email-policy">Privacy Policy</div></a>
-<a href="javascript:void(0);" onclick="newsletter_popup_close();" ><div class="email-close">No, thanks</div></a>
+           if (response.status == 'connected') {  
+                login();
+            } else {
+                // user is not logged in
+                //window.location.reload();
+            }
+        }, {scope:'email,publish_stream'});
+        return false;
+    }
+    
+    function login(){
+    	 
+   	 jQ.get('/facebook/facebook/fblogin',  {facebook_login: 1},function(data){    
+       	if (data!='"success"'){           	 
+ 					alert("It was error, processing your request. Please, try again.");
+                } else {
+                	update_account_links();
+                	popup_close();
+                }                
+        }); 
+    	}
+	function popup_close(){   
+    	jQ(".express-emails").each(function() {
+    		jQ(this).fadeOut();
+    	});               
+        jQ('.emails-overlay').fadeOut();                        
+	}
+
+	function update_account_links(){
+	     // Update Account links      
+        jQ.get('/facebook/facebook/updatelinks',  {},function(data){
+        	jQ(".header-login .links").remove();
+        	jQ(".header-login").append(data);
+        } , 'json');     
+	}
+
+	  function sign_in(){ 
+		jQuery(".emails-overlay").show();
+		jQuery(".express-emails").each(function() {			 
+			jQuery(this).fadeOut();
+		});
+		 
+		jQuery(".validation-advice").each(function() {			 
+			jQuery(this).remove();
+		});
+		
+    	jQuery('.express-emails.welcome-back .agreement-txt').show();
+    	jQ('.express-emails.welcome-back .agreement-txt').html("<?php echo $this->__('<a onclick=\"forgot_pass();\" href=\"#\">Forgot your password?</a>');?>");
+		jQuery(".express-emails.welcome-back").fadeIn();	
+	  }
+
+	  function forgot_pass(email=''){		  
+		  	sign_in();
+		  	if (email.length==0){
+		  		email=jQ('.express-emails.welcome-back #email_address').val();
+		  	} 	
+		  	if (email.length==0){
+		  		var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice">Please fill email field</div>';
+		  		jQ('.express-emails.welcome-back .singup-left .email-field').append(error_text);  	
+		  	}
+		  	if (email.length!=0){
+		  		jQ('.express-emails.welcome-back .agreement-txt').html("<?php echo $this->__('You will receive an email with a link to reset your password.');?>");		  		 
+		  		jQ.get('/facebook/facebook/forgotpass',  { email:email,},function(data){
+			  		
+		  		 });
+		  	}  	
+		  	//you will receive an email with a link to reset your password.
+		  }
+ 
+	  function join_us(){ 
+		  jQuery(".emails-overlay").show();
+		  jQuery("#form-validate-join").show();
+		  jQuery(".additional_info").hide();
+		jQuery(".express-emails").each(function() {
+			jQuery(this).fadeOut();
+		});
+		jQuery(".validation-advice").each(function() {			 
+			jQuery(this).remove();
+		});
+		jQuery(".express-emails .registered").each(function() {				 	 
+			jQuery(this).remove();
+		});
+		jQuery(".express-emails.join-us .singup-text").show();
+		jQuery(".express-emails.join-us").fadeIn();	
+	  }
+
+	  function second_step(type){
+		  jQuery(".express-emails").each(function() {
+				jQuery(this).fadeOut();
+		   });
+		  var email_str=jQ(type+" #email_address").val(); 
+		  jQ(".express-emails.join-us #email_address").val(email_str); 
+		  jQuery("#form-validate-join").hide(); 
+		  jQuery(".express-emails.join-us").fadeIn();	
+		  jQuery(".express-emails.join-us .singup-text").hide();
+		  jQuery(".additional_info").fadeIn();		   		  
+		  jQuery(".express-emails.join-us .singup-info").append("<div class=\"registered\"><?php echo $this->__('Thank you for registration. Your account information will be sent to your email address.');?></div>");
+	  }		 	  
+
+	function save_additional(type){
+ 
+		var firstname= jQuery("#firstname_popup").val();
+		var lastname=jQuery("#lastname_popup").val();		 
+		var sex=jQuery('input[name=sex_p]:checked', '.sex-field').val();
+		var email_str=jQ(type+" #email_address").val();  
+		jQ.get('/facebook/facebook/saveadditional',  { email:email_str, sex: sex,fname:firstname,lname:lastname},function(data){              
+        	if (data=='"success"'){
+        			popup_close();        			 
+                }else{
+                	popup_close();                	                	
+               	}	
+		 }); 	 			
+		}
+	  
+	  function post_request(type,obj) {
+		  
+
+		  var f =jQuery(obj).closest("form").attr("id");		  
+		  var validation=0;
+			if (f=='form-validate-to') {
+				validation=dataFormto.validator.validate(); 
+			}
+			if (f=='form-validate-back') {
+				validation=dataFormback.validator.validate(); 
+			}
+			if (f=='form-validate-join') {
+				validation=dataFormjoin.validator.validate(); 
+			}
+		    if (validation){
+		        	jQuery(type+" #email_address").css("background-color","#bfffbf");
+		       	 	jQuery(type+" #password2").css("background-color","#bfffbf");
+				 	jQuery(type+" #password").css("background-color","#bfffbf");    
+		            var email_str=jQ(type+" #email_address").val();    
+		            var password=jQ(type+" .real-password").val();
+		            jQuery(obj).hide(); 
+		            jQuery(obj).parent().children(".popup-loader").show(); 
+		            jQ.get('/facebook/facebook/login',  { email:email_str, password: password},function(data){              
+		            	if (data=='success_0'){
+		            		update_account_links();
+		            		popup_close();
+		            		jQuery(obj).parent().children(".popup-loader").hide();
+		            		jQuery(obj).show();
+		                    }else if (data=='success_1') {
+		                    	update_account_links(); 
+			                    second_step(type);
+			                    jQuery(obj).parent().children(".popup-loader").hide();
+			                    jQuery(obj).show();
+		            		}else {
+			            		if (type=='.express-emails.welcome-back') {
+				            		jQuery(type+' .agreement-txt').hide();
+			            		}
+			            		jQuery("#advice-validate-email-newsletter").remove();
+		    					var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice">'+data+'</div>';    					
+		    					jQ(type+' .singup-left').append(error_text);  
+		    					jQuery(obj).parent().children(".popup-loader").hide();  
+		    					jQuery(obj).show();					 
+		                    }                
+		            },'json'); 
+		                   
+		      }
+	  }
+	
+jQuery(document).ready(function() { 
+	jQuery(".express-emails :input").each(function() {
+		jQuery(this).focusout(function() {
+			var f =jQuery(this).closest("form").attr("id");
+			if (f=='form-validate-to') {
+				dataFormto.validator.validate(); 
+			}
+			if (f=='form-validate-back') {
+				dataFormback.validator.validate(); 
+			}
+			if (f=='form-validate-join') {
+				dataFormjoin.validator.validate(); 
+			}
+		 });		 		 		 
+		});
+  	});  	   
+    
+/*]]>*/
+</script>
+<!-- facebook  -->
+<div class="emails-overlay" style="display: none;"></div>
+<!-- homepage -->
+<?php
+$url = Mage::getBaseUrl ( Mage_Core_Model_Store::URL_TYPE_WEB );
+$popup_window_enabled=Mage::getStoreConfig('facebook/settings/enabled',Mage::app()->getStore());
+ 
+if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app ()->getFrontController ()->getRequest ()->getRouteName () == 'cms' && $popup_window_enabled) {
+	?>
+
+
+<div class="express-emails welcome-to" style="display: none;">
+	<div class="express-mails-title"></div>
+	<a href="javascript:void(0);" onclick="popup_close();"><div class="express-mails-close"></div></a>
+	<div class="singup-info">
+		<div class="singup-text"><?php echo $this->__("Do you have your ExpressAccount yet?");?></div>
+		<div class="signup-list">
+			<ul>
+				<li><?php echo $this->__("It's free and quick");?></li>
+				<li><?php echo $this->__("Access hidden discounts");?></li>
+				<li><?php echo $this->__("Enjoy ExpressCheckout");?></li>
+				<li><?php echo $this->__("Get $10 off just for signing up");?></li>
+			</ul>
+		</div>
+
+	</div>
+	<div class="sign-up">
+		<form id="form-validate-to" method="post" action="">
+			<div class="singup-left">
+				<div class="email-field reg-field">
+					<div class="email-label reg-label"><?php echo $this->__("Email Address:");?></div>
+					<input type="text" class="input-text validate-email required-entry dataFormto" title="Email Address" value="" id="email_address" name="email"  />
+				</div>
+				<div class="pass-field reg-field">
+					<div class="pass-f1">
+						<div class="pass-label reg-label"><?php echo $this->__("Password:");?></div>
+						<input type="password"
+							class="input-text required-entry validate-password real-password"
+							title="Password" id="password" name="password" value="" />
+					</div>
+					<div class="pass-f2">
+						<div class="pass-label2 reg-label"><?php echo $this->__("Confirm Password:");?></div>
+						<input type="password"
+							class="input-text required-entry validate-cpassword real-password2"
+							title="Password" id="password2" name="password2" value="" />
+					</div>
+				</div>
+			</div>
+			<div class="singup-right">
+				<div class="singup-button">
+					<button   title="Join" class="button"  onclick="post_request('.express-emails.welcome-to',this);"   type="button"><div><span><?php echo $this->__('Join Us');?></span></div></button>
+					<div class="popup-loader" style="display:none;"></div> 
+				</div>
+				<div class="agreement-txt">
+					By clicking "Join" you accept our <a href="">Terms of Use</a> and <a
+						href="<?php echo $url; ?>privacy.html">Privacy Policy</a>.
+				</div>
+			</div>
+
+		</form>
+	</div>
+	<div class="fb-container">
+		<div class="fb-login">
+			<a href="#" onclick="return fblogin();" class="fb_button_ps"><div
+					class="fb-logo"></div></a>
+		</div>
+		<div class="fb-text"><?php echo $this->__('ExpressDecor.com will never post without your permission.');?></div>
+	</div>
+	<div class="footer-cont">
+		<div class="member-block">
+			<span class="question-part"><?php echo $this->__('Already member?')?></span>
+			<span onclick="sign_in();" class="action-part"><?php echo $this->__('Sign in!')?></span>
+		</div>
+		<div class="footer-text">
+		<?php echo $this->__("It's fast and easy. Get access to ExpressAccount Only discounts! ");?>
+	</div>
+
+	</div>
 </div>
 <script type="text/javascript">
-
-var newsletterSubscriberFormDetail2 = new VarienForm('newsletter-validate-detail2'); 
-     jQ("#submit-button-signup").click(function(event) {
-         event.preventDefault();
-        if (newsletterSubscriberFormDetail2.validator.validate()){    
-            var email_str=jQ("#newsletter").val();       
-            jQ.get('/set_session.php',  {validate_subscription: 1, email:email_str, source: 'pop-up'},function(data){
-                var response=JSON.parse( data );	
-            	if (response.result=='success'){
-                 	   jQ.get('/set_session.php',  {show_express_email_set_cookie_value: 1000, email:email_str},function(data){                  
-                   	     jQ("#newsletter-validate-detail2").submit();                    
-                   	   });
-                    } else {
-    					var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice">'+response.result+'</div>';
-    					jQ('#advice-validate-email-newsletter').remove();
-    					jQ('.v-fix').append(error_text);
-    					jQ('#newsletter').addClass('validation-failed');
-                    }                
-            }); 
-                   
-        }
-    });    
- 
-    function newsletter_popup_close(){
-            jQ.get('/set_session.php',  {show_express_email_set_cookie_value: 1},function(data){
-                jQ(".express-emails").hide();
-                jQ('.emails-overlay').hide();
-            });              
-    }
-
-    jQ.get('/set_session.php',  {express_mail_show: 1},function(data){
-        var result=JSON.parse( data );	
-        if (result.show>0) {
+//<![CDATA[
+  var dataFormto = new VarienForm('form-validate-to', false);   	
+    jQ.get('/facebook/facebook/islogged',  {},function(data){      
+        if (data==0) {
        	jQ('.emails-overlay').show();
-        jQ(".express-emails").show();       
+        jQ(".express-emails.welcome-to").show();       
         }
-    });   
+    }); 
+//]]>  
 </script>
- <?php } ?>
+<?php } ?>
+<!--  welcome back -->
+<div class="express-emails welcome-back" style="display: none;">
+	<div class="express-mails-title"></div>
+	<a href="javascript:void(0);" onclick="popup_close();"><div
+			class="express-mails-close"></div></a>
+	<div class="singup-info">
+		<div class="singup-text"><?php echo $this->__("It's fast and easy. Get access to ExpressAccount Only discounts!");?></div>
+	</div>
+	<div class="sign-up">
+		<form id="form-validate-back" method="post" action="">
+			<div class="singup-left">
+				<div class="email-field reg-field">
+					<div class="email-label reg-label"><?php echo $this->__("Email Address:");?></div>
+					<input type="text" class="input-text validate-email required-entry dataFormback"
+						title="Email Address" value="" id="email_address" name="email" value="" />
+				</div>
+				<div class="pass-field reg-field">
+					<div class="pass-f1">
+						<div class="pass-label reg-label"><?php echo $this->__("Password:");?></div>
+						<input type="password"
+							class="input-text required-entry validate-password real-password"
+							title="Password" id="password" name="password" value="" />
+					</div>
+				</div>
+			</div>
+			<div class="singup-right">
+				<div class="agreement-txt">
+					  <a href="#" onclick="forgot_pass();" >Forgot your password?</a>
+				</div>			
+				<div class="singup-button">
+					<button   title="Sign In" class="button"  onclick="post_request('.express-emails.welcome-back',this);" type="button"><div><span><?php echo $this->__('Sign In');?></span></div></button>
+					<div class="popup-loader" style="display:none;"></div>
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+	<div class="fb-container">
+		<div class="fb-login">
+			<a href="#" onclick="return fblogin();" class="fb_button_ps"><div
+					class="fb-logo"></div></a>
+		</div>
+		<div class="fb-text"><?php echo $this->__('ExpressDecor.com will never post without your permission.');?></div>
+	</div>
+	<div class="footer-cont">
+		<div class="member-block">
+			<span class="question-part"><?php echo $this->__('Not a  member yet?')?></span>
+			<span onclick="join_us();" class="action-part"><?php echo $this->__('Join Now!')?></span>
+		</div>
+		<div class="footer-text">
+		<?php echo $this->__("Make sure that you can see all of our great savings, sales and discounts!");?>
+	</div>
+
+	</div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+  var dataFormback = new VarienForm('form-validate-back', false);
+//]]>  	 
+</script>
+<!-- join us  -->
+<div class="express-emails join-us" style="display: none;">
+	<div class="express-mails-title"></div>
+	<a href="javascript:void(0);" onclick="popup_close();"><div
+			class="express-mails-close"></div></a>
+	<div class="singup-info">
+		<div class="singup-text"><?php echo $this->__("It's fast and easy. Get access to ExpressAccount Only discounts!");?></div>
+	</div>
+	<div class="sign-up">
+		<form id="form-validate-join" method="post" action="">
+			<div class="singup-left">
+				<div class="email-field reg-field">
+					<div class="email-label reg-label"><?php echo $this->__("Email Address:");?></div>
+					<input type="text" class="input-text validate-email required-entry dataFormjoin"
+						title="Email Address" value="" id="email_address" name="email" value="" />
+				</div>
+				<div class="pass-field reg-field">
+					<div class="pass-f1">
+						<div class="pass-label reg-label"><?php echo $this->__("Password:");?></div>
+						<input type="password"
+							class="input-text required-entry validate-password real-password"
+							title="Password" id="password" name="password" value="" />
+					</div>
+					<div class="pass-f2">
+						<div class="pass-label2 reg-label"><?php echo $this->__("Confirm Password:");?></div>
+						<input type="password"
+							class="input-text required-entry validate-cpassword real-password2"
+							title="Password" id="password2" name="password2" value="" />
+					</div>
+				</div>
+			</div>
+			<div class="singup-right">
+				<div class="agreement-txt">
+					By clicking "Join" you accept our <a href="">Terms of Use</a> and <a
+						href="<?php echo $url; ?>privacy.html">Privacy Policy</a>.
+				</div>			
+				<div class="singup-button">
+					<button   title="Join Us" class="button" onclick="post_request('.express-emails.join-us',this);" type="button"><div><span><?php echo $this->__('Join Us');?></span></div></button>
+					<div class="popup-loader" style="display:none;"></div>
+				</div>
+			</div>
+
+		</form>
+		<div class="additional_info"  style="display:none;" >
+				<div class="firstname-field reg-field">
+					<div class="firstname-label reg-label"><?php echo $this->__("First Name:");?></div>
+					<input type="text" class="input-text firstname"
+						title="First Name:" value="" id="firstname_popup" name="firstname_p" value="" />
+				</div>
+				<div class="lastname-field reg-field">
+					<div class="email-label reg-label"><?php echo $this->__("Last Name:");?></div>
+					<input type="text" class="input-text lastname"
+						title="Last Name" value="" id="lastname_popup" name="lastname_p" value="" />
+				</div>
+				<div class="sex-field reg-field">
+					<div class="email-label reg-label"><?php echo $this->__("Gender:");?></div>
+					<input type="radio" class="input-text sex" title="Sex" value="1" id="sex_popup" name="sex_p"   />Male 
+					<input type="radio" class="input-text sex" title="Sex" value="2" id="sex_popup" name="sex_p"  />Female	
+				</div>											
+				<div class="save-btn">
+				<button   title="Save" class="button" onclick="save_additional('.express-emails.join-us');" type="button"><div><span><?php echo $this->__('Continue');?></span></div></button>
+				<div class="skip" onclick="popup_close();" ><?php echo $this->__('Skip');?></div>
+				</div>
+				
+		
+		</div>
+	</div>
+
+	<div class="fb-container">
+		<div class="fb-login">
+			<a href="#" onclick="return fblogin();" class="fb_button_ps"><div class="fb-logo"></div></a>
+		</div>
+		<div class="fb-text"><?php echo $this->__('ExpressDecor.com will never post without your permission.');?></div>
+	</div>
+	<div class="footer-cont">
+		<div class="member-block">
+			<span class="question-part"><?php echo $this->__('Already member?')?></span>
+			<span onclick="sign_in();" class="action-part"><?php echo $this->__('Sign in!'); ?></span>			
+		</div>
+		<div class="footer-text">
+		<?php echo $this->__("Make sure that you can see all of our great savings, sales and discounts!");?>
+	</div>
+
+	</div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+  var dataFormjoin = new VarienForm('form-validate-join', false);
+//]]>  	 
+</script>

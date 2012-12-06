@@ -82,9 +82,7 @@ Default layout, loads most of the pages
                 <label>Page Top</label>
             </block>
 
-              
-              <block type="page/html" name="pop-up-window"  as="pop-up-window" template="page/pop-up-email-window.phtml">
-              </block>
+     
               <block type="page/html" name="page_up" as="page_up" template="page/page_up.phtml">
               </block>
             <block type="page/html_notices" name="global_notices" as="global_notices" template="page/html/notices.phtml" />

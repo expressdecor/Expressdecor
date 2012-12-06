@@ -27,11 +27,11 @@
 
 -->
 <layout version="0.1.0">
-    <customer_logged_in>
+  <!--   <customer_logged_in>
         <block type="enterprise_invitation/link" name="invitation_link_top">
             <action method="addAccountLink" translate="label title" module="enterprise_invitation"><block>account.links</block><label>Send Invitations</label><url helper="enterprise_invitation/data/getCustomerInvitationFormUrl" /><title>Send Invitations</title><prepare /><urlParams /><position>1</position><li>id="invitation-send-link"</li></action>
         </block>
-    </customer_logged_in>
+    </customer_logged_in> -->
 
     <enterprise_invitation_index_send translate="label">
         <label>Customer My Account Invitations Form</label>
