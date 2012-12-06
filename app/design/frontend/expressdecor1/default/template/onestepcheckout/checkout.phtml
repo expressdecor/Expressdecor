@@ -31,7 +31,7 @@ $helper = Mage::helper('onestepcheckout/checkout');
 
 <?php if(!$this->isCustomerLoggedIn() && $helper->showLoginLink()): ?>
     <p class="onestepcheckout-login-link">
-        <a id="onestepcheckout-login-link" href="<?php echo $this->getUrl('customer/account/login'); ?>"><?php echo $this->__('<h1>Returning Customer?</h1><h2>
+        <a id="onestepcheckout-login-link" href="# onclick="sign_in();" ><?php echo $this->__('<h1>Returning Customer?</h1><h2>
 Sign into your account for fast checkout.</h2>'); ?></a>
     </p>
 <?php endif; ?>
