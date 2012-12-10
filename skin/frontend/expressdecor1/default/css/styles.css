@@ -96,7 +96,7 @@ ul,ol { list-style:none; }
 /* Layout ================================================================================ */
 .wrapper { 
 /*background:url("../images/main-bg.gif") repeat fixed center top #DBDADA;*/
-background: url("http://cdn.expressdecor.com/skin/frontend/expressdecor1/default/images/bg.png") repeat-y center top #E4E4E4;
+background: url("http://cdn.expressdecor.com/skin/frontend/expressdecor1/default/images/bg.png") repeat-y center top #5F82C3;
 
 
  padding-bottom:20px; 
@@ -707,7 +707,7 @@ width: 145px;
 
 
 .header-container { margin: 46px 0 0px; text-align:left; }
-.header { padding: 14px 0 9px; min-height:56px; position:relative; z-index:5; width:940px; }
+.header { padding: 14px 0 9px; min-height:56px; position:relative; z-index:5; width:940px; background:url(../images/under-menu.png) no-repeat 0 2px; }
 /*div.header {padding-top: 20px;}*/
 .header .logo { text-decoration:none !important; margin-top:0px;margin-top: 0px; }
 .header .logo strong { position:absolute; top:-999em; left:-999em; width:0; height:0; font-size:0; line-height:0; text-indent:-999em; overflow:hidden; }
