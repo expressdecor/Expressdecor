@@ -1,6 +1,47 @@
 <?xml version="1.0"?>
 <config>
     <sections>
+    <!-- Alex -->
+    	<eddates>
+    		<label>M2E ED Settings</label>
+    		<tab>Expressdecor</tab>
+    		<frontend_type>text</frontend_type>
+    		<sort_order>1002</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>    		
+    		<groups>
+                <settings translate="label">
+                    <label>Date Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>105</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <ebaydate translate="label comment">
+                            <label>Ebay Date Orders From</label>
+                              <comment><![CDATA[After what date create Magento orders from Ebay orders]]></comment> 
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ebaydate>
+                        <amazondate translate="label comment">
+                            <label>Amazon Date Orders From</label>
+                             <comment><![CDATA[After what date create Magento orders from Amazon orders]]></comment> 
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </amazondate>
+                    </fields>
+                </settings>    			
+    		</groups>
+    	</eddates>
+	<!-- Alex -->    	
         <carriers>
             <groups>
                 <m2eproshipping translate="label">
