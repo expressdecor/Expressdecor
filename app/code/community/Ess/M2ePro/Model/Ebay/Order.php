@@ -472,7 +472,7 @@ class Ess_M2ePro_Model_Ebay_Order extends Ess_M2ePro_Model_Component_Child_Ebay_
     {
     	//Alex create_date  purchase_create_date purchase_create_date
     	$date=strtotime($this->getPurchaseCreateDate());
-    	$last_date=strtotime('2012-12-14 22:44:01'); // Date after which we will create orders
+    	$last_date=strtotime('2012-12-11 22:44:01'); // Date after which we will create orders
        	 
     	if ($date>$last_date) {    	 
     		$result=1;	 
