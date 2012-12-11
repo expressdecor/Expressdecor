@@ -470,11 +470,11 @@ class Ess_M2ePro_Model_Ebay_Order extends Ess_M2ePro_Model_Component_Child_Ebay_
 
     public function beforeCreateMagentoOrder()
     {
-    	//Alex create_date  purchase_create_date purchase_create_date
-    	$date=strtotime($this->getPurchaseCreateDate());
+    	//Alex create_date  purchase_create_date purchase_create_date     
+    	$date= Mage::getModel('core/date')->timestamp($this->getPurchaseCreateDate());
     	$config_date=Mage::getStoreConfig('eddates/settings/ebaydate',Mage::app()->getStore());
     	$last_date=strtotime($config_date); // Date after which we will create orders
-       	 
+    	 
     	if ($date>$last_date) {    	 
     		$result=1;	 
     	} else {     		 

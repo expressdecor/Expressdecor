@@ -268,7 +268,7 @@ class Ess_M2ePro_Model_Amazon_Order extends Ess_M2ePro_Model_Component_Child_Ama
             $result=0; // Alex
         } else {        //Else added by Alex 
         //Alex create_date  purchase_create_date purchase_create_date
-        	$date=strtotime($this->getPurchaseCreateDate());
+        	$date= Mage::getModel('core/date')->timestamp($this->getPurchaseCreateDate());
         	$config_date=Mage::getStoreConfig('eddates/settings/amazondate',Mage::app()->getStore());
         	$last_date=strtotime($config_date); // Date after which we will create orders
          
