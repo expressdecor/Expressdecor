@@ -3597,6 +3597,13 @@ background-repeat:no-repeat;
 #express-brands .item .icon .logo-16 { background-position: -600px -392px; }
 #express-brands .item .icon .logo-17 { background-position: -3px -34px; }
 
+/*Slidown subcats */
+.subcat-show-more {height:15px; padding:10px 0px 10px 320px; background-color: #F1F1F1; margin-left:10px; cursor:pointer; }
+.subcat-container-1 {min-height:10px; overflow: auto; padding-top: 20px;}
+ .subcat-container {min-height:10px; overflow: auto;}
+.subcat-show-more a {  text-decoration:none; font-size:12px; color:#000000;}
+.subcat-show-more img {margin-top:3px; margin-left:3px;}
+
 /*Added by Tij on Jan 2, 2012*/
 .subcat-box-new{
   float:left;

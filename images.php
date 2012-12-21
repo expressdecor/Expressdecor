@@ -1,5 +1,5 @@
  <?php
-
+  
 require_once 'app/Mage.php';
 Mage::app ( 'default' );
 
@@ -37,7 +37,7 @@ if ($type == "right") {
 		array_push ( $titles, Mage::getStoreConfig ( 'expressdecor/slides/slide' . $i . '_title', Mage::app ()->getStore () ) );
 		array_push ( $descriptions, Mage::getStoreConfig ( 'expressdecor/slides/slide' . $i . '_descr', Mage::app ()->getStore () ) );
 	
-	}
+	}  
 	
 	for($i=1; $i <= count ($titles) ; $i++) {	
 		
