@@ -2242,7 +2242,7 @@ ul.cms-menu.type-square ul { list-style-type:square; }
 .product-name { font-size:12px; font-weight:bold;}
 .product-name-d { padding-top:5px; margin-left:0px; padding-bottom: 10px; font-size:12px;padding-left: 10px; font-weight:bold; color: #000000; background-color: #F1F1F1; }
 .product-name-d .manufacter-name{  font-size:20px;    font-weight: bold;  }
-
+.product-name .options {color# 333333; font-weight:normal; font-style:italic;}
 .product-name h1 {margin:11px -20px 12px;font-family:arial,helvetica; font-size:18px; font-weight:bold; color:#311B02; }
 .product-name a { color:#333; text-decoration:underline; }
 .product-name a:hover { color:#333; text-decoration:none; }
