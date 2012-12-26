@@ -219,6 +219,17 @@ if ($_product->getTypeId() =='configurable' && $under_catalog_rule_promotion==0)
              <?php } else {
              	echo $this->getPriceHtml($_product, true);
              } ?>
+             <?php 
+                 if ($_product->getTypeId() =='configurable') {
+ 					$childProducts = Mage::getModel('catalog/product_type_configurable')
+ 					->getUsedProducts(null,$_product);
+ 					if (count($childProducts) > 0) {
+ 						echo '<div    class="product-name"><div class="options" onclick="" >Available in '.count($childProducts).' options</div></div>';
+ 						}
+                 }else {
+                 	echo '<div  class="product-name"></div>';
+                 }
+                ?>
             <div class="actions">
                 <?php if($_product->isSaleable()): ?>
                     <button type="button" title="<?php echo $this->__('Details') ?>" class="button btn-cart" onclick="setLocation('<?php echo $_product->getProductUrl() ?>')"><span><span><?php echo $this->__('Details') ?></span></span></button>
