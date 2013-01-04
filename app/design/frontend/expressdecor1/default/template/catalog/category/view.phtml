@@ -42,10 +42,51 @@
     
     $secondLevelPage = false;
     if(!empty($_GET['p']) && $_GET['p'] > 1) { $secondLevelPage = true; }
+    
+    $_filters = Mage::getSingleton('Mage_Catalog_Block_Layer_State')->getActiveFilters();
+   // print_r($_filters);
+    if (!empty($_filters)) {
+	 $secondLevelPage=true;
+	  ?>
+	  <div class="currently">
+    <div class="block-subtitle"><?php echo $this->__('Currently Shopping by:') ?></div>     
+    <?php $iCounter = 0; ?>
+    <?php 
+    $postData = $_POST;
+    foreach ($_filters as $_filter):
+    ?>
+        <form id="filterByRemove<?php echo $iCounter ?>" action="" name="filterByRemove<?php echo $iCounter ?>" method="post">
+        <?php foreach ($postData as $key=>$value): ?>
+            <?php if($value != $_filter->getValueString()): ?>
+                <input type="hidden" name="<?php echo $key; ?>" value="<?php echo trim($value); ?>">
+            <?php endif; ?>
+        <?php endforeach ?>
+        <div>
+                      
+            <span class="label"><?php echo $this->__($_filter->getName()) ?>:</span>
+            <?php
+            $label=$this->stripTags($_filter->getLabel());
+            if ($_filter->getName()!='Category') {
+            $attributemodel=$_filter->filter->_data["attribute_model"];
+            $attribute_code=$attributemodel->getAttributeCode();	         
+            
+            if  (strpos($attribute_code,'price')===false ) {
+		 $label=str_replace('$','',$label);
+            } 
+            }
+            echo $label; 
+             ?>
+             <a href="<?php echo $_filter->getRemoveUrl() ?>" title="<?php echo $this->__('Remove This Item') ?>" class="btn-remove"><img src="<?php echo $this->getSkinUrl('images/btn_remove.gif') ?>" /></a>  
+        </div>
+        </form>
+        <?php $iCounter++; ?>
+    <?php endforeach; ?>             
+</div>
+	  <?php 
+	 }    
 ?>
 <?php echo $this->getMessagesBlock()->toHtml() ?>
 
-<?php //echo $this->TestPasha(); ?>
 <div class="category-view">
     <?php if($_imgUrl): ?>
         <?php echo $_imgHtml ?>
