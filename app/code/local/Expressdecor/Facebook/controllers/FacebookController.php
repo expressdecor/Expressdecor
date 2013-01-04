@@ -40,7 +40,7 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 			} catch(Exception $e) {
 				$messages = $e->getMessage();
 				if ($messages=="Invalid login or password.") {
-					$messages="You already have account. <a href=\"#\" onclick=\"forgot_pass('".$express_email."');\" >Forgot Password!</a>";
+					$messages="Invalid login or password. <a href=\"#\" onclick=\"forgot_pass('".$express_email."');\" >Forgot Password!</a>";
 				}
 			}
 			 			
