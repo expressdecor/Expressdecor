@@ -1168,7 +1168,7 @@ font-weight: bold;}
 .products-grid { padding:0 0 0 20px; margin:0 0 40px 0; }
 .products-grid li.item { float:left; width:171px; margin-right:16px;  }
 .products-grid li.last { margin-right:0; }
-.std .products-grid li.item { float:left; width:158px; margin-right:20px; list-style: none; }
+.std .products-grid li.item { float:left; width:158px; margin-right:18px; list-style: none; }
 .products-grid .actions {}
 .products-grid .product-image {border:1px solid #B6B6B6; display:block; text-decoration:none !important; margin:0 auto 10px; position:relative; width:170px; }
 .products-grid .product-name { margin-bottom:7px; }
