@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Expressdecor_Poll>
+            <version>0.1.0</version>
+        </Expressdecor_Poll>
+    </modules>
+
+ <global>
+        <blocks>
+           <poll>
+              <rewrite>
+                  <activePoll>Expressdecor_Poll_Block_ActivePoll</activePoll> 
+               </rewrite>
+           </poll>
+        </blocks>           
+  </global>
+</config>
+
+
+	

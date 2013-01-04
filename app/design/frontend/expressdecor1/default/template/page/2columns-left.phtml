@@ -59,82 +59,108 @@
  */
 
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
-
 <head>
-
 <?php echo $this->getChildHtml('head') ?>
-
 </head>
-
 <body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
-
 <?php echo $this->getChildHtml('after_body_start') ?>
-
 <div class="wrapper">
 <?php // echo $this->getChildHtml('page_up') ?>
-<!--
- <div class="header-bg">
-
-       
-
-    </div>-->
-
     <?php echo $this->getChildHtml('global_notices') ?>
-
     <div class="page">
-
         <?php echo $this->getChildHtml('header') ?>
-
         <?php echo $this->getChildHtml('global_messages') ?>
-
         <?php echo $this->getChildHtml('breadcrumbsContainer') ?>
-
         <div class="main col2-left-layout">
 <?php echo $this->getChildHtml('pop-up-window') ?>
-            <div class="col-main">
-				 
+            <div class="col-main">				
                 <?php 
                 $_category  = Mage::registry('current_category');
- 
-                if(!empty($_GET['p']) && $_GET['p'] > 1 && empty($_category)) {
-                	$content=$this->getChildHtml('content');
-                	$dom = new DOMDocument;
-                	$dom->loadHTML($content);
-                	$xPath = new DOMXPath($dom);
-                	$nodes = $xPath->query('//*[@class="category-view"]');
-                	if($nodes->item(0)) {
-                		$nodes->item(0)->parentNode->removeChild($nodes->item(0));
-                	}
-                	echo $dom->saveHTML();                	              
-                } else {
-                echo $this->getChildHtml('content') ;
-                }
-               
-                ?>
-
-            </div>
-
-            <div class="col-left sidebar"><?php echo $this->getChildHtml('left') ?></div>
-
+                $content=$this->getChildHtml('content');
+                $disable_cms=0;
+                
+                if(!empty($_GET['p']) && $_GET['p'] > 1 && empty($_category)) {                	
+                	$disable_cms=1;                	                               	              
+                }  
+                $_filters = Mage::getSingleton('Mage_Catalog_Block_Layer_State')->getActiveFilters();
+                if (!empty($_filters) && empty($_category)) {
+					$disable_cms=1;
+					$dom = new DOMDocument;
+					$dom->loadHTML($content);
+					$xPath = new DOMXPath($dom);
+					$nodes = $xPath->query('//*[@class="page-title"]');
+					if($nodes->item(0)) {
+						$title=$nodes->item(0);
+						$title_dom = new DOMDocument();
+						$title_dom->appendChild($title_dom->importNode($title, true));
+						echo $title_dom->saveHTML();
+						$nodes->item(0)->parentNode->removeChild($nodes->item(0));
+					}
+					$content=$dom->saveHTML();
+					// layer code 
+					?>
+	  <div class="currently">
+    <div class="block-subtitle"><?php echo $this->__('Currently Shopping by:') ?></div>     
+    <?php $iCounter = 0; ?>
+    <?php 
+    $postData = $_POST;
+    foreach ($_filters as $_filter):
+    ?>
+        <form id="filterByRemove<?php echo $iCounter ?>" action="" name="filterByRemove<?php echo $iCounter ?>" method="post">
+        <?php foreach ($postData as $key=>$value): ?>
+            <?php if($value != $_filter->getValueString()): ?>
+                <input type="hidden" name="<?php echo $key; ?>" value="<?php echo trim($value); ?>">
+            <?php endif; ?>
+        <?php endforeach ?>
+        <div>
+                      
+            <span class="label"><?php echo $this->__($_filter->getName()) ?>:</span>
+            <?php
+            $label=$this->stripTags($_filter->getLabel());
+            if ($_filter->getName()!='Category') {
+            $attributemodel=$_filter->filter->_data["attribute_model"];
+            $attribute_code=$attributemodel->getAttributeCode();	         
+            
+            if  (strpos($attribute_code,'price')===false ) {
+		 $label=str_replace('$','',$label);
+            } 
+            }
+            echo $label; 
+             ?>
+             <a href="<?php echo $_filter->getRemoveUrl() ?>" title="<?php echo $this->__('Remove This Item') ?>" class="btn-remove"><img src="<?php echo $this->getSkinUrl('images/btn_remove.gif') ?>" /></a>  
         </div>
-
-        <?php echo $this->getChildHtml('footer_before') ?>
-
-        <?php echo $this->getChildHtml('footer') ?>
-
-        <?php echo $this->getChildHtml('before_body_end') ?>
-
-    </div>
-
+        </form>
+        <?php $iCounter++; ?>
+    <?php endforeach; ?>             
 </div>
-
+					<?php 					
+					// end of layer code
+				}
+               
+                if ($disable_cms==1) {
+					$dom = new DOMDocument;
+					$dom->loadHTML($content);
+					$xPath = new DOMXPath($dom);
+					$nodes = $xPath->query('//*[@class="category-view"]');
+					if($nodes->item(0)) {
+						$nodes->item(0)->parentNode->removeChild($nodes->item(0));
+					}
+					echo $dom->saveHTML();
+				}else {
+					echo $content ;
+				}                                
+                ?>
+            </div>
+            <div class="col-left sidebar"><?php echo $this->getChildHtml('left') ?></div>
+        </div>
+        <?php echo $this->getChildHtml('footer_before') ?>
+        <?php echo $this->getChildHtml('footer') ?>
+        <?php echo $this->getChildHtml('before_body_end') ?>
+    </div>
+</div>
 <?php echo $this->getAbsoluteFooter() ?>
-
 </body>
-
 </html>
 

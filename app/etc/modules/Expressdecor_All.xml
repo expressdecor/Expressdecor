@@ -89,6 +89,13 @@
 	 	<Expressdecor_Facebook>
 			<active>true</active>
 			<codePool>local</codePool>
-	    </Expressdecor_Facebook>	  
+	    </Expressdecor_Facebook>	
+	    
+	    	    	    	    		    
+	 	<Expressdecor_Poll>
+			<active>true</active>
+			<codePool>local</codePool>
+	    </Expressdecor_Poll>	
+	      
 	</modules>
 </config>
