@@ -1,5 +1,5 @@
-<!-- facebook  -->
-<script language="JavaScript" type="text/javascript">
+ <script type="text/javascript">
+
 /*<![CDATA[*/
 window.fbAsyncInit = function() {
 	FB.init({appId: '<?php echo Mage::helper('facebook')->getAppId()?>',             
@@ -15,173 +15,181 @@ window.fbAsyncInit = function() {
            js.src = "//connect.facebook.net/<?php echo Mage::app()->getLocale()->getLocaleCode()?>/all.js";
            d.getElementsByTagName('head')[0].appendChild(js);
          }(document));
- 
- 
-    function fblogin(){
-        FB.login(function(response) {
 
-           if (response.status == 'connected') {  
-                login();
-            } else {
-                // user is not logged in
-                //window.location.reload();
-            }
-        }, {scope:'email,publish_stream'});
-        return false;
-    }
-    
-    function login(){
-    	 
-   	 jQ.get('/facebook/facebook/fblogin',  {facebook_login: 1},function(data){    
-       	if (data!='"success"'){           	 
- 					alert("It was error, processing your request. Please, try again.");
-                } else {
-                	update_account_links();
-                	popup_close();
-                }                
-        }); 
-    	}
-	function popup_close(){   
-    	jQ(".express-emails").each(function() {
-    		jQ(this).fadeOut();
-    	});               
-        jQ('.emails-overlay').fadeOut();                        
-	}
 
-	function update_account_links(){
-	     // Update Account links      
-        jQ.get('/facebook/facebook/updatelinks',  {},function(data){
-        	jQ(".header-login .links").remove();
-        	jQ(".header-login").append(data);
-        } , 'json');     
-	}
-
-	  function sign_in(){ 
-		jQuery(".emails-overlay").show();
-		jQuery(".express-emails").each(function() {			 
-			jQuery(this).fadeOut();
-		});
-		 
-		jQuery(".validation-advice").each(function() {			 
-			jQuery(this).remove();
-		});
-		
-    	jQuery('.express-emails.welcome-back .agreement-txt').show();
-    	jQ('.express-emails.welcome-back .agreement-txt').html("<?php echo $this->__('<a onclick=\"forgot_pass();\" href=\"#\">Forgot your password?</a>');?>");
-		jQuery(".express-emails.welcome-back").fadeIn();	
-	  }
-
-	  function forgot_pass(email=''){		  
-		  	sign_in();
-		  	if (email.length==0){
-		  		email=jQ('.express-emails.welcome-back #email_address').val();
-		  	} 	
-		  	if (email.length==0){
-		  		var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice">Please fill email field</div>';
-		  		jQ('.express-emails.welcome-back .singup-left .email-field').append(error_text);  	
-		  	}
-		  	if (email.length!=0){
-		  		jQ('.express-emails.welcome-back .agreement-txt').html("<?php echo $this->__('You will receive an email with a link to reset your password.');?>");		  		 
-		  		jQ.get('/facebook/facebook/forgotpass',  { email:email,},function(data){
-			  		
-		  		 });
-		  	}  	
-		  	//you will receive an email with a link to reset your password.
-		  }
- 
-	  function join_us(){ 
-		  jQuery(".emails-overlay").show();
-		  jQuery("#form-validate-join").show();
-		  jQuery(".additional_info").hide();
-		jQuery(".express-emails").each(function() {
-			jQuery(this).fadeOut();
-		});
-		jQuery(".validation-advice").each(function() {			 
-			jQuery(this).remove();
-		});
-		jQuery(".express-emails .registered").each(function() {				 	 
-			jQuery(this).remove();
-		});
-		jQuery(".express-emails.join-us .singup-text").show();
-		jQuery(".express-emails.join-us").fadeIn();	
-	  }
-
-	  function second_step(type){
-		  jQuery(".express-emails").each(function() {
-				jQuery(this).fadeOut();
-		   });
-		  var email_str=jQ(type+" #email_address").val(); 
-		  jQ(".express-emails.join-us #email_address").val(email_str); 
-		  jQuery("#form-validate-join").hide(); 
-		  jQuery(".express-emails.join-us").fadeIn();	
-		  jQuery(".express-emails.join-us .singup-text").hide();
-		  jQuery(".additional_info").fadeIn();		   		  
-		  jQuery(".express-emails.join-us .singup-info").append("<div class=\"registered\"><?php echo $this->__('Thank you for registration. Your account information will be sent to your email address.');?></div>");
-	  }		 	  
-
-	function save_additional(type){
- 
-		var firstname= jQuery("#firstname_popup").val();
-		var lastname=jQuery("#lastname_popup").val();		 
-		var sex=jQuery('input[name=sex_p]:checked', '.sex-field').val();
-		var email_str=jQ(type+" #email_address").val();  
-		jQ.get('/facebook/facebook/saveadditional',  { email:email_str, sex: sex,fname:firstname,lname:lastname},function(data){              
-        	if (data=='"success"'){
-        			popup_close();        			 
-                }else{
-                	popup_close();                	                	
-               	}	
-		 }); 	 			
-		}
-	  
-	  function post_request(type,obj) {
-		  
-
-		  var f =jQuery(obj).closest("form").attr("id");		  
-		  var validation=0;
-			if (f=='form-validate-to') {
-				validation=dataFormto.validator.validate(); 
-			}
-			if (f=='form-validate-back') {
-				validation=dataFormback.validator.validate(); 
-			}
-			if (f=='form-validate-join') {
-				validation=dataFormjoin.validator.validate(); 
-			}
-		    if (validation){
-		        	jQuery(type+" #email_address").css("background-color","#bfffbf");
-		       	 	jQuery(type+" #password2").css("background-color","#bfffbf");
-				 	jQuery(type+" #password").css("background-color","#bfffbf");    
-		            var email_str=jQ(type+" #email_address").val();    
-		            var password=jQ(type+" .real-password").val();
-		            jQuery(obj).hide(); 
-		            jQuery(obj).parent().children(".popup-loader").show(); 
-		            jQ.get('/facebook/facebook/login',  { email:email_str, password: password},function(data){              
-		            	if (data=='success_0'){
-		            		update_account_links();
-		            		popup_close();
-		            		jQuery(obj).parent().children(".popup-loader").hide();
-		            		jQuery(obj).show();
-		                    }else if (data=='success_1') {
-		                    	update_account_links(); 
-			                    second_step(type);
-			                    jQuery(obj).parent().children(".popup-loader").hide();
-			                    jQuery(obj).show();
-		            		}else {
-			            		if (type=='.express-emails.welcome-back') {
-				            		jQuery(type+' .agreement-txt').hide();
-			            		}
-			            		jQuery("#advice-validate-email-newsletter").remove();
-		    					var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice">'+data+'</div>';    					
-		    					jQ(type+' .singup-left').append(error_text);  
-		    					jQuery(obj).parent().children(".popup-loader").hide();  
-		    					jQuery(obj).show();					 
-		                    }                
-		            },'json'); 
-		                   
-		      }
-	  }
+function sign_in(){ 
+	jQuery(".emails-overlay").show();
+	jQuery(".express-emails").each(function() {			 
+		jQuery(this).fadeOut();
+	});
+	 
+	jQuery(".validation-advice").each(function() {			 
+		jQuery(this).remove();
+	});
 	
+	jQuery('.express-emails.welcome-back .agreement-txt').show();
+	jQ('.express-emails.welcome-back .agreement-txt').html("<?php echo $this->__('<a onclick=\"forgot_pass();\" href=\"#\">Forgot your password?</a>');?>");
+	jQuery(".express-emails.welcome-back").fadeIn();	
+  }
+  
+/*]]>*/
+
+
+//<![CDATA[
+function fblogin(){
+FB.login(function(response) {
+
+   if (response.status == 'connected') {  
+        login();
+    } else {
+        // user is not logged in
+        //window.location.reload();
+    }
+}, {scope:'email,publish_stream'});
+return false;
+}
+
+function login(){
+	 
+	 jQ.get('/facebook/facebook/fblogin',  {facebook_login: 1},function(data){    
+	if (data!='"success"'){           	 
+					alert("It was error, processing your request. Please, try again.");
+        } else {
+        	update_account_links();
+        	popup_close();
+        }                
+}); 
+	}
+function popup_close(){   
+	jQ(".express-emails").each(function() {
+		jQ(this).fadeOut();
+	});               
+jQ('.emails-overlay').fadeOut();                        
+}
+
+function update_account_links(){
+ // Update Account links      
+jQ.get('/facebook/facebook/updatelinks',  {},function(data){
+	jQ(".header-login .links").remove();
+	jQ(".header-login").append(data);
+} , 'json');     
+}
+
+
+function join_us(){ 
+	  jQuery(".emails-overlay").show();
+	  jQuery("#form-validate-join").show();
+	  jQuery(".additional_info").hide();
+	jQuery(".express-emails").each(function() {
+		jQuery(this).fadeOut();
+	});
+	jQuery(".validation-advice").each(function() {			 
+		jQuery(this).remove();
+	});
+	jQuery(".express-emails .registered").each(function() {				 	 
+		jQuery(this).remove();
+	});
+	jQuery(".express-emails.join-us .singup-text").show();
+	jQuery(".express-emails.join-us").fadeIn();	
+}
+
+
+function second_step(type){
+	  jQuery(".express-emails").each(function() {
+			jQuery(this).fadeOut();
+	   });
+	  var email_str=jQ(type+" #email_address").val(); 
+	  jQ(".express-emails.join-us #email_address").val(email_str); 
+	  jQuery("#form-validate-join").hide(); 
+	  jQuery(".express-emails.join-us").fadeIn();	
+	  jQuery(".express-emails.join-us .singup-text").hide();
+	  jQuery(".additional_info").fadeIn();		   		  
+	  jQuery(".express-emails.join-us .singup-info").append("<div class=\"registered\"><?php echo $this->__('Thank you for registration. Your account information will be sent to your email address.');?></div>");
+}		 	  
+
+function save_additional(type){
+
+	var firstname= jQuery("#firstname_popup").val();
+	var lastname=jQuery("#lastname_popup").val();		 
+	var sex=jQuery('input[name=sex_p]:checked', '.sex-field').val();
+	var email_str=jQ(type+" #email_address").val();  
+	jQ.get('/facebook/facebook/saveadditional',  { email:email_str, sex: sex,fname:firstname,lname:lastname},function(data){              
+	if (data=='"success"'){
+			popup_close();        			 
+      }else{
+      	popup_close();                	                	
+     	}	
+	 }); 	 			
+	}
+
+function post_request(type,obj) {	  
+	  var f =jQuery(obj).closest("form").attr("id");		  
+	  var validation=0;
+		if (f=='form-validate-to') {
+			jQuery("#advice-validate-email-newsletter").remove();
+			validation=dataFormto.validator.validate(); 
+		}
+		if (f=='form-validate-back') {
+			jQuery("#advice-validate-email-newsletter").remove();
+			validation=dataFormback.validator.validate(); 
+		}
+		if (f=='form-validate-join') {
+			jQuery("#advice-validate-email-newsletter").remove();
+			validation=dataFormjoin.validator.validate(); 
+		}
+	    if (validation){
+	        	jQuery(type+" #email_address").css("background-color","#bfffbf");
+	       	 	jQuery(type+" #password2").css("background-color","#bfffbf");
+			 	jQuery(type+" #password").css("background-color","#bfffbf");    
+	            var email_str=jQ(type+" #email_address").val();    
+	            var password=jQ(type+" .real-password").val();
+	            jQuery(obj).hide(); 
+	            jQuery(obj).parent().children(".popup-loader").show(); 
+	            jQ.get('/facebook/facebook/login',  { email:email_str, password: password},function(data){              
+	            	if (data=='success_0'){
+	            		update_account_links();
+	            		popup_close();
+	            		jQuery(obj).parent().children(".popup-loader").hide();
+	            		jQuery(obj).show();
+	                    }else if (data=='success_1') {
+	                    	update_account_links(); 
+		                    second_step(type);
+		                    jQuery(obj).parent().children(".popup-loader").hide();
+		                    jQuery(obj).show();
+	            		}else {
+		            		if (type=='.express-emails.welcome-back') {
+			            		jQuery(type+' .agreement-txt').hide();
+		            		}
+		            		jQuery("#advice-validate-email-newsletter").remove();
+	    					var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice">'+data+'</div>';    					
+	    					jQ(type+' .singup-left').append(error_text);  
+	    					jQuery(obj).parent().children(".popup-loader").hide();  
+	    					jQuery(obj).show();					 
+	                    }                
+	            },'json'); 
+	                   
+	      }
+}
+
+function forgot_pass(){	
+	//if (email.length==0){
+		email=jQ('.express-emails.welcome-back #email_address').val();
+	//} 	
+	if (email.length==0){
+		jQuery("#advice-validate-email-newsletter").remove();
+		var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice">Please fill email field</div>';
+		jQ('.express-emails.welcome-back .singup-left .email-field').append(error_text);  	
+	}
+	if (email.length!=0){
+		jQ('.express-emails.welcome-back .agreement-txt').html("<?php echo $this->__('You will receive an email with a link to reset your password.');?>");		  		 
+		jQ.get('/facebook/facebook/forgotpass',  { email:email,},function(data){
+	  		
+		 });
+	}  	
+	//you will receive an email with a link to reset your password.
+}
+
+
 jQuery(document).ready(function() { 
 	jQuery(".express-emails :input").each(function() {
 		jQuery(this).focusout(function() {
@@ -196,10 +204,10 @@ jQuery(document).ready(function() {
 				dataFormjoin.validator.validate(); 
 			}
 		 });		 		 		 
-		});
-  	});  	   
-    
-/*]]>*/
+		});	 
+	
+  	}); 
+	//]]>  	 
 </script>
 <!-- facebook  -->
 <div class="emails-overlay" style="display: none;"></div>
