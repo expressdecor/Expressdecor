@@ -558,7 +558,10 @@ class AWW_Followupemail_Model_Rule extends Mage_Core_Model_Abstract
         if ($this->getSenderName()) $content['sender_name'] = $this->getSenderName();
         if ($this->getSenderEmail()) $content['sender_email'] = $this->getSenderEmail();
 
-	        //Alex   
+	        //Alex	     
+	       
+	        if ($objects['order'] instanceof Expressdecor_Ordercomments_Model_Sales_Order ) {
+	         
         		$items=$objects['order']->getAllItems();
         		$param_val="<table>";
         		foreach ($items as $itemId => $item)
@@ -583,6 +586,8 @@ class AWW_Followupemail_Model_Rule extends Mage_Core_Model_Abstract
         		}
         		$param_val.="</table>";
         		$objects['product_grid']=$param_val;
+	        }
+	        
         		//Alex
         
         $this->_getProcessor()->setVariables($objects);  
