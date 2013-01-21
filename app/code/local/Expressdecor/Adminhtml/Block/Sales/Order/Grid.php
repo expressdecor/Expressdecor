@@ -37,6 +37,7 @@ class Expressdecor_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block
 
 	protected function _prepareCollection()
 	{
+		//Mage_Adminhtml_Block_Widget_Grid::_prepareCollection();
 		
 		/*->join(
 		'sales/order_item',
@@ -48,11 +49,15 @@ class Expressdecor_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block
 		);*/
 //  		$collection->getSelect()->group('entity_id');
 
+		
 		$collection = Mage::getResourceModel($this->_getCollectionClass());
+		//$collection=$this->getCollection();
+	
 		$collection->getSelect()->joininner(array('sfop'=>'sales_flat_order_payment'),'`main_table`.`entity_id`=`sfop`.`parent_id`', array('payment_method'=>'sfop.method'));
 
 		$this->setCollection($collection);
-		return Mage_Adminhtml_Block_Widget_Grid::_prepareCollection();
+		
+		return   Mage_Adminhtml_Block_Widget_Grid::_prepareCollection();
 	}
 	 
 
@@ -115,7 +120,7 @@ class Expressdecor_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block
 		'index'     => 'channel',
 		'type'  => 'options',
 		'width' => '70px',
-		'options'   => array('Amazon' => 'Amazon', 'Sears' => 'Sears', 'Ebay'=>'Ebay', 'Ebayrefurb'=>'Ebay Refurb','Buycom'=>'Buy.com')
+		'options'   => array('Amazon' => 'Amazon', 'Sears' => 'Sears', 'Ebay'=>'Ebay', 'Ebayrefurb'=>'Ebay Refurb')
 		));
 
 				$this->addColumn('Promo code', array(

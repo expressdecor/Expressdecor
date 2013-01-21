@@ -20,7 +20,7 @@
            </sales>
            <salesrule>
            		<rewrite>
-           			<quote_discount>Expressdecor_Sales_Model_Quote_Discount</quote_discount>
+           			<quote_discount>Expressdecor_Sales_Model_Quote_Discount</quote_discount>           			 
            		</rewrite>
            </salesrule>
         </models>
