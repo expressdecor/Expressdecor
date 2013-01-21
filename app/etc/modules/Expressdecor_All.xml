@@ -96,6 +96,10 @@
 			<active>true</active>
 			<codePool>local</codePool>
 	    </Expressdecor_Poll>	
-	      
+	    	    	    	    		    
+	 	<Expressdecor_Sgrid>
+			<active>true</active>
+			<codePool>local</codePool>
+	    </Expressdecor_Sgrid>	      
 	</modules>
 </config>
