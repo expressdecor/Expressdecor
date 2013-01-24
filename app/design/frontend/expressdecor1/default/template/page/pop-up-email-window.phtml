@@ -28,7 +28,7 @@ function sign_in(){
 	});
 	
 	jQuery('.express-emails.welcome-back .agreement-txt').show();
-	jQ('.express-emails.welcome-back .agreement-txt').html("<?php echo $this->__('<a onclick=\"forgot_pass();\" href=\"#\">Forgot your password?</a>');?>");
+	jQ('.express-emails.welcome-back .agreement-txt').html("<?php echo $this->__('<a onclick=\"forgot_pass(\'\');\" href=\"#\">Forgot your password?</a>');?>");
 	jQuery(".express-emails.welcome-back").fadeIn();	
   }
   
@@ -161,7 +161,10 @@ function post_request(type,obj) {
 			            		jQuery(type+' .agreement-txt').hide();
 		            		}
 		            		jQuery("#advice-validate-email-newsletter").remove();
-	    					var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice">'+data+'</div>';    					
+	    					var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice">'+data+'</div>';  
+	    					if (f=='form-validate-to' || f=='form-validate-join') { 
+	    						error_text=error_text.replace("Invalid email or password","This email is already in use");
+	    					}					
 	    					jQ(type+' .singup-left').append(error_text);  
 	    					jQuery(obj).parent().children(".popup-loader").hide();  
 	    					jQuery(obj).show();					 
@@ -171,19 +174,42 @@ function post_request(type,obj) {
 	      }
 }
 
-function forgot_pass(){	
+function forgot_pass(email3){	
 	//if (email.length==0){
 		email=jQ('.express-emails.welcome-back #email_address').val();
+		email2=jQ('.express-emails.welcome-to #email_address').val();
 	//} 	
+		if (email.length==0 && email2.length!=0){
+			email=email2;
+		}
+		 
+		if (email3.length!=0){
+			email=email3;
+		}
 	if (email.length==0){
 		jQuery("#advice-validate-email-newsletter").remove();
-		var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice">Please fill email field</div>';
-		jQ('.express-emails.welcome-back .singup-left .email-field').append(error_text);  	
+		var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice"><?php echo $this->__("Please fill email field"); ?></div>';
+		jQ('.express-emails.welcome-back .singup-left .email-field').append(error_text); 
+		jQ('.express-emails.welcome-to .singup-left .email-field').append(error_text);  	
 	}
+	
+	
 	if (email.length!=0){
-		jQ('.express-emails.welcome-back .agreement-txt').html("<?php echo $this->__('You will receive an email with a link to reset your password.');?>");		  		 
+		  		 
 		jQ.get('/facebook/facebook/forgotpass',  { email:email,},function(data){
-	  		
+			if (data=='"success_1"') {
+			      jQuery("#advice-validate-email-newsletter").remove();
+			      var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice"><?php echo $this->__("You will receive an email with a link to reset your password."); ?></div>';  
+			      jQ('.express-emails.welcome-to .singup-left').append(error_text); 
+			      jQ('.express-emails.welcome-to .singup-left #advice-validate-email-newsletter').css("width","301px");	
+				  jQ('.express-emails.welcome-back .agreement-txt').html("<?php echo $this->__('You will receive an email with a link to reset your password.');?>");
+				} else {
+					data2=" <br/>"+data.replace('"','').replace('"','');
+				   jQ('.express-emails.welcome-back .agreement-txt').append(data2);	
+					jQuery("#advice-validate-email-newsletter").remove();
+				    var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice">'+data.replace('"','')+'</div>'; 
+				    jQ('.express-emails.welcome-to .singup-left').append(error_text); 				   
+			}
 		 });
 	}  	
 	//you will receive an email with a link to reset your password.
@@ -194,14 +220,21 @@ jQuery(document).ready(function() {
 	jQuery(".express-emails :input").each(function() {
 		jQuery(this).focusout(function() {
 			var f =jQuery(this).closest("form").attr("id");
+			validation=0;						
 			if (f=='form-validate-to') {
-				dataFormto.validator.validate(); 
+				validation=dataFormto.validator.validate(); 
+				//jQuery('#advice-validate-email-newsletter').remove();
 			}
 			if (f=='form-validate-back') {
-				dataFormback.validator.validate(); 
+				validation=dataFormback.validator.validate(); 
+				//jQuery('#advice-validate-email-newsletter').remove();
 			}
 			if (f=='form-validate-join') {
-				dataFormjoin.validator.validate(); 
+				validation=dataFormjoin.validator.validate();
+				//jQuery('#advice-validate-email-newsletter').remove();
+			}
+			if (validation==0){
+				jQuery('#advice-validate-email-newsletter').remove();
 			}
 		 });		 		 		 
 		});	 
@@ -262,9 +295,8 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 					<button   title="Join" class="button"  onclick="post_request('.express-emails.welcome-to',this);"   type="button"><div><span><?php echo $this->__('Join Us');?></span></div></button>
 					<div class="popup-loader" style="display:none;"></div> 
 				</div>
-				<div class="agreement-txt">
-					By clicking "Join" you accept our <a href="">Terms of Use</a> and <a
-						href="<?php echo $url; ?>privacy.html">Privacy Policy</a>.
+				<div class="agreement-txt"><?php echo $this->__('By clicking "Join" you accept our');?><a href=""><?php echo $this->__('Terms of Use');?></a><?php echo $this->__(' and');?>					 
+						<a href="privacy.html\"><?php echo $this->__("Privacy Policy");?></a>.
 				</div>
 			</div>
 
@@ -283,7 +315,7 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 			<span onclick="sign_in();" class="action-part"><?php echo $this->__('Sign in!')?></span>
 		</div>
 		<div class="footer-text">
-		<?php echo $this->__("It's fast and easy. Get access to ExpressAccount Only discounts! ");?>
+		<?php echo $this->__("It's fast and easy. Get access to ExpressAccount Only discounts!");?>
 	</div>
 
 	</div>
@@ -326,8 +358,8 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 				</div>
 			</div>
 			<div class="singup-right">
-				<div class="agreement-txt">
-					  <a href="#" onclick="forgot_pass();" >Forgot your password?</a>
+				<div class="agreement-txt">					   
+					  <?php echo $this->__('<a onclick=\"forgot_pass(\'\');\" href=\"#\">Forgot your password?</a>');?>
 				</div>			
 				<div class="singup-button">
 					<button   title="Sign In" class="button"  onclick="post_request('.express-emails.welcome-back',this);" type="button"><div><span><?php echo $this->__('Sign In');?></span></div></button>
@@ -394,8 +426,8 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 			</div>
 			<div class="singup-right">
 				<div class="agreement-txt">
-					By clicking "Join" you accept our <a href="">Terms of Use</a> and <a
-						href="<?php echo $url; ?>privacy.html">Privacy Policy</a>.
+					<?php echo $this->__('By clicking "Join" you accept our');?><a href=""><?php echo $this->__('Terms of Use');?></a><?php echo $this->__(' and');?>					 
+						<a href="privacy.html\"><?php echo $this->__("Privacy Policy");?></a>.
 				</div>			
 				<div class="singup-button">
 					<button   title="Join Us" class="button" onclick="post_request('.express-emails.join-us',this);" type="button"><div><span><?php echo $this->__('Join Us');?></span></div></button>
@@ -417,8 +449,8 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 				</div>
 				<div class="sex-field reg-field">
 					<div class="email-label reg-label"><?php echo $this->__("Gender:");?></div>
-					<input type="radio" class="input-text sex" title="Sex" value="1" id="sex_popup" name="sex_p"   />Male 
-					<input type="radio" class="input-text sex" title="Sex" value="2" id="sex_popup" name="sex_p"  />Female	
+					<input type="radio" class="input-text sex" title="Sex" value="1" id="sex_popup" name="sex_p"   /><?php echo $this->__("Male");?> 
+					<input type="radio" class="input-text sex" title="Sex" value="2" id="sex_popup" name="sex_p"  /><?php echo $this->__("Female");?> 	
 				</div>											
 				<div class="save-btn">
 				<button   title="Save" class="button" onclick="save_additional('.express-emails.join-us');" type="button"><div><span><?php echo $this->__('Continue');?></span></div></button>

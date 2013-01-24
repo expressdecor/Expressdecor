@@ -255,6 +255,18 @@ class Idev_OneStepCheckout_AjaxController extends Mage_Core_Controller_Front_Act
                 $billingAddress = Mage::getModel('customer/address')->load($customerAddressId);
                 if(is_object($billingAddress) && $billingAddress->getCustomerId() ==  Mage::helper('customer')->getCustomer()->getId()){
                     $billing_data = array_merge($billing_data, $billingAddress->getData());
+                    /*Alex add email*/
+                    if(empty($billing_data['email'])) {
+                    	$billing_data['email']=Mage::helper('customer')->getCustomer()->getEmail();
+                    }
+                    $customer_fname=Mage::helper('customer')->getCustomer()->getFirstmame();
+                    $customer_lname=Mage::helper('customer')->getCustomer()->getLastname();
+                   
+                    if (empty($customer_fname))
+                    	Mage::helper('customer')->getCustomer()->setFirstname($billing_data['fisrtname'])->save();
+                    if (empty($customer_lname))
+                    	Mage::helper('customer')->getCustomer()->setLastname($billing_data['lastname'])->save();
+                	/*Alex logged in users*/
                 }
             }
             if(!empty($shippingAddressId)){
@@ -277,8 +289,8 @@ class Idev_OneStepCheckout_AjaxController extends Mage_Core_Controller_Front_Act
                 $this->_getOnepage()->getQuote()->getBillingAddress()->setCountryId($shipping_data['country_id'])->setCollectShippingRates(true);
             }
         }
-
-
+        
+       
         $paymentMethod = $this->getRequest()->getPost('payment_method', false);
 
         $paymentMethod = $this->getRequest()->getPost('payment_method', false);

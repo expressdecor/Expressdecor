@@ -40,7 +40,12 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 			} catch(Exception $e) {
 				$messages = $e->getMessage();
 				if ($messages=="Invalid login or password.") {
-					$messages="Invalid login or password. <a href=\"#\" onclick=\"forgot_pass('".$express_email."');\" >Forgot Password!</a>";
+					if ($new_account){
+						$messages="Invalid email or password. <a href=\"#\" onclick=\"forgot_pass('".$express_email."');\" >Forgot Password!</a>";
+					} else {
+						$messages="Invalid email or password. <a href=\"#\" onclick=\"forgot_pass('".$express_email."');\" >Forgot Password!</a>";
+					}
+					
 				}
 			}
 			 			
@@ -60,11 +65,16 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 			$customer = Mage::getModel('customer/customer')
 			->setWebsiteId(Mage::app()->getStore()->getWebsiteId())
 			->loadByEmail($express_email);
-		
-			$newResetPasswordLinkToken = Mage::helper('customer')->generateResetPasswordLinkToken();
-			$customer->changeResetPasswordLinkToken($newResetPasswordLinkToken);
-			$customer->sendPasswordResetConfirmationEmail();
-			$this->getResponse ()->setBody ( Mage::helper ( 'core' )->jsonEncode ( 'success' ) );
+			   
+	       if ($customer->getEmail()) {
+			 	$newResetPasswordLinkToken = Mage::helper('customer')->generateResetPasswordLinkToken();
+				$customer->changeResetPasswordLinkToken($newResetPasswordLinkToken);
+				$customer->sendPasswordResetConfirmationEmail();
+				$this->getResponse ()->setBody ( Mage::helper ( 'core' )->jsonEncode ( 'success_1' ) );
+	       } else {
+	       	$this->getResponse ()->setBody ( Mage::helper ( 'core' )->jsonEncode ( 'Customer with this email is not registered.' ) );
+	       }
+			 
 		}
 	}
 	
