@@ -3,7 +3,10 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 	
 	public function isloggedAction () {
 		if ($this->getRequest ()->isXmlHttpRequest ()) {
-			if (Mage::helper('customer')->isLoggedIn()) {
+			
+			$show_register_invitation = Mage::getSingleton('core/session')->getShowregiwindow();
+			
+			if (Mage::helper('customer')->isLoggedIn() || $show_register_invitation) {
 				$messages = 1;
 			}else {
 				$messages=0;
@@ -11,6 +14,16 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 			$this->getResponse ()->setBody ( Mage::helper ( 'core' )->jsonEncode ( $messages ) );
 		}
 	}
+	
+	public function closewindowAction () {
+		if ($this->getRequest ()->isXmlHttpRequest ()) {
+				
+			$show_register_invitation = Mage::getSingleton('core/session')->setShowregiwindow(1);
+			$messages="success";
+			$this->getResponse ()->setBody ( Mage::helper ( 'core' )->jsonEncode ( $messages ) );
+		}
+	}
+	
 	public function loginAction () {
 		if ($this->getRequest ()->isXmlHttpRequest ()) {
 			
@@ -67,9 +80,10 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 			->loadByEmail($express_email);
 			    
 	       if ($customer->getEmail()) {
-			 	$newResetPasswordLinkToken = Mage::helper('customer')->generateResetPasswordLinkToken();
+			 	$newResetPasswordLinkToken = Mage::helper('customer')->generateResetPasswordLinkToken();			 	
 				$customer->changeResetPasswordLinkToken($newResetPasswordLinkToken);
 				$customer->sendPasswordResetConfirmationEmail();
+				
 				$this->getResponse ()->setBody ( Mage::helper ( 'core' )->jsonEncode ( 'success_1' ) );
 	       } else {
 	       	$this->getResponse ()->setBody ( Mage::helper ( 'core' )->jsonEncode ( 'Customer with this email is not registered.' ) );

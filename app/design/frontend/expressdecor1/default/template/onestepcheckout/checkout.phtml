@@ -31,8 +31,7 @@ $helper = Mage::helper('onestepcheckout/checkout');
 
 <?php if(!$this->isCustomerLoggedIn() && $helper->showLoginLink()): ?>
     <p class="onestepcheckout-login-link">
-        <a id="onestepcheckout-login-link" href="#" onclick="sign_in();" ><?php echo $this->__('<h1>Returning Customer?</h1><h2>
-Sign into your account for fast checkout.</h2>'); ?></a>
+        <a id="onestepcheckout-login-link" href="#" onclick="sign_in();" ><?php echo $this->__('<h1>Returning Customer?</h1><h2>Sign into your account for fast checkout.</h2>'); ?></a>
     </p>
 <?php endif; ?>
 
@@ -51,7 +50,7 @@ Sign into your account for fast checkout.</h2>'); ?></a>
             <ul>
                 <li>
                     <p class="onestepcheckout-numbers onestepcheckout-numbers-<?php echo $step_counter++; ?>"><?php echo $this->__('Billing address'); ?></p>
-                        <?php if(isset($this->formErrors['billing_error']) && count($this->formErrors['billing_errors']) > 0): ?>
+                        <?php if(isset($this->formErrors['billing_error']) && count($this->formErrors['billing_errors']) > 0): ?>                        
                         <div class="onestepcheckout-error">
                             <?php echo $this->__('Please check red fields below and try again.'); ?>
                         </div>
@@ -67,7 +66,7 @@ Sign into your account for fast checkout.</h2>'); ?></a>
                 <?php endif; ?>
                 <li>
                     <div>
-                        <ul id="billing_address_list" <?php echo (($this->customerHasAddresses() && !$this->getNewAddressSelectValueOnError('billing')) ? 'style = "display:none"' : false ); ?>>
+                        <ul id="billing_address_list" <?php  echo (($this->customerHasAddresses() && !$this->getNewAddressSelectValueOnError('billing')) ? 'style = "display:none"' : false ); ?>>
                             <?php echo $this->getChildHtml('billing_address');?>
                         </ul>
                     </div>
@@ -181,8 +180,7 @@ Sign into your account for fast checkout.</h2>'); ?></a>
         <?php endif; ?>
         <div class="secure-checkout">
           <img src="<?php echo $this->getSkinUrl('images/message-secure-shopping.png') ?>" />
-          	<p>We use bank level SSL encryption technology to ensure
-			that your information is transmitted securely.</p>
+          	<p><?php echo $this->__("We use bank level SSL encryption technology to ensure that your information is transmitted securely."); ?></p>
         </div>
     </div>
 
@@ -1000,7 +998,24 @@ document.observe('dom:loaded', function() {
 
     <?php endif; ?>
 
-
+    <?php //Alex save firstname and last name ?>
+    $('billing:firstname').observe('change', get_save_billing_function(url_save_billing, url_set_methods,update_payments));
+         
+        <?php if($this->isCustomerLoggedIn()): ?>
+        if(billing_address_select !== null) {
+            Event.stopObserving('billing-address-select', 'change');
+            $('billing-address-select').observe('change', get_save_billing_function(url_save_billing, url_set_methods,update_payments));
+        }
+        <?php endif; ?>
+        $('billing:lastname').observe('change', get_save_billing_function(url_save_billing, url_set_methods,update_payments));
+        
+        <?php if($this->isCustomerLoggedIn()): ?>
+        if(billing_address_select !== null) {
+            Event.stopObserving('billing-address-select', 'change');
+            $('billing-address-select').observe('change', get_save_billing_function(url_save_billing, url_set_methods,update_payments));
+        }
+        <?php endif; ?>
+    <?php //Alex save firstname and last name  ?>
 
     <?php if($this->hasAjaxSaveBillingField('postcode')): ?>
     $('billing:postcode').observe('change', get_save_billing_function(url_save_billing, url_set_methods,update_payments));
