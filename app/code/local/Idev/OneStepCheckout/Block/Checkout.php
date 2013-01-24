@@ -272,7 +272,8 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
                 'fax' => $address->getFax(),
                 'use_for_shipping' => 1
             );
-
+           
+            
             $result = $this->getOnepage()->saveBilling($data, $address_id);
             $this->log[] = 'Set billing address to default address from account (ID: ' . $address_id . ')';
 
@@ -319,6 +320,17 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
             $helper = Mage::helper('customer');
             $customer = $helper->getCustomer();
             $this->email = $customer->getEmail();
+            
+            /*Alex add email*/
+ 
+            $customer_fname=Mage::helper('customer')->getCustomer()->getFirstmame();
+            $customer_lname=Mage::helper('customer')->getCustomer()->getLastname();
+             
+            if (empty($customer_fname))
+            	Mage::helper('customer')->getCustomer()->setFirstname($this->getQuote()->getBillingAddress()->getFirstname())->save();
+            if (empty($customer_lname))
+            	Mage::helper('customer')->getCustomer()->setLastname($this->getQuote()->getBillingAddress()->getLastname())->save();
+            /*Alex logged in users*/
         }
 
         //we need to refactor this , not a neat way to make all in constructor
