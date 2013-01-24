@@ -41,7 +41,7 @@ FB.login(function(response) {
 
    if (response.status == 'connected') {  
         login();
-    } else {
+    } else {       
         // user is not logged in
         //window.location.reload();
     }
@@ -57,10 +57,13 @@ function login(){
         } else {
         	update_account_links();
         	popup_close();
+        	window.location="/customer/account/login/"; 
         }                
 }); 
 	}
 function popup_close(){   
+	 jQ.get('/facebook/facebook/closewindow',  {},function(data){ }); 
+	
 	jQ(".express-emails").each(function() {
 		jQ(this).fadeOut();
 	});               
@@ -115,9 +118,11 @@ function save_additional(type){
 	var email_str=jQ(type+" #email_address").val();  
 	jQ.get('/facebook/facebook/saveadditional',  { email:email_str, sex: sex,fname:firstname,lname:lastname},function(data){              
 	if (data=='"success"'){
-			popup_close();        			 
+			popup_close();
+			window.location="/customer/account/login/";        			 
       }else{
-      	popup_close();                	                	
+      	popup_close();        
+      	window.location="/customer/account/login/";        	                	
      	}	
 	 }); 	 			
 	}
@@ -151,6 +156,7 @@ function post_request(type,obj) {
 	            		popup_close();
 	            		jQuery(obj).parent().children(".popup-loader").hide();
 	            		jQuery(obj).show();
+	            		window.location="/customer/account/login/";
 	                    }else if (data=='success_1') {
 	                    	update_account_links(); 
 		                    second_step(type);
@@ -454,7 +460,7 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 				</div>											
 				<div class="save-btn">
 				<button   title="Save" class="button" onclick="save_additional('.express-emails.join-us');" type="button"><div><span><?php echo $this->__('Continue');?></span></div></button>
-				<div class="skip" onclick="popup_close();" ><?php echo $this->__('Skip');?></div>
+				<div class="skip" onclick="popup_close(); window.location='/customer/account/login/';" ><?php echo $this->__('Skip');?></div>
 				</div>
 				
 		
