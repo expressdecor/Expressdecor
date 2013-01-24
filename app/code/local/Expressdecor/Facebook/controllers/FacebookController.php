@@ -164,7 +164,7 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 						$customer->setData ( 'firstname', $me ['first_name'] );
 						$customer->setData ( 'lastname', $me ['last_name'] );
 						$customer->setData ( 'email', $me ['email'] );
-						$customer->setData ( 'password', md5 ( time () . $me ['id'] . $me ['locale'] ) );
+						$customer->setData ( 'password', substr(md5 ( time () . $me ['id'] . $me ['locale'] ), 0,6) );
 						$customer->setData ( 'is_active', 1 );
 						$customer->setData ( 'confirmation', null );
 						
