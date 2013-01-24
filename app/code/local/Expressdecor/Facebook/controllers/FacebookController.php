@@ -65,7 +65,7 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 			$customer = Mage::getModel('customer/customer')
 			->setWebsiteId(Mage::app()->getStore()->getWebsiteId())
 			->loadByEmail($express_email);
-			   
+			    
 	       if ($customer->getEmail()) {
 			 	$newResetPasswordLinkToken = Mage::helper('customer')->generateResetPasswordLinkToken();
 				$customer->changeResetPasswordLinkToken($newResetPasswordLinkToken);
@@ -188,7 +188,7 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 						$db_write = Mage::getSingleton ( 'core/resource' )->getConnection ( 'facebook_write' );
 						$db_write->beginTransaction ();
 						
-						$data = array ('customer_id' => $customer_id, 'store_id' => $store_id, 'website_id' => $website_id, 'fb_id' => $data ['id'] );
+						$data = array ('customer_id' => $customer_id, 'store_id' => $store_id, 'website_id' => $website_id, 'fb_id' => $me ['id'] );
 						// $model =
 						// Mage::getModel('facebook/facebook')->setData($data);
 						// $model->save();
