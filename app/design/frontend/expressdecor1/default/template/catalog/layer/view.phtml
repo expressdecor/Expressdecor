@@ -104,8 +104,11 @@ if ($this->canShowBlock ()) :
 				$html = $_filter->getHtml ();
 				if ($_filter->getType () == 'catalog/layer_filter_decimal') {
 					
+					$html = str_replace ( '>US$', '>', $html );
 					$html = str_replace ( '>$', '>', $html );
-					echo str_replace ( '- $', '- ', $html );
+					$html = str_replace ( '- $', '- ', $html );
+					$html = str_replace ( '- US$', '- ', $html );
+					echo  $html;
 				} else {
 					echo $html;
 				}

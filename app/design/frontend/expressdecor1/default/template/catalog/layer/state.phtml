@@ -62,8 +62,9 @@ $_filters=null; //disabled
             $attributemodel=$_filter->filter->_data["attribute_model"];
             $attribute_code=$attributemodel->getAttributeCode();	         
             
-            if  (strpos($attribute_code,'price')===false ) {
-		 $label=str_replace('$','',$label);
+            if  (strpos($attribute_code,'price')===false ) {				
+		 		$label=str_replace('$','',$label);		 	
+		 		$label=str_replace('US$','',$label); // For spanish launguage
             } 
             }
             echo $label; 

@@ -671,6 +671,11 @@ height: 28px;
 width: 1px;
 margin-left:9px;
 }
+
+.livechat-img.es {
+background-image: url("../images/es_header_footer_sprite1.png");
+}
+
 .livechat-img-right {
 float:left;
 padding:0px 0 0 0px;
@@ -691,6 +696,19 @@ width: 136px;
 margin-left:26px;
 margin-bottom: 9px;
 }
+
+.livechat-img-custom.es {
+ margin-top: 20px;
+float:none;
+background-image: url("../images/es_header_footer_sprite1.png");
+background-position: 1px -135px;
+height: 36px;
+width: 136px;
+margin-left:26px;
+margin-bottom: 9px;
+}
+
+
 .livechat-img-right-custom {
 float:none;
 margin-top: 10px;
@@ -702,6 +720,19 @@ margin-bottom: 8px;
 height: 28px;
 width: 145px;
 }
+
+.livechat-img-right-custom.es {
+float:none;
+margin-top: 10px;
+margin-left:32px;
+padding:0px 0 0 0px;
+background-image: url("../images/es_header_footer_sprite1.png");
+background-position: -4px -30px;
+margin-bottom: 8px;
+height: 28px;
+width: 145px;
+}
+
 .header-links{float:right;}
 .branding { position:absolute; left:0; margin:-38px 0 0; top:50%; height:58px;   margin-top: -31px; }
 .logo { float:left; }
@@ -1152,18 +1183,27 @@ font-weight: bold;}
 .product-img-box .star12{height: 54px; width:48px;position:absolute;top:0px;right:0px;  background:url(../images/header_footer_sprite1.png) -944px -7px no-repeat; margin: -3px -3px 0px 0px;}
   
  .star12,.products-grid .item .star12,
-  .star10,
+ .star10,
 .products-grid .item .star10, .star5 ,
 .products-grid .item .star5 ,  .star15 ,
 .products-grid .item .star15,
-   .star20 ,
+.star20 ,
 .products-grid .item .star20,
-  .star25 ,
+.star25 ,
 .products-grid .item .star25 ,
- .star30 ,
+.star30 ,
 .products-grid .item .star30  {height: 54px; width:48px;position:absolute;top:0px;right:0px;  background:url(../images/header_footer_sprite1.png) -494px -103px no-repeat; margin: -3px -3px 0px 0px;}
 
-
+/*spanish analog*/
+.star12.es,.products-grid .item .star12.es, .star10.es,
+.products-grid .item .star10.es, .star5.es ,
+.products-grid .item .star5.es ,  .star15.es ,
+.products-grid .item .star15.es, .star20.es ,
+.products-grid .item .star20.es, .star25.es ,
+.products-grid .item .star25.es , .star30.es ,
+.products-grid .item .star30.es {background-position: -401px -103px ;}
+ 
+ 
 /* View Type: Grid */
 .products-grid { padding:0 0 0 20px; margin:0 0 40px 0; }
 .products-grid li.item { float:left; width:171px; margin-right:16px;  }
@@ -1834,6 +1874,11 @@ font-weight: bold !important;
 padding:0px 18px 0 18px !important;
 text-transform: capitalize; 
 line-height: 24px;
+}
+/*Spanish store*/
+.product-view .product-essential button.btn-cart span,
+.add-to-cart button.btn-cart span.es {
+	background-position: 6px 0;
 }
 .product-view .product-essential button.btn-gr span span,
 .add-to-cart button.btn-gr span span { font-size:14px !important; padding:1px 18px 0 10px !important; }
@@ -3962,7 +4007,14 @@ background-position: -347px -4px;
 color: #FFFFFF;
    padding-top: 0;
 }
-    
+
+#feedbackFormes  a.button, #feedbackFormes button.button span, #feedbackFormes a.button span, #feedbackFormes button.button span span  {
+background-image: url("../images/es_header_footer_sprite1.png");
+background-position: -347px -4px; 
+color: #FFFFFF;
+   padding-top: 0;
+}
+
 #feedbackForm .form-list .input-box,#feedbackForm  .form-list label {
 float:none;
 }
@@ -4283,6 +4335,12 @@ a#move_up:hover { color: #fff; background: #597da3;}
 .email-button {background-image: url("../images/sprite-contact-page.png");height: 31px; width:104px; background-position: 0px -31px; margin-top: 26px;margin-left: 40px;}
 .chat-button {background-image: url("../images/sprite-contact-page.png");height: 31px; width:104px; background-position: 0px 0px; margin-top: 11px;margin-left: 51px;}
 
+.phone-icon.es { background-image: url("../images/es_header_footer_sprite1.png"); background-position: -32px -30px; height: 17px; width: 117px;margin-top: 25px;margin-left: 40px;}
+.email-button.es {background-image: url("../images/es_sprite-contact-page.png");height: 31px; width:104px; background-position: 0px -31px; margin-top: 26px;margin-left: 40px;}
+.chat-button.es {background-image: url("../images/es_sprite-contact-page.png");height: 31px; width:104px; background-position: 0px 0px; margin-top: 11px;margin-left: 51px;}
+
+
+
 .contacts-index-index .buttons-set { width: 71px; margin-left: 240px; }
 .contacts-index-index button span span, .contacts-index-index button span {background-image: url("../images/bkg_btn3.gif");}
 .contacts-index-index button span span {color: #000000; font-weight: normal; text-transform: none;padding-top:0px;}
@@ -4297,6 +4355,11 @@ height:20px;
 margin-left: -7px;
 margin-top:-36px;
 }
+/*ES Translation*/
+.header-line.es{	
+background:url(../images/es_header_footer_sprite1.png) 0px -176px no-repeat;
+}
+
 
 .header-line .header-line-shipping, .header-line-tax, .header-line-returns {
  display: block;
@@ -4319,7 +4382,9 @@ margin-top: 43px;
 .emails-overlay {position: fixed;z-index: 13;height: 100%;width: 100%;background-color: #000000; opacity: 0.7; top:0; left:0;}
 .express-emails {position:absolute;margin-left:147px;top: 25%; background-color: #FFFFFF; opacity: 1; width: 528px; height:542px;z-index:99999;background: url("../images/pop-up-frame.png") 0px 0px no-repeat;}
 .express-mails-close {  height:31px; width:32px; background: url("../images/header_footer_sprite1.png") -863px -29px no-repeat; position: absolute; top:-8px; right:-8px;}
+.express-mails-close.es {  height:31px; width:32px; background: url("../images/es_header_footer_sprite1.png") -863px -29px no-repeat; position: absolute; top:-8px; right:-8px;}
 
+.express-mails-title.es {    background: url("../images/es_header_footer_sprite1.png") -771px -62px no-repeat;}
 .express-mails-title {    background: url("../images/header_footer_sprite1.png") -771px -62px no-repeat;}
 .welcome-to  .express-mails-title {  margin-left: 183px;  background-position:-771px -62px; width:126px; height:20px; margin-top: 27px;} 
 .join-us .express-mails-title {  margin-left: 215px;  background-position:-771px -33px; width:81px; height:20px; margin-top: 27px; }
@@ -4342,6 +4407,7 @@ margin-top: 43px;
 .welcome-to .singup-right .agreement-txt {width:91px; padding: 5px;color: #485654;}
 .join-us  .singup-right .singup-button {float: left;}
  .welcome-back   .singup-right .singup-button {float: right;padding-right:76px;}
+.express-emails.es .singup-right  button div   {background: url("../images/es_header_footer_sprite1.png") -753px -204px no-repeat ; width:101px;height:40px;}
 .express-emails .singup-right  button div   {background: url("../images/header_footer_sprite1.png") -753px -204px no-repeat ; width:101px;height:40px;}
 .express-emails .singup-right  button div span {background: none transparent;  color: #FFFFFF; font-weight:bold; font-size:15px; text-transform:uppercase;padding: 11px 3px 0px 0px;}
 .join-us .singup-right  button div span   {padding: 11px 3px 0px 0px;}
@@ -4369,11 +4435,12 @@ margin-top: 43px;
 .join-us  .email-field  input, .welcome-back  .email-field  input,
 .join-us  .validation-failed , .welcome-back .validation-failed {border:0px solid #FFFFFF !important; background-color: #E0E1E2; height:28px; width:310px; padding: 0px 0px 0px 2px !important; border-radius:5px;}
 .express-emails  .validation-advice {height:0px; width:263px; position:absolute;}
-.express-emails  #advice-validate-password-password {width:373px;}
+.express-emails  #advice-validate-password-password {width:128px; background-color: #FFFFFF; height:34px;}
 
 .express-emails a { text-decoration:none;}
 .express-emails .reg-label {font-size:12px; }
 
+.express-emails.es .fb-logo {background: url("../images/es_header_footer_sprite1.png") -560px -4px  no-repeat ; width:199px;height:33px;}
 .express-emails .fb-logo {background: url("../images/header_footer_sprite1.png") -560px -4px  no-repeat ; width:199px;height:33px;}
 .express-emails .fb-container {width:347px; min-height:33px; padding: 33px 0px 0px 75px;}
 .express-emails  .fb-container .fb-login {margin-left:85px; margin-top:10px;}
@@ -4394,7 +4461,8 @@ margin-top: 43px;
 .additional_info .reg-field {padding-top:10px;}
 .additional_info .sex-field { font-size:12px;}
 .sex-field input { width:20px !important;}
-.save-btn {padding-left:0px;padding-top:10px;}
+.save-btn {padding-left:0px;padding-top:10px; overflow:hidden;}
+.save-btn.es  button div   {background: url("../images/es_header_footer_sprite1.png") -753px -204px no-repeat ; width:101px;height:40px;}
 .save-btn  button div   {background: url("../images/header_footer_sprite1.png") -753px -204px no-repeat ; width:101px;height:40px;}
 .save-btn  button div span {background: none transparent;  color: #FFFFFF; font-weight:bold; font-size:15px; text-transform:uppercase;padding: 11px 3px 0px 0px;}
 .skip {color: #F58959; font-size:13px; float:right; padding-right:134px;padding-top:10px;cursor:pointer;}
@@ -4412,3 +4480,11 @@ margin-top: 43px;
 .paypal-express-review  .info-set {padding-bottom:20px;}
 .paypal-express-review #review_button span { padding-left: 0px; color: #4D6228;}
 .paypal-express-review #review_button span span {background: url("../images/addtocart.png") 0px 0px no-repeat; color: #4D6228; padding: 0px 18px 0px 14px; height:26px;}
+
+/*Coupons popup window*/
+.coupons-overlay {position: fixed;z-index: 13;height: 100%;width: 100%;background-color: #000000; opacity: 0.7; top:0; left:0;}
+.express-coupon {position:absolute;margin-left:147px;top: 25%; background-color: #FFFFFF; opacity: 1; width: 558px; height:353px;z-index:99999;background: url("../images/ed_coupons_window.png") 0px 0px no-repeat;}
+.close-coupons-window {width:39px;height:39px; cursor:pointer;position:absolute;right:0px;}
+.coupon-descr {font-size:13px;  left:184px; bottom:136px; position:absolute; font-weight:bold; }
+.coupon-code  {font-size:32px;font-weight:bold;  cursor:pointer; color: #FFFFFF; left:184px; bottom:77px; position:absolute; text-align:center; width:191px;}
+.coupon-promo-text {font-size:13px;  left:172px; bottom:45px; position:absolute; font-weight:bold;}

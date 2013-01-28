@@ -331,7 +331,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                 	$save=$msrp_price-$_price;
                 ?>          
                    <p class="price-save-block">  
-                  <span class="price-save-label"><?php echo $this->__('You Save ') ?></span>
+                  <span class="price-save-label"><?php echo $this->__('You Save') ?></span>
                  <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo round($save,2); ?></span> 
                              <script type="text/javascript"  >
                              var disc_price=document.getElementById('disc-price-<?php echo $_id ?>').innerHTML;
@@ -392,7 +392,7 @@ if ( (date('Y-m-d') <= $to ) && (date('Y-m-d') >= $from) ) {
                <?php  	If (!empty($msrp_price)  && ($msrp_price>$_price) ) {
 	 	?>
 	 	  <div class="price-save-block">
-                   <span class="price-save-label"><?php echo $this->__('You Save ') ?></span>
+                   <span class="price-save-label"><?php echo $this->__('You Save') ?></span>
                  <span class="price-save" id="disc-price-<?php echo $_id ?>">$<?php echo round((max($_regularPrice,$msrp_price)-$_finalPrice),2); ?></span>
                       <script type="text/javascript"  >
                       var disc_price=document.getElementById('disc-price-<?php echo $_id ?>').innerHTML;
@@ -417,19 +417,19 @@ if 	($customShipPrice > 0)	{
 	//if ($price_for_shipping > 100) {?> 
 	
 	<?php //} else { ?>
-<div class="shipping-txt"> Free</div> <div class="shipping-txt-last"> Shipping Eligible</div> <div id="details_free_shipping"></div>
+<div class="shipping-txt"><?php echo $this->__('Free'); ?></div> <div class="shipping-txt-last"><?php echo $this->__('Shipping Eligible'); ?></div> <div id="details_free_shipping"></div>
 	<?php } ?>
 </div>      
         <div class="stock-container">
         <?php  
         if ( (!empty($outofstockMsg)) || ($_product->getIsInStock()==0) ){
         	if(empty($outofstockMsg)) $outofstockMsg=$this->__('Product will be available soon');
-        	echo "<div class=\"out-stock\">".$outofstockMsg."</div><span style='display:none;' itemprop='availability' content='out_of_stock'>Product will be available soon</span>";
+        	echo "<div class=\"out-stock\">".$outofstockMsg."</div><span style='display:none;' itemprop='availability' content='out_of_stock'>".$this->__('Product will be available soon')."</span>";
         	if (!strpos(strtolower($outofstockMsg), 'discontinued'))
         		echo $this->getChildHtml('alert_urls');
         }else {?>
         <div class="in-stock-mes">
-        <div class="in-stock">In Stock</div><div class="in-stock-ready"> Ready to ship </div>
+        <div class="in-stock"><?php echo $this->__('In Stock'); ?></div><div class="in-stock-ready"><?php echo $this->__('Ready to ship'); ?></div>
         <span style="display:none;" itemprop="availability" content="in_stock">In stock! Order now!</span>
           <div id='details_in_stock'></div>
           </div>
@@ -452,7 +452,7 @@ if(!empty( $promo ) ) { ?>
                        <div class="add-to-box">
                            <?php echo $this->getChildHtml('addtocart') ?>   
                        <div class="express-customer-servise">
-	                       <div class="express-message">  <?php echo $this->__('<b>Questions?</b> Chat or Talk with our Express Customer Service '); ?></div>
+	                       <div class="express-message">  <?php echo $this->__('<b>Questions?</b> Chat or Talk with our Express Customer Service'); ?></div>
                             <div class="express-imgs"> <a href="https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;byhref=1&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson" onclick="lpButtonCTTUrl = 'https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson&amp;referrer='+escape(document.location); lpButtonCTTUrl = (typeof(lpAppendVisitorCookies) != 'undefined' ? lpAppendVisitorCookies(lpButtonCTTUrl) : lpButtonCTTUrl); lpButtonCTTUrl = ((typeof(lpMTag)!='undefined' &amp;&amp; typeof(lpMTag.addFirstPartyCookies)!='undefined')?lpMTag.addFirstPartyCookies(lpButtonCTTUrl):lpButtonCTTUrl);window.open(lpButtonCTTUrl,'chat33660894','width=475,height=400,resizable=yes');return false;">
 	       					<div class="livechat-img"></div></a>  
            	       				<div class="livechat-img-right"></div>      
@@ -484,16 +484,14 @@ if(!empty( $promo ) ) { ?>
                         <dt class="tab"><span><?php  echo $this->escapeHtml($this->getChildData('description', 'title')) ?></span></dt>
                         <dd class="tab-container">
                            <div class="tab-content">
-                           <h2 class="prod-details">Product Details for the 
-<?php 
-	echo $product_sku; ?></h2>
+                           <h2 class="prod-details"><?php echo $this->__('Product Details for the '); ?> <?php  echo $product_sku; ?></h2>
                            <?php echo $detailedInfoGroup['description'] ?> 
                            <?php if(!empty($productHelpfulLinks)) : ?>        
                                 <div class="product-helpful-links">
 								<br/><br/><br/>
 								<p>
 <strong>
-<u>Installation Manual</u>
+<u><?php echo $this->__('Installation Manual');?></u>
 </strong>
 </p><br/>
 								<?php echo Mage::getModel('core/email_template_filter')->filter($productHelpfulLinks) ?></div>
@@ -501,7 +499,7 @@ if(!empty( $promo ) ) { ?>
                            </div>
                         </dd>                                               
                         <?php if ($_product->getShortDescription()):?>
-                        <dt class="tab"><span>Description</span></dt>
+                        <dt class="tab"><span><?php echo $this->__('Description'); ?></span></dt>
                         <dd class="tab-container">
                            <div itemprop="description" class="tab-content">                           
                                 <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
@@ -510,7 +508,7 @@ if(!empty( $promo ) ) { ?>
                         <?php endif;?>         
 <!--						technical specs-->
                         <?php if (!empty($detailedInfoGroup['additional'])):?>
-                        <dt class="tab"><span>Technical Specs</span></dt>
+                        <dt class="tab"><span><?php echo $this->__('Technical Specs'); ?></span></dt>
                         <dd class="tab-container">
                            <div class="tab-content">                           
                               <?php echo $detailedInfoGroup['additional']; ?>
@@ -521,7 +519,7 @@ if(!empty( $promo ) ) { ?>
                          $reviews=$this->getChildHtml('reviews');
                          $reviews=trim($reviews);
                          if (!empty($reviews)):?>
-                         <dt id="reviews" class="tab"><span>Reviews</span></dt>
+                         <dt id="reviews" class="tab"><span><?php echo $this->__('Reviews'); ?></span></dt>
                         <dd class="tab-container">
                            <div class="tab-content"><?php echo $reviews; ?></div>
                         </dd>   
@@ -529,12 +527,12 @@ if(!empty( $promo ) ) { ?>
                           <?php
                           $warrancy=$this->getLayout()->createBlock('cms/block')->setBlockId($manufacturerName_block.'_WT')->toHtml();
                          if (!empty($warrancy)):?>
-                        <dt class="tab"><span>Warranty</span></dt>
+                        <dt class="tab"><span><?php echo $this->__('Warranty'); ?></span></dt>
                         <dd class="tab-container">
                            <div class="tab-content"><?php echo $warrancy; ?></div>
                         </dd>                            
                          <?php endif;?> 
-                       <dt class="tab"><span>Shipping</span></dt>
+                       <dt class="tab"><span><?php echo $this->__('Shipping'); ?></span></dt>
                         <dd class="tab-container">
                            <div class="tab-content">                    
                          <?php

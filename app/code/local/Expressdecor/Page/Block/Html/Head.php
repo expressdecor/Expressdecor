@@ -65,9 +65,21 @@ class Expressdecor_Page_Block_Html_Head extends Mage_Page_Block_Html_Head
 //			if (!$param_discount_session)
 			Mage::getModel('checkout/session')->setDiscountParam($discount_code);
 			$items = Mage::getSingleton('checkout/session')->getQuote()->getAllItems();
+			
 			if (count($items) > 0)
-			Mage::getSingleton('checkout/cart')->getQuote()->setCouponCode($discount_code)->save();		
+				Mage::getSingleton('checkout/cart')->getQuote()->setCouponCode($discount_code)->save();
+		
+		} elseif (Mage::getModel('checkout/session')->getDiscountParam() && !Mage::getSingleton('checkout/cart')->getQuote()->getCouponCode()) { // added at 1/25/2013 applies if sommething iwll appeat in cart
+			$discount_code=Mage::getModel('checkout/session')->getDiscountParam();
+			
+			$items = Mage::getSingleton('checkout/session')->getQuote()->getAllItems();
+			if (count($items) > 0)
+				Mage::getSingleton('checkout/cart')->getQuote()->setCouponCode($discount_code)->save();
 		}
+		
+		 
+ 		
+		
 
 
 

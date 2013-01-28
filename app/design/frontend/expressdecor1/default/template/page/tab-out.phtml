@@ -7,17 +7,17 @@
 	<div class="online-content">
 	<div class="contact-block call">
 		<div class="call-icon"></div>
-		<div class="call-us">Call Us</div>
-		<div class="inside-text"> Monday - Friday<br>
-			<span class="time-working-2">from 9AM to 6PM EST</span>
+		<div class="call-us"><?php echo $this->__('Call Us'); ?></div>
+		<div class="inside-text"><?php echo $this->__('Monday - Friday'); ?><br>
+			<span class="time-working-2"><?php echo $this->__('from 9AM to 6PM EST'); ?></span>
 		</div>
 		<div class="phone-icon"></div>
 	</div>
 	<div class="contact-block chat">
 		<div class="chat-icon"></div>
-		<div class="live-us">Live Chat with Us</div>
-		<div class="inside-text"> Monday - Friday<br>
-			<span class="time-working">from 9AM to 6PM EST</span>
+		<div class="live-us"><?php echo $this->__('Live Chat with Us'); ?></div>
+		<div class="inside-text"><?php echo $this->__('Monday - Friday'); ?><br>
+			<span class="time-working"><?php echo $this->__('from 9AM to 6PM EST'); ?></span>
 		</div>
 		<a onclick="lpButtonCTTUrl = 'https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson&amp;referrer='+escape(document.location); lpButtonCTTUrl = (typeof(lpAppendVisitorCookies) != 'undefined' ? lpAppendVisitorCookies(lpButtonCTTUrl) : lpButtonCTTUrl); lpButtonCTTUrl = ((typeof(lpMTag)!='undefined' &amp;&amp; typeof(lpMTag.addFirstPartyCookies)!='undefined')?lpMTag.addFirstPartyCookies(lpButtonCTTUrl):lpButtonCTTUrl);window.open(lpButtonCTTUrl,'chat33660894','width=475,height=400,resizable=yes');return false;" href="https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;byhref=1&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson">
 			<div class="chat-button"></div>
@@ -28,13 +28,13 @@
 	<div class="offline-content" >    
 		<div class="contact-block last email">
 			<div class="email-icon"></div>
-			<div class="email-us">Email Us</div>
-			<div class="inside-text">Anytime</div>
+			<div class="email-us"><?php echo $this->__('Email Us'); ?></div>
+			<div class="inside-text"><?php echo $this->__('Anytime'); ?></div>
 			<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>contacts"><div class="email-button"></div></a>
 		</div>
 	</div> 	 
-    <div class="express-text">Hours of Operation:</div>
-    <div class="express-text time-text"> Today    to    EST </div>    
+    <div class="express-text"><?php echo $this->__('Hours of Operation:'); ?></div>
+    <div class="express-text time-text"><?php echo $this->__('Today 9 AM to 6 PM EST'); ?></div>    
 </div>
 
 <script type="text/javascript">

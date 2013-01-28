@@ -33,7 +33,13 @@
 
 ?>
 <?php
-$filt_name=strtolower(str_replace(' ','_',$this->_filter->getName()));
+ 
+ if ($this->_filter->getName()!=$this->__("Category")) {
+		$att_model=$this->_filter->getAttributeModel();
+		$filt_name=strtolower(str_replace(' ','_',$att_model->getAttributeCode())); //was getName 1/7/2013
+ 	} else { // Name is translating. its why we keep category always same
+		$filt_name="category";
+ 	}
 $filt_name=str_replace(')','',str_replace('(','', $filt_name));
 $i=0;
 $num_to_show=5; //number of option that not collapsed
@@ -130,14 +136,14 @@ $iCounter = 0; ?>
  	?>
  	var obj = $('btn-<?php echo $filt_name; ?>');
 
- 	if (obj.innerHTML.indexOf("more") > -1) {
- 		obj.innerHTML=obj.innerHTML.replace("more", "less");
+ 	if (obj.innerHTML.indexOf("<?php echo $this->__('more');?>") > -1) {
+ 		obj.innerHTML=obj.innerHTML.replace("<?php echo $this->__('more');?>", "<?php echo $this->__('less');?>");
  		$('more-arrow-img-down-<?php echo $filt_name; ?>').toggle();
  		$('more-arrow-img-up-<?php echo $filt_name; ?>').toggle();
 
  		
  	} else {
- 		obj.innerHTML=obj.innerHTML.replace("less", "more");
+ 		obj.innerHTML=obj.innerHTML.replace("<?php echo $this->__('less');?>", "<?php echo $this->__('more');?>");
  		$('more-arrow-img-down-<?php echo $filt_name; ?>').toggle();
  		$('more-arrow-img-up-<?php echo $filt_name; ?>').toggle();
  	}
@@ -151,7 +157,7 @@ $iCounter = 0; ?>
  </script>
  <div >
 <li>
-<a class="cat-more" id="btn-<?php echo $filt_name; ?>" onclick="hide_<?php echo $filt_name; ?>();" >Show more</a> <div id="more-arrow-img-down-<?php echo $filt_name; ?>" class="more-arrow"></div><div id="more-arrow-img-up-<?php echo $filt_name; ?>" class="more-arrow-hide"></div>
+<a class="cat-more" id="btn-<?php echo $filt_name; ?>" onclick="hide_<?php echo $filt_name; ?>();" ><?php echo $this->__('Show more');?></a> <div id="more-arrow-img-down-<?php echo $filt_name; ?>" class="more-arrow"></div><div id="more-arrow-img-up-<?php echo $filt_name; ?>" class="more-arrow-hide"></div>
 </li>
 </div>
  <script type="text/javascript">

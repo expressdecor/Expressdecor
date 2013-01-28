@@ -301,8 +301,8 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 					<button   title="Join" class="button"  onclick="post_request('.express-emails.welcome-to',this);"   type="button"><div><span><?php echo $this->__('Join Us');?></span></div></button>
 					<div class="popup-loader" style="display:none;"></div> 
 				</div>
-				<div class="agreement-txt"><?php echo $this->__('By clicking "Join" you accept our');?><a href=""><?php echo $this->__('Terms of Use');?></a><?php echo $this->__(' and');?>					 
-						<a href="privacy.html\"><?php echo $this->__("Privacy Policy");?></a>.
+				<div class="agreement-txt"><?php echo $this->__('By clicking "Join" you accept our');?><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>facebook-faqs.html"><?php echo $this->__('Terms of Use');?></a><?php echo $this->__(' and');?>					 
+						<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>privacy.html"><?php echo $this->__("Privacy Policy");?></a>.
 				</div>
 			</div>
 
@@ -432,8 +432,8 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 			</div>
 			<div class="singup-right">
 				<div class="agreement-txt">
-					<?php echo $this->__('By clicking "Join" you accept our');?><a href=""><?php echo $this->__('Terms of Use');?></a><?php echo $this->__(' and');?>					 
-						<a href="privacy.html\"><?php echo $this->__("Privacy Policy");?></a>.
+					<?php echo $this->__('By clicking "Join" you accept our');?><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>facebook-faqs.html"><?php echo $this->__('Terms of Use');?></a><?php echo $this->__(' and');?>					 
+						<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>privacy.html"><?php echo $this->__("Privacy Policy");?></a>.
 				</div>			
 				<div class="singup-button">
 					<button   title="Join Us" class="button" onclick="post_request('.express-emails.join-us',this);" type="button"><div><span><?php echo $this->__('Join Us');?></span></div></button>

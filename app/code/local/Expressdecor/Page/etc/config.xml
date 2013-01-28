@@ -5,7 +5,17 @@
             <version>0.1.0</version>
         </Expressdecor_Page>
     </modules>
-
+    <frontend>
+        <routers>
+            <page>
+                <use>standard</use>
+                <args>
+                    <module>Expressdecor_Page</module>
+                    <frontName>page</frontName>
+                </args>
+            </page>
+        </routers> 
+    </frontend>
  <global>
         <blocks>
            <page>
