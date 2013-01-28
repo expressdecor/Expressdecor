@@ -23,6 +23,7 @@
  * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
+
 // oldRedirect($_SERVER['REQUEST_URI']);
 if (version_compare(phpversion(), '5.2.0', '<')===true) {
     echo  '<div style="font:12px/1.35em arial, helvetica, sans-serif;">

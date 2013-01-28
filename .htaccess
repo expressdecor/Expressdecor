@@ -182,6 +182,13 @@
 ## If running in cluster environment, uncomment this
 ## http://developer.yahoo.com/performance/rules.html#etags
 
+
+###Multi sites
+SetEnvIf Host ^(www\.)?stage\.es\.expressdecor\.com$ MAGE_RUN_CODE=es
+SetEnvIf Host ^stage\.es\.expressdecor\.com$ MAGE_RUN_CODE=es
+
+
+
     FileETag none
 Redirect 301 /bathroom-accessories.html /bathroom/bathroom-accessories.html
 Redirect 301 /towel-bars-and-rings.html /bathroom/bathroom-accessories/towel-bars-and-rings.html
