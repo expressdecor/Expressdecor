@@ -39,6 +39,7 @@ Default layout, loads most of the pages
                 -->
                 <action method="setBlockId"><block_id>footer_links</block_id></action>
             </block>
+            
         </reference>
     </default>
 

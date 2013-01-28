@@ -38,8 +38,7 @@ Whoops, it looks like you have an invalid PHP version.</h3></div><p>Magento supp
  * Error reporting
  */
 error_reporting(E_ALL | E_STRICT);
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
+
 /**
  * Compilation includes configuration file
  */
@@ -79,6 +78,7 @@ if (isset($_SERVER['MAGE_IS_DEVELOPER_MODE'])) {
 
 umask(0);
 
+ 
 /* Store or website code */
 $mageRunCode = isset($_SERVER['MAGE_RUN_CODE']) ? $_SERVER['MAGE_RUN_CODE'] : '';
 

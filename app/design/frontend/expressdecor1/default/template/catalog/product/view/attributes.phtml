@@ -118,8 +118,8 @@
             		echo $attr_html;
 
             	} else {
-
-            		$attr_html=str_replace('$','',$attr_html);
+					$attr_html=str_replace('US$','',$attr_html); // For spanish store
+            		$attr_html=str_replace('$','',$attr_html);            		
             		$attr_html= str_replace('<span class="price">','',$attr_html);
             		$attr_html=str_replace('</span>','',$attr_html);            	
             	}

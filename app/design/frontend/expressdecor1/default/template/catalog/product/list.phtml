@@ -160,6 +160,7 @@
 $catalog_rule_discount="";
 $under_catalog_rule_promotion=0; 
 
+
 if ($_product->getFinalPrice() != $_product->getPrice())
 {
 	$discount=round(((($_product->getPrice()-$_product->getFinalPrice()) / $_product->getPrice()) * 100),1) ;
@@ -199,7 +200,7 @@ if ($_product->getTypeId() =='configurable' && $under_catalog_rule_promotion==0)
             <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(170); ?>" width="170" height="170" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
             <?php if ($under_catalog_rule_promotion) { 
             	$catalog_rule_discount=round($catalog_rule_discount,0);
-            	?><div class="star<?php echo $catalog_rule_discount; ?>"></div> <?php  } ?>
+            	?><div class="star<?php echo $catalog_rule_discount; ?> <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div> <?php  } ?>
             </a>
 
              <div class="grid-product-name"><strong class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></strong></div>
@@ -224,7 +225,7 @@ if ($_product->getTypeId() =='configurable' && $under_catalog_rule_promotion==0)
  					$childProducts = Mage::getModel('catalog/product_type_configurable')
  					->getUsedProducts(null,$_product);
  					if (count($childProducts) > 0) {
- 						echo '<div    class="product-name"><div class="options" onclick="" >Available in '.count($childProducts).' options</div></div>';
+ 						echo '<div    class="product-name"><div class="options" onclick="" >'.$this->__("Available in ").count($childProducts).$this->__(" options.").'</div></div>';
  						}
                  }else {
                  	echo '<div  class="product-name"></div>';

@@ -14,15 +14,15 @@
         <ul class="form-list">
 
         <li class="fields">
-         <div class="feedback-label"><span class="rate"> Rate Us:  </span></div>
+         <div class="feedback-label"><span class="rate"><?php echo $this->__('Rate Us:');?></span></div>
            <div id="score-radio" class="field-score">   
-     <div class="feed-star-left">Poor</div>
+     <div class="feed-star-left"><?php echo $this->__('Poor');?></div>
      <div class="feed-star" id="star-1" onclick="star_click(1);" ></div>
      <div class="feed-star" id="star-2"  onclick="star_click(2);" ></div>
      <div class="feed-star" id="star-3" onclick="star_click(3);" ></div>
      <div class="feed-star" id="star-4" onclick="star_click(4);" ></div>
      <div class="feed-star"  id="star-5" onclick="star_click(5);" ></div>
-     <div class="feed-star-right">Excellent</div>
+     <div class="feed-star-right"><?php echo $this->__('Excellent');?></div>
 			</div>
                 <div class="field">
                    <div class="feedback-label"> <label for="name" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Name:') ?></label></div>
@@ -170,14 +170,14 @@ Event.observe('FeedbackButtonpost', 'click', function(event) {
 	inputs.each(function(input, index) {
 
 		if (input.value=='' && input.type!='radio') {
-			error='Please fill your name and email! ';
+			error='<?php echo $this->__("Please fill your name and email!"); ?> ';
 			return false;
 		}
 	});
 
 	var textarea=$('feedback_comment');
 	if (textarea.value=='') {
-		error=error+'Please enter your feedback!';
+		error=error+'<?php echo $this->__("Please enter your feedback!"); ?>';
 	}
 
 	if (error == '') {
@@ -196,12 +196,12 @@ Event.observe('FeedbackButtonpost', 'click', function(event) {
 			method:'post',
 			parameters: data,
 			onSuccess: function(){
-				alert("Your feedack was added Succcefully. Thank you!");
+				alert("<?php echo $this->__('Your feedack was added Succcefully. Thank you!'); ?>");
 				  jQuery('#feedbackP_window').hide();
 				  jQuery('.feedback-overlay').hide();
 				  jQuery('.ajax-loading').hide();
 			},
-			onFailure: function(){ alert('Error with adding feedback, please try again.') }
+			onFailure: function(){ alert('<?php echo $this->__("Error with adding feedback, please try again."); ?>') }
 		});
 	} else {
 		alert(error);

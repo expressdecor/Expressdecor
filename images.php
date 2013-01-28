@@ -1,8 +1,13 @@
  <?php
   
 require_once 'app/Mage.php';
-Mage::app ( 'default' );
+/* Store or website code */
+$mageRunCode = isset($_SERVER['MAGE_RUN_CODE']) ? $_SERVER['MAGE_RUN_CODE'] : 'defaults';
 
+ 
+
+Mage::app ( $mageRunCode);
+ 
 $first = $_GET ['first'];
 $last = $_GET ['last'];
 $type = $_GET ['type'];

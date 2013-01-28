@@ -71,7 +71,8 @@
             $attribute_code=$attributemodel->getAttributeCode();	         
             
             if  (strpos($attribute_code,'price')===false ) {
-		 $label=str_replace('$','',$label);
+				 $label=str_replace('US$','',$label); // For spanish launguage
+				 $label=str_replace('$','',$label);
             } 
             }
             echo $label; 

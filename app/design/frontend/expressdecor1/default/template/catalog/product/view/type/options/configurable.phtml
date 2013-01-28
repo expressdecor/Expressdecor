@@ -32,7 +32,7 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
 <?php if ($_product->isSaleable() && count($_attributes)):?>
     <dl>
     <?php foreach($_attributes as $_attribute): ?>
-        <div class="option-label"><dt><label class="required"><em>*</em><?php echo $_attribute->getLabel() ?></label></dt></div>
+        <div class="option-label"><dt><label class="required"><em>*</em><?php echo $this->__($_attribute->getLabel()); ?></label></dt></div>
         <dd<?php if ($_attribute->decoratedIsLast){?> class="last"<?php }?>>
             <div class="input-box">
                 <select name="super_attribute[<?php echo $_attribute->getAttributeId() ?>]" id="attribute<?php echo $_attribute->getAttributeId() ?>" class="required-entry super-attribute-select">
