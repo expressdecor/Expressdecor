@@ -35,9 +35,6 @@
     php_value memory_limit 1024M
     php_value max_execution_time 360
 
-###Multi sites 
-SetEnvIf Host ^(www\.)?dev\.es\.expressdecor\.com$ MAGE_RUN_CODE=es
-SetEnvIf Host ^dev\.es\.expressdecor\.com$ MAGE_RUN_CODE=es
 
 
 ############################################
