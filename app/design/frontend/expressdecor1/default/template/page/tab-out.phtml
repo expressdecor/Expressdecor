@@ -1,4 +1,4 @@
-<div  class="tabout-left-button" ></div>
+<div  class="tabout-left-button <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>" ></div>
 <div class="tabout-overlay" style="display:none;"></div>
 
 <div class="tabout_window">
@@ -6,31 +6,31 @@
 <div class="tabout_hide" onclick="hide_tabout();"></div>
 	<div class="online-content">
 	<div class="contact-block call">
-		<div class="call-icon"></div>
+		<div class="call-icon <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
 		<div class="call-us"><?php echo $this->__('Call Us'); ?></div>
 		<div class="inside-text"><?php echo $this->__('Monday - Friday'); ?><br>
 			<span class="time-working-2"><?php echo $this->__('from 9AM to 6PM EST'); ?></span>
 		</div>
-		<div class="phone-icon"></div>
+		<div class="phone-icon <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
 	</div>
 	<div class="contact-block chat">
-		<div class="chat-icon"></div>
+		<div class="chat-icon <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
 		<div class="live-us"><?php echo $this->__('Live Chat with Us'); ?></div>
 		<div class="inside-text"><?php echo $this->__('Monday - Friday'); ?><br>
 			<span class="time-working"><?php echo $this->__('from 9AM to 6PM EST'); ?></span>
 		</div>
 		<a onclick="lpButtonCTTUrl = 'https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson&amp;referrer='+escape(document.location); lpButtonCTTUrl = (typeof(lpAppendVisitorCookies) != 'undefined' ? lpAppendVisitorCookies(lpButtonCTTUrl) : lpButtonCTTUrl); lpButtonCTTUrl = ((typeof(lpMTag)!='undefined' &amp;&amp; typeof(lpMTag.addFirstPartyCookies)!='undefined')?lpMTag.addFirstPartyCookies(lpButtonCTTUrl):lpButtonCTTUrl);window.open(lpButtonCTTUrl,'chat33660894','width=475,height=400,resizable=yes');return false;" href="https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;byhref=1&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson">
-			<div class="chat-button"></div>
+			<div class="chat-button <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
 		</a>
 	</div>
 	 
 	</div>       
 	<div class="offline-content" >    
 		<div class="contact-block last email">
-			<div class="email-icon"></div>
+			<div class="email-icon <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
 			<div class="email-us"><?php echo $this->__('Email Us'); ?></div>
 			<div class="inside-text"><?php echo $this->__('Anytime'); ?></div>
-			<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>contacts"><div class="email-button"></div></a>
+			<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>contacts"><div class="email-button <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div></a>
 		</div>
 	</div> 	 
     <div class="express-text"><?php echo $this->__('Hours of Operation:'); ?></div>

@@ -27,37 +27,36 @@
 <div class="page-title">
     <h1><?php  echo Mage::helper('contacts')->__('Contact Us') ?></h1>
 </div>
-<div class="contact-us-text">
-ExpressDecor.com welcomes your questions, comments and feedback. To help you find answers faster, here are some of our <a href="/faq.html">Frequently Asked Questions</a> .
-If the answer you are looking for is not included in the FAQ, please fill out the form below to contact us, or call 866.507.2725 to speak to a Customer Service Representative.
-Our Business Hours of operation are Monday through Friday, 9AM to 6PM EST.
+<div class="contact-us-text"><?php echo $this->__("ExpressDecor.com welcomes your questions, comments and feedback. To help you find answers faster, here are some of our ");?>
+<a href="/faq.html"><?php echo $this->__("Frequently Asked Questions");?></a> .
+<?php echo $this->__("If the answer you are looking for is not included in the FAQ, please fill out the form below to contact us, or call 866.507.2725 to speak to a Customer Service Representative.Our Business Hours of operation are Monday through Friday, 9AM to 6PM EST.");?>
 </div>
 <div class="contact-us-container">
 <div class="contact-block call">
-<div class="call-icon"></div>
-<div class="call-us">Call Us</div>
-<div class="inside-text"> Monday - Friday<br/>
-from 9AM to 6PM EST
+<div class="call-icon <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
+<div class="call-us"><?php echo $this->__("Call Us");?></div>
+<div class="inside-text"><?php echo $this->__("Monday - Friday");?><br/>
+<?php echo $this->__("from 9AM to 6PM EST");?>
 </div>
 <div class="phone-icon"></div>
 </div>
 <div class="contact-block chat">
-<div class="chat-icon"></div>
-<div class="live-us">Live Chat with Us</div>
-<div class="inside-text"> Monday - Friday<br/>
-from 9AM to 6PM EST
+<div class="chat-icon <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
+<div class="live-us"><?php echo $this->__("Live Chat with Us");?></div>
+<div class="inside-text"><?php echo $this->__("Monday - Friday");?><br/>
+<?php echo $this->__("from 9AM to 6PM EST");?>
 </div>
 <a href="https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;byhref=1&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson" onclick="lpButtonCTTUrl = 'https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson&amp;referrer='+escape(document.location); lpButtonCTTUrl = (typeof(lpAppendVisitorCookies) != 'undefined' ? lpAppendVisitorCookies(lpButtonCTTUrl) : lpButtonCTTUrl); lpButtonCTTUrl = ((typeof(lpMTag)!='undefined' &amp;&amp; typeof(lpMTag.addFirstPartyCookies)!='undefined')?lpMTag.addFirstPartyCookies(lpButtonCTTUrl):lpButtonCTTUrl);window.open(lpButtonCTTUrl,'chat33660894','width=475,height=400,resizable=yes');return false;">
-<div class="chat-button"></div>
+<div class="chat-button <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
 </a>
 </div>
 <div class="contact-block last email">
-<div class="email-icon"></div>
-<div class="email-us">Email Us</div>
+<div class="email-icon <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
+<div class="email-us"><?php echo $this->__("Email Us");?></div>
 <div class="inside-text">
-Anytime
+<?php echo $this->__("Anytime");?>
 </div>
-<a href="mailto:info@expressdecor.com" ><div class="email-button"></div></a>
+<a href="mailto:info@expressdecor.com" ><div class="email-button <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div></a>
 </div>
 </div>
 

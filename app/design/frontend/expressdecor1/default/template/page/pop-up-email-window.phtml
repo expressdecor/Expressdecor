@@ -259,9 +259,9 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 	?>
 
 
-<div class="express-emails welcome-to" style="display: none;">
-	<div class="express-mails-title"></div>
-	<a href="javascript:void(0);" onclick="popup_close();"><div class="express-mails-close"></div></a>
+<div class="express-emails <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?> welcome-to" style="display: none;">
+	<div class="express-mails-title <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
+	<a href="javascript:void(0);" onclick="popup_close();"><div class="express-mails-close <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div></a>
 	<div class="singup-info">
 		<div class="singup-text"><?php echo $this->__("Do you have your ExpressAccount yet?");?></div>
 		<div class="signup-list">
@@ -339,10 +339,10 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 </script>
 <?php } ?>
 <!--  welcome back -->
-<div class="express-emails welcome-back" style="display: none;">
-	<div class="express-mails-title"></div>
+<div class="express-emails welcome-back <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>" style="display: none;">
+	<div class="express-mails-title <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
 	<a href="javascript:void(0);" onclick="popup_close();"><div
-			class="express-mails-close"></div></a>
+			class="express-mails-close <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div></a>
 	<div class="singup-info">
 		<div class="singup-text"><?php echo $this->__("It's fast and easy. Get access to ExpressAccount Only discounts!");?></div>
 	</div>
@@ -400,10 +400,10 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 //]]>  	 
 </script>
 <!-- join us  -->
-<div class="express-emails join-us" style="display: none;">
-	<div class="express-mails-title"></div>
+<div class="express-emails join-us <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>" style="display: none;">
+	<div class="express-mails-title <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
 	<a href="javascript:void(0);" onclick="popup_close();"><div
-			class="express-mails-close"></div></a>
+			class="express-mails-close <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div></a>
 	<div class="singup-info">
 		<div class="singup-text"><?php echo $this->__("It's fast and easy. Get access to ExpressAccount Only discounts!");?></div>
 	</div>
@@ -458,7 +458,7 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 					<input type="radio" class="input-text sex" title="Sex" value="1" id="sex_popup" name="sex_p"   /><?php echo $this->__("Male");?> 
 					<input type="radio" class="input-text sex" title="Sex" value="2" id="sex_popup" name="sex_p"  /><?php echo $this->__("Female");?> 	
 				</div>											
-				<div class="save-btn">
+				<div class="save-btn <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
 				<button   title="Save" class="button" onclick="save_additional('.express-emails.join-us');" type="button"><div><span><?php echo $this->__('Continue');?></span></div></button>
 				<div class="skip" onclick="popup_close(); window.location='/customer/account/login/';" ><?php echo $this->__('Skip');?></div>
 				</div>
