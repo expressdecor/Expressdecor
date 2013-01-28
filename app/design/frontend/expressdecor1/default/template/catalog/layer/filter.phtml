@@ -157,7 +157,7 @@ $iCounter = 0; ?>
  </script>
  <div >
 <li>
-<a class="cat-more" id="btn-<?php echo $filt_name; ?>" onclick="hide_<?php echo $filt_name; ?>();" ><?php echo $this->__('Show more');?></a> <div id="more-arrow-img-down-<?php echo $filt_name; ?>" class="more-arrow"></div><div id="more-arrow-img-up-<?php echo $filt_name; ?>" class="more-arrow-hide"></div>
+<a class="cat-more" id="btn-<?php echo $filt_name; ?>" onclick="hide_<?php echo $filt_name; ?>();" ><?php echo $this->__('Show more');?></a> <div id="more-arrow-img-down-<?php echo $filt_name; ?>" class="more-arrow <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div><div id="more-arrow-img-up-<?php echo $filt_name; ?>" class="more-arrow-hide <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
 </li>
 </div>
  <script type="text/javascript">

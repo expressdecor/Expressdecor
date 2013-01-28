@@ -25,7 +25,7 @@
  */
 ?>
 <div class="footer-container">
-    <div class="footer">
+    <div class="footer <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
 	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_links')->toHtml() ?>
         
     </div>

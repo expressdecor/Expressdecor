@@ -81,7 +81,7 @@
 
     <?php echo $this->getChildHtml('global_notices') ?>
 
-    <div class="page">
+    <div class="page <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
 
         <?php echo $this->getChildHtml('header') ?>
 

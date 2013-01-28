@@ -1,9 +1,9 @@
-<div id="feedbackP">
+<div id="feedbackP"  class="fb_windowP <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
   
 </div>
  
 <div class="feedback-overlay" style="display:none;"></div>
-<div id="feedbackP_window">
+<div id="feedbackP_window" class="fb_window <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
     <div id="feedbackButton"><?php echo $this->__('Feedback'); ?></div>
 <div id="feedback_hide" onclick="hide_feedback();"></div>
 <form action="/contacts/index/post/" class="feedback" id="feedbackForm" method="post">
