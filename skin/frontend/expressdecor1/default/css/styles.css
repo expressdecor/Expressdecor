@@ -4510,6 +4510,7 @@ background:url(../images/es_header_footer_sprite1.png) -7px -212px no-repeat;
 .express-emails.es .singup-right  button div   {background-image: url("../images/es_header_footer_sprite1.png");}
 
 .express-emails .singup-right  button div span {background: none transparent;  color: #FFFFFF; font-weight:bold; font-size:15px; text-transform:uppercase;padding: 11px 3px 0px 0px;}
+.express-emails.es .singup-right  button div span {padding: 2px 3px 0px 0px;}
 .join-us .singup-right  button div span   {padding: 11px 3px 0px 0px;}
 
 .join-us  .singup-right .agreement-txt{float:left; font-size:13px; color: #485654; width:212px;}
