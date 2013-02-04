@@ -41,12 +41,15 @@
 <div class="header-container">
    
     <div class="header">
+    
       <div class="header-line <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>" >
       <a class="header-line-shipping" href="<?php echo $this->getUrl('') ?>shipping-and-taxes.html"></a>
       <a class="header-line-tax" href="<?php echo $this->getUrl('') ?>shipping-and-taxes.html"></a>
       <a class="header-line-returns" href="<?php echo $this->getUrl('') ?>returns.html"></a>
       </div>
-     
+      <div class="launguages">
+    	<?php echo $this->getChildHtml('store_language') ?>
+      </div> 
         <div class="branding <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
         <?php if ($this->getIsHomePage()):?>
             <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>

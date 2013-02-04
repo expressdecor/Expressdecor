@@ -766,7 +766,7 @@ width: 145px;
 
 
 .header-container { margin: 46px 0 0px; text-align:left; }
-.header { padding: 14px 0 9px; min-height:56px; position:relative; z-index:5; width:940px; background:url(../images/under-menu.png) no-repeat 0 2px; }
+.header { padding: 14px 0 9px; min-height:56px; position:relative; z-index:5; width:940px;   }
 /*div.header {padding-top: 20px;}*/
 .header .logo { text-decoration:none !important; margin-top:0px;margin-top: 0px; }
 .header .logo strong { position:absolute; top:-999em; left:-999em; width:0; height:0; font-size:0; line-height:0; text-indent:-999em; overflow:hidden; }
@@ -4282,9 +4282,11 @@ background-repeat:no-repeat;
    box-shadow: 0 0 20px #CCCCCC;
 }
 
-.tabout-left-button.es , .tabout-left-button.es:hover, #feedbackP.es, #feedbackP.es:hover { background-image: url("../images/es_newbtn.png")}
-
-
+.tabout-left-button.es , .tabout-left-button.es:hover, #feedbackP.es, #feedbackP.es:hover { background-image: url("../images/es_newbtn.png"); }
+#feedbackP.es {background-position: 100% -1px;}
+.tabout-left-button.es {background-position: 0px -1px;}
+.tabout-left-button:hover{ background-position: 0px 100%}
+ #feedbackP.es:hover {background-position: 100% -1px;}
 .tabout_window .online-content {min-height:100px;overflow-y:auto; padding:48px 0px 50px 0px;}
 .tabout_window .offline-content {min-height:100px;overflow-y:auto; padding:48px 0px 50px 0px;}
 .tabout_window .online-content .contact-block  {padding:0px 0px 0px 0px;}
@@ -4585,7 +4587,12 @@ background:url(../images/es_header_footer_sprite1.png) -7px -212px no-repeat;
 /*Coupons popup window*/
 .coupons-overlay {position: fixed;z-index: 13;height: 100%;width: 100%;background-color: #000000; opacity: 0.7; top:0; left:0;}
 .express-coupon {position:absolute;margin-left:147px;top: 25%; background-color: #FFFFFF; opacity: 1; width: 558px; height:353px;z-index:99999;background: url("../images/ed_coupons_window.png") 0px 0px no-repeat;}
+.express-coupon.es {background-image:  url("../images/es_ed_coupons_window.png");}
 .close-coupons-window {width:39px;height:39px; cursor:pointer;position:absolute;right:0px;}
 .coupon-descr {font-size:13px;  left:184px; bottom:136px; position:absolute; font-weight:bold; }
 .coupon-code  {font-size:32px;font-weight:bold;  cursor:pointer; color: #FFFFFF; left:184px; bottom:77px; position:absolute; text-align:center; width:191px;}
 .coupon-promo-text {font-size:13px;  left:172px; bottom:45px; position:absolute; font-weight:bold;}
+
+/* LAunguage switcher*/
+.launguages a {font-size:14px; font-weight:bold; color: #008000;text-decoration:none;}
+.launguages {position:absolute; left:235px; bottom:55px; z-index:2;}

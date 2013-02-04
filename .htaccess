@@ -48,7 +48,6 @@ SetEnvIf Host ^dev\.es\.expressdecor\.com$ MAGE_RUN_CODE=es
 ############################################
 ## disable automatic session start
 ## before autoload was initialized
-
     php_flag session.auto_start off
 
 ############################################
