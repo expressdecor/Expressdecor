@@ -57,7 +57,8 @@ function login(){
         } else {
         	update_account_links();
         	popup_close();
-        	window.location="/customer/account/login/"; 
+        	location.reload(); 
+        	//window.location="/customer/account/login/"; 
         }                
 }); 
 	}
@@ -119,10 +120,12 @@ function save_additional(type){
 	jQ.get('/facebook/facebook/saveadditional',  { email:email_str, sex: sex,fname:firstname,lname:lastname},function(data){              
 	if (data=='"success"'){
 			popup_close();
-			window.location="/customer/account/login/";        			 
+			location.reload(); 
+			//window.location="/customer/account/login/";        			 
       }else{
-      	popup_close();        
-      	window.location="/customer/account/login/";        	                	
+      	popup_close();
+      	location.reload();         
+      //	window.location="/customer/account/login/";        	                	
      	}	
 	 }); 	 			
 	}
@@ -156,7 +159,8 @@ function post_request(type,obj) {
 	            		popup_close();
 	            		jQuery(obj).parent().children(".popup-loader").hide();
 	            		jQuery(obj).show();
-	            		window.location="/customer/account/login/";
+	            		//window.location="/customer/account/login/";
+	            		location.reload(); 
 	                    }else if (data=='success_1') {
 	                    	update_account_links(); 
 		                    second_step(type);
@@ -460,7 +464,7 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 				</div>											
 				<div class="save-btn <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
 				<button   title="Save" class="button" onclick="save_additional('.express-emails.join-us');" type="button"><div><span><?php echo $this->__('Continue');?></span></div></button>
-				<div class="skip" onclick="popup_close(); window.location='/customer/account/login/';" ><?php echo $this->__('Skip');?></div>
+				<div class="skip" onclick="popup_close(); location.reload(); " ><?php echo $this->__('Skip');?></div>
 				</div>
 				
 		

@@ -1028,7 +1028,7 @@ margin: 0 0 0 -8px;
 .col-main .block .block-content { padding:20px; }
 
 /* Generic box */
-.info-box { border:1px solid #cfcfcf; margin-top:-1px; background:#f5f5f5 url(../images/bkg_block.gif) repeat-x 0 0; position:relative; z-index:1; }
+.info-box { border:1px solid #cfcfcf; margin-top:-1px; background:#f5f5f5 url(../images/bkg_block.gif) repeat-x 0 0; position:relative; z-index:1; min-height:20px;overflow:auto; margin-top:20px; }
 .info-box .box-title { margin:17px 17px 0 17px; font:14px/1.25 Arial, Helvetica, sans-serif; padding:0; color:#222; }
 .info-box .box-title a { font-size:11px; text-transform:lowercase; }
 .info-box .box-content { padding:10px 17px 17px; color:#555; }
@@ -3287,7 +3287,7 @@ float: left; padding: 5px;
 }
 
 address {
-height: 20px;
+min-height: 20px;
 text-transform: uppercase; 
 font-size: 14px; 
 color: #FFFFFF;
@@ -4513,7 +4513,9 @@ background:url(../images/es_header_footer_sprite1.png) -7px -212px no-repeat;
 .express-emails.es .singup-right  button div   {background-image: url("../images/es_header_footer_sprite1.png");}
 
 .express-emails .singup-right  button div span {background: none transparent;  color: #FFFFFF; font-weight:bold; font-size:15px; text-transform:uppercase;padding: 11px 3px 0px 0px;}
-.express-emails.es .singup-right  button div span {padding: 2px 3px 0px 0px;}
+.express-emails.es .singup-right  button div span {padding: 2px 3px 0px 0px; }
+.express-emails.welcome-back.es .singup-right  button div span  {padding: 13px 0px 0px 0px; font-size:13px;}
+
 .join-us .singup-right  button div span   {padding: 11px 3px 0px 0px;}
 
 .join-us  .singup-right .agreement-txt{float:left; font-size:13px; color: #485654; width:212px;}
@@ -4595,5 +4597,12 @@ background:url(../images/es_header_footer_sprite1.png) -7px -212px no-repeat;
 .coupon-promo-text {font-size:13px;  left:172px; bottom:45px; position:absolute; font-weight:bold;}
 
 /* LAunguage switcher*/
-.launguages a {font-size:14px; font-weight:bold; color: #008000;text-decoration:none;}
-.launguages {position:absolute; left:235px; bottom:55px; z-index:2;}
+.launguages a {    color: #007FFF;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;}
+.launguages {bottom: 0;
+    color: #FF0000;
+    left: 446px;
+    position: absolute;
+    z-index: 2;}
