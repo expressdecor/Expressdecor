@@ -68,9 +68,9 @@ var google_conversion_value = 0;
 
 <?php if ($this->getOrderId()):?>
 <?php if ($this->getCanViewOrder()) :?>
-    <div class="yourorder"><p><h4>Your order # is:<h2><?php echo $this->__('%s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></h2></h4></p></div>
+    <div class="yourorder"><p><h4><?php echo $this->__("Your order # is");?>:<h2><?php echo $this->__('%s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></h2></h4></p></div>
 <?php  else :?>
-  <div class="yourorder-guest"><p><h4 style="float: left;font-size: 14px;padding-right: 10px; padding-top: 10px;">Your order # is:<h2 style="color: #D12C01;font-size: 27px;"><?php echo $this->__('%s.', $this->escapeHtml($this->getOrderId())) ?></h2></h4></p></div>
+  <div class="yourorder-guest"><p><h4 style="float: left;font-size: 14px;padding-right: 10px; padding-top: 10px;"><?php echo $this->__("Your order # is");?>:<h2 style="color: #D12C01;font-size: 27px;"><?php echo $this->__('%s.', $this->escapeHtml($this->getOrderId())) ?></h2></h4></p></div>
 <?php endif;?>
     <p><?php echo $this->__('You will receive an order confirmation email with details of your order and a link to track its progress.') ?></p>
 <?php if ($this->getViewOrder() && $this->getCanPrintOrder()) :?>
@@ -94,9 +94,9 @@ var google_conversion_value = 0;
 <?php endforeach;?>
 </ul>
 <?php endif;?>
-<p>Your order is currently being processed and will be promptly shipped. If you have any questions about your order, please contact our customer service department at <strong>866-5072725 or Email us at info@expressdecor.com</strong>. Our knowledgeable representatives are available <strong>Monday-Friday 9am-6pm Eastern Standard Time</strong> to assist with any general questions, order inquiries, and any other questions you may have about your order or any of the products we carry.<br /><br />
+<p><?php echo $this->__("Your order is currently being processed and will be promptly shipped. If you have any questions about your order, please contact our customer service department at ");?><strong><?php echo $this->__("866-5072725 or Email us at info@expressdecor.com");?></strong>. <?php echo $this->__("Our knowledgeable representatives are available"); ?> <strong><?php echo $this->__("Monday-Friday 9am-6pm Eastern Standard Time");?></strong><?php echo $this->__(" to assist with any general questions, order inquiries, and any other questions you may have about your order or any of the products we carry.");?><br /><br />
 
-We appreciate your business; don't forget to checkout our website for all your future remodeling projects.
+<?php echo $this->__("We appreciate your business; don't forget to checkout our website for all your future remodeling projects.");?>
 </p>
 <div class="buttons-set">
     <button type="button" class="button" title="<?php echo $this->__('Continue Shopping') ?>" onclick="window.location='<?php echo $this->getUrl() ?>'"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>

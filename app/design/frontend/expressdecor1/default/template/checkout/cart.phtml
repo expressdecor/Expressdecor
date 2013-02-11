@@ -103,11 +103,12 @@
     	}
     }
              
-    foreach ($coupon_collection as $coupon) {
+    foreach ($coupon_collection as $coupon) {  
     	$conditions = $coupon->getConditionsSerialized();
     	$unserialized_conditions = unserialize($conditions);
      
-    	if (count($unserialized_conditions['conditions'])==1 && $unserialized_conditions['conditions'][0]['attribute']=='base_subtotal') {
+    	if (count($unserialized_conditions['conditions'])==1 && $unserialized_conditions['conditions'][0]['attribute']=='base_subtotal') {  
+
     		// Only for one conditions based on subtotal
     		$discount_subtotal=$unserialized_conditions['conditions'][0]['value'];
     		if ($discount_subtotal>$subtotal){
@@ -119,7 +120,7 @@
     			} else {
 	    			$discount_amount='$'.$discount_amount;
     			}
-    			$coupon_message="<div class='get-discount'>".$this->__('Only '.$discount_subtotal_delta.'  more for '.$discount_amount.' OFF')."</div>";
+    			$coupon_message="<div class='get-discount'>".$this->__('Only %s more for ',$discount_subtotal_delta).$this->__( $discount_amount.' OFF')."</div>";
     		}
     	}    	     	  
     }
@@ -138,7 +139,7 @@
     		if ($coupon_message) {
     			$coupon_message.="<br/>";
     		}
-	    	  $coupon_message.="<div class='get-free-shipping'>".$this->__('Only '.$shipping_delta. ' more for Free Shipping')."</div>";
+	    	  $coupon_message.="<div class='get-free-shipping'>".$this->__('Only %s more for Free Shipping',$shipping_delta)."</div>";
     	}    	
     }
     echo "<div class='get-more'>".$coupon_message."</div>";

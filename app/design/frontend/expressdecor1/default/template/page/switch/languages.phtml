@@ -44,7 +44,7 @@
 
 <?php foreach ($this->getStores() as $_lang): ?>
 	<?php if($_lang->getId()!=$this->getCurrentStoreId()): ?>                   
-		<a href="<?php echo $_lang->getCurrentUrl() ?>"><?php echo $this->__($lang_title); ?></a>             
+		<a href="<?php echo $_lang->getCurrentUrl() ?>"><img src="<?php echo $this->getSkinUrl('images/globe.png') ?>" style="padding-right:5px;padding-top:4px;" /><?php echo $this->__($lang_title); ?></a>             
 	<?php endif; ?>
 <?php endforeach; ?>
  
