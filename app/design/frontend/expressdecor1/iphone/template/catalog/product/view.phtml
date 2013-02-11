@@ -336,7 +336,7 @@ if(!empty( $promo ) ) { ?>
 <div class="add-options">
 <!-- Start of  page: #Details -->
 <div id="details_header" class="product-info-tab">
-		Details
+		 <?php echo $this->__("Details");?>
 	</div><!-- /header -->
 <div  id="details" style="display:none;">	 	 
 	<p> <?php echo $detailedInfoGroup['description'] ?> </p>	 
@@ -347,7 +347,7 @@ if(!empty( $promo ) ) { ?>
 	  if (!empty($warrancy)):
             ?>
 <div id="warranty_header"  class="product-info-tab">
-		Warranty
+		<?php echo $this->__("Warranty");?>
 	</div><!-- /header -->
 <div  id="warranty" style="display:none;">	             
 	<p><?php echo $warrancy; ?></p>
@@ -364,7 +364,7 @@ if(!empty( $promo ) ) { ?>
 <!--	  Shipping info-->
 	  
 <div id="shipping_header"  class="product-info-tab">
-Shipping and Returns
+<?php echo $this->__("Shipping and Returns");?>
 	</div><!-- /header -->
 <div  id="shipping" style="display:none;">	 	
 	<p> <?php
@@ -385,7 +385,7 @@ Shipping and Returns
 <!--Technical	-->
 	<?php if (!empty($detailedInfoGroup['additional'])):?>
 <div  id="technical_header"  class="product-info-tab">
-Technical Specs
+<?php echo $this->__("Technical Specs");?>
 	</div><!-- /header -->
 <div  id="technical" style="display:none;">	
 	<p>
@@ -409,7 +409,7 @@ Technical Specs
  if (!empty($reviews)):
                          ?>
 <div id="reviews_header"  class="product-info-tab">
-Reviews
+<?php echo $this->__("Reviews");?>
 	</div><!-- /header -->
 <div  id="reviews" style="display:none;">	
 	<p><?php echo $reviews; ?></p>
