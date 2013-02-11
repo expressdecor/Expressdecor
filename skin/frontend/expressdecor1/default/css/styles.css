@@ -2354,10 +2354,10 @@ ul.cms-menu.type-square ul { list-style-type:square; }
 .cart .checkout-types {/* float:right;*/ text-align:center; }
 .cart .checkout-types .paypal-or { margin:0 8px; line-height:2.3; }
 .cart .checkout-types fieldset { display:inline; }
-.cart .checkout-types .btn-proceed-checkout span { background-image:url(../images/bkg_btn-co-1.gif); height:27px !important; padding:0 0 0 13px !important; }
-.cart .checkout-types .btn-proceed-checkout span span { border:0; background-image:url(../images/bkg_btn-co-1.gif); padding:1px 10px 0 21px !important; color:#4D6228; font:bold 15px/26px Arial, Helvetica, sans-serif !important; height:26px; text-transform:none; margin:0 !important; }
+.cart .checkout-types .btn-proceed-checkout span { background-image:url(../images/bkg_btn-co-1.png); height:27px !important; padding:0 0 0 13px !important; }
+.cart .checkout-types .btn-proceed-checkout span span { border:0; background-image:url(../images/bkg_btn-co-1.png); padding:1px 10px 0 21px !important; color:#4D6228; font:bold 15px/26px Arial, Helvetica, sans-serif !important; height:26px; text-transform:none; margin:0 !important; }
 .cart .title-buttons .checkout-types li { float:left; margin:0 0 5px 5px; }
-
+.cart .checkout-types .btn-proceed-checkout .lock-sign {position:absolute; background:url(../images/lock.png) no-repeat transparent; width:18px; height:20px; margin-top:4px;margin-left:-8px;}
 /* Shopping Cart Table */
 .cart-table { border-width:1px 0; }
 .cart-table .item-msg { font-size:10px; }
@@ -4603,6 +4603,6 @@ background:url(../images/es_header_footer_sprite1.png) -7px -212px no-repeat;
     text-decoration: none;}
 .launguages {bottom: 0;
     color: #FF0000;
-    left: 446px;
+    left: 433px;
     position: absolute;
     z-index: 2;}
