@@ -114,8 +114,9 @@ if ($_product->getTypeId() =='simple') {
 
 		//if this product has a parent
 		$parent = Mage::getModel('catalog/product')->load($parentId[0]);
-		$newurl = $parent->getProductUrl();
-		$newurl=$newurl.'?finish='.str_replace(' ','_',$finish);
+		$parent->setStoreId(Mage::app()->getStore()->getId());
+		$newurl = $parent->getProductUrl();		 
+		$newurl=$newurl.'?finish='.str_replace(' ','_',$finish);		 
 		Header( "HTTP/1.1 301 Moved Permanently" );
 		Header("Location: $newurl");
 		Mage::app()->getResponse()->setRedirect($newurl);
