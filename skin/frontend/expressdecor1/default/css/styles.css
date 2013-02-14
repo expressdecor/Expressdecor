@@ -1102,6 +1102,7 @@ margin: 0 0 0 -8px;
 /* Top Shopping Cart */
 .top-cart { float:right; /* width:360px; */ position:relative; padding-right:0px;}
 .top-cart .block-title { white-space:nowrap; width:84px; /* _width:242px; min-width:242px; */ cursor:pointer;  color:#1e75b4; font-weight:bold; font-size:11px; text-transform:uppercase;  line-height:18px; height:18px; }
+ .header-login.es .top-cart .block-title {width:93px;}
 .top-cart .block-title strong { display:block; padding-right:10px; background:url(../images/bkg_header-panel.gif) 100% -71px no-repeat; font-size:12px; color:#FF6100; font-weight:bold; text-decoration:none; text-transform: none;}
 .top-cart .block-title.expanded { background-position:0 3px !important; }
 .top-cart .block-title.expanded strong { background-position:100% -126px !important; color:#d33911; }

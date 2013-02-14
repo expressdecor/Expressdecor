@@ -74,7 +74,7 @@
         </div>
 
     </div>
-    <div  class="header-login">
+    <div  class="header-login <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
     <?php echo $this->getChildHtml('accountLinks') ?>
      <?php  echo $this->getChildHtml('topCart') ?>
    
