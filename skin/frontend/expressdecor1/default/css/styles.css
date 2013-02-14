@@ -1228,7 +1228,7 @@ font-weight: bold;}
 .products-grid .item .star15.es, .star20.es ,
 .products-grid .item .star20.es, .star25.es ,
 .products-grid .item .star25.es , .star30.es ,
-.products-grid .item .star30.es {background-image: url(../images/es_header_footer_sprite1.png) -401px -103px no-repeat;  }
+.products-grid .item .star30.es {background: url(../images/es_header_footer_sprite1.png) -401px -103px no-repeat;  }
  
  
 /* View Type: Grid */
