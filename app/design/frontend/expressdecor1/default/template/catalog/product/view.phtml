@@ -230,8 +230,19 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
     
     </h1>
  </div>
-                    
+ <div class="review-wishlist">                   
+
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+<?php if ($this->helper('wishlist')->isAllow()) : ?>
+	<div class="addto-wishlist">
+ 		<a href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submitLight(this, '<?php echo $_wishlistSubmitUrl ?>'); return false;" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a>
+ 	</div>
+ <?php endif; ?>
+ 
 <?php echo $this->getReviewsSummaryHtml($_product, false, true); ?>
+ 
+ </div>
+ 
 <!--Options-->
                    <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container2') ):?>
                      <div class="options-container-big">                       
