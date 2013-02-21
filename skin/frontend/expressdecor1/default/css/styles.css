@@ -1688,7 +1688,7 @@ border:1px solid #cfcfcf; }
 /* Rating */
 .rating-box { width:61px; height:12px; font-size:0; line-height:0; /*background:url(../images/bkg_rating.gif) 0 100% repeat-x;*/ overflow:hidden; }
 .rating-box .rating { float:left; height:12px; background:url(../images/bkg_rating.png) 0 0 repeat-x; }
-.ratings { margin:0px 0; border-bottom: 1px dotted #A9A9A9;padding-bottom: 10px; margin-left: 0px; background-color:#F1F1F1; padding-left: 10px;padding-top: 5px}
+.ratings { margin:0px 0;  padding-bottom: 10px; margin-left: 0px; background-color:#F1F1F1; padding-left: 10px;padding-top: 5px}
 .ratings .rating-box { float:left; margin-right: 10px; }
 .ratings .amount { font-size:12px;float:left;  }
 .ratings .rating-links { margin:0; font-size:12px; }
@@ -4631,3 +4631,7 @@ background:url(../images/es_header_footer_sprite1.png) -7px -212px no-repeat;
     left: 433px;
     position: absolute;
     z-index: 2;}
+
+.review-wishlist {min-height:1px; overflow:auto; background-color: #F1F1F1; border-bottom: 1px dotted #A9A9A9;}
+.ratings { }
+.addto-wishlist { float:left;background-color: #F1F1F1; font-size:12px; min-width:85px; padding:5px 6px 10px 10px;}
