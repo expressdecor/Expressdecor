@@ -8,19 +8,17 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () != 'home'  && $coupon &&
 ?>
  <script type="text/javascript">
  jQuery(document).ready(function() { 
-	 jQ('.page > div').each(function() { 
-		 if ( jQ(this).attr("id") !='express-coupon')
-		 	jQ(this).css('opacity','0.5');
-	 });
-
+	 
 	 jQ.get('/page/popupwindow/getparameters',  {coupon: '<?php echo $coupon;?>'},function(data){    
 	   if (data.length>0){           	 
 	  	 params=jQ.parseJSON(data);	  	 
-	  	 jQ('.coupon-descr').html(params.label);
-		 jQ('.coupon-code').html(params.code);
-		}  
-		         
-	});     
+		 if (  params.code ) {
+	  	 	jQ('.coupon-descr').html(params.label);
+		 	jQ('.coupon-code').html(params.code);
+		 	show_coupon_window();
+		}	
+	   }		 		         
+	  });     
 	 
    	}); 
 
@@ -32,9 +30,18 @@ function close_coupon_window() {
 	 
 	 jQ('.express-coupon').hide();  
 }
+
+function show_coupon_window() {
+	 jQ('.page > div').each(function() { 
+		 if ( jQ(this).attr("id") !='express-coupon')
+		 	jQ(this).css('opacity','0.5');
+	 });
+	 jQ('.express-coupon').show();  
+
+}
  </script>	
  
-<div id="express-coupon" class="express-coupon <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
+<div id="express-coupon"  style="display:none;" class="express-coupon <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
 
 <a href="javascript:void(0)" onclick="close_coupon_window()"><div class="close-coupons-window"></div></a>
 <div class="coupon-descr"><?php echo $label;?></div>
