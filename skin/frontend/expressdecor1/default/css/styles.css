@@ -2392,16 +2392,34 @@ ul.cms-menu.type-square ul { list-style-type:square; }
 .cart .shipping .form-list .input-text,
 .cart .shipping .form-list select { display:block; float:none; }
 
-.cart .crosssell { float:left; min-height:400px; width:260px; padding:0 20px 15px 30px; border:1px solid #d9d9d9; border-width:0 1px 0 0; background:#fbf3f0; }
-.cart .crosssell h2 { font-size:11px; color:#cd3800; font-weight:bold; text-transform:uppercase; }
-.cart .crosssell .item { padding:17px 0 0 ; }
-.cart .crosssell .product-image { float:left; margin:3px -90px 0 0; }
-.cart .crosssell .product-shop { margin-left:90px;  }
+/*Cart Crosssel Carousel*/
+.cart .crossssel-title {font-size:12px; font-weight:bold;margin-top:15px; color:#D12C01; font:20px/27px Arial;}
+
+.cart .crosssell {min-height:1px; overflow:auto; padding:0px 0px;
+ background:#FFFFFF;
+position:absolute; overflow:hidden; position:relative; clear:both;
+height:113px; width: 938px; margin:0px;
+}
+
+#express-crosssell .navButton { cursor:pointer; text-indent:-9999px;  z-index:10;  position:absolute; bottom:0px; width:24px; height:87px; top:34px; }
+#express-crosssell .navButton:active {right:0px;}
+#express-crosssell .navButton.previous {  background: url("../images/home.png") -212px -508px no-repeat; width: 12px;
+height:37px;margin-left: 5px; left:0px; 
+ }
+#express-crosssell .navButton.next {  right:0px; background-image: url("../images/home.png");
+width: 22px; height:37px; background-repeat:no-repeat; background-position: -223px -508px;
+ }
+
+.cart .crosssell .container { position:absolute;  height: 78px;  left:20px; overflow:hidden;  width: 899px; top:5px; }
+.cart .crosssell .caption { font-size:11px; color:#cd3800; font-weight:bold; text-transform:uppercase; }
+.cart .crosssell .item { position:relative; cursor:pointer; padding: 5px 10px 5px 0 ; float:left; width:213px; clear:right; }
+ .cart .crosssell .items {position:absolute;  top:0;   /*width:1900px;*/ height: 88px; } 
+.cart .crosssell .item .price-box span {font-size:11px;}
+.cart .crosssell .product-image { float:left; margin:3px 5px 0 0; }
 .cart .crosssell .product-name,
 .cart .crosssell .price-box,
-.cart .crosssell p,
-.cart .crosssell .add-to-links { margin:0 0 5px; }
-.cart .crosssell .add-to-links li { margin:0; }
+.cart .crosssell p { margin:0 0 5px; }
+/*Cart Crosssel Carousel*/
 
 /* Shopping Cart Totals */
 .cart .totals { float:right; width:275px; padding:23px 15px 0 15px; font-size: 12px;background:url(../images/bkg_cart.gif) repeat-y 100% 0; }

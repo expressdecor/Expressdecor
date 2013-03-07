@@ -7,7 +7,33 @@ AppBehavior.Load = function() {
 }
 AppBehavior.CarouselRules = {
 
-  
+	    '#express-crosssell': function(element) {
+	        //Pictures
+	        AppBehavior.PictureCarousel = new Carousel('crossel-carousel', element, 223, 78, AppBehavior, {
+	        	showSize:4,
+	        	scroll:1,
+	            setSize: 2,
+	            duration: .5,
+	            direction: 'horizontal',
+	            itemParser: function(item) {
+	                //Given html element you can build a data object for the item if needed for later activatio
+	                var sKey = item.down('.key').innerHTML;
+	                var sCaption = item.down('.caption').innerHTML;
+	                var sPictureHtml = item.down('.picture').innerHTML;
+	                return { name: sCaption, pictureHtml: sPictureHtml };
+	            },
+	            setItemEvents: function(carousel, itemElement, carouselItem, observer) {
+	                //This allows you to set events to the item like rollovers/mouse events
+	                Event.observe(itemElement, 'click', function() {
+	                    carousel.activate(carouselItem);
+	                });
+	            },
+	            allowAutoLoopOnSet: true,
+	            allowAutoLoopOnIndividual: false
+	        });
+	        AppBehavior.PictureCarousel.load();
+	    },
+	    
     '#express-brands': function(element) {
         //Pictures
         AppBehavior.PictureCarousel = new Carousel('PictureCarousel', element, 112, 33, AppBehavior, {
@@ -58,7 +84,7 @@ AppBehavior.CarouselRules = {
     },
     
     '#Cmd_NextItem': function(element) {
-        Event.observe(element, 'click', function() {
+        Event.observe(element, 'click', function() {         
             AppBehavior.ProfileCarousel.next();
         });
     },
@@ -67,10 +93,17 @@ AppBehavior.CarouselRules = {
             AppBehavior.ProfileCarousel.previous();
         });
     }
+    
 }
 
 //EVENT OBSERVATION
 AppBehavior.fireActiveCarouselLoaded = function(carousel) {
+	if (carousel.key=="crossel-carousel") {	 
+		 setInterval(function(){			  
+			carousel.autonext();	
+		 },7000);
+	}
+	 
 }
 AppBehavior.fireActiveCarouselItem = function(carousel, element, item) {
     element.addClassName('selected');

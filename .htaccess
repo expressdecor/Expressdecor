@@ -33,12 +33,7 @@
 
 #    php_value memory_limit 64M
     php_value memory_limit 1024M
-    php_value max_execution_time 360
-
-###Multi sites 
-SetEnvIf Host ^(www\.)?dev\.es\.expressdecor\.com$ MAGE_RUN_CODE=es
-SetEnvIf Host ^dev\.es\.expressdecor\.com$ MAGE_RUN_CODE=es
-
+    php_value max_execution_time 120
 
 ############################################
 ## disable magic quotes for php request vars
@@ -48,6 +43,7 @@ SetEnvIf Host ^dev\.es\.expressdecor\.com$ MAGE_RUN_CODE=es
 ############################################
 ## disable automatic session start
 ## before autoload was initialized
+
     php_flag session.auto_start off
 
 ############################################
@@ -105,9 +101,6 @@ SetEnvIf Host ^dev\.es\.expressdecor\.com$ MAGE_RUN_CODE=es
 </IfModule>
 
 <IfModule mod_rewrite.c>
-
-
-
 
 ############################################
 ## enable rewrites
@@ -179,8 +172,6 @@ SetEnvIf Host ^dev\.es\.expressdecor\.com$ MAGE_RUN_CODE=es
 </IfModule>
 
 
-
-
 ############################################
 ## By default allow all access
 
@@ -192,157 +183,4 @@ SetEnvIf Host ^dev\.es\.expressdecor\.com$ MAGE_RUN_CODE=es
 ## http://developer.yahoo.com/performance/rules.html#etags
 
     FileETag none
-Redirect 301 /bathroom-accessories.html /bathroom/bathroom-accessories.html
-Redirect 301 /towel-bars-and-rings.html /bathroom/bathroom-accessories/towel-bars-and-rings.html
-Redirect 301 /bathroom-shelves.html /bathroom/bathroom-accessories/bathroom-shelves.html
-Redirect 301 /toilet-paper-holders.html /bathroom/bathroom-accessories/toilet-paper-holders.html
-Redirect 301 /toilet-brushes.html /bathroom/bathroom-accessories/toilet-brushes.html
-Redirect 301 /shower-baskets.html /bathroom/bathroom-accessories/shower-baskets.html
-Redirect 301 /bathroom-hooks.html /bathroom/bathroom-accessories/bathroom-hooks.html
-Redirect 301 /bathroom-soap-dispensers.html /bathroom/bathroom-accessories/bathroom-soap-dispensers.html
-Redirect 301 /bathroom-mirrors.html /bathroom/bathroom-accessories/bathroom-mirrors.html
-Redirect 301 /toothbrush-holders.html /bathroom/bathroom-accessories/toothbrush-holders.html
-Redirect 301 /soap-dishes.html /bathroom/bathroom-accessories/soap-dishes.html
-Redirect 301 /other-bathroom-accessories.html /bathroom/bathroom-accessories/other-bathroom-accessories.html
-Redirect 301 /kitchen-faucets.html /kitchen/kitchen-faucets.html
-Redirect 301 /kitchen-sinks.html /kitchen/kitchen-sinks.html
-Redirect 301 /undermount-kitchen-sinks.html /kitchen/kitchen-sinks/undermount-kitchen-sinks.html
-Redirect 301 /stainless-steel-kitchen-sinks.html /kitchen/kitchen-sinks/stainless-steel-kitchen-sinks.html
-Redirect 301 /double-bowl-kitchen-sinks.html /kitchen/kitchen-sinks/double-bowl-kitchen-sinks.html
-Redirect 301 /single-bowl-kitchen-sinks.html /kitchen/kitchen-sinks/single-bowl-kitchen-sinks.html
-Redirect 301 /apron-farmhouse-kitchen-sinks.html /kitchen/kitchen-sinks/apron-farmhouse-kitchen-sinks.html
-Redirect 301 /copper-kitchen-sinks.html /kitchen/kitchen-sinks/copper-kitchen-sinks.html
-Redirect 301 /small-kitchen-sinks.html /kitchen/kitchen-sinks/small-kitchen-sinks.html
-Redirect 301 /fireclay-kitchen-sinks.html /kitchen/kitchen-sinks/fireclay-kitchen-sinks.html
-Redirect 301 /kitchen-sink-and-faucet-combos.html /kitchen/kitchen-sink-and-faucet-combos.html
-Redirect 301 /kitchen-sink-accessories.html /kitchen/kitchen-sink-accessories.html
-Redirect 301 /single-handle-kitchen-faucets.html /kitchen/kitchen-faucets/single-handle-kitchen-faucets.html
-Redirect 301 /pullout-kitchen-faucets.html /kitchen/kitchen-faucets/pullout-kitchen-faucets.html
-Redirect 301 /stainless-steel-kitchen-faucets.html /kitchen/kitchen-faucets/stainless-steel-kitchen-faucets.html
-Redirect 301 /kitchen-faucets-with-sprayer.html /kitchen/kitchen-faucets/kitchen-faucets-with-sprayer.html
-Redirect 301 /bar-faucets.html /kitchen/kitchen-faucets/bar-faucets.html
-Redirect 301 /pot-fillers.html /kitchen/kitchen-faucets/pot-fillers.html
-Redirect 301 /commercial-kitchen-faucets.html /kitchen/kitchen-faucets/commercial-kitchen-faucets.html
-Redirect 301 /bathroom-faucets.html /bathroom/bathroom-faucets.html
-Redirect 301 /bathroom-wall-mount-faucets.html /bathroom/bathroom-faucets/bathroom-wall-mount-faucets.html
-Redirect 301 /waterfall-faucets.html /bathroom/bathroom-faucets/waterfall-faucets.html
-Redirect 301 /bathtub-faucets.html /bathroom/bathroom-faucets/bathtub-faucets.html
-Redirect 301 /faucets-for-vessel-sinks.html /bathroom/bathroom-faucets/faucets-for-vessel-sinks.html
-Redirect 301 /lavatory-faucets.html /bathroom/bathroom-faucets/lavatory-faucets.html
-Redirect 301 /bathroom-sinks.html /bathroom/bathroom-sinks.html
-Redirect 301 /vessel-bathroom-sinks.html /bathroom/bathroom-sinks/bathroom-vessel-above-counter-sinks.html
-Redirect 301 /bathroom-sinks-accessories.html /bathroom/bathroom-sinks/bathroom-sinks-accessories.html
-Redirect 301 /glass-vessel-sinks.html /bathroom/bathroom-sinks/glass-vessel-sinks.html
-Redirect 301 /ceramic-sinks.html /bathroom/bathroom-sinks/ceramic-sinks.html
-Redirect 301 /stone-sinks.html /bathroom/bathroom-sinks/stone-sinks.html
-Redirect 301 /bathroom-copper-sinks.html /bathroom/bathroom-sinks/bathroom-copper-sinks.html
-Redirect 301 /bathroom-vanities.html /bathroom/bathroom-vanities.html
-Redirect 301 /bathtubs.html /bathroom/bathtubs.html
-Redirect 301 /toilets.html /bathroom/toilets.html
-Redirect 301 /showers.html /bathroom/showers.html
-Redirect 301 /bathroom-sink-and-faucet-combos.html /bathroom/bathroom-sink-and-faucet-combos.html
-Redirect 301 /rough-in-kits-valves-and-extensions.html /sink-and-faucet-parts/rough-in-kits-valves-and-extensions.html
-Redirect 301 /spray-and-hose.html /sink-and-faucet-parts/spray-and-hose.html
-Redirect 301 /handles-accent-kits-inserts.html /sink-and-faucet-parts/handles-accent-kits-inserts.html
-Redirect 301 /flush-levers-and-actuators.html /sink-and-faucet-parts/flush-levers-and-actuators.html
-Redirect 301 /brackets-and-braces.html /sink-and-faucet-parts/brackets-and-braces.html
-Redirect 301 /single-tone-glass-sinks.html /bathroom/bathroom-sinks/glass-vessel-sinks/single-tone-glass-sinks.html
-Redirect 301 /multicolor-glass-sinks.html /bathroom/bathroom-sinks/glass-vessel-sinks/multicolor-glass-sinks.html
-Redirect 301 /square-and-rectangle-glass-sinks.html /bathroom/bathroom-sinks/glass-vessel-sinks/square-and-rectangle-glass-sinks.html
-Redirect 301 /small-glass-sinks.html /bathroom/bathroom-sinks/glass-vessel-sinks/small-glass-sinks.html
-Redirect 301 /amber-and-yellow-glass-sinks.html /bathroom/bathroom-sinks/glass-vessel-sinks/amber-and-yellow-glass-sinks.html
-Redirect 301 /black-glass-sinks.html /bathroom/bathroom-sinks/glass-vessel-sinks/black-glass-sinks.html
-Redirect 301 /brown-glass-sinks.html /bathroom/bathroom-sinks/glass-vessel-sinks/brown-glass-sinks.html
-Redirect 301 /blue-glass-sinks.html /bathroom/bathroom-sinks/glass-vessel-sinks/blue-glass-sinks.html
-Redirect 301 /red-glass-sinks.html /bathroom/bathroom-sinks/glass-vessel-sinks/red-glass-sinks.html
-Redirect 301 /clear-glass-sinks.html /bathroom/bathroom-sinks/glass-vessel-sinks/clear-glass-sinks.html
-Redirect 301 /frosted-glass-sinks.html /bathroom/bathroom-sinks/glass-vessel-sinks/frosted-glass-sinks.html
-Redirect 301 /broken-glass-sinks.html /bathroom/bathroom-sinks/glass-vessel-sinks/broken-glass-sinks.html
-Redirect 301 /rectangular-ceramic-sinks.html /bathroom/bathroom-sinks/ceramic-sinks/rectangular-ceramic-sinks.html
-Redirect 301 /oval-and-round-ceramic-sinks.html /bathroom/bathroom-sinks/ceramic-sinks/oval-and-round-ceramic-sinks.html
-Redirect 301 /square-ceramic-sinks.html /bathroom/bathroom-sinks/ceramic-sinks/square-ceramic-sinks.html
-Redirect 301 /single-bathroom-vanities.html /bathroom/bathroom-vanities/single-bathroom-vanities.html
-Redirect 301 /double-bathroom-vanities.html /bathroom/bathroom-vanities/double-bathroom-vanities.html
-Redirect 301 /antique-bathroom-vanities.html /bathroom/bathroom-vanities/antique-bathroom-vanities.html
-Redirect 301 /modern-bathroom-vanities.html /bathroom/bathroom-vanities/modern-bathroom-vanities.html
-Redirect 301 /corner-bathroom-vanities.html /bathroom/bathroom-vanities/corner-bathroom-vanities.html
-Redirect 301 /shower-enclosures.html /bathroom/showers/shower-enclosures.html
-Redirect 301 /shower-panels.html /bathroom/showers/shower-panels.html
-Redirect 301 /shower-sets.html /bathroom/showers/shower-sets.html
-Redirect 301 /featured-kitchen-faucets.html /featured-products/featured-kitchen-faucets.html
-Redirect 301 /featured-kitchen-sinks.html /featured-products/featured-kitchen-sinks.html
-Redirect 301 /featured-kitchen-accessory.html /featured-products/featured-kitchen-accessory.html
-Redirect 301 /featured-bathroom-sinks.html /featured-products/featured-bathroom-sinks.html
-Redirect 301 /featured-bathroom-faucets.html /featured-products/featured-bathroom-faucets.html
-Redirect 301 /featured-bathroom-accessories.html /featured-products/featured-bathroom-accessories.html
-Redirect 301 /round-and-oval-bathroom-combos.html /bathroom/bathroom-sink-and-faucet-combos/round-and-oval-bathroom-combos.html
-Redirect 301 /shower-niches.html /bathroom/showers/shower-niches.html
-Redirect 301 /small-bathroom-vanities.html /bathroom/bathroom-vanities/small-bathroom-vanities.html
-Redirect 301 /shower-trays.html /bathroom/showers/shower-trays.html
-Redirect 301 /ceramic-sink-and-faucet-combos.html /bathroom/bathroom-sink-and-faucet-combos/ceramic-sink-and-faucet-combos.html
-Redirect 301 /glass-sink-and-waterfall-faucet-combos.html /bathroom/bathroom-sink-and-faucet-combos/glass-sink-and-waterfall-faucet-combos.html
-Redirect 301 /single-tone-glass-sink-and-faucet-combos.html /bathroom/bathroom-sink-and-faucet-combos/single-tone-glass-sink-and-faucet-combos.html
-Redirect 301 /multicolor-glass-sink-and-faucet-combos.html /bathroom/bathroom-sink-and-faucet-combos/multicolor-glass-sink-and-faucet-combos.html
-Redirect 301 /bathroom-square-rectangular-sink-and-faucet-combos.html /bathroom/bathroom-sink-and-faucet-combos/bathroom-square-rectangular-sink-and-faucet-combos.html
-Redirect 301 /small-bathroom-sink-and-faucet-combos.html /bathroom/bathroom-sink-and-faucet-combos/small-bathroom-sink-and-faucet-combos.html
-Redirect 301 /wood-bamboo-kitchen-sinks.html /kitchen/kitchen-sinks/wood-bamboo-kitchen-sinks.html
-Redirect 301 /belle-foret-bfc10-lavatory.html /belle-foret-bfc10-copper-round-vessel-lavatory.html
-Redirect 301 /belle-foret-bfc19-vessel.html /belle-foret-bfc19-rectangular-copper-vessel-lavatory.html
-Redirect 301 /world-imports-ecabel-toilet.html /elizabethan-classics-ecabel-aberdeen-toilet-elongated.html
-Redirect 301 /world-imports-ecabrf-toilet.html /elizabethan-classics-ecabrf-aberdeen-toilet-round-front.html
-Redirect 301 /world-imports-ecetel-toilet.html /elizabethan-classics-ecetel-english-turn-toilet-elongated.html
-Redirect 301 /world-imports-ecetrf-toilet.html /elizabethan-classics-ecetrf-english-turn-round-front-toilet.html
-Redirect 301 /world-imports-ecr60b-tubs.html /elizabethan-classics-ecr60b-traditional-60-inches-roll-top-tub-wall-holes-cast-iron-bathtub.html
-Redirect 301 /belle-foret-bfc12-large-oval-lavatory.html /belle-foret-bfc12-large-oval-copper-sink.html
-Redirect 301 /belle-foret-bfc13-medium-oval-lavatory.html /belle-foret-bfc13-undermount-weathered-copper-medium-oval-lavatory.html
-Redirect 301 /world-imports-ecetpctr-toilet.html /elizabethan-classics-ecetpctr-english-turn-porcelain-pull-chain-toilet.html
-Redirect 301 /world-imports-eccs04-lavatory-faucet.html /elizabethan-classics-eccs04-bradsford-centerset-lavatory-faucet.html
-Redirect 301 /world-imports-eccs05-lavatory-faucet.html /elizabethan-classics-eccs05-bradsford-centerset-faucet.html
-Redirect 301 /world-imports-ecwm10-lavatory-faucet.html /elizabethan-classics-ecwm10-wiltshire-vessel-filler-lavatory-faucet.html
-Redirect 301 /world-imports-ecgdsltap-tubs.html /elizabethan-classics-ecgdsltap-grand-slipper-tub-rim-holes-cast-iron-bathtub.html
-Redirect 301 /world-imports-ecusadf60-tubs.html /elizabethan-classics-dual-acrylic-bathtub-ecusadf60-18783.html
-Redirect 301 /world-imports-ecusar60-tubs.html /elizabethan-classics-ecusar60-60-inches-roll-top-acrylic-bathtub.html
-Redirect 301 /world-imports-ecusasl60-tubs.html /elizabethan-classics-ecusasl60-60-inches-slipper-acrylic-bathtub.html
-Redirect 301 /world-imports-ecusasl67-tubs.html /elizabethan-classics-ecusasl67-66-inches-slipper-acrylic-bathtub.html
-Redirect 301 /giagni-b4-brancolo-pressure-balance-shower-set-millennium-brass.html /giagni-b4-brancolo-pressure-balance-shower-set-18664.html
-Redirect 301 /giagni-b5-brancolo-pressure-balance-tub-and-shower-set-millennium-brass.html /giagni-b5-brancolo-pressure-balance-tub-and-shower-set-18665.html
-Redirect 301 /world-imports-ecgdslcp0hole-tubs.html /elizabethan-classics-ecgdslcp0hole-grand-slipper-cast-iron-bathtub.html
-Redirect 301 /giagni-brancolo-toilet-tissue-holder-b9-pc.html /giagni-b9-brancolo-toilet-tissue-holder-18737.html
-Redirect 301 /giagni-dolo-tissue-roll-holder-d9-pc.html /giagni-d9-dolo-tissue-roll-holder-18739.html
-Redirect 301 /giagni-celina-tissue-roll-holder-c9-sn.html /giagni-c9-celina-tissue-roll-holder-18738.html
-Redirect 301 /giagni-esaro-tissue-roll-holder-e9-pc.html /giagni-e9-esaro-tissue-roll-holder-18740.html
-Redirect 301 /giagni-fino-18-inches-towel-bar-f6-mbpc.html /giagni-f6-mbpc-fino-18-inch-towel-bar-18542.html
-Redirect 301 /giagni-arzino-18-inches-towel-bar-a6-pc.html /giagni-a6-arzino-18-inch-towel-bar-18741.html
-Redirect 301 /giagni-brancolo-18-inch-towel-bar-b6-pc.html /giagni-b6-brancolo-18-inch-towel-bar-18742.html
-Redirect 301 /giagni-dolo-18-inches-towel-bar-d6-pc.html /giagni-d6-dolo-18-inch-towel-bar-18743.html
-Redirect 301 /giagni-esaro-18-inch-towel-bar-e6-pc.html /giagni-e6-esaro-18-inch-towel-bar-18745.html
-Redirect 301 /giagni-fino-tissue-roll-holder-f9-mbpc.html /giagni-f9-mbpc-fino-tissue-roll-holder-18744.html
-Redirect 301 /giagni-arzino-toilet-tissue-holder-a9-pc.html /giagni-a9-arzino-toilet-tissue-holder-18746.html
-Redirect 301 /giagni-cc1-pl-pc-colonial-high-spout-widespread-lavatory-faucet-polished-chrome.html /giagni-cc1-pl-pc-colonial-high-spout-widespread-lavatory-faucet.html
-Redirect 301 /giagni-celina-robe-hook-c10-pc.html /giagni-c10-celina-robe-hook-18727.html
-Redirect 301 /giagni-arzino-robe-hook-a10-pc.html /giagni-a10-arzino-robe-hook-18728.html
-Redirect 301 /giagni-brancolo-towel-ring-b8-pc.html /giagni-b8-brancolo-towel-ring-18729.html
-Redirect 301 /giagni-dolo-towel-ring-d8-pc.html /giagni-d8-dolo-towel-ring-18730.html
-Redirect 301 /giagni-esaro-towel-ring-e8-pc.html /giagni-e8-esaro-towel-ring-18731.html
-Redirect 301 /giagni-arzino-towel-ring-a8-pc.html /giagni-a8-arzino-towel-ring-18732.html
-Redirect 301 /giagni-fino-robe-hook-f10-mbpc.html /giagni-f10-fino-robe-hook-18733.html
-Redirect 301 /giagni-celina-18-inch-towel-bar-c6-sn.html /giagni-c6-celina-18-inch-towel-bar-18734.html
-Redirect 301 /giagni-fino-towel-ring-f8-mbpc.html /giagni-f8-fino-towel-ring-18735.html
-Redirect 301 /giagni-celina-towel-ring-c8-sn.html /giagni-c8-celina-towel-ring-18736.html
-Redirect 301 /giagni-brancolo-robe-hook-b10-pc.html /giagni-b10-brancolo-robe-hook-18725.html
-Redirect 301 /giagni-dolo-robe-hook-d10-pc.html /giagni-d10-dolo-robe-hook-18726.html
-Redirect 301 /kraus-kbu24-kpf1622-ksd30ch-32-inch-undermount-double-bowl-stainless-steel-kitchen-sink-with-chrome-kitchen-faucet-and-soap-dispenser-14254.html /kraus-kbu24-kpf1622-ksd30-32-inch-undermount-double-bowl-stainless-steel-kitchen-sink-with-kitchen-faucet-and-soap-dispenser-18681.html 
-Redirect 301 /kraus-kbu23-kpf1622-ksd30ch-32-inch-undermount-double-bowl-stainless-steel-kitchen-sink-with-chrome-kitchen-faucet-and-soap-dispenser-14247.html /kraus-kbu23-kpf1622-ksd30-32-inch-undermount-double-bowl-stainless-steel-kitchen-sink-with-kitchen-faucet-and-soap-dispenser.html 
-Redirect 301 /kraus-kbu22-kpf1622-ksd30ch-32-inch-undermount-double-bowl-stainless-steel-kitchen-sink-with-chrome-kitchen-faucet-and-soap-dispenser-14240.html /kraus-kbu22-kpf1622-ksd30-32-inch-undermount-double-bowl-stainless-steel-kitchen-sink-with-kitchen-faucet-and-soap-dispenser.html 
-Redirect 301 /kraus-kbu10-kpf1622-ksd30ch-23-inch-undermount-single-bowl-stainless-steel-kitchen-sink-with-chrome-kitchen-faucet-and-soap-dispenser-14209.html /kraus-kbu10-kpf1622-ksd30-23-inch-undermount-single-bowl-stainless-steel-kitchen-sink-with-kitchen-faucet-and-soap-dispenser.html 
-Redirect 301 /kraus-khu123-32-kpf1622-ksd30ch-32-inch-undermount-double-bowl-stainless-steel-kitchen-sink-with-chrome-kitchen-faucet-and-soap-dispenser-14202.html /kraus-khu123-32-kpf1622-ksd30-32-inch-undermount-double-bowl-stainless-steel-kitchen-sink-with-kitchen-faucet-and-soap-dispenser.html 
-Redirect 301 /kraus-khu103-33-kpf1622-ksd30ch-33-inch-undermount-double-bowl-stainless-steel-kitchen-sink-with-chrome-kitchen-faucet-and-soap-dispenser-14191.html /kraus-khu103-33-kpf1622-ksd30-33-inch-undermount-double-bowl-stainless-steel-kitchen-sink-with-kitchen-faucet-and-soap-dispenser.html 
-Redirect 301 /kraus-khu102-33-kpf1622-ksd30ch-33-inch-undermount-double-bowl-stainless-steel-kitchen-sink-with-chrome-kitchen-faucet-and-soap-dispenser-14184.html /kraus-khu102-33-kpf1622-ksd30-33-inch-undermount-double-bowl-stainless-steel-kitchen-sink-with-kitchen-faucet-and-soap-dispenser.html 
-Redirect 301 /kraus-khu101-23-kpf1622-ksd30ch-23-inch-undermount-single-bowl-stainless-steel-kitchen-sink-with-chrome-kitchen-faucet-and-soap-dispenser-14177.html /kraus-khu101-23-kpf1622-ksd30-23-inch-undermount-single-bowl-stainless-steel-kitchen-sink-with-kitchen-faucet-and-soap-dispenser.html 
-Redirect 301 /kraus-khu100-32-kpf1622-ksd30ch-32-inch-undermount-single-bowl-stainless-steel-kitchen-sink-with-chrome-kitchen-faucet-and-soap-dispenser-14170.html /kraus-khu100-32-kpf1622-ksd30-32-inch-undermount-single-bowl-stainless-steel-kitchen-sink-with-kitchen-faucet-and-soap-dispenser.html 
-Redirect 301 /elizabethan-classics-traditional-54-inch-cast-iron-bathtub-ecr54bcp0hole-13017.html /elizabethan-classics-ecr54bcp0hole-traditional-54-inch-cast-iron-bathtub.html 
-Redirect 301 /giagni-b5-mb-brancolo-pressure-balance-tub-and-shower-set-millennium-brass.html /giagni-b5-brancolo-pressure-balance-tub-and-shower-set-18665.html 
-Redirect 301 /giagni-b4-bn-brancolo-pressure-balance-shower-set-brushed-nickel.html /giagni-b4-brancolo-pressure-balance-shower-set-18664.html 
-Redirect 301 /giagni-b4-mb-brancolo-pressure-balance-shower-set-millennium-brass.html /giagni-b4-brancolo-pressure-balance-shower-set-18664.html 
-Redirect 301 /belle-foret-oval-copper-vessel-lavatory-bfc30wc.html /catalog/product/view/id/18752 
 
