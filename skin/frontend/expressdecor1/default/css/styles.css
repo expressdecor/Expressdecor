@@ -4522,35 +4522,25 @@ background:url(../images/es_header_footer_sprite1.png) -7px -212px no-repeat;
 
 /*  Express-email */
 .emails-overlay {position: fixed;z-index: 13;height: 100%;width: 100%;background-color: #000000; opacity: 0.7; top:0; left:0;}
-.express-emails {position:absolute;margin-left:147px;top: 25%; background-color: #FFFFFF; opacity: 1; width: 528px; height:542px;z-index:99999;background: url("../images/pop-up-frame.png") 0px 0px no-repeat;}
-.express-emails.es {background-image: url("../images/es_pop-up-frame.png") }
-.express-mails-close {  height:31px; width:32px; background: url("../images/header_footer_sprite1.png") -863px -29px no-repeat; position: absolute; top:-8px; right:-8px;}
-.express-mails-close.es {   background-image: url("../images/es_header_footer_sprite1.png");}
+.express-emails {position:absolute;margin-left:147px;top: 25%; background-color: #FFFFFF; opacity: 1; width: 542px; height:340px;z-index:99999;background: url("../images/SmallPopupEN.png") 0px 0px no-repeat;}
+.express-emails.es {background-image: url("../images/SmallPopupES.png") }
+.express-mails-close {  height:31px; width:32px;  position: absolute; top:4px; right:1px;}
+ 
+.singup-info {  padding-left:90px; padding-top:122px;}
+ 
+.singup-text  {font-size: 21px; color: #F58959;}
+.or-fb {text-align:center;color: #000000; font-weight:bold;width:436px;font-size:13px;}
+.express-emails .sign-up { min-height:15px; overflow:hidden;  width: 390px; margin:auto;padding-top:4px;}
 
-.express-mails-title {    background: url("../images/header_footer_sprite1.png") -771px -62px no-repeat;}
-.express-mails-title.es {    background-image: url("../images/es_header_footer_sprite1.png") ;}
-
-.welcome-to  .express-mails-title {  margin-left: 183px;  background-position:-771px -62px; width:126px; height:20px; margin-top: 27px;} 
-.join-us .express-mails-title {  margin-left: 215px;  background-position:-771px -33px; width:81px; height:20px; margin-top: 27px; }
- .welcome-back .express-mails-title { margin-left: 153px;  background-position:-771px -8px; width:156px; height:20px; margin-top: 27px; }
-
-.singup-info {padding-top:75px; }
-.welcome-to  .singup-info  {padding-left:90px; }
-.join-us .singup-info, .welcome-back  .singup-info {padding-left:65px;}
-
-.join-us .singup-text,.welcome-back .singup-text {font-size: 13px; color: #485654; font-weight:bold;}
-.welcome-to .singup-text {font-size: 21px; color: #1D518B;}
-
-.express-emails .sign-up { min-height:15px; overflow:auto;  width: 390px; margin:auto;padding-top:20px;}
-.join-us .sign-up, .welcome-back .sign-up  {padding-left:74px;}
-
+.welcome-back  .singup-left, 
+.join-us  .singup-left,
 .welcome-to .singup-left {float:left; width:262px;}
-.welcome-to .singup-right  {float:left; margin-top:17px;margin-left:20px; }
-.join-us .singup-right,.welcome-back .singup-right {min-height:10px; overflow:auto; padding-top:31px; padding-bottom:20px;}
+ 
+.welcome-to .singup-right ,
+.welcome-back .singup-right,
+.join-us .singup-right   {float:left; margin-top:17px;margin-left:20px; }
 
-.welcome-to .singup-right .agreement-txt {width:91px; padding: 5px;color: #485654;}
-.join-us  .singup-right .singup-button {float: left;}
- .welcome-back   .singup-right .singup-button {float: right;padding-right:76px;}
+.welcome-back .singup-right { margin-left:20px;}
 
 .express-emails .singup-right  button div   {background: url("../images/header_footer_sprite1.png") -753px -204px no-repeat ; width:101px;height:40px;}
 .express-emails.es .singup-right  button div   {background-image: url("../images/es_header_footer_sprite1.png");}
@@ -4561,43 +4551,44 @@ background:url(../images/es_header_footer_sprite1.png) -7px -212px no-repeat;
 
 .join-us .singup-right  button div span   {padding: 11px 3px 0px 0px;}
 
-.join-us  .singup-right .agreement-txt{float:left; font-size:13px; color: #485654; width:212px;}
-.welcome-back .singup-right .agreement-txt  {float:left; font-size:11px; color: #485654; width:212px; margin-top:-17px;}
+.welcome-to .singup-right .agreement-txt {width:91px; padding: 5px;color: #485654; display:none; }
+.join-us  .singup-right .agreement-txt{float:left; font-size:13px; color: #485654; width:212px; display:none;}
+.welcome-back .singup-right .agreement-txt  {  font-size:11px; color: #485654;display:none; /*width:212px; margin-top:-17px;*/}
 .agreement-txt a { color: #F58959;}
 
-
-
-.express-emails .pass-field  input {  border:0px solid #FFFFFF !important; background-color: #E0E1E2; height:28px;   padding: 0px 0px 0px 2px !important; border-radius:5px;}
-.express-emails .pass-field {min-height:5px; overflow:auto; padding-top:31px;}
+.express-emails .pass-field  input  {  border:0px solid #FFFFFF !important; background-color: #E0E1E2; height:28px;   padding: 0px 0px 0px 2px !important; border-radius:5px;}
+.express-emails .pass-field {min-height:5px;  padding-top:18px;}
 .express-emails .pass-field .pass-f2 {padding-left:6px;}
 .welcome-to .pass-field  input {width: 126px;}
 .welcome-to .validation-failed.pass-f2, .welcome-to  .validation-failed.pass-f2 {width:126px;}
 .welcome-to .pass-field .pass-f2, .welcome-to  .pass-field .pass-f1 {float:left; width:126px;}
-.join-us  .pass-field  input  {width: 151px;}
-.welcome-back .pass-field  input {width:310px;}
+ 
 .join-us .validation-failed.pass-f2, .join-us .validation-failed.pass-f2 ,.welcome-back .validation-failed.pass-f2, .welcome-back .validation-failed.pass-f2 {width:151px;}
 .join-us .pass-field .pass-f2, .join-us  .pass-field .pass-f1 ,.welcome-back .pass-field .pass-f2, .welcome-back .pass-field .pass-f1 {float:left; width:151px;}
 
+.join-us  .pass-field  input,
+.join-us  .email-field  input, 
+.join-us  .validation-failed,
+.welcome-back .pass-field  input,
+.welcome-back  .email-field  input, 
+.welcome-back .validation-failed,
 .additional_info input,
 .welcome-to  .email-field  input,
 .welcome-to .validation-failed {border:0px solid #FFFFFF !important; background-color: #E0E1E2; height:28px; width:261px; padding: 0px 0px 0px 2px !important; border-radius:5px;}
-.join-us  .email-field  input, .welcome-back  .email-field  input,
-.join-us  .validation-failed , .welcome-back .validation-failed {border:0px solid #FFFFFF !important; background-color: #E0E1E2; height:28px; width:310px; padding: 0px 0px 0px 2px !important; border-radius:5px;}
-.express-emails  .validation-advice {height:0px; width:263px; position:absolute;}
-.express-emails  #advice-validate-password-password {width:128px; background-color: #FFFFFF; height:34px;}
+
+.express-emails  .validation-advice {height:0px; width:342px; position:absolute;left:15px;}
+.pass-f1  .validation-advice { left:auto;}
+.express-emails  #advice-validate-password-password  { height:34px;}
 
 .express-emails a { text-decoration:none;}
 .express-emails .reg-label {font-size:12px; }
 
 .express-emails.es .fb-logo {background: url("../images/es_header_footer_sprite1.png") -560px -4px  no-repeat ; width:199px;height:33px;}
 .express-emails .fb-logo {background: url("../images/header_footer_sprite1.png") -560px -4px  no-repeat ; width:199px;height:33px;}
-.express-emails .fb-container {width:347px; min-height:33px; padding: 33px 0px 0px 75px;}
+.express-emails .fb-container {width:347px; min-height:33px; padding: 0px 0px 0px 25px;}
 .express-emails  .fb-container .fb-login {margin-left:85px; margin-top:10px;}
 .express-emails .fb-container .fb-text {padding: 10px 0px 0px 22px;font-size:12px;color: #485654;}
  
-.express-emails .signup-list {padding-top:5px; padding-left:90px;  }
-.express-emails .signup-list  ul {list-style:disc;font-size:14px; color:#F58959; font-weight:bold;}
-
 .member-block {font-size:15px; font-weight:bold; padding-left:81px;}
 .member-block .action-part { color: #F58959; cursor:pointer;}
 
@@ -4640,7 +4631,7 @@ background:url(../images/es_header_footer_sprite1.png) -7px -212px no-repeat;
 .coupon-promo-text {font-size:13px;  left:172px; bottom:45px; position:absolute; font-weight:bold;}
 
 /* LAunguage switcher*/
-.launguages a {    color: #007FFF;
+.launguages a {    color: #28ACE3;
     font-size: 18px;
     font-weight: bold;
     text-decoration: none;}

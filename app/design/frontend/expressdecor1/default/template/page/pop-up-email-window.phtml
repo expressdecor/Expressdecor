@@ -27,8 +27,7 @@ function sign_in(){
 		jQuery(this).remove();
 	});
 	
-	jQuery('.express-emails.welcome-back .agreement-txt').show();
-	jQ('.express-emails.welcome-back .agreement-txt').html("<?php echo $this->__('<a onclick=\"forgot_pass(\'\');\" href=\"#\">Forgot your password?</a>');?>");
+ 
 	jQuery(".express-emails.welcome-back").fadeIn();	
   }
   
@@ -111,25 +110,6 @@ function second_step(type){
 	  jQuery(".express-emails.join-us .singup-info").append("<div class=\"registered\"><?php echo $this->__('Thank you for registration. Your account information will be sent to your email address.');?></div>");
 }		 	  
 
-function save_additional(type){
-
-	var firstname= jQuery("#firstname_popup").val();
-	var lastname=jQuery("#lastname_popup").val();		 
-	var sex=jQuery('input[name=sex_p]:checked', '.sex-field').val();
-	var email_str=jQ(type+" #email_address").val();  
-	jQ.get('/facebook/facebook/saveadditional',  { email:email_str, sex: sex,fname:firstname,lname:lastname},function(data){              
-	if (data=='"success"'){
-			popup_close();
-			location.reload(); 
-			//window.location="/customer/account/login/";        			 
-      }else{
-      	popup_close();
-      	location.reload();         
-      //	window.location="/customer/account/login/";        	                	
-     	}	
-	 }); 	 			
-	}
-
 function post_request(type,obj) {	  
 	  var f =jQuery(obj).closest("form").attr("id");		  
 	  var validation=0;
@@ -154,18 +134,13 @@ function post_request(type,obj) {
 	            jQuery(obj).hide(); 
 	            jQuery(obj).parent().children(".popup-loader").show(); 
 	            jQ.get('/facebook/facebook/login',  { email:email_str, password: password},function(data){              
-	            	if (data=='success_0'){
+	            	if (data=='success_0' || data=='success_1'){
 	            		update_account_links();
 	            		popup_close();
 	            		jQuery(obj).parent().children(".popup-loader").hide();
 	            		jQuery(obj).show();
 	            		//window.location="/customer/account/login/";
 	            		location.reload(); 
-	                    }else if (data=='success_1') {
-	                    	update_account_links(); 
-		                    second_step(type);
-		                    jQuery(obj).parent().children(".popup-loader").hide();
-		                    jQuery(obj).show();
 	            		}else {
 		            		if (type=='.express-emails.welcome-back') {
 			            		jQuery(type+' .agreement-txt').hide();
@@ -175,7 +150,7 @@ function post_request(type,obj) {
 	    					if (f=='form-validate-to' || f=='form-validate-join') { 
 	    						error_text=error_text.replace("Invalid email or password","This email is already in use");
 	    					}					
-	    					jQ(type+' .singup-left').append(error_text);  
+	    					jQ(type+' .singup-left .email-field').append(error_text);  
 	    					jQuery(obj).parent().children(".popup-loader").hide();  
 	    					jQuery(obj).show();					 
 	                    }                
@@ -268,14 +243,7 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 	<a href="javascript:void(0);" onclick="popup_close();"><div class="express-mails-close <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div></a>
 	<div class="singup-info">
 		<div class="singup-text"><?php echo $this->__("Do you have your ExpressAccount yet?");?></div>
-		<div class="signup-list">
-			<ul>
-				<li><?php echo $this->__("It's free and quick");?></li>
-				<li><?php echo $this->__("Access hidden discounts");?></li>
-				<li><?php echo $this->__("Enjoy ExpressCheckout");?></li>
-				<li><?php echo $this->__("Get $10 off just for signing up");?></li>
-			</ul>
-		</div>
+		 
 
 	</div>
 	<div class="sign-up">
@@ -285,7 +253,7 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 					<div class="email-label reg-label"><?php echo $this->__("Email Address:");?></div>
 					<input type="text" class="input-text validate-email required-entry dataFormto" title="Email Address" value="" id="email_address" name="email"  />
 				</div>
-				<div class="pass-field reg-field">
+				<div style="display:none;" class="pass-field reg-field">
 					<div class="pass-f1">
 						<div class="pass-label reg-label"><?php echo $this->__("Password:");?></div>
 						<input type="password"
@@ -305,19 +273,20 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 					<button   title="Join" class="button"  onclick="post_request('.express-emails.welcome-to',this);"   type="button"><div><span><?php echo $this->__('Join Us');?></span></div></button>
 					<div class="popup-loader" style="display:none;"></div> 
 				</div>
-				<div class="agreement-txt"><?php echo $this->__('By clicking "Join" you accept our');?><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>facebook-faqs.html"><?php echo $this->__('Terms of Use');?></a><?php echo $this->__(' and');?>					 
+				<div style="display:none;" class="agreement-txt"><?php echo $this->__('By clicking "Join" you accept our');?><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>facebook-faqs.html"><?php echo $this->__('Terms of Use');?></a><?php echo $this->__(' and');?>					 
 						<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>privacy.html"><?php echo $this->__("Privacy Policy");?></a>.
 				</div>
 			</div>
 
 		</form>
 	</div>
+	<div class="or-fb"><?php echo $this->__('or'); ?></div>
 	<div class="fb-container">
 		<div class="fb-login">
 			<a href="#" onclick="return fblogin();" class="fb_button_ps"><div
 					class="fb-logo"></div></a>
 		</div>
-		<div class="fb-text"><?php echo $this->__('ExpressDecor.com will never post without your permission.');?></div>
+		<div style="display:none;" class="fb-text"><?php echo $this->__('ExpressDecor.com will never post without your permission.');?></div>
 	</div>
 	<div class="footer-cont">
 		<div class="member-block">
@@ -345,10 +314,9 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 <!--  welcome back -->
 <div class="express-emails welcome-back <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>" style="display: none;">
 	<div class="express-mails-title <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
-	<a href="javascript:void(0);" onclick="popup_close();"><div
-			class="express-mails-close <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div></a>
+	<a href="javascript:void(0);" onclick="popup_close();"><div class="express-mails-close <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div></a>
 	<div class="singup-info">
-		<div class="singup-text"><?php echo $this->__("It's fast and easy. Get access to ExpressAccount Only discounts!");?></div>
+		<div class="singup-text"><?php echo $this->__("Welcome back! Please login");?></div>
 	</div>
 	<div class="sign-up">
 		<form id="form-validate-back" method="post" action="">
@@ -367,20 +335,21 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 					</div>
 				</div>
 			</div>
-			<div class="singup-right">
-				<div class="agreement-txt">					   
-					  <?php echo $this->__('<a onclick=\"forgot_pass(\'\');\" href=\"#\">Forgot your password?</a>');?>
-				</div>			
+			<div  class="singup-right">
 				<div class="singup-button">
 					<button   title="Sign In" class="button"  onclick="post_request('.express-emails.welcome-back',this);" type="button"><div><span><?php echo $this->__('Sign In');?></span></div></button>
 					<div class="popup-loader" style="display:none;"></div>
 				</div>
+				<div style="display:none;" class="agreement-txt">					   
+					  <?php echo $this->__('<a onclick=\"forgot_pass(\'\');\" href=\"#\">Forgot your password?</a>');?>
+				</div>			
+				 
 			</div>
 
 		</form>
 	</div>
 
-	<div class="fb-container">
+	<div style="display:none;" class="fb-container">
 		<div class="fb-login">
 			<a href="#" onclick="return fblogin();" class="fb_button_ps"><div
 					class="fb-logo"></div></a>
@@ -409,7 +378,7 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 	<a href="javascript:void(0);" onclick="popup_close();"><div
 			class="express-mails-close <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div></a>
 	<div class="singup-info">
-		<div class="singup-text"><?php echo $this->__("It's fast and easy. Get access to ExpressAccount Only discounts!");?></div>
+		<div class="singup-text"><?php echo $this->__("Thanks for visiting! Thart savings instantly");?></div>
 	</div>
 	<div class="sign-up">
 		<form id="form-validate-join" method="post" action="">
@@ -426,7 +395,7 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 							class="input-text required-entry validate-password real-password"
 							title="Password" id="password" name="password" value="" />
 					</div>
-					<div class="pass-f2">
+					<div style="display:none;" class="pass-f2">
 						<div class="pass-label2 reg-label"><?php echo $this->__("Confirm Password:");?></div>
 						<input type="password"
 							class="input-text required-entry validate-cpassword real-password2"
@@ -435,7 +404,7 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 				</div>
 			</div>
 			<div class="singup-right">
-				<div class="agreement-txt">
+				<div style="display:none;" class="agreement-txt">
 					<?php echo $this->__('By clicking "Join" you accept our');?><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>facebook-faqs.html"><?php echo $this->__('Terms of Use');?></a><?php echo $this->__(' and');?>					 
 						<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>privacy.html"><?php echo $this->__("Privacy Policy");?></a>.
 				</div>			
@@ -446,36 +415,13 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 			</div>
 
 		</form>
-		<div class="additional_info"  style="display:none;" >
-				<div class="firstname-field reg-field">
-					<div class="firstname-label reg-label"><?php echo $this->__("First Name:");?></div>
-					<input type="text" class="input-text firstname"
-						title="First Name:" value="" id="firstname_popup" name="firstname_p" value="" />
-				</div>
-				<div class="lastname-field reg-field">
-					<div class="email-label reg-label"><?php echo $this->__("Last Name:");?></div>
-					<input type="text" class="input-text lastname"
-						title="Last Name" value="" id="lastname_popup" name="lastname_p" value="" />
-				</div>
-				<div class="sex-field reg-field">
-					<div class="email-label reg-label"><?php echo $this->__("Gender:");?></div>
-					<input type="radio" class="input-text sex" title="Sex" value="1" id="sex_popup" name="sex_p"   /><?php echo $this->__("Male");?> 
-					<input type="radio" class="input-text sex" title="Sex" value="2" id="sex_popup" name="sex_p"  /><?php echo $this->__("Female");?> 	
-				</div>											
-				<div class="save-btn <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
-				<button   title="Save" class="button" onclick="save_additional('.express-emails.join-us');" type="button"><div><span><?php echo $this->__('Continue');?></span></div></button>
-				<div class="skip" onclick="popup_close(); location.reload(); " ><?php echo $this->__('Skip');?></div>
-				</div>
-				
-		
-		</div>
 	</div>
 
-	<div class="fb-container">
+	<div  style="display:none;"  class="fb-container">
 		<div class="fb-login">
 			<a href="#" onclick="return fblogin();" class="fb_button_ps"><div class="fb-logo"></div></a>
 		</div>
-		<div class="fb-text"><?php echo $this->__('ExpressDecor.com will never post without your permission.');?></div>
+		<div style="display:none;"  class="fb-text"><?php echo $this->__('ExpressDecor.com will never post without your permission.');?></div>
 	</div>
 	<div class="footer-cont">
 		<div class="member-block">
