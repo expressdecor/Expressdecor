@@ -1,4 +1,22 @@
 <?php
+ 
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@expressdecor.com so we can send you a copy immediately.
+ *
+ * @author Alex Lukyanov
+ * @copyright   Copyright (c) 2013 ExpressDecor. (http://www.expressdecor.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * Created: Mar 7, 2013
+ *
+ */
 class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Front_Action {
 	
 	public function isloggedAction () {
@@ -24,12 +42,16 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 		}
 	}
 	
+	/**
+	 *  Login to the site from Pop-up window
+	 */
 	public function loginAction () {
 		if ($this->getRequest ()->isXmlHttpRequest ()) {
 			
 			$express_email=Mage::app()->getRequest()->getParam('email');
 			$express_password=Mage::app()->getRequest()->getParam('password');
-			 			
+			$passwordLength = 10;
+			
 			$customer = Mage::getModel('customer/customer')
 			->setWebsiteId(Mage::app()->getStore()->getWebsiteId())
 			->loadByEmail($express_email);
@@ -38,7 +60,9 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 			/* Check if we already have user with this email*/ 			
 			if(!$customer->getId()) {
 				//setting data such as email, firstname, lastname, and password
-				$customer->setEmail($express_email);				 
+				$customer->setEmail($express_email);	
+				if (!$express_passwrod)
+					$express_passwrod=$customer->generatePassword($passwordLength);
 	 			$customer->setPassword($express_password);
 	 			//the save the data and send the new account email.	 			 
 	 			$customer->save();
@@ -49,6 +73,9 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 			} 
 			
 			try {
+				if ($customer->getId() && empty($express_password))
+					throw new Exception('You already have an account. Please Sign In.');
+				
 				$login = Mage::getSingleton ( 'customer/session' )->login($express_email,$express_password);
 			} catch(Exception $e) {
 				$messages = $e->getMessage();

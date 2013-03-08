@@ -158,7 +158,8 @@
             <script type="text/javascript">decorateTable('shopping-cart-table')</script>
         </fieldset>
     </form>
-   
+    <?php echo $this->getChildHtml('crosssell') ?> 
+<div class="options-container">
     <div class="totals">
      
         <?php echo $this->getChildHtml('totals'); ?>
@@ -174,13 +175,14 @@
     
     
     </div>
-    <div class="cart-collaterals<?php if($this->getChildHtml('crosssell')) echo ' cross-inside'; ?>">
-        <?php echo $this->getChildHtml('crosssell') ?>
+   
+    <div class="cart-collaterals">
+          
         <div class="deals">
             <?php echo $this->getChildHtml('coupon'); ?>
             <?php   echo $this->getChildHtml('giftcards'); ?>
         </div>
         <?php  if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
     </div>
-
+</div>
 </div>

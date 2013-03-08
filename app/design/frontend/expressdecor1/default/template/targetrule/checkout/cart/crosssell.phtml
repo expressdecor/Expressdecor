@@ -24,29 +24,24 @@
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 /* @var $this Enterprise_TargetRule_Block_Checkout_Cart_Crosssell */
-?>
+?> 
 <?php if ($this->hasItems()):?>
-<div class="crosssell">
-    <h2><?php echo $this->__('Based on your selection, you may be interested in the following items:') ?></h2>
-    <ul>
-    <?php foreach ($this->getItemCollection() as $_item): ?>
-        <li class="item">
-            <a class="product-image" href="<?php echo $this->getProductUrl($_item) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(75); ?>" width="75" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>" /></a>
-            <div class="product-shop">
-                <h3 class="product-name"><a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->htmlEscape($_item->getName()) ?></a></h3>
-                <?php echo $this->getPriceHtml($_item, true) ?>
-                <p><button class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_item) ?>')" type="button"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
-                <ul class="add-to-links">
-                    <?php if ($this->helper('wishlist')->isAllow()) : ?>
-                    <li><a href="<?php echo $this->getAddToWishlistUrl($_item) ?>"><?php echo $this->__('Add to Wishlist') ?></a></li>
-                    <?php endif; ?>
-                    <?php if($_compareUrl=$this->getAddToCompareUrl($_item)): ?>
-                    <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>"><?php echo $this->__('Add to Compare') ?></a></li>
-                    <?php endif; ?>
-                </ul>
-            </div>
-        </li>
+<div class="crossssel-title"><?php echo $this->__("You May Also Be Interested In:");?></div>
+<div id="express-crosssell" class="crosssell">    
+	<div style="" class="button navButton previous">Back</div>
+	<div style="" class="button navButton next">More</div>
+	<div   class="container">    
+		 <div id="carusel-items"  class="items">
+    <?php foreach ($this->getItemCollection() as $_item): ?>       
+         <div class="item">
+            <div class="icon"><a class="product-image" href="<?php echo $this->getProductUrl($_item) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(75); ?>" width="75" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>" /></a></div>
+            
+                <div class="key caption"><a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->htmlEscape($_item->getName()) ?></a>  <?php echo $this->getPriceHtml($_item, true) ?></div>
+                <div class="picture" style="display:none;"><a class="product-image" href="<?php echo $this->getProductUrl($_item) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(75); ?>" width="75" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>" /></a></div>
+               
+       </div>
     <?php endforeach; ?>
-    </ul>
+     </div>
+     </div>
 </div>
 <?php endif;?>

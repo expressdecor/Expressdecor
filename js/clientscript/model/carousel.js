@@ -28,6 +28,7 @@ Carousel.prototype = {
         this.items = [];
         this.activeItem = null;
         this.activeIndex = 0;
+        this.images_length = 0;
         this.navScrollIndex = 0;
         this.itemHeight = itemHeight;
         this.itemWidth = itemWidth;
@@ -38,12 +39,24 @@ Carousel.prototype = {
             moveOpacity: .6,
             setSize: 4,
             allowAutoLoopOnSet: false,
-            allowAutoLoopOnIndividual: true
+            allowAutoLoopOnIndividual: true,
+            showSize:4,
+            scroll:0
         }, options);
         this.backElement = this.carouselElement.down('.navButton.previous');
         this.forwardElement = this.carouselElement.down('.navButton.next');
-        if (this.backElement) Event.observe(this.backElement, 'click', this.scrollBack.bind(this));
-        if (this.forwardElement) Event.observe(this.forwardElement, 'click', this.scrollForward.bind(this));
+        if (this.backElement) {
+        	if (!this.options.scroll)
+        		Event.observe(this.backElement, 'click', this.scrollBack.bind(this));
+        	else
+        		Event.observe(this.backElement, 'click', this.autoback.bind(this));
+        }
+        if (this.forwardElement){
+        	if (!this.options.scroll)
+        		Event.observe(this.forwardElement, 'click', this.scrollForward.bind(this));
+        	else
+        		Event.observe(this.forwardElement, 'click', this.autonext.bind(this));
+        }
     },
     load: function() {
         var eList = this.itemsElement;
@@ -57,7 +70,7 @@ Carousel.prototype = {
                 alert('Warning: Carousel Items require a child with classname [key]');
                 return;
             }
-
+            item.setAttribute("id", this.items.length);
             var oCarouselItem = new CarouselItem();
             if (this.options.itemParser) oCarouselItem.value = this.options.itemParser(item);
             oCarouselItem.index = this.items.length;
@@ -73,7 +86,8 @@ Carousel.prototype = {
 
             if (this.options.setItemEvents) this.options.setItemEvents(this, item, oCarouselItem, this.observer);
         } .bind(this));
-
+        this.images_length=this.items.length;
+                        	       
         //Post processing
         this.loaded = true;
         this.afterLoad();
@@ -141,17 +155,132 @@ Carousel.prototype = {
         this.activate(this.activeItem);
     },
     next: function() {
-        if (this.activeItem == null) { this.activate(this.items[0]); return; }
-        var iIndex = this.activeItem.index + 1;
-        if (iIndex >= this.items.length) {
-            iIndex = 0;
+        if (this.activeItem == null) { this.activate(this.items[0]); return; }        
+       var iIndex = this.activeItem.index + 1;
+       if (iIndex >= this.items.length) {
+            
             if (!this.options.allowAutoLoopOnIndividual) iIndex = this.items.length - 1;
         }
         this.activate(this.items[iIndex]);
         this.activeIndex = iIndex;
+
         if (iIndex == 0) { this.scrollToIndex(0); return; }
-        if (iIndex - this.options.setSize >= this.navScrollIndex - 1) this.scrollForward();
+        if (iIndex - this.options.setSize >= this.navScrollIndex - 1) this.scrollForward(); 
     },
+    autoback: function() {//Alex
+    	 if (this.activeItem == null ) { this.activate(this.items[0]);  return; }
+         var orig_count_img=this.images_length;
+         var display_images=this.options.showSize;
+         var diff_images=orig_count_img-display_images;
+    	 
+    	 var iIndex = this.activeItem.index - 1;
+    	 if (iIndex < 0 ){
+    		 if (this.items.length%4==0){
+    			 iIndex=this.items.length-1;
+    		 }else {
+    			 //iIndex=this.items.length%4;
+    			 //make new
+    			 for (var i= this.activeItem.index+1; this.items.length <8+diff_images; i++) {
+    			        var d=document.getElementById('carusel-items');
+    			        var temp_el=this.activeItem.element.cloneNode(true);  
+    			        temp_el.toggleClassName('selected');
+    			        var sKey = '';
+    			        try {
+    			            sKey = temp_el.down('.key').innerHTML;
+    			        } catch (e) {
+    			            alert('Warning: Carousel Items require a child with classname [key]');
+    			            return;
+    			        }
+    			        temp_el.setAttribute("id", this.items.length);
+    			        var oCarouselItem = new CarouselItem();
+    			        if (this.options.itemParser) oCarouselItem.value = this.options.itemParser(temp_el);
+    			        oCarouselItem.index = this.items.length;
+    			        oCarouselItem.key = sKey;
+    			        oCarouselItem.element = temp_el;
+    			        this.items.push(oCarouselItem);
+    			        
+    			        d.appendChild(temp_el);
+    			        this.activate(this.items[i]);       
+    			        this.activeIndex = i; 
+    			        
+    			 }
+    			  var newind=this.items.length-display_images;
+ 
+    	    	 this.moveToIndex(newind);
+    	    	 this.activeIndex=newind;
+    	    	 this.activate(this.items[newind]); 
+    	    	 this.autoback();
+    			 //make new
+    		 }
+    		 
+    	 } else {
+    			//scroll 
+             this.scrollToIndex(iIndex);
+             this.activate(this.items[iIndex]);       
+             this.activeIndex = iIndex;   
+    	 }
+    	 
+    	
+         
+    },
+    autonext: function() {//Alex
+    	
+        if (this.activeItem == null) { this.activate(this.items[0]); this.autonext(); return; }
+        var iIndex = this.activeItem.index + 1;
+        var orig_count_img=this.images_length;
+        var display_images=this.options.showSize;
+        var diff_images=orig_count_img-display_images;
+      //  console.log(this.activeItem);               
+         
+        //Make new for %8
+        if (this.items.length <8+diff_images) {
+        var d=document.getElementById('carusel-items');
+        var temp_el=this.activeItem.element.cloneNode(true);    	
+    	          
+        temp_el.toggleClassName('selected');
+                
+        var sKey = '';
+        try {
+            sKey = temp_el.down('.key').innerHTML;
+        } catch (e) {
+            alert('Warning: Carousel Items require a child with classname [key]');
+            return;
+        }
+        temp_el.setAttribute("id", this.items.length);
+        var oCarouselItem = new CarouselItem();
+        if (this.options.itemParser) oCarouselItem.value = this.options.itemParser(temp_el);
+        oCarouselItem.index = this.items.length;
+        oCarouselItem.key = sKey;
+        oCarouselItem.element = temp_el;
+        this.items.push(oCarouselItem);
+        
+        d.appendChild(temp_el);
+        } 
+        //make new for %8
+              
+        this.activate(this.items[iIndex]);       
+        this.activeIndex = iIndex;                  
+        
+       //Scroll forward
+       var iIndex2 = 0;
+       if (this.navScrollIndex > this.items.length - (this.options.setSize + 1)) {
+           if (!this.options.allowAutoLoopOnSet) return;
+       } else {
+           iIndex2 = this.navScrollIndex + (this.options.setSize - 1);
+       }
+       if (iIndex!=5+diff_images) {
+    	    
+    	   this.scrollToIndex(iIndex2);
+       } else if (iIndex>=5+diff_images)    {    	 
+    	    this.moveToIndex(0);
+    	    this.activate(this.items[0]);    	       
+            this.activeIndex = 0;
+            this.autonext();
+       }
+      
+       
+    }, //Alex
+    
     previous: function() {
         if (this.activeItem == null) { this.activate(this.items[0]); return; }
         var iIndex = this.activeItem.index - 1;
