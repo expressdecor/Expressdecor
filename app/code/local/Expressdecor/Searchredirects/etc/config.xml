@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Expressdecor_Searchredirects>
+            <version>0.1.0</version>
+        </Expressdecor_Searchredirects>
+    </modules>
+
+	<global>
+		<models>
+		   <searchredirects>
+                <class>Expressdecor_Searchredirects_Model</class>
+                <resourceModel>searchredirects_resource</resourceModel>
+            </searchredirects>
+		</models>
+		<helpers>
+       		<searchredirects>
+           		<class>Expressdecor_Searchredirects_Helper</class>
+       		</searchredirects>
+    	</helpers>  
+    	<index>
+    		<indexer>
+    			<searchredirects_search>
+    				<model>Expressdecor_Searchredirects_Model_Indexer_Search</model>>
+    			</searchredirects_search>
+    		</indexer>
+    	</index>
+    	<resources>
+           <searchredirects_write>
+              <connection>
+                 <use>core_write</use>
+              </connection>
+           </searchredirects_write>
+           <searchredirects_read>
+              <connection>
+                 <use>core_read</use>
+              </connection>
+           </searchredirects_read>			
+        </resources>       
+	</global>
+</config>
+
+
+	
