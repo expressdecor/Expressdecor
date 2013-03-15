@@ -38,6 +38,11 @@
                     </facebook>
                 </entities>
             </facebook_mysql4>
+            <customer>
+            	<rewrite>
+            		<customer>Expressdecor_Facebook_Model_Customer</customer>
+            	</rewrite>
+            </customer>
         </models>
         <resources>
             <facebook_setup>

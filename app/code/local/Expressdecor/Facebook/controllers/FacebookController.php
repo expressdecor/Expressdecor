@@ -19,12 +19,17 @@
  */
 class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Front_Action {
 	
+	/**
+	 * Function return parameter to show window
+	 */
 	public function isloggedAction () {
 		if ($this->getRequest ()->isXmlHttpRequest ()) {
-			
+			  
 			$show_register_invitation = Mage::getSingleton('core/session')->getShowregiwindow();
-			
-			if (Mage::helper('customer')->isLoggedIn() || $show_register_invitation) {
+			$visitor_data=Mage::getSingleton('core/session')->getData('visitor_data');
+			$visitor_logout=(   strpos($visitor_data['http_referer'],'logoutSuccess') ? Mage::getSingleton('core/session')->setShowregiwindow(1) : 0 );
+			 
+			if (Mage::helper('customer')->isLoggedIn() || $show_register_invitation || $visitor_logout) {
 				$messages = 1;
 			}else {
 				$messages=0;
@@ -34,8 +39,7 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 	}
 	
 	public function closewindowAction () {
-		if ($this->getRequest ()->isXmlHttpRequest ()) {
-				
+		if ($this->getRequest ()->isXmlHttpRequest ()) {				
 			$show_register_invitation = Mage::getSingleton('core/session')->setShowregiwindow(1);
 			$messages="success";
 			$this->getResponse ()->setBody ( Mage::helper ( 'core' )->jsonEncode ( $messages ) );
@@ -50,49 +54,46 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 			
 			$express_email=Mage::app()->getRequest()->getParam('email');
 			$express_password=Mage::app()->getRequest()->getParam('password');
+			$type=Mage::app()->getRequest()->getParam('type');
 			$passwordLength = 10;
 			
+			try {
 			$customer = Mage::getModel('customer/customer')
 			->setWebsiteId(Mage::app()->getStore()->getWebsiteId())
-			->loadByEmail($express_email);
-			$new_account=0;
+			->loadByEmail($express_email);			 
 			
 			/* Check if we already have user with this email*/ 			
 			if(!$customer->getId()) {
-				//setting data such as email, firstname, lastname, and password
+				if ($type==2)
+					throw new Exception($this->__("Accpunt with this email doesn't exist."));
 				$customer->setEmail($express_email);	
 				if (!$express_passwrod)
-					$express_passwrod=$customer->generatePassword($passwordLength);
+					$express_password=$customer->generatePassword($passwordLength);
+				 
 	 			$customer->setPassword($express_password);
 	 			//the save the data and send the new account email.	 			 
 	 			$customer->save();
 	 			$customer->setConfirmation(null);
 	 			$customer->save();
 	 			$customer->sendNewAccountEmail();
-	 			$new_account=1;
-			} 
+	 			 
+			} else {
+				if ($type==1 || $type==3 )
+					throw new Exception($this->__("This email address already associated with account. Please Sign In."));								
+			}
 			
-			try {
-				if ($customer->getId() && empty($express_password))
-					throw new Exception('You already have an account. Please Sign In.');
-				
-				$login = Mage::getSingleton ( 'customer/session' )->login($express_email,$express_password);
+			$login = Mage::getSingleton ( 'customer/session' )->login($express_email,$express_password);			
+ 
 			} catch(Exception $e) {
 				$messages = $e->getMessage();
-				if ($messages=="Invalid login or password.") {
-					if ($new_account){
-						$messages="Invalid email or password. <a href=\"#\" onclick=\"forgot_pass('".$express_email."');\" >Forgot Password!</a>";
-					} else {
-						$messages="Invalid email or password. <a href=\"#\" onclick=\"forgot_pass('".$express_email."');\" >Forgot Password!</a>";
-					}
-					
+				if ($messages=="Invalid login or password.") {				 
+					$messages=$this->__("Invalid password for this email address.");				 					
 				}
 			}
 			 			
-			if (Mage::helper('customer')->isLoggedIn()) {
-				$messages = "success_".$new_account;
-			}  
-			
+			if (Mage::helper('customer')->isLoggedIn()) {				
+				$messages = "success";
+			}  			
 			
 			$this->getResponse ()->setBody ( Mage::helper ( 'core' )->jsonEncode ( $messages ) );
 		}
@@ -105,60 +106,40 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 			$customer = Mage::getModel('customer/customer')
 			->setWebsiteId(Mage::app()->getStore()->getWebsiteId())
 			->loadByEmail($express_email);
-			    
-	       if ($customer->getEmail()) {
-			 	$newResetPasswordLinkToken = Mage::helper('customer')->generateResetPasswordLinkToken();			 	
-				$customer->changeResetPasswordLinkToken($newResetPasswordLinkToken);
-				$customer->sendPasswordResetConfirmationEmail();
-				
-				$this->getResponse ()->setBody ( Mage::helper ( 'core' )->jsonEncode ( 'success_1' ) );
-	       } else {
-	       	$this->getResponse ()->setBody ( Mage::helper ( 'core' )->jsonEncode ( 'Customer with this email is not registered.' ) );
-	       }
-			 
+			try {    
+	       		if ($customer->getEmail()) {
+				 	$newResetPasswordLinkToken = Mage::helper('customer')->generateResetPasswordLinkToken();			 	
+					$customer->changeResetPasswordLinkToken($newResetPasswordLinkToken);
+					$customer->sendPasswordResetConfirmationEmail();		
+					 
+					 
+	       		} else {
+	       			throw new Exception($this->__('Account with this email doesn\'t exist.'));	       			
+	       		}
+			} catch(Exception $e) {
+				$messages = $e->getMessage();
+			}	       
+			if (empty($messages)){
+				$messages = $this->__('You will receive an email with a link to reset your password.');
+			}
+	       $this->getResponse ()->setBody ( Mage::helper ( 'core' )->jsonEncode ( $messages) );
 		}
 	}
 	
-	public function saveadditionalAction(){
-		if ($this->getRequest ()->isXmlHttpRequest ()) {
-			$express_email=Mage::app()->getRequest()->getParam('email');
-			$f_name=Mage::app()->getRequest()->getParam('fname');
-			$l_name=Mage::app()->getRequest()->getParam('lname');
-			$sex=Mage::app()->getRequest()->getParam('sex');
-			
-			if ($express_email){
-				$customer = Mage::getModel('customer/customer')
-				->setWebsiteId(Mage::app()->getStore()->getWebsiteId())
-				->loadByEmail($express_email);
-				if(!$customer->getId()) {
-					$message="Error - User was not found";
-				}else {
-					if ($f_name)
-					$customer->setFirstname($f_name);
-					if ($l_name)
-					$customer->setLastname($l_name);
-					if ($sex)
-					$customer->setGender($sex);
-					$customer->save();
-					$message='success';
-				}
-			} else {
-				$message="Email not provided";
-			}					
-			$this->getResponse ()->setBody ( Mage::helper ( 'core' )->jsonEncode ( $message ) );
-		}
-	}
-	
+	/**
+	 * 
+	 */
 	public function updatelinksAction(){
-		if ($this->getRequest ()->isXmlHttpRequest ()) {
-			 
+		if ($this->getRequest ()->isXmlHttpRequest ()) {			 
 			$links_block=$this->getLayout()->createBlock('page/template_links');
 			$links_block->addLink('My Account','/customer/account/','My Account','','',1);
-			$links_block->addLink('Log Out ','/customer/account/logout/','Log Out','','',2);
-			 
+			$links_block->addLink('Log Out ','/customer/account/logout/','Log Out','','',2);			 
 			$this->getResponse ()->setBody ( Mage::helper ( 'core' )->jsonEncode ( $links_block->toHtml() ) );
 		}
 	}
+	/**
+	 * FACEBOOK FUNCTIONS
+	 */
 	public function fbloginAction() {
 		if ($this->getRequest ()->isXmlHttpRequest ()) {
 			$me = null;
@@ -241,8 +222,8 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 						$db_write->commit ();
 					}
 				}
-				if (Mage::helper('customer')->isLoggedIn()) {
-					$messages = "success";
+				if (Mage::helper('customer')->isLoggedIn()) {					
+					$messages = "success";					
 				} else {
 					$messages = "error";
 				}
