@@ -4549,22 +4549,18 @@ background:url(../images/es_header_footer_sprite1.png) -7px -212px no-repeat;
 .express-emails.es .singup-right  button div span {padding: 2px 3px 0px 0px; }
 .express-emails.welcome-back.es .singup-right  button div span  {padding: 13px 0px 0px 0px; font-size:13px;}
 
+.forgot-button {margin-top:26px;}
+.express-emails  .forgot-button  button div span  {padding: 1px 0px 0px 4px;}
+ 
 .join-us .singup-right  button div span   {padding: 11px 3px 0px 0px;}
 
-.welcome-to .singup-right .agreement-txt {width:91px; padding: 5px;color: #485654; display:none; }
-.join-us  .singup-right .agreement-txt{float:left; font-size:13px; color: #485654; width:212px; display:none;}
-.welcome-back .singup-right .agreement-txt  {  font-size:11px; color: #485654;display:none; /*width:212px; margin-top:-17px;*/}
-.agreement-txt a { color: #F58959;}
-
 .express-emails .pass-field  input  {  border:0px solid #FFFFFF !important; background-color: #E0E1E2; height:28px;   padding: 0px 0px 0px 2px !important; border-radius:5px;}
-.express-emails .pass-field {min-height:5px;  padding-top:18px;}
-.express-emails .pass-field .pass-f2 {padding-left:6px;}
-.welcome-to .pass-field  input {width: 126px;}
-.welcome-to .validation-failed.pass-f2, .welcome-to  .validation-failed.pass-f2 {width:126px;}
-.welcome-to .pass-field .pass-f2, .welcome-to  .pass-field .pass-f1 {float:left; width:126px;}
+.express-emails .pass-field {min-height:5px;  padding-top:33px;}
  
-.join-us .validation-failed.pass-f2, .join-us .validation-failed.pass-f2 ,.welcome-back .validation-failed.pass-f2, .welcome-back .validation-failed.pass-f2 {width:151px;}
-.join-us .pass-field .pass-f2, .join-us  .pass-field .pass-f1 ,.welcome-back .pass-field .pass-f2, .welcome-back .pass-field .pass-f1 {float:left; width:151px;}
+.welcome-to .pass-field  input {width: 126px;} 
+
+.welcome-to  .pass-field .pass-f1 {float:left; width:126px;}
+.join-us  .pass-field .pass-f1 , .welcome-back .pass-field .pass-f1 {float:left; width:151px;}
 
 .join-us  .pass-field  input,
 .join-us  .email-field  input, 
@@ -4576,7 +4572,7 @@ background:url(../images/es_header_footer_sprite1.png) -7px -212px no-repeat;
 .welcome-to  .email-field  input,
 .welcome-to .validation-failed {border:0px solid #FFFFFF !important; background-color: #E0E1E2; height:28px; width:261px; padding: 0px 0px 0px 2px !important; border-radius:5px;}
 
-.express-emails  .validation-advice {height:0px; width:342px; position:absolute;left:15px;}
+.express-emails  .validation-advice {height:0px; width:278px; position:absolute;}
 .pass-f1  .validation-advice { left:auto;}
 .express-emails  #advice-validate-password-password  { height:34px;}
 

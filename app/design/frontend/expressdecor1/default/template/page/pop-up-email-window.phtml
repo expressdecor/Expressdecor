@@ -34,36 +34,32 @@ function sign_in(){
 /*]]>*/
 
 
-//<![CDATA[
+/*<![CDATA[*/
 function fblogin(){
 FB.login(function(response) {
-
    if (response.status == 'connected') {  
         login();
     } else {       
-        // user is not logged in
-        //window.location.reload();
+    	alert("It was error, processing your request. Please, try again.");
     }
 }, {scope:'email,publish_stream'});
 return false;
 }
 
-function login(){
-	 
-	 jQ.get('/facebook/facebook/fblogin',  {facebook_login: 1},function(data){    
-	if (data!='"success"'){           	 
-					alert("It was error, processing your request. Please, try again.");
-        } else {
+function login(){	
+	jQ.get('/facebook/facebook/fblogin',  {facebook_login: 1},function(data){    
+		if (data!='"success"'){           	 
+			alert("It was error, processing your request. Please, try again.");
+    	} else {
         	update_account_links();
         	popup_close();
         	location.reload(); 
-        	//window.location="/customer/account/login/"; 
         }                
-}); 
-	}
-function popup_close(){   
-	 jQ.get('/facebook/facebook/closewindow',  {},function(data){ }); 
+	}); 
+}
 	
+function popup_close(){   
+	jQ.get('/facebook/facebook/closewindow',  {close:1},function(data){ }); 	
 	jQ(".express-emails").each(function() {
 		jQ(this).fadeOut();
 	});               
@@ -72,12 +68,11 @@ jQ('.emails-overlay').fadeOut();
 
 function update_account_links(){
  // Update Account links      
-jQ.get('/facebook/facebook/updatelinks',  {},function(data){
-	jQ(".header-login .links").remove();
-	jQ(".header-login").append(data);
-} , 'json');     
+	jQ.get('/facebook/facebook/updatelinks',  {},function(data){
+		jQ(".header-login .links").remove();
+		jQ(".header-login").append(data);
+	} , 'json');     
 }
-
 
 function join_us(){ 
 	  jQuery(".emails-overlay").show();
@@ -96,136 +91,101 @@ function join_us(){
 	jQuery(".express-emails.join-us").fadeIn();	
 }
 
-
-function second_step(type){
-	  jQuery(".express-emails").each(function() {
-			jQuery(this).fadeOut();
-	   });
-	  var email_str=jQ(type+" #email_address").val(); 
-	  jQ(".express-emails.join-us #email_address").val(email_str); 
-	  jQuery("#form-validate-join").hide(); 
-	  jQuery(".express-emails.join-us").fadeIn();	
-	  jQuery(".express-emails.join-us .singup-text").hide();
-	  jQuery(".additional_info").fadeIn();		   		  
-	  jQuery(".express-emails.join-us .singup-info").append("<div class=\"registered\"><?php echo $this->__('Thank you for registration. Your account information will be sent to your email address.');?></div>");
-}		 	  
-
-function post_request(type,obj) {	  
+function post_request(obj) {	  
 	  var f =jQuery(obj).closest("form").attr("id");		  
 	  var validation=0;
+	  var type=0;
 		if (f=='form-validate-to') {
-			jQuery("#advice-validate-email-newsletter").remove();
-			validation=dataFormto.validator.validate(); 
+			//jQuery("#advice-validate-email-email_address").remove();
+			validation=dataFormto.validator.validate();
+			type=1; 
 		}
 		if (f=='form-validate-back') {
-			jQuery("#advice-validate-email-newsletter").remove();
+			//jQuery("#advice-validate-email-newsletter").remove();
 			validation=dataFormback.validator.validate(); 
+			type=2;
 		}
 		if (f=='form-validate-join') {
-			jQuery("#advice-validate-email-newsletter").remove();
+			//jQuery("#advice-validate-email-newsletter").remove();
 			validation=dataFormjoin.validator.validate(); 
+			type=3;
 		}
+
+		jQuery("#advice-validate-email-email_address").remove(); 
+		
 	    if (validation){
-	        	jQuery(type+" #email_address").css("background-color","#bfffbf");
-	       	 	jQuery(type+" #password2").css("background-color","#bfffbf");
-			 	jQuery(type+" #password").css("background-color","#bfffbf");    
-	            var email_str=jQ(type+" #email_address").val();    
-	            var password=jQ(type+" .real-password").val();
-	            jQuery(obj).hide(); 
-	            jQuery(obj).parent().children(".popup-loader").show(); 
-	            jQ.get('/facebook/facebook/login',  { email:email_str, password: password},function(data){              
-	            	if (data=='success_0' || data=='success_1'){
-	            		update_account_links();
-	            		popup_close();
-	            		jQuery(obj).parent().children(".popup-loader").hide();
-	            		jQuery(obj).show();
-	            		//window.location="/customer/account/login/";
-	            		location.reload(); 
-	            		}else {
-		            		if (type=='.express-emails.welcome-back') {
-			            		jQuery(type+' .agreement-txt').hide();
-		            		}
-		            		jQuery("#advice-validate-email-newsletter").remove();
-	    					var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice">'+data+'</div>';  
-	    					if (f=='form-validate-to' || f=='form-validate-join') { 
-	    						error_text=error_text.replace("Invalid email or password","This email is already in use");
-	    					}					
-	    					jQ(type+' .singup-left .email-field').append(error_text);  
-	    					jQuery(obj).parent().children(".popup-loader").hide();  
-	    					jQuery(obj).show();					 
-	                    }                
-	            },'json'); 
+	    	var email_str=jQ('#'+f+" #email_address").val();
+	        jQuery('#'+f+" #email_address").css("background-color","#bfffbf");
+	        var password='';
+	        if (type==2 || type==3){		       	 	
+			 	jQuery('#'+f+" #password").css("background-color","#bfffbf");
+			 	password=jQ('#'+f+" .real-password").val();
+	        }
+	       	           	        	 
+	     	jQuery(obj).hide(); 
+	     	jQuery(obj).parent().children(".popup-loader").show();
+	     	 
+	        jQ.get('/facebook/facebook/login',  { email:email_str, password:password, type:type},function(data){              
+	        	if ( data=='success'){
+	            	update_account_links();
+	            	popup_close();
+	            	jQuery(obj).parent().children(".popup-loader").hide();
+	            	jQuery(obj).show();	            	
+	            	location.reload(); 
+	            	//jQuery(".express-emails.join-us .singup-info").append("<div class=\"registered\"><?php //echo $this->__('Thank you for registration. Your account information will be sent to your email address.');?></div>");
+	            }else {		        	 
+		            jQuery("#advice-validate-email-email_address").remove();
+	    			var error_text='<div style="" id="advice-validate-email-email_address" class="validation-advice">'+data+'</div>';  	    	 	
+	    			jQ('#'+f+' .singup-left .email-field').append(error_text);  
+	    			jQuery(obj).parent().children(".popup-loader").hide();  
+	    			jQuery(obj).show();					 
+	        	}                
+	        },'json'); 
 	                   
 	      }
 }
 
-function forgot_pass(email3){	
-	//if (email.length==0){
-		email=jQ('.express-emails.welcome-back #email_address').val();
-		email2=jQ('.express-emails.welcome-to #email_address').val();
-	//} 	
-		if (email.length==0 && email2.length!=0){
-			email=email2;
-		}
-		 
-		if (email3.length!=0){
-			email=email3;
-		}
-	if (email.length==0){
-		jQuery("#advice-validate-email-newsletter").remove();
-		var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice"><?php echo $this->__("Please fill email field"); ?></div>';
-		jQ('.express-emails.welcome-back .singup-left .email-field').append(error_text); 
-		jQ('.express-emails.welcome-to .singup-left .email-field').append(error_text);  	
-	}
-	
-	
-	if (email.length!=0){
-		  		 
-		jQ.get('/facebook/facebook/forgotpass',  { email:email,},function(data){
-			if (data=='"success_1"') {
-			      jQuery("#advice-validate-email-newsletter").remove();
-			      var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice"><?php echo $this->__("You will receive an email with a link to reset your password."); ?></div>';  
-			      jQ('.express-emails.welcome-to .singup-left').append(error_text); 
-			      jQ('.express-emails.welcome-to .singup-left #advice-validate-email-newsletter').css("width","301px");	
-				  jQ('.express-emails.welcome-back .agreement-txt').html("<?php echo $this->__('You will receive an email with a link to reset your password.');?>");
-				} else {
-					data2=" <br/>"+data.replace('"','').replace('"','');
-				   jQ('.express-emails.welcome-back .agreement-txt').append(data2);	
-					jQuery("#advice-validate-email-newsletter").remove();
-				    var error_text='<div style="" id="advice-validate-email-newsletter" class="validation-advice">'+data.replace('"','')+'</div>'; 
-				    jQ('.express-emails.welcome-to .singup-left').append(error_text); 				   
-			}
-		 });
-	}  	
-	//you will receive an email with a link to reset your password.
+function forgot_pass(obj){	
+	jQuery('#advice-validate-email-email_address').remove();	 
+	var email=jQ('#'+jQuery(obj).closest("form").attr("id")+' #email_address');
+	var val=false;
+	val=Validation.validate(email.get(0));
+ 
+	if (val){		  		
+		jQuery(obj).hide();
+		jQuery(obj).parent().children(".popup-loader").show();
+		jQ.get('/facebook/facebook/forgotpass',  { email:email.val(),},function(data){
+			if (data) {			     		 
+				var validate_text='<div id="advice-validate-email-email_address" class="validation-advice">'+data+'</div>';  			    
+				jQ('#'+jQuery(obj).closest("form").attr("id")+' .email-field').append(validate_text);
+				jQuery(obj).parent().children(".popup-loader").hide();	
+				jQuery(obj).show();		
+			}  
+		},'json');
+	} 
 }
-
 
 jQuery(document).ready(function() { 
 	jQuery(".express-emails :input").each(function() {
 		jQuery(this).focusout(function() {
 			var f =jQuery(this).closest("form").attr("id");
-			validation=0;						
+			validation=0;			
+			jQuery('#advice-validate-email-email_address').remove();			
 			if (f=='form-validate-to') {
-				validation=dataFormto.validator.validate(); 
-				//jQuery('#advice-validate-email-newsletter').remove();
+				validation=dataFormto.validator.validate(); 				
 			}
 			if (f=='form-validate-back') {
 				validation=dataFormback.validator.validate(); 
-				//jQuery('#advice-validate-email-newsletter').remove();
 			}
 			if (f=='form-validate-join') {
 				validation=dataFormjoin.validator.validate();
-				//jQuery('#advice-validate-email-newsletter').remove();
 			}
-			if (validation==0){
-				jQuery('#advice-validate-email-newsletter').remove();
-			}
+			 
 		 });		 		 		 
 		});	 
 	
   	}); 
-	//]]>  	 
+/*]]>*/ 
 </script>
 <!-- facebook  -->
 <div class="emails-overlay" style="display: none;"></div>
@@ -252,32 +212,14 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 				<div class="email-field reg-field">
 					<div class="email-label reg-label"><?php echo $this->__("Email Address:");?></div>
 					<input type="text" class="input-text validate-email required-entry dataFormto" title="Email Address" value="" id="email_address" name="email"  />
-				</div>
-				<div style="display:none;" class="pass-field reg-field">
-					<div class="pass-f1">
-						<div class="pass-label reg-label"><?php echo $this->__("Password:");?></div>
-						<input type="password"
-							class="input-text required-entry validate-password real-password"
-							title="Password" id="password" name="password" value="" />
-					</div>
-					<div class="pass-f2">
-						<div class="pass-label2 reg-label"><?php echo $this->__("Confirm Password:");?></div>
-						<input type="password"
-							class="input-text required-entry validate-cpassword real-password2"
-							title="Password" id="password2" name="password2" value="" />
-					</div>
-				</div>
+				</div>				 
 			</div>
 			<div class="singup-right">
 				<div class="singup-button">
-					<button   title="Join" class="button"  onclick="post_request('.express-emails.welcome-to',this);"   type="button"><div><span><?php echo $this->__('Join Us');?></span></div></button>
+					<button   title="Join" class="button"  onclick="post_request(this);"   type="button"><div><span><?php echo $this->__('Join Us');?></span></div></button>
 					<div class="popup-loader" style="display:none;"></div> 
-				</div>
-				<div style="display:none;" class="agreement-txt"><?php echo $this->__('By clicking "Join" you accept our');?><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>facebook-faqs.html"><?php echo $this->__('Terms of Use');?></a><?php echo $this->__(' and');?>					 
-						<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>privacy.html"><?php echo $this->__("Privacy Policy");?></a>.
-				</div>
+				</div>		 
 			</div>
-
 		</form>
 	</div>
 	<div class="or-fb"><?php echo $this->__('or'); ?></div>
@@ -337,25 +279,16 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 			</div>
 			<div  class="singup-right">
 				<div class="singup-button">
-					<button   title="Sign In" class="button"  onclick="post_request('.express-emails.welcome-back',this);" type="button"><div><span><?php echo $this->__('Sign In');?></span></div></button>
+					<button   title="Sign In" class="button"  onclick="post_request(this);" type="button"><div><span><?php echo $this->__('Sign In');?></span></div></button>
 					<div class="popup-loader" style="display:none;"></div>
 				</div>
-				<div style="display:none;" class="agreement-txt">					   
-					  <?php echo $this->__('<a onclick=\"forgot_pass(\'\');\" href=\"#\">Forgot your password?</a>');?>
-				</div>			
-				 
+				<div class="forgot-button">
+					<button   title="Forgot Password" class="button"  onclick="forgot_pass(this);" type="button"><div><span><?php echo $this->__('Forgot Password?');?></span></div></button>
+					<div class="popup-loader" style="display:none;"></div>
+				</div>							 
 			</div>
-
 		</form>
-	</div>
-
-	<div style="display:none;" class="fb-container">
-		<div class="fb-login">
-			<a href="#" onclick="return fblogin();" class="fb_button_ps"><div
-					class="fb-logo"></div></a>
-		</div>
-		<div class="fb-text"><?php echo $this->__('ExpressDecor.com will never post without your permission.');?></div>
-	</div>
+	</div> 
 	<div class="footer-cont">
 		<div class="member-block">
 			<span class="question-part"><?php echo $this->__('Not a  member yet?')?></span>
@@ -375,8 +308,7 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 <!-- join us  -->
 <div class="express-emails join-us <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>" style="display: none;">
 	<div class="express-mails-title <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
-	<a href="javascript:void(0);" onclick="popup_close();"><div
-			class="express-mails-close <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div></a>
+	<a href="javascript:void(0);" onclick="popup_close();"><div class="express-mails-close <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div></a>
 	<div class="singup-info">
 		<div class="singup-text"><?php echo $this->__("Thanks for visiting! Thart savings instantly");?></div>
 	</div>
@@ -395,33 +327,16 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 							class="input-text required-entry validate-password real-password"
 							title="Password" id="password" name="password" value="" />
 					</div>
-					<div style="display:none;" class="pass-f2">
-						<div class="pass-label2 reg-label"><?php echo $this->__("Confirm Password:");?></div>
-						<input type="password"
-							class="input-text required-entry validate-cpassword real-password2"
-							title="Password" id="password2" name="password2" value="" />
-					</div>
 				</div>
 			</div>
-			<div class="singup-right">
-				<div style="display:none;" class="agreement-txt">
-					<?php echo $this->__('By clicking "Join" you accept our');?><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>facebook-faqs.html"><?php echo $this->__('Terms of Use');?></a><?php echo $this->__(' and');?>					 
-						<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>privacy.html"><?php echo $this->__("Privacy Policy");?></a>.
-				</div>			
+			<div class="singup-right">	
 				<div class="singup-button">
-					<button   title="Join Us" class="button" onclick="post_request('.express-emails.join-us',this);" type="button"><div><span><?php echo $this->__('Join Us');?></span></div></button>
+					<button   title="Join Us" class="button" onclick="post_request(this);" type="button"><div><span><?php echo $this->__('Join Us');?></span></div></button>
 					<div class="popup-loader" style="display:none;"></div>
 				</div>
 			</div>
 
 		</form>
-	</div>
-
-	<div  style="display:none;"  class="fb-container">
-		<div class="fb-login">
-			<a href="#" onclick="return fblogin();" class="fb_button_ps"><div class="fb-logo"></div></a>
-		</div>
-		<div style="display:none;"  class="fb-text"><?php echo $this->__('ExpressDecor.com will never post without your permission.');?></div>
 	</div>
 	<div class="footer-cont">
 		<div class="member-block">
