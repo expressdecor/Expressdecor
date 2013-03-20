@@ -69,7 +69,7 @@ class Expressdecor_Facebook_FacebookController extends Mage_Core_Controller_Fron
 				$customer->setEmail($express_email);	
 				if (!$express_passwrod)
 					$express_password=$customer->generatePassword($passwordLength);
-				 
+				$customer->setIsSubscribed(1); 
 	 			$customer->setPassword($express_password);
 	 			//the save the data and send the new account email.	 			 
 	 			$customer->save();
