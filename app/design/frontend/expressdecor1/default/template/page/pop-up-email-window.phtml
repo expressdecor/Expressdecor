@@ -150,7 +150,7 @@ function forgot_pass(obj){
 	var email=jQ('#'+jQuery(obj).closest("form").attr("id")+' #email_address');
 	var val=false;
 	val=Validation.validate(email.get(0));
- 
+	jQuery('#advice-required-entry-password').remove();
 	if (val){		  		
 		jQuery(obj).hide();
 		jQuery(obj).parent().children(".popup-loader").show();
@@ -181,9 +181,23 @@ jQuery(document).ready(function() {
 				validation=dataFormjoin.validator.validate();
 			}
 			 
-		 });		 		 		 
-		});	 
-	
+		 });
+
+		jQuery(this).keypress(function (e) {
+			if (e.which == 13) {
+				e.preventDefault();
+				var but =jQuery(this).closest("form").children('.singup-right').children('.singup-button').children('.button'); 
+				 but.click();
+			  }
+		});
+		
+		jQuery(this).change(function() {
+			  var inputs = jQuery(this).closest('form').find(':input');
+			  inputs.eq( inputs.index(this)+ 1 ).focus();
+			});
+	 		 		 
+	});	 
+	 
   	}); 
 /*]]>*/ 
 </script>
@@ -202,7 +216,7 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 	<div class="express-mails-title <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
 	<a href="javascript:void(0);" onclick="popup_close();"><div class="express-mails-close <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div></a>
 	<div class="singup-info">
-		<div class="singup-text"><?php echo $this->__("Do you have your ExpressAccount yet?");?></div>
+		<div class="singup-text"><?php echo $this->__("Do you have your expressAccount yet?");?></div>
 		 
 
 	</div>
@@ -236,7 +250,7 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 			<span onclick="sign_in();" class="action-part"><?php echo $this->__('Sign in!')?></span>
 		</div>
 		<div class="footer-text">
-		<?php echo $this->__("It's fast and easy. Get access to ExpressAccount Only discounts!");?>
+		<?php echo $this->__("It's fast and easy. Get access to expressAccount Only discounts!");?>
 	</div>
 
 	</div>
@@ -310,7 +324,7 @@ if (Mage::getSingleton ( 'cms/page' )->getIdentifier () == 'home' && Mage::app (
 	<div class="express-mails-title <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
 	<a href="javascript:void(0);" onclick="popup_close();"><div class="express-mails-close <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div></a>
 	<div class="singup-info">
-		<div class="singup-text"><?php echo $this->__("Thanks for visiting! Thart savings instantly");?></div>
+		<div class="singup-text"><?php echo $this->__("Thanks for visiting! Start savings instantly");?></div>
 	</div>
 	<div class="sign-up">
 		<form id="form-validate-join" method="post" action="">

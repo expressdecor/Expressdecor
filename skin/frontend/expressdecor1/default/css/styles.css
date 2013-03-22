@@ -4545,7 +4545,7 @@ background:url(../images/es_header_footer_sprite1.png) -7px -212px no-repeat;
 .express-emails .singup-right  button div   {background: url("../images/header_footer_sprite1.png") -753px -204px no-repeat ; width:101px;height:40px;}
 .express-emails.es .singup-right  button div   {background-image: url("../images/es_header_footer_sprite1.png");}
 
-.express-emails .singup-right  button div span {background: none transparent;  color: #FFFFFF; font-weight:bold; font-size:15px; text-transform:uppercase;padding: 11px 3px 0px 0px;}
+.express-emails .singup-right  button div span {background: none transparent;  color: #FFFFFF; font-weight:bold; font-size:14px; text-transform:uppercase;padding: 11px 3px 0px 0px;}
 .express-emails.es .singup-right  button div span {padding: 2px 3px 0px 0px; }
 .express-emails.welcome-back.es .singup-right  button div span  {padding: 13px 0px 0px 0px; font-size:13px;}
 
