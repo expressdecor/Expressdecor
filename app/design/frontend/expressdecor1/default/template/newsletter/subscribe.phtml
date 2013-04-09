@@ -25,22 +25,15 @@
  */
 ?>
 <form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="newsletter-validate-detail">
-    <div class="form-subscribe <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
-   <div class="subscribe-title"> <?php echo $this->__('Sign up to get discounts:') ?></div>
-        <label for="newsletter"><?php echo $this->__('Sign up to receive special offers and promotions:') ?></label>
-		<input type="hidden" name="source" value="footer" />
-          <button type="submit" class="button" title="<?php echo $this->__('Subscribe') ?>"><span><span><?php echo $this->__('SEND') ?></span></span></button></div>
-        <div class="v-fix">
+	<div class="newsletter-label"><?php echo $this->__('Sign up to your expressAccount to get extra discounts') ?></div>
+	<div class="form-subscribe <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">          
+		<input type="hidden" name="source" value="footer" />            
         <input name="email" type="text" id="newsletter" value="<?php echo $this->__('Enter your email address') ?>" onclick="this.value=='<?php echo $this->__('Enter your email address') ?>'?this.value='':''" onblur="this.value==''?this.value='<?php echo $this->__('Enter your email address') ?>':''" class="input-text required-entry validate-email" />
-    
-      
- 
-
-        
+    	<button type="submit" class="button" title="<?php echo $this->__('Subscribe') ?>"><span><span><?php echo $this->__('SEND') ?></span></span></button>
     </div>
 </form>
 <script type="text/javascript">
 //<![CDATA[
-var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail');
+	var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail');
 //]]>
 </script>

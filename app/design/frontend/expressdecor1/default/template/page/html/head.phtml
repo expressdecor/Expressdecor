@@ -1,106 +1,56 @@
 <?php
-
 /**
-
  * Magento Enterprise Edition
-
  *
-
  * NOTICE OF LICENSE
-
  *
-
  * This source file is subject to the Magento Enterprise Edition License
-
  * that is bundled with this package in the file LICENSE_EE.txt.
-
  * It is also available through the world-wide-web at this URL:
-
  * http://www.magentocommerce.com/license/enterprise-edition
-
  * If you did not receive a copy of the license and are unable to
-
  * obtain it through the world-wide-web, please send an email
-
  * to license@magentocommerce.com so we can send you a copy immediately.
-
  *
-
  * DISCLAIMER
-
  *
-
  * Do not edit or add to this file if you wish to upgrade Magento to newer
-
  * versions in the future. If you wish to customize Magento for your
-
  * needs please refer to http://www.magentocommerce.com for more information.
-
  *
-
  * @category    design
-
  * @package     base_default
-
  * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
-
  * @license     http://www.magentocommerce.com/license/enterprise-edition
-
  */
-
 ?>
-
-
-
 <meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
 
-
-
 <?php if($this->getRequest()->getControllerName() == "product") {   
-
 $productId  = (int) $this->getRequest()->getParam('id'); 
 
 $product = Mage::getModel('catalog/product')->load($productId);
 echo '<meta property="og:image" content="'.(string)Mage::helper('catalog/image')->init($product, 'image').'"/><meta property="og:type" content="product"/>';
 $manufacturerName = $product->getAttributeText('manufacturer');
-
 $categoryIds = $product->getCategoryIds();
-
 $categoryNames = "";
 
 foreach($categoryIds as $categoryId) {
 
     $category = Mage::getModel('catalog/category')->load($categoryId);
-
-    
-
     if($categoryNames == "")
-
         $categoryNames = $category->getName();    
-
     else        
-
         $categoryNames .= ", ".$category->getName();    
-
 } 
-
 $title = $product->getName();
-
 $description = "Buy ".$title." at ExpressDecor.com. In stock. Shop today and save up to 40% on all major brands.";
-
 $keywords = $title.", ".$manufacturerName." ".$product->getSku().", ".$manufacturerName.", ".$product->getSku().", ".$categoryNames;
-
 ?>
 
-
-
 <title><?php echo $title; ?></title>
-
 <meta name="description" content="<?php echo htmlspecialchars($description) ?>" />
-
 <meta name="keywords" content="<?php echo htmlspecialchars($keywords) ?>" />
-
-
 
 <?php } else { ?>
 
@@ -108,53 +58,30 @@ $keywords = $title.", ".$manufacturerName." ".$product->getSku().", ".$manufactu
 <meta http-equiv="X-UA-Compatible" content="IE=9" />
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <meta http-equiv="X-UA-Compatible" content="IE=7" />
-
 <meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
-
 <meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
-
 <?php } ?>
 
 <meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
-
 <link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
-
 <link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
-
 <meta name="google-site-verification" content="0AdhzanyexvcTjd1QO4TjOK2pMzOYos-Je2Wv689jPc" />
-
 <meta property="og:title" content="<?php echo  $this->getTitle(); ?>"/>
 <meta property="og:url" content="<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>"/>
 <meta property="og:site_name" content="expressdecor.com"/>
 <!--[if lt IE 7]>
-
 <script type="text/javascript">
-
 //<![CDATA[
-
     var BLANK_URL = '<?php echo $this->helper('core/js')->getJsUrl('blank.html') ?>';
-
     var BLANK_IMG = '<?php echo $this->helper('core/js')->getJsUrl('spacer.gif') ?>';
-
 //]]>
-
 </script>
-
 <![endif]-->
-
 <script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
-
 <?php echo $this->getCssJsHtml() ?>
-
 <?php echo $this->getChildHtml() ?>
-
 <?php echo $this->helper('core/js')->getTranslatorScript() ?>
-
 <?php echo $this->getIncludes() ?>
-<script type="text/javascript">  jQuery(document).ready( function(){
-
-	 
-	jQuery(".wrapper").height(jQuery(document).height());	
-	}); </script>
+ 
 
  

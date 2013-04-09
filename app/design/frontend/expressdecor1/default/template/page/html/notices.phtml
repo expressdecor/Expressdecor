@@ -19,37 +19,28 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     enterprise_default
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 ?>
 <?php
 /**
- * Language switcher template
- *
- * @see Mage_Page_Block_Switch
+ * @see Mage_Page_Block_Html_Notices
  */
- 
- 
 ?>
-
-<?php if(count($this->getStores())>1): ?>
-
-<?php if ($this->htmlEscape(Mage::app()->getStore()->getCode())=='es') 
-		$lang_title="In English";
-	else
-		$lang_title="En Espa&ntilde;ol"; 
-	?>
-<div class="stores-container">
-<?php foreach ($this->getStores() as $_lang): ?>
-	<?php if($_lang->getId()!=$this->getCurrentStoreId()): ?>                   
-		<a href="<?php echo $_lang->getCurrentUrl() ?>"><div class="header-globe"></div></a> 
-		<a href="<?php echo $_lang->getCurrentUrl() ?>"><div class="store-title"><?php echo $this->__($lang_title); ?></div></a>             
-		
-	<?php endif; ?>
-<?php endforeach; ?>
-</div>
-
+<div class="bckg-left"></div>
+<div class="bckg-right"></div>
+<?php if ($this->displayNoscriptNotice()): ?>
+    <noscript>
+        <div class="noscript">
+            <div class="noscript-inner">
+                <p><strong><?php echo $this->__('JavaScript seem to be disabled in your browser.'); ?></strong></p>
+                <p><?php echo $this->__('You must have JavaScript enabled in your browser to utilize the functionality of this website.'); ?></p>
+            </div>
+        </div>
+    </noscript>
 <?php endif; ?>
- 
+<?php if ($this->displayDemoNotice()): ?>
+    <p class="demo-notice"><?php echo $this->__('This is a demo store. Any orders placed through this store will not be honored or fulfilled.') ?></p>
+<?php endif; ?>

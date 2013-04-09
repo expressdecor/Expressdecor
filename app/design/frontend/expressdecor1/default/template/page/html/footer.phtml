@@ -24,17 +24,14 @@
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 ?>
-<div class="footer-container">
-    <div class="footer <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
-	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_links')->toHtml() ?>
-        
+<div class="footer <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
+	<div class="footer-line"></div>
+    <div class="footer-container container">
+		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_links')->toHtml() ?>        
     </div>
 </div>
 <?php echo $this->getChildHtml('tabs_out') ?>
 <?php echo $this->getChildHtml('feedback') ?>
 <?php echo $this->getChildHtml('coupon_window',false) ?>
 <address class="copyright"><?php echo $this->getCopyright() ?></address>
-
-<!--     </iframe> -->
-<!-- </div> -->
  

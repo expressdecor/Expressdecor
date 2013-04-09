@@ -131,12 +131,11 @@ function post_request(obj) {
 	            	popup_close();
 	            	jQuery(obj).parent().children(".popup-loader").hide();
 	            	jQuery(obj).show();	            	
-	            	location.reload(); 
-	            	//jQuery(".express-emails.join-us .singup-info").append("<div class=\"registered\"><?php //echo $this->__('Thank you for registration. Your account information will be sent to your email address.');?></div>");
+	            	location.reload(); 	            	
 	            }else {		        	 
 		            jQuery("#advice-validate-email-email_address").remove();
-	    			var error_text='<div style="" id="advice-validate-email-email_address" class="validation-advice">'+data+'</div>';  	    	 	
-	    			jQ('#'+f+' .singup-left .email-field').append(error_text);  
+	    			var error_text='<div style="" id="advice-validate-email-email_address" class="validation-advice">'+data+'</div>';  
+	    			jQuery(obj).parent().parent().parent().find('.email-field').append(error_text);	    	 		    			 
 	    			jQuery(obj).parent().children(".popup-loader").hide();  
 	    			jQuery(obj).show();					 
 	        	}                
