@@ -23,69 +23,48 @@
  * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
+
 /**
  * @var Mage_Page_Block_Html_Header $this
  */
 ?>
 
  
- <div class="header-panel">
-
-	<div class="header-links">	   
-<!--         <p class="welcome-msg"> -->
-        <?php // echo $this->getChildHtml('welcome') ?>
-<!--         </p> -->
-        <?php // echo $this->getChildHtml('accountLinks') ?>
-		<!--<?php //echo $this->getChildHtml('topLinks') ?>-->
-    </div></div>
-<div class="header-container">
-   
-    <div class="header">
-    
-      <div class="header-line <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>" >
-      <a class="header-line-shipping" href="<?php echo $this->getUrl('') ?>shipping-and-taxes.html"></a>
-      <a class="header-line-tax" href="<?php echo $this->getUrl('') ?>shipping-and-taxes.html"></a>
-      <a class="header-line-returns" href="<?php echo $this->getUrl('') ?>returns.html"></a>
-      </div>
-      <div class="launguages">
-    	<?php echo $this->getChildHtml('store_language') ?>
-      </div> 
-        <div class="branding <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
-        <?php if ($this->getIsHomePage()):?>
-            <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
-            <?php else:?>
-            <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
-            <?php endif?>
-            
-    
-          <div class="freeshipping" >          
-          </div>  
-          <a href="<?php echo $this->getUrl('') ?>pro-account.html"><div class="header-proaccount" ></div></a>
-          <div class="header-right-block">
-          <?php  echo $this->getChildHtml('topSearch') ?> 
-       <div class="header-livechat">
-           <a onclick="lpButtonCTTUrl = 'https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson&amp;referrer='+escape(document.location); lpButtonCTTUrl = (typeof(lpAppendVisitorCookies) != 'undefined' ? lpAppendVisitorCookies(lpButtonCTTUrl) : lpButtonCTTUrl); lpButtonCTTUrl = ((typeof(lpMTag)!='undefined' &amp;&amp; typeof(lpMTag.addFirstPartyCookies)!='undefined')?lpMTag.addFirstPartyCookies(lpButtonCTTUrl):lpButtonCTTUrl);window.open(lpButtonCTTUrl,'chat33660894','width=475,height=400,resizable=yes');return false;" href="https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;byhref=1&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson">
-	       <div class="livechat-img <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>
-           </a>  
-           	       <div class="livechat-img-right <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>"></div>                  
-	   </div>        
-	      </div>
-         
-        </div>
-
+<div class="header-container">   
+	<div class="header">      
+        	<div class="header-left-block">
+        		<div class="launguages">
+    				<?php echo $this->getChildHtml('store_language') ?>
+    			</div> 
+        		<div class="logo">          			
+            		<a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo-link">
+            			<img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" />
+            		</a>
+          		</div>  
+          </div>
+          <div class="header-right-block">          	 
+          	<div class="quickaccess-links">
+	   	    	<?php  echo $this->getChildHtml('topCart') ?>
+	   	    	<div class="account-links">
+	   	    		<?php echo $this->getChildHtml('accountLinks') ?>
+	   	    	</div>
+          		<div class="header-livechat">
+          			<a onclick="lpButtonCTTUrl = 'https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson&amp;referrer='+escape(document.location); lpButtonCTTUrl = (typeof(lpAppendVisitorCookies) != 'undefined' ? lpAppendVisitorCookies(lpButtonCTTUrl) : lpButtonCTTUrl); lpButtonCTTUrl = ((typeof(lpMTag)!='undefined' &amp;&amp; typeof(lpMTag.addFirstPartyCookies)!='undefined')?lpMTag.addFirstPartyCookies(lpButtonCTTUrl):lpButtonCTTUrl);window.open(lpButtonCTTUrl,'chat33660894','width=475,height=400,resizable=yes');return false;" href="https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;byhref=1&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson"><?php echo $this->__('Livechat');?></a>
+          			<a onclick="lpButtonCTTUrl = 'https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson&amp;referrer='+escape(document.location); lpButtonCTTUrl = (typeof(lpAppendVisitorCookies) != 'undefined' ? lpAppendVisitorCookies(lpButtonCTTUrl) : lpButtonCTTUrl); lpButtonCTTUrl = ((typeof(lpMTag)!='undefined' &amp;&amp; typeof(lpMTag.addFirstPartyCookies)!='undefined')?lpMTag.addFirstPartyCookies(lpButtonCTTUrl):lpButtonCTTUrl);window.open(lpButtonCTTUrl,'chat33660894','width=475,height=400,resizable=yes');return false;" href="https://server.iad.liveperson.net/hc/33660894/?cmd=file&amp;file=visitorWantsToChat&amp;site=33660894&amp;byhref=1&amp;imageUrl=https://www.expressdecor.com/templates/ed_new/img/liveperson"><div class="livechat-icon"></div></a>             	                  
+	   	    	</div>	   	    	
+	   	    	<div class="pro-account"><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);?>pro-account.html" ><?php echo $this->__('Pro Account'); ?></a></div>
+          	</div>          		          		 
+          	<div class="bottom-panel container">          		          		        
+          	 	<?php  echo $this->getChildHtml('topSearch') ?>
+          	 	<?php echo $this->getChildHtml('CustomerServiceHours'); ?>
+          	</div>                                          	
+	      </div>                  
+	</div> 		
+    <div class="menu-container">    
+    	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('top_menu')->toHtml() ?>    	  
+    </div> 
+    <div class="our-benefits container">
+    	<?php  echo $this->getChildHtml('OurBenefits') ?>
     </div>
-    <div  class="header-login <?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()); ?>">
-    <?php echo $this->getChildHtml('accountLinks') ?>
-     <?php  echo $this->getChildHtml('topCart') ?>
-   
-    </div>
-
-    
-    	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('top_menu')->toHtml() ?>
-    	<?php echo $this->getChildHtml('topMenu') ?>    
-
-
-
-<?php echo $this->getChildHtml('topContainer') ?>
-
+    <div class="page-delimiter"></div>
 </div>

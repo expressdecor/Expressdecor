@@ -58,6 +58,33 @@ AppBehavior.CarouselRules = {
         });
         AppBehavior.PictureCarousel.load();
     },
+    
+    '#featured-products-carousel': function(element) {
+        //Pictures
+        AppBehavior.PictureCarousel = new Carousel('PictureCarouse3', element, 170, 170, AppBehavior, {
+            setSize: 3,
+            duration: .5,
+            direction: 'horizontal',
+            itemParser: function(item) {
+                //Given html element you can build a data object for the item if needed for later activatio
+                var sKey = item.down('.key').innerHTML;
+                var sCaption = item.down('.caption').innerHTML;
+                var sPictureHtml = item.down('.picture').innerHTML;
+                return { name: sCaption, pictureHtml: sPictureHtml };
+            },
+            setItemEvents: function(carousel, itemElement, carouselItem, observer) {
+                //This allows you to set events to the item like rollovers/mouse events
+                Event.observe(itemElement, 'click', function() {
+                    carousel.activate(carouselItem);
+                });
+            },
+            allowAutoLoopOnSet: true,
+            allowAutoLoopOnIndividual: false
+        });
+        AppBehavior.PictureCarousel.load();
+    },
+    
+    
         '#express-images': function(element) {
         //Pictures
         AppBehavior.PictureCarousel = new Carousel('PictureCarouse2', element, 48, 48, AppBehavior, {

@@ -428,7 +428,18 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
-            </service_hours>		
+            </service_hours>
+            <service_header_hours>
+            	<label>Header Customer service hours</label>
+            	<comment>
+                	<![CDATA[Text that shows at top of each page. ]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>11</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </service_header_hours>		
             </fields>
        </customer_service>   
         

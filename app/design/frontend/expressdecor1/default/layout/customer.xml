@@ -48,13 +48,13 @@ Default layout, loads most of the pages
 
     <default>
         <!-- Mage_Customer -->
-        <reference name="top.links">
-            <action method="addLink" translate="label title" module="customer"><label>My Account</label><url>#</url><title>My Account</title><prepare/><urlParams/><position>10</position><liParams/><a>onclick="sign_in();" class="my_acc"</a></action>
+        <reference name="account.links">
+            <action method="addLink" translate="label title before_text" module="customer"><label>expressAccount</label><url>#register</url> <title>Register</title><prepare/><urlParams/><position>10</position><li/><a>onclick="join_us();" class="reg_acc"</a> </action>
+        </reference>
+       <reference name="top.links">
+            <action method="addLink" translate="label title" module="customer"><label>Sign In</label><url>#</url><title>My Account</title><prepare/><urlParams/><position>11</position><liParams/><a>onclick="sign_in();" class="my_acc"</a><before_text></before_text></action>
         </reference>
  
-        <reference name="account.links">
-            <action method="addLink" translate="label title before_text" module="customer"><label>Register</label><url>#register</url> <title>Register</title><prepare/><urlParams/><position>100</position><li/><a>onclick="join_us();" class="reg_acc"</a><before_text> | </before_text></action>
-        </reference>
     </default>
 
 <!--
@@ -75,7 +75,7 @@ Load this update on every page when customer is logged out
 
     <customer_logged_out>
         <reference name="account.links">
-            <action method="addLink" translate="label title" module="customer"><label>My Account</label><url>javascript:void(0)</url><title>My Account</title><prepare/><urlParams/><position>1</position><liParams/><a>onclick="sign_in();" class="my_acc"</a></action>
+            <action method="addLink" translate="label title" module="customer"><label>Sign In</label><url>javascript:void(0)</url><title>My Account</title><prepare/><urlParams/><position>10</position><liParams/><a>onclick="sign_in();" class="my_acc"</a><before_text></before_text></action>
             <action method="removeLinkByUrl" ifconfig="enterprise_invitation/general/registration_required_invitation"><url helper="customer/getRegisterUrl" /></action>
             <!-- <action method="addLink" translate="label title" module="customer"><label>register</label><url helper="customer/getRegisterUrl" /><title>register</title><prepare/><urlParams/><position>100</position><li/><a/><before_text> or </before_text><after_text>.</after_text></action> -->
         </reference>

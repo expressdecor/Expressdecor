@@ -1,0 +1,43 @@
+ <div class="benefit-item first">
+ 	<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>shipping-and-taxes.html"></a><div class="benefit-image shipping"></div></a>
+ 	<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>shipping-and-taxes.html"><div class="benefit-description"><?php echo $this->__('Free Shipping'); ?></div></a>
+ 	<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>shipping-and-taxes.html"><div class="benefit-description-small"><?php echo $this->__('on orders over $100'); ?></div></a>
+ </div>
+  <div class="benefit-item tax">
+ 	<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>shipping-and-taxes.html"><div class="benefit-image tax"></div></a>
+ 	<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>shipping-and-taxes.html"><div class="benefit-description"><?php echo $this->__('No Sales Tax'); ?></div></a>
+ 	<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>shipping-and-taxes.html"><div class="benefit-description-small"><?php echo $this->__('outside NY state'); ?></div></a>
+ </div>
+  <div class="benefit-item ship">
+ 	<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>shipping-and-taxes.html"><div class="benefit-image canada"></div></a>
+ 	<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>shipping-and-taxes.html"><div class="benefit-description"><?php echo $this->__('We Ship to Canada'); ?></div></a>
+ 	<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>shipping-and-taxes.html"><div class="benefit-description-small"><?php echo $this->__('& outside US'); ?></div></a>
+ </div>
+  <div class="benefit-item returns">
+ 	<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>returns.html"><div class="benefit-image returns"></div></a>
+ 	<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>returns.html"><div class="benefit-description"><?php echo $this->__('Hassle-Free Returns'); ?></div></a>
+ 	<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>returns.html"><div class="benefit-description-small"><?php echo $this->__('click here to learn more'); ?></div></a>
+ </div>
+ <div class="benefit-item last registration"> 
+ 	<div class="benefit-description"><?php echo $this->__('Sign up for your expressAccount'); ?></div>
+ 	<div class="welcome-to">
+ 		<form id="form-validate-to" method="post" action="">
+ 			<div class="email-field reg-field">
+ 				<input type="text" class="input-text validate-email required-entry dataFormto" title="Email Address" value="" id="email_address" name="email"  />
+ 			</div>
+ 			<div class="singup-button">
+ 				<button   title="Join" class="button"  onclick="post_request(this);"   type="button"><span><span><?php echo $this->__('Join');?></span></span></button>
+ 				<div class="popup-loader" style="display:none;"></div>
+ 			</div> 			 
+ 		</form>
+ 	</div> 	
+			<a href="#" onclick="return fblogin();" class="fb_button_ps"><div class="fb-logo"></div></a>	
+ </div> 
+ <script type="text/javascript">
+//<![CDATA[
+  var dataFormto = new VarienForm('form-validate-to', false);   	
+    jQ.get('/facebook/facebook/islogged',  {},function(data){      
+     
+    }); 
+//]]>  
+</script>

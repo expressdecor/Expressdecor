@@ -76,6 +76,9 @@ Default layout, loads most of the pages
                 <action method="addItem"><type>js</type><name>lib/ds-sleight.js</name><params/><if>lt IE 7</if></action>
                 <action method="addItem"><type>skin_css</type><name>css/styles-ie7.css</name><params/><if>lt IE 7</if></action>
                 <action method="addItem"><type>skin_js</type><name>js/iehover-fix.js</name><params/><if>lt IE 7</if></action>
+                <action method="addItem"><type>skin_js</type><name>js/iehover-fix.js</name><params/><if>lt IE 7</if></action>
+                <action method="addItem"><type>skin_js</type><name>js/css3-mediaqueries.js</name><params/><if>if lt IE 9</if></action>
+     
             </block>
 
             <block type="core/text_list" name="after_body_start" as="after_body_start" translate="label">
@@ -88,14 +91,12 @@ Default layout, loads most of the pages
             <block type="page/html_notices" name="global_notices" as="global_notices" template="page/html/notices.phtml" />
 
             <block type="page/html_header" name="header" as="header">
-                <block type="page/template_links" name="account.links" as="accountLinks"/>
+                <block type="page/template_links" name="account.links" as="accountLinks"   />
                 <block type="page/template_links" name="top.links" as="topLinks"/>
                 <block type="page/template_links" name="checkout.links" as="checkoutLinks"/>
-              <!--   <block type="core/text_list" name="top.switches" as="switches" translate="label">
-                    <label>Store Language</label>
-                    <block type="page/switch" name="store_language" as="store_language" template="page/switch/languages.phtml"/>
-                </block> -->
-                 <block type="page/switch" name="store_language" as="store_language" template="page/switch/languages.phtml"/>
+ 			    <block type="page/html" name="customer_service_hours" as="CustomerServiceHours" template="page/ed/customer_service_hours.phtml" />
+ 			    <block type="page/html" name="our_benefits" as="OurBenefits" template="page/ed/our_benefits.phtml" />    
+                <block type="page/switch" name="store_language" as="store_language" template="page/switch/languages.phtml"/>
                 <block type="core/text_list" name="top.menu" as="topMenu" translate="label">
                     <label>Navigation Bar</label>
                 </block>
