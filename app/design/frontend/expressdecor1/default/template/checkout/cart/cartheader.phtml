@@ -36,12 +36,12 @@
     	<div class="block-title no-items">        	 
             <a href="<?php echo $this->getUrl('checkout/cart'); ?>"><?php echo$this->__('Cart'); ?></a>        	 
     	</div>
-    	<div class="cart-img"></div>
+    	<a href="<?php echo $this->getUrl('checkout/cart')?>"><div class="cart-img"></div></a>
 	<?php else:?>
-		<div class="cart-img"></div>  
+		<a href="<?php echo $this->getUrl('checkout/cart')?>"><div class="cart-img"></div></a>  
 		   		
-        <div class="cart-title"><?php echo $this->__('Cart'); ?></div>        	         	     	 
-    	<div class="cartqty"><?php echo $_cartQty ?></div>
+       <a href="<?php echo $this->getUrl('checkout/cart')?>"><div class="cart-title"><?php echo $this->__('Cart'); ?></div></a>          	         	     	 
+    	<a href="<?php echo $this->getUrl('checkout/cart')?>"><div class="cartqty"><?php echo $_cartQty ?></div></a>  
     	 
     	 <div class="arrow-cart"></div>  	
     	<div id="topCartContent" class="block-content" style="display:none">
@@ -72,8 +72,12 @@
                 <span class="label"><?php echo $this->__('Cart Subtotal:') ?></span> <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?><?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?> / <?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?><?php endif; ?>
             </p>
             <div class="actions">
+            	<div class="top-cart-checkout-btn-addon">
                 <?php echo $this->getChildHtml('extra_actions') ?>
-                <button class="button" type="button" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')"><span><span><?php echo $this->__('Checkout') ?></span></span></button>
+                </div>
+                <div class="top-cart-checkout-btn">
+                	<button class="button" type="button" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')"><span><span><?php echo $this->__('Checkout') ?></span></span></button>
+                </div>
                 <a href="<?php echo $this->getUrl('checkout/cart'); ?>"><span><?php echo $this->__('Go to Shopping Cart') ?></span></a>
             </div>
         <?php endif ?>
