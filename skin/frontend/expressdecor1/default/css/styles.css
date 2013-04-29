@@ -682,7 +682,9 @@ ul.disc li { padding-left:10px; background:url(../images/bkg_bulletsm.gif) no-re
 .top-cart .block-content .subtotal { background:#fff url(../images/bkg_dots.gif) repeat-x 0 0; padding:2px 5px; text-align:center; }
 
 .top-cart .actions { background:#e3e3e3 url(../images/bkg_dots.gif) repeat-x 0 -1px; text-align:center; padding:5px 11px; text-align:right; }
-.top-cart .actions a { float:left; line-height:23px; }
+.top-cart .actions a { float:left; line-height:23px; color: #000000; text-decoration:underline; }
+.top-cart .actions .top-cart-checkout-btn-addon .paypal-logo a  {float:none;}
+ 
 .top-cart .actions button { float:none; }
 .top-cart .actions button.button span,
 .top-cart .actions button.button span span { background-image:url(../images/bkg_btn-onbg.gif); background-repeat:no-repeat; }
