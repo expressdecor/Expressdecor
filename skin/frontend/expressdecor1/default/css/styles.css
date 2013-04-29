@@ -653,6 +653,7 @@ ul.disc li { padding-left:10px; background:url(../images/bkg_bulletsm.gif) no-re
 .quickaccess-links a {font-size:1.05em; color: #59595B; text-decoration: none;}
 .quickaccess-links .account-links .first { border-right:1px solid #59595B; padding:0px 5px 0px 5px;}
 .quickaccess-links .account-links .last { padding:0px 5px 0px 5px;}
+.quickaccess-links  .header-livechat {width:71px;}
 .livechat-icon {width:18px;height:13px;  background: url("../images/expressdecor-sprite.png") no-repeat -382px -3px transparent; float:right; margin-left:5px; }
 /* Top Shopping Cart */
 .top-cart { position:relative; overflow:visible;  }
@@ -2760,7 +2761,7 @@ padding-bottom: 10px;
 }
 /*=== Front categories*/
 .std .brand-menu-item{float:left;width: 16%;  padding-left: 10px;}
-.std .brand-menu-item > div {border-right: 1px solid #000000;}
+.std .brand-menu-item > div {border-right: 1px solid #58595B;}
 .std .brand-menu-item.last {width:auto;}
 .std .brand-menu-item > div[class=frontcattxt] ,
 .std .brand-menu-item.last > div  {border:0px;}
@@ -2773,7 +2774,8 @@ padding-bottom: 10px;
 .std .frontcatimg {padding-right: 10px;padding-bottom: 6px;}
 
 .std .frontcatimg div { background: url("../images/expressdecor-sprite.png") no-repeat -166px -86px transparent; border: 0px; width:43px; height:63px;}
-.std .frontcatimg .img-kitchen {background-position: -166px -86px; width:63px; height:45px;margin-top:19px; }
+.std .frontcatimg .img-kitchen {background-position: -166px -86px; width:63px; height:45px; }
+.std .frontcatimg.kitchen {padding-bottom:26px;}
 .std .frontcatimg .img-bathroom {background-position:  -237px -78px;height:60px;margin-bottom:3px; }
 .std .frontcatimg .img-faucets {background-position:-286px -77px;}
 .std .frontcatimg .img-sinks {background-position:  -332px -77px;}
@@ -2854,7 +2856,7 @@ z-index:2;
 #nav ul li { float:none; height:auto; display:block; border-bottom:1px solid #e2e2e2; width: auto; padding-top: 5px; padding-bottom: 5px;padding-left: 2px;}
 #nav ul li.last { border-bottom:0; }
 #nav ul li.parent { background:url(../images/bkg_parent.gif) 100% 50% no-repeat; }
-#nav ul li a { display:block; font-size:12px; line-height:1.2; padding:5px 4px; text-decoration:none !important; color:#000; }
+#nav ul li a { display:block; font-size:12px; line-height:1.2; padding:5px 4px; text-decoration:none !important; color:#000; text-align:left; }
 #nav ul li.last > a { padding-bottom:0; }
 #nav ul li a:hover { color:#000000; }
 #nav ul li a span {}
