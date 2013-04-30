@@ -641,7 +641,7 @@ ul.disc li { padding-left:10px; background:url(../images/bkg_bulletsm.gif) no-re
 .container {min-height:2px; overflow:auto;}
 
 .bottom-panel { overflow:visible;}
-.customer-service {float:right; padding-top:12px; }
+.customer-service {float:right;   }
 .customer-service-phone {font-weight:bold; font-size:1.545em;  color: #59595B;margin-top: -3px;}
 .customer-service-hours {font-size:0.818em;  color: #59595B;}
 
@@ -2775,7 +2775,7 @@ padding-bottom: 10px;
 
 .std .frontcatimg div { background: url("../images/expressdecor-sprite.png") no-repeat -166px -86px transparent; border: 0px; width:43px; height:63px;}
 .std .frontcatimg .img-kitchen {background-position: -166px -86px; width:63px; height:45px; }
-.std .frontcatimg.kitchen {padding-bottom:26px;}
+.std .frontcatimg.kitchen {padding-bottom:12px; padding-top:12px;}
 .std .frontcatimg .img-bathroom {background-position:  -237px -78px;height:60px;margin-bottom:3px; }
 .std .frontcatimg .img-faucets {background-position:-286px -77px;}
 .std .frontcatimg .img-sinks {background-position:  -332px -77px;}
