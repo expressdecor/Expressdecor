@@ -736,6 +736,14 @@ ul.disc li { padding-left:10px; background:url(../images/bkg_bulletsm.gif) no-re
 .our-benefits .welcome-to button.button span {background: url("../images/expressdecor-sprite.png") no-repeat scroll -3px -102px #72C1E9; height: 23px;padding-left: 0;width: 60px;}
 .our-benefits .welcome-to button.button span  span { color: #FFFFFF; line-height: 22px;padding: 0;}
 .our-benefits .fb-logo { background: url("../images/expressdecor-sprite.png") no-repeat scroll -26px -73px transparent; margin-left:5px; float: left; height: 23px; padding: 0;width: 24px;}
+/*Customer Logged in*/
+.thank-message .benefit-description.thank-you {width:148px; float:none;} 
+.thank-message {width:148px; float:left;}
+.benefit-description-small.thank-you {color: #26ACE2; padding-left:6px;width:148px;}
+.top-coupon {float: left;}
+.top-coupon-item .top-coupon-desc.benefit-description,.top-coupon-item .top-coupon-desc-line2.benefit-description{width:155px; float:none; color: #48494A;}
+.top-coupon-item {float:left;}
+.coupon-container {float:left; text-transform: uppercase;padding:1px; width:37px;border:1px solid #72C1E9; -moz-border-radius: 2px;-webkit-border-radius: 2px;border-radius:2px;font-weight:bold;font-size:13px; color: #48494A;}
 
 .page-delimiter {widht:5px; height:5px;  background:url(../images/page-delimiter.png) repeat-x 0px 0px transparent; margin-bottom:10px;}
  /*Edited 3/27/2013 */

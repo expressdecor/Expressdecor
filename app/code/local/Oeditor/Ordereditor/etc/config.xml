@@ -168,8 +168,8 @@ T: {{var telephone}}
 				
 				<![CDATA[
 				
-				
-			
+			 
+		 
  		
 {{depend prefix}}<span class="oe_edit_label">Prefix:</span><span id="oe_edit_prefix">{{var prefix}}</span><br />
 <script type="text/javascript">
@@ -259,7 +259,7 @@ new Ajax.InPlaceEditor('oe_edit_telephone', 'urlfield/telephone/type/request_typ
 
 {{depend fax}}<span class="oe_edit_label">Fax:</span><span id="oe_edit_fax">{{var fax}}</span><br />
 <script type="text/javascript">
-new Ajax.InPlaceEditor('oe_edit_fax', 'urlfield/fax/type/request_type/order/order_id',{ highlightColor:'#E2F1B1'});
+  new Ajax.InPlaceEditor('oe_edit_fax', 'urlfield/fax/type/request_type/order/order_id',{ highlightColor:'#E2F1B1'});
 </script>
 {{/depend}}
 
