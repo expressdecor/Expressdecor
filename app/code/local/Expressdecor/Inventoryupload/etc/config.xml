@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Expressdecor_Inventoryupload>
+            <version>0.1.0</version>
+        </Expressdecor_Inventoryupload>
+    </modules>
+
+   <global>
+        <blocks>
+        	<inventoryupload>
+        		<class>Expressdecor_Inventoryupload_Block</class>
+			</inventoryupload>        		
+        </blocks>      
+        <helpers>
+        	<inventoryupload>
+        		<class>Expressdecor_Inventoryupload_Helper</class>
+			</inventoryupload>        		
+        </helpers>     
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>                 
+                <args>
+                    <modules> 
+                    	<Expressdecor_Inventoryupload before="Mage_Adminhtml">Expressdecor_Inventoryupload</Expressdecor_Inventoryupload>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin> 
+	<adminhtml>
+        <menu>
+        	<catalog>
+        		<children>
+        			<inventoryupload translate="title" module="inventoryupload">
+                		<title>Inventory Upload</title>
+                		<action>adminhtml/inventoryupload</action> 
+                		<sort_order>9999</sort_order>
+            		</inventoryupload>
+        		</children>
+        	</catalog>            
+        </menu> 
+    </adminhtml>    
+</config> 
+
+          
