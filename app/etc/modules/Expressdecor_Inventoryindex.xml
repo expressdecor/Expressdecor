@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+	    <Expressdecor_Inventoryindex>
+			<active>true</active>
+			<codePool>local</codePool>
+	    </Expressdecor_Inventoryindex>
+	</modules>
+</config>	    

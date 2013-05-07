@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Expressdecor_Inventoryindex>
+            <version>0.1.0</version>
+        </Expressdecor_Inventoryindex>
+    </modules>
+   <global>     
+        <models>
+        	<inventoryindex>
+        		<class>Expressdecor_Inventoryindex_Model</class>
+			</inventoryindex>        		
+        </models>     
+        <helpers>
+        	<inventoryindex>
+        		<class>Expressdecor_Inventoryindex_Helper</class>
+			</inventoryindex>        		
+        </helpers>
+    	<index>
+    		<indexer>
+    			<inventoryindex>
+    				<model>Expressdecor_Inventoryindex_Model_Indexer</model>>
+    			</inventoryindex>
+    		</indexer>
+    	</index>             
+    </global> 
+</config> 
+
+          
