@@ -19,7 +19,22 @@
  	<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>returns.html"><div class="benefit-description-small"><?php echo $this->__('click here to learn more'); ?></div></a>
  </div>
  	<?php if (Mage::helper('customer')->isLoggedIn()): ?>
- <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('logged-customer-top')->toHtml(); ?>
+ 	<?php $username=Mage::getSingleton('customer/session')->getCustomer()->getName();?>
+<div class="benefit-item last registration"> 
+	<div class="thank-message">
+		<div class="benefit-description thank-you"><?php if (trim($username)) echo $this->__("Welcome back, %s",$username); else echo  $this->__("Welcome to expressDecor.com") ?></div>
+		<div class="benefit-description-small thank-you"><?php echo $this->__("Connect with us on social media"); ?></div>
+	</div>
+	<div class="top-social container" > 	
+			<a  target="_blank" href="http://www.facebook.com/pages/ExpressDecorcom/130448316984113?sk=app_201143516562748" alt="Stay connected with us" ><div class="footer-social facebook"></div></a>			
+			<a target="_blank" href="http://twitter.com/#!/HomeDecorExpert" alt="Stay connected with us" ><div class="footer-social twitter"></div></a>	
+			<a  target="_blank" href="http://pinterest.com/expressdecor/" alt="Pinterest" ><div class="footer-social pinterest"></div></a>
+			<a  target="_blank" href="http://www.youtube.com/user/ExpressDecor" alt="Stay connected with us" ><div class="footer-social youtube"></div></a>
+			<a  target="_blank" href="http://www.houzz.com/pro/expressdecor/expressdecorcom" alt="Houzz" ><div class="footer-social houzz"></div></a>
+			<a  target="_blank" href="http://blog.expressdecor.com" alt="Blog" ><div class="footer-social blog"></div></a>
+	</div> 
+</div>
+ 	
  <?php else:?>
  <div class="benefit-item last registration"> 
  	<div class="benefit-description"><?php echo $this->__('Sign up for your expressAccount'); ?></div>

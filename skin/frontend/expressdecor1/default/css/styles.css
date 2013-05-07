@@ -737,14 +737,11 @@ ul.disc li { padding-left:10px; background:url(../images/bkg_bulletsm.gif) no-re
 .our-benefits .welcome-to button.button span  span { color: #FFFFFF; line-height: 22px;padding: 0;}
 .our-benefits .fb-logo { background: url("../images/expressdecor-sprite.png") no-repeat scroll -26px -73px transparent; margin-left:5px; float: left; height: 23px; padding: 0;width: 24px;}
 /*Customer Logged in*/
-.thank-message .benefit-description.thank-you {width:148px; float:none;} 
-.thank-message {width:148px; float:left;}
-.benefit-description-small.thank-you {color: #26ACE2; padding-left:6px;width:148px;}
-.top-coupon {float: left;}
-.top-coupon-item .top-coupon-desc.benefit-description,.top-coupon-item .top-coupon-desc-line2.benefit-description{width:155px; float:none; color: #48494A;}
-.top-coupon-item {float:left;}
-.coupon-container {float:left; text-transform: uppercase;padding:1px; width:37px;border:1px solid #72C1E9; -moz-border-radius: 2px;-webkit-border-radius: 2px;border-radius:2px;font-weight:bold;font-size:13px; color: #48494A;}
-
+.thank-message .benefit-description.thank-you {width:190px; float:none;} 
+.thank-message {width:190px; float:left;}
+.benefit-description-small.thank-you {color: #26ACE2; padding-left:6px;width:190px;}
+.top-social {float: left;}
+ 
 .page-delimiter {widht:5px; height:5px;  background:url(../images/page-delimiter.png) repeat-x 0px 0px transparent; margin-bottom:10px;}
  /*Edited 3/27/2013 */
  
@@ -2611,13 +2608,13 @@ address {min-height: 20px;font-size: 1.1em; color: #FFFFFF;}
 .footer .footer-social-title {padding-left:10px; font-size: 1em; color: #59595B; float:left;}
 .footer .social-item a {text-decoration:none;}
 .footer  .social-item .footer-social {padding:0px; background: url("../images/expressdecor-sprite.png") 0px 0px no-repeat transparent; height: 23px; width:24px; float:left; }
-
-.footer .social-item .twitter{background-position: 0px -73px}
-.footer .social-item .facebook {background-position: -26px -73px;}
-.footer .social-item .youtube {background-position: -93px -73px;}
-.footer .social-item .pinterest {background-position: -50px -73px;}
-.footer .social-item .houzz {background-position: -75px -73px; width:18px;}
-.footer .social-item .blog {background-position: -117px -73px;}
+.top-social div { padding:0px; background: url("../images/expressdecor-sprite.png") 0px 0px no-repeat transparent; height: 23px; width:24px; float:left; margin-left:6px;}
+.top-social .twitter, .footer .social-item .twitter{background-position: 0px -73px}
+.top-social .facebook,.footer .social-item .facebook {background-position: -26px -73px;}
+.top-social .youtube,.footer .social-item .youtube {background-position: -93px -73px;}
+.top-social .pinterest,.footer .social-item .pinterest {background-position: -50px -73px;}
+.top-social .houzz,.footer .social-item .houzz {background-position: -75px -73px; width:18px;}
+.top-social .blog,.footer .social-item .blog {background-position: -117px -73px;}
  
 .footer .footer-menu-title { font-size: 1.273em;font-weight: bold; text-transform: capitalize; color: #59595B;}
 .footer .footer-menu-item {padding-right: 30px; float:left;padding-bottom: 10px;}
