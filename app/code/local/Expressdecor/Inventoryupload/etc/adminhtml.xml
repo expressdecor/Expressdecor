@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+     <menu>
+     	<catalog>
+        	<children>
+        		<inventoryupload translate="title" module="inventoryupload">
+                	<title>Inventory Upload</title>
+                	<action>adminhtml/inventoryupload</action> 
+                	<sort_order>9999</sort_order>
+            	</inventoryupload>
+        	</children>
+     	</catalog>            
+    </menu> 
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <catalog>
+                <children>                                                                            	
+                	<inventoryupload translate="title">
+                    	<title>Inventory Upload</title>
+               		</inventoryupload>                                			
+                </children>
+            </catalog>
+        </resources>
+    </acl>
+</config>
