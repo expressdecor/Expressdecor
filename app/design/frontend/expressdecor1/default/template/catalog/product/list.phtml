@@ -128,7 +128,7 @@
 
                     <?php if($_product->isSaleable()): ?>
 
-                        <button type="button" title="<?php echo $this->__('Details') ?>" class="button btn-cart" onclick="setLocation('<?php echo $_product->getProductUrl() ?>')"><span><span><?php echo $this->__('Details') ?></span></span></button>
+                        <button type="button" title="<?php echo $this->__('Add to cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $_product->getProductUrl() ?>')"><span><span><?php echo $this->__('Add to cart') ?></span></span></button>
                     <?php else: ?>
 
                         <?php if ($_product->getIsSalable()): ?>
@@ -235,7 +235,7 @@ if ($_product->getTypeId() =='configurable' && $under_catalog_rule_promotion==0)
                 ?>
             <div class="actions">
                 <?php if($_product->isSaleable()): ?>
-                    <button type="button" title="<?php echo $this->__('Details') ?>" class="button btn-cart" onclick="setLocation('<?php echo $_product->getProductUrl() ?>')"><span><span><?php echo $this->__('Details') ?></span></span></button>
+                    <button type="button" title="<?php echo $this->__('Add to cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $_product->getProductUrl() ?>')"><span><span><?php echo $this->__('Add to cart') ?></span></span></button>
                 <?php else: ?>
                     <?php if ($_product->getIsSalable()): ?>
                         <p class="availability in-stock"><span><?php echo $this->__('In stock') ?></span></p>
