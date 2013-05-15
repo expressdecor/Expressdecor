@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Expressdecor_Forms>
+            <version>0.1.0</version>
+        </Expressdecor_Forms>
+    </modules>
+    <frontend>
+        <routers>
+            <forms>
+                <use>standard</use>
+                <args>
+                    <module>Expressdecor_Forms</module>
+                    <frontName>forms</frontName>
+                </args>
+            </forms>
+        </routers>
+    </frontend>  
+ <global>
+        <blocks><forms><class>Expressdecor_Forms_Block</class></forms></blocks>  
+        <helpers><forms><class>Expressdecor_Forms_Helper</class></forms></helpers>
+        
+        <models>
+        	<forms>
+        		<class>Expressdecor_Forms_Model</class>
+        		<resourceModel>forms_resource</resourceModel>
+        	</forms>
+        	<forms_resource>
+        		<class>Expressdecor_Forms_Model_Resource</class>
+        		<entities>
+        			<giveaway><table>expressdecor_giveaway</table></giveaway>
+        		</entities>
+        	</forms_resource>
+        </models>
+        
+	    <resources>
+          <forms_setup>
+              <setup>
+                  <module>Expressdecor_Forms</module>
+              </setup>
+              <connection>
+                  <use>core_setup</use>
+              </connection>
+          </forms_setup>
+          <forms_write>
+              <connection>
+                  <use>core_write</use>
+              </connection>
+          </forms_write>
+          <forms_read>
+              <connection>
+                  <use>core_read</use>
+              </connection>
+          </forms_read>			
+       </resources>                    
+  </global>
+</config>
+
+
+	

@@ -1,0 +1,38 @@
+<div class="giveaway_form_container">
+<form name="giveaway_register_form" id="giveaway_register_form" action="<?php echo $this->getUrl("forms/giveaway/register");?>" method="post" class="contact_form giveawayform" autocomplete="on">
+    <ul>
+        <li>
+             <h2>Register</h2>
+             <span class="required_notification"><?php echo $this->__('*Required Field');?></span>
+        </li>
+        <li>
+            <label for="name"><?php echo $this->__('Name:')?></label>
+            <input name="name" class="validate-name required-entry" id="name" type="text" pattern="^[a-zA-Z ]*"  placeholder="<?php echo $this->__('Your Name');?>" required />
+        </li>
+        <li>
+            <label for="email"><?php echo $this->__('Email:');?></label>
+            <input id="email" class="validate-email required-entry" type="email" name="email" placeholder="<?php echo $this->__('Your email');?>" required />
+            <span class="form_hint"><?php echo $this->__("Ex: johndoe@domain.com");?></span>
+        </li>
+        <li>
+        	<button class="submit" type="button" onclick="register();"><?php echo $this->__('Register');?></button><button class="reset" type="reset"><?php echo $this->__('Reset');?></button>
+		</li>
+    </ul>
+</form>
+<script type="text/javascript">
+	var giveawayform=new VarienForm('giveaway_register_form',false);
+		
+	function register(){			
+		if (giveawayform.validator.validate() )		
+			jQuery.post("<?php echo $this->getUrl("forms/giveaway/register");?>",
+				  { name: jQuery("#name").val(), email: jQuery("#email").val() } ,
+				function(jQuery.parseJSONdata) {
+					if (data=="ok") {
+						jQuery(".giveaway_form_container").html("Thank you for registering.");
+					} else {
+						alert("<?php echo $this->__("Oops! Something went wrong, please try again."); ?>");
+					}
+				});		 
+	}
+</script>
+</div>

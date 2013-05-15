@@ -17,6 +17,7 @@ Mage::app ( 'default' );
 
 $products = Mage::getModel ( 'catalog/product' )->getCollection();
 $products->addAttributeToFilter ( 'status', 1 ); // enabled
+$products->addAttributeToFilter ( 'is_imported', 1 );
 //$products->addAttributeToFilter('visibility', 4); // catalog, search
 //$products->addAttributeToFilter('manufacturer', $ManufacturerId); // Kraus products only
 //$products->addAttributeToFilter ( 'sku', 'GV-101-19mm_Base' ); // Kraus products only
