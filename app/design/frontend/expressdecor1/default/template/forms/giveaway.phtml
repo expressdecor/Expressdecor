@@ -26,7 +26,7 @@
 		if (giveawayform.validator.validate() )		
 			jQuery.post("<?php echo $this->getUrl("forms/giveaway/register");?>",
 				  { name: jQuery("#name").val(), email: jQuery("#email").val() } ,
-				function(jQuery.parseJSONdata) {
+				function(data) {
 					if (data=="ok") {
 						jQuery(".giveaway_form_container").html("Thank you for registering.");
 					} else {

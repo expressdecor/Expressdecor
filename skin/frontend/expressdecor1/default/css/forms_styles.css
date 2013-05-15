@@ -2,8 +2,8 @@
 *:focus {outline: none;}
 
 /* === Form Typography === */
-body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;}
-.contact_form h2, .contact_form label {font-family:Georgia, Times, "Times New Roman", serif;}
+ 
+.contact_form h2, .contact_form label { }
 .form_hint, .required_notification {font-size: 11px;}
 
 /* === List Styles === */
@@ -42,6 +42,7 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
 	display:inline-block;
 	float:left;
 	padding:3px;
+	font-size:16px;
 }
 .contact_form input {
 	height:30px; 
