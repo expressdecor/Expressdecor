@@ -18,8 +18,17 @@
  */
 class Expressdecor_Inventoryupload_Helper_Data extends Mage_Core_Helper_Abstract
 {
+	protected  $_pickup_folder;
+	protected  $_processed_folder;
+	
+	public function __construct() {
+		$this->_pickup_folder =Mage::getBaseDir('var') . DS.'auto_inventory'.DS;
+		$this->_processed_folder =Mage::getBaseDir('var') . DS.'auto_inventory_processed'.DS;
+	}
+	
 	public function processfile($file) {
 		 
+		
 		$product = Mage::getModel('catalog/product');
 		$row = 0;
 		if (($handle = fopen($file, "r")) !== FALSE) {
@@ -54,6 +63,21 @@ class Expressdecor_Inventoryupload_Helper_Data extends Mage_Core_Helper_Abstract
 			  }
 		}
 		fclose($handle);
+		 if (copy($file,str_replace($this->_pickup_folder,$this->_processed_folder,$file))) {
+		 		unlink($file);
+		 }
 	}
+	
+	public function scanfolder(){		 		
+		$files = scandir($this->_pickup_folder);
+	  	
+		foreach ($files as $file) {			
+			if (is_file($this->_pickup_folder.$file)) { 
+				$this->processfile($this->_pickup_folder.$file);
+			}
+		}
+		
+	}
+	
 }
 	  
