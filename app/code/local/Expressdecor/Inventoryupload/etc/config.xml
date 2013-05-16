@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Expressdecor_Inventoryupload>
-            <version>0.1.0</version>
+            <version>0.1.1</version>
         </Expressdecor_Inventoryupload>
     </modules>
 
@@ -16,7 +16,27 @@
         	<inventoryupload>
         		<class>Expressdecor_Inventoryupload_Helper</class>
 			</inventoryupload>        		
-        </helpers>     
+        </helpers>   
+	    <resources>
+          <inventoryupload_setup>
+              <setup>
+                  <module>Expressdecor_Inventoryupload</module>
+              </setup>
+              <connection>
+                  <use>core_setup</use>
+              </connection>
+          </inventoryupload_setup>
+          <inventoryupload_write>
+              <connection>
+                  <use>core_write</use>
+              </connection>
+          </inventoryupload_write>
+          <inventoryupload_read>
+              <connection>
+                  <use>core_read</use>
+              </connection>
+          </inventoryupload_read>			
+       </resources>           
     </global>
     <admin>
         <routers>

@@ -44,8 +44,10 @@ class Expressdecor_Inventoryupload_Helper_Data extends Mage_Core_Helper_Abstract
 					    if (!$stockItem->getId())
 					    		throw new Exception("Product stock status ".$sku." doesn't found. (Please check if manage stock options is enabled)");
 					    					    		  					    
-					    $stockItem->setData('is_in_stock', $stock_status)->save();
-					    $p->setOutofstockMsg($stock_msg)->save();
+					    $stockItem->setData('is_in_stock', $stock_status);
+					    $stockItem->setData('stock_message', $stock_msg)->save();
+					    //Changed to stock item
+					   // $p->setOutofstockMsg($stock_msg)->save();
 					   
 					    unset($stockItem);
 					    unset($p);

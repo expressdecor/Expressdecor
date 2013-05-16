@@ -183,6 +183,15 @@
             </td>
             <td class="value scope-label"><?php echo Mage::helper('adminhtml')->__('[GLOBAL]') ?></td>
         </tr>
+        <!-- Alex added Out oF stock Message -->
+        <tr>
+            <td class="label"><label for="inventory_stock_message"><?php echo Mage::helper('catalog')->__('Stock Message') ?></label></td>
+            <td class="value"><input id="inventory_stock_message"  type="text" name="<?php echo $this->getFieldSuffix() ?>[stock_data][stock_message]" value="<?php echo $this->getFieldValue('stock_message'); ?>" class="input-text" <?php echo $_readonly;?>>
+ 
+            </td>
+            <td class="value scope-label"><?php echo Mage::helper('adminhtml')->__('[GLOBAL]') ?></td>
+        </tr>        
+        <!-- Alex Added Out Of Stock MEssage -->
         </table>
     </fieldset>
 </div>

@@ -82,7 +82,9 @@ $productCollection = $_product->getResource()->getAttribute('product_collection'
 //$bulletPoints = $_product->getResource()->getAttribute('bullet_points')->getFrontend()->getValue($_product);
 $productCollectionTwo = $_product->getResource()->getAttribute('product_collection_two')->getFrontend()->getValue($_product);
 $manufacturerName_block = strtoupper(preg_replace("[^A-Za-z0-9-]", "", $manufacturerName));
-$outofstockMsg = $_product->getResource()->getAttribute('outofstock_msg')->getFrontend()->getValue($_product);
+//$outofstockMsg = $_product->getResource()->getAttribute('outofstock_msg')->getFrontend()->getValue($_product);
+$stockItem=Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product->getId());
+$outofstockMsg =$stockItem->getData('stock_message');
 //echo "<pre>"; print_r($_product); echo "</pre>";
 //prices
 $_taxHelper  = $this->helper('tax');
