@@ -1230,7 +1230,7 @@ padding-top: 5px;
 .product-discount a { color:#0000FF;
 font-size:11px;
 padding-left:10px;
-text-transform:none; display:none;}
+text-transform:none;  }
 .discount-txt li{
 text-align:left;
 }
