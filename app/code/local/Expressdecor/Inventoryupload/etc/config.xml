@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Expressdecor_Inventoryupload>
-            <version>0.1.1</version>
+            <version>0.1.2</version>
         </Expressdecor_Inventoryupload>
     </modules>
 
@@ -17,6 +17,23 @@
         		<class>Expressdecor_Inventoryupload_Helper</class>
 			</inventoryupload>        		
         </helpers>   
+        <models>
+        	<inventoryupload>
+        		<class>Expressdecor_Inventoryupload_Model</class>
+        		<resourceModel>inventoryupload_resource</resourceModel>
+        	</inventoryupload>
+        	<inventoryupload_resource>
+        		<class>Expressdecor_Inventoryupload_Model_Resource</class>
+        		<entities>
+        			<productposition><table>catalog_category_product_position_idx</table></productposition>
+        		</entities>        		        		
+        	</inventoryupload_resource>        	
+        	<catalog_resource>
+        		<rewrite>
+        			<category_indexer_product>Expressdecor_Inventoryupload_Model_Resource_Category_Indexer_Product</category_indexer_product>
+        		</rewrite>
+        	</catalog_resource>        	 
+        </models>
 	    <resources>
           <inventoryupload_setup>
               <setup>
