@@ -104,7 +104,9 @@ ul.onestepcheckout-custom-options {
     margin-bottom: 5px;
     width: 200px;
 }
-
+.onestepcheckout-coupons {
+	margin-bottom:10px;
+}
 #onestepcheckout-form label {
     font-weight: normal !important;
 }
@@ -586,8 +588,7 @@ div.onestepcheckout-skin-magento p.onestepcheckout-numbers-4 {
     text-transform: uppercase;
     font-weight: bold;
     position: absolute;
-    right: 10px;
-    bottom: -5px;
+    right: 10px;    
 }
 
 #onestepcheckout-login-popup p.close a,#onestepcheckout-login-popup p.close a:link,#onestepcheckout-login-popup p.close a:visited,#onestepcheckout-toc-popup p.close a,#onestepcheckout-toc-popup p.close a:link,#onestepcheckout-toc-popup p.close a:visited
