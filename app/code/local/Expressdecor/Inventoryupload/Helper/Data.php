@@ -44,8 +44,19 @@ class Expressdecor_Inventoryupload_Helper_Data extends Mage_Core_Helper_Abstract
 					    $stock_msg=trim($data[2]);
 					    
 					    $p = $product->loadByAttribute('sku',$sku);
-					    iF (!$p) 
-					    	throw new Exception("Product ".$sku." doesn't found.");
+					    iF (!$p)  {
+					    	$productCollection = $product->getCollection()
+					    	->addAttributeToSelect('*')
+					    	->addAttributeToFilter('sku', $sku)
+					    	->load();
+					    	
+					    	// process the collection
+					    	foreach ($productCollection as $prod) {
+					    	 	$p=$prod;
+					    	}
+					    	//throw new Exception("Product ".$sku." doesn't found.");
+					    }
+					    	 
 					    if (!$p->getId()) 
 					    	 throw new Exception("Product ".$sku." doesn't found.");
 					    if ($p->getStatus()==1){ 
