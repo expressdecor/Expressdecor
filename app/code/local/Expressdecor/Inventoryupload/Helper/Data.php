@@ -57,7 +57,7 @@ class Expressdecor_Inventoryupload_Helper_Data extends Mage_Core_Helper_Abstract
 					    	//throw new Exception("Product ".$sku." doesn't found.");
 					    }
 					    	 
-					    if (!$p->getId() || !$p) 
+					    if (!$p || !$p->getId()) 
 					    	// throw new Exception("Product ".$sku." doesn't found.");
 					    	continue;	
 					    
