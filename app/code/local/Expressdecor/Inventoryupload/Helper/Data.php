@@ -48,8 +48,8 @@ class Expressdecor_Inventoryupload_Helper_Data extends Mage_Core_Helper_Abstract
 					    	throw new Exception("Product ".$sku." doesn't found.");
 					    if (!$p->getId()) 
 					    	 throw new Exception("Product ".$sku." doesn't found.");
-					    if ($p->getStatus()==0)
-					    	throw new Exception("Product ".$sku." is disabled.");
+					    if ($p->getStatus()==1){ 
+					    	//throw new Exception("Product ".$sku." is disabled.");
 					    
 					    $stockItem=Mage::getModel('cataloginventory/stock_item')->loadByProduct($p->getId());
 					    if (!$stockItem->getId())
@@ -59,7 +59,7 @@ class Expressdecor_Inventoryupload_Helper_Data extends Mage_Core_Helper_Abstract
 					    $stockItem->setData('stock_message', $stock_msg)->save();
 					    //Changed to stock item
 					   // $p->setOutofstockMsg($stock_msg)->save();
-					   
+					    }
 					    unset($stockItem);
 					    unset($p);
 			  }
