@@ -249,7 +249,13 @@ class Idev_OneStepCheckout_AjaxController extends Mage_Core_Controller_Front_Act
 
         $billing_data = $helper->load_exclude_data($billing_data);
         $shipping_data = $helper->load_exclude_data($shipping_data);
-
+        //Sashas
+        $signature_required = $this->getRequest()->getPost('signature_required');
+        $signature_enabled=Mage::getStoreConfig('sales/signature_shipping/enabled');
+        if ($signature_enabled){
+        	$this->_getOnepage()->getQuote()->getShippingAddress()->setSignatureApply($signature_required);
+        }
+        //Sashas
         if(Mage::helper('customer')->isLoggedIn() && $helper->differentShippingAvailable()){
             if(!empty($customerAddressId)){
                 $billingAddress = Mage::getModel('customer/address')->load($customerAddressId);
@@ -372,7 +378,14 @@ class Idev_OneStepCheckout_AjaxController extends Mage_Core_Controller_Front_Act
     public function set_methods_separateAction()
     {
         $helper = Mage::helper('onestepcheckout/checkout');
-
+		//Sashas
+        $signature_required = $this->getRequest()->getPost('signature_required');
+      	$signature_enabled=Mage::getStoreConfig('sales/signature_shipping/enabled');
+        if ($signature_enabled){        	 
+        	$this->_getOnepage()->getQuote()->getShippingAddress()->setSignatureApply($signature_required);     	 
+        }      
+		//Sashas
+		
         $shipping_method = $this->getRequest()->getPost('shipping_method');
         $old_shipping_method = $this->_getOnepage()->getQuote()->getShippingAddress()->getShippingMethod();
 
@@ -381,7 +394,8 @@ class Idev_OneStepCheckout_AjaxController extends Mage_Core_Controller_Front_Act
             // Use our helper instead
             $helper->saveShippingMethod($shipping_method);
         }
-
+        
+        
         $paymentMethod = $this->getRequest()->getPost('payment_method', false);
         $selectedMethod = $this->_getOnepage()->getQuote()->getPayment()->getMethod();
 

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+	    <Expressdecor_Shipp>
+			<active>true</active>
+			<codePool>local</codePool>			
+	    </Expressdecor_Shipp>
+	</modules>
+</config>	    	

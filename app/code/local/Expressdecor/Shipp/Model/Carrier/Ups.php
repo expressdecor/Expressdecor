@@ -1,6 +1,5 @@
 <?php
-class Expressdecor_Shipping_Model_Carrier_Ups
-extends Mage_Usa_Model_Shipping_Carrier_Ups
+class Expressdecor_Shipp_Model_Carrier_Ups extends Mage_Usa_Model_Shipping_Carrier_Ups
 //implements Mage_Shipping_Model_Carrier_Interface
 {
 /**

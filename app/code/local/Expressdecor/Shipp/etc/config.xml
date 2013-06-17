@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Expressdecor_Shipp>
+            <version>0.1.0</version>
+        </Expressdecor_Shipp>
+    </modules>
+
+ <global>
+ 		<blocks> 		 
+ 			<shipp><class>Expressdecor_Shipp_Block</class></shipp>
+ 			<adminhtml>
+ 				<rewrite> 				
+ 					<sales_order_totals>Expressdecor_Shipp_Block_Totals</sales_order_totals>
+ 				</rewrite>
+ 			</adminhtml>
+ 		 	<sales>
+ 				<rewrite> 				
+ 					<order_totals>Expressdecor_Shipp_Block_Sales_Totals</order_totals>
+ 				</rewrite> 		 	
+ 		 	</sales>
+ 		</blocks>
+        <models>
+        	
+       		<shipp><class>Expressdecor_Shipp_Model</class></shipp>
+          <!-- <shipping>
+             <rewrite>
+                 <carrier_flatrate>Expressdecor_Shipping_Model_Carrier_Flatrate</carrier_flatrate> 
+              </rewrite>                                            
+          </shipping> -->    
+          	<usa>
+             <rewrite>
+                 <shipping_carrier_ups>Expressdecor_Shipp_Model_Carrier_Ups</shipping_carrier_ups> 
+              </rewrite>                                            
+          	</usa>
+                             
+        </models>
+        <helpers>        
+        	<shipp><class>Expressdecor_Shipp_Helper</class></shipp>
+        </helpers>
+         <sales>
+            <quote>
+                <totals>
+                    <signature>
+                        <class>Expressdecor_Shipp_Model_Total_Signature</class>                                  
+                    </signature>
+                </totals>                
+            </quote>          
+       	</sales> 
+        <resources>
+            <shipp_setup>
+                <setup>
+                    <module>Expressdecor_Shipp</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </shipp_setup>
+            <shipp_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </shipp_write>
+            <shipp_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </shipp_read>
+       </resources>
+  	   <fieldsets>
+	  		<sales_convert_quote_address>
+  				<signature><to_order_address>*</to_order_address></signature>
+  			</sales_convert_quote_address>
+  	   </fieldsets>              	   
+  </global>
+
+  <default>
+    <sales>
+        <totals_sort>
+            <signature>60</signature>
+        </totals_sort>
+        <signature_shipping>
+        	<enabled>0</enabled>
+        	<amount>2.00</amount>
+        </signature_shipping>
+     </sales>
+	</default>
+</config>
+
+
+	

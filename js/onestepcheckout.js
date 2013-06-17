@@ -62,7 +62,12 @@ function get_save_methods_function(url, update_payments)
         var form = $('onestepcheckout-form');
         var shipping_method = $RF(form, 'shipping_method');
         var payment_method = $RF(form, 'payment[method]');
-
+     	//Sashas
+        if ( $('id_enable_signature').checked )      
+        	var signature_required =1;
+        else 
+        	var signature_required =0;
+        //Sashas
         var totals = get_totals_element();
         totals.update('<div class="loading-ajax">&nbsp;</div>');
 
@@ -73,7 +78,8 @@ function get_save_methods_function(url, update_payments)
 
         var parameters = {
                 shipping_method: shipping_method,
-                payment_method: payment_method
+                payment_method: payment_method,
+                signature_required:signature_required
         }
 
         /* Find payment parameters and include */
@@ -154,8 +160,15 @@ function get_save_billing_function(url, set_methods_url, update_payments)
         var items = exclude_unchecked_checkboxes($$('input[name^=billing]', 'select[name^=billing]'));
         var names = items.pluck('name');
         var values = items.pluck('value');
+     	//Sashas
+        if ( $('id_enable_signature').checked )      
+        	var signature_required =1;
+        else 
+        	var signature_required =0;
+        //Sashas
         var parameters = {
-                shipping_method: $RF(form, 'shipping_method')
+                shipping_method: $RF(form, 'shipping_method'),
+                signature_required:signature_required
         };
 
 
@@ -295,6 +308,12 @@ function get_separate_save_methods_function(url, update_payments)
         var form = $('onestepcheckout-form');
         var shipping_method = $RF(form, 'shipping_method');
         var payment_method = $RF(form, 'payment[method]');
+        //Sashas
+        if ( $('id_enable_signature').checked )      
+        	var signature_required =1;
+        else 
+        	var signature_required =0;
+        //Sashas
         var totals = get_totals_element();
         
         totals.update('<div class="loading-ajax">&nbsp;</div>');
@@ -306,7 +325,8 @@ function get_separate_save_methods_function(url, update_payments)
 
         var parameters = {
                 shipping_method: shipping_method,
-                payment_method: payment_method
+                payment_method: payment_method,
+                signature_required:signature_required
         }
 
         /* Find payment parameters and include */

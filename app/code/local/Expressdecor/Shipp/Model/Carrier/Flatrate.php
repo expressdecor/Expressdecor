@@ -1,6 +1,6 @@
 <?php
 /// IT DOESNT WORK - LOOK at Tinybrick
-class Expressdecor_Shipping_Model_Carrier_Flatrate  extends Mage_Shipping_Model_Carrier_Flatrate
+/*class Expressdecor_Shipping_Model_Carrier_Flatrate  extends Mage_Shipping_Model_Carrier_Flatrate
     implements Mage_Shipping_Model_Carrier_Interface
 {
 
@@ -92,3 +92,4 @@ class Expressdecor_Shipping_Model_Carrier_Flatrate  extends Mage_Shipping_Model_
     }
 
 }
+*/

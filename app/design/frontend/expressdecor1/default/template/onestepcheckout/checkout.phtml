@@ -137,10 +137,20 @@ $helper = Mage::helper('onestepcheckout/checkout');
                     <div class="onestepcheckout-shipping-method-block">
                         <?php echo $this->getChildHtml('choose-shipping-method'); ?>
                     </div>
+				<?php 
+					//Sashas
+					$signature_enabled=Mage::getStoreConfig('sales/signature_shipping/enabled');
+					$signature_amount=Mage::getStoreConfig('sales/signature_shipping/amount'); 
+					if ($signature_enabled): ?>		 
+            		<div class="onestepcheckout-enable-signature">            		 
+                		<input type="checkbox" id="id_enable_signature" name="signature_required" value="1" checked="checked" />
+                		<label for="id_enable_signature"><?php echo $this->__('Require signature at deliver ($%s)',$signature_amount); ?></label>
+            		</div>			
+				<?php endif; ?>                    
                 </div>
             <?php endif; ?>
         <?php endif; ?>
-
+ 
         <?php if(Mage::getStoreConfig('onestepcheckout/general/hide_payment_method')):?>
             <?php if(!empty($this->formErrors['payment_method'])): ?>
             <div class="onestepcheckout-error onestepcheckout-payment-method-error">
@@ -312,7 +322,7 @@ $helper = Mage::helper('onestepcheckout/checkout');
                 <label for="id_subscribe_newsletter"><?php echo $this->__('Subscribe to our newsletter'); ?></label>
             </div>
         <?php endif; ?>
-
+		 
         <?php if($this->settings['enable_terms']): ?>
             <div class="onestepcheckout-enable-terms">
                 <?php
@@ -844,13 +854,16 @@ document.observe('dom:loaded', function() {
 
         $$('dl.shipment-methods input').invoke('observe', 'click', get_separate_save_methods_function(url, update_payments));
         $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', get_separate_save_methods_function(url));
-
+        //Sashas Signature
+        $$('div.onestepcheckout-enable-signature input').invoke('observe', 'click', get_separate_save_methods_function(url));
+        $$('div.onestepcheckout-enable-signature input').invoke('observe', 'click', function() { if ( !$('id_enable_signature').checked ) alert("<?php echo $this->__("By unchecking you agree that your package can be delivered without requiring a signature"); ?>")  });
+        //Sashas Signature
         $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', function() {
             $$('div.onestepcheckout-payment-method-error').each(function(item) {
                 new Effect.Fade(item);
             });
         });
-
+	
         $$('dl.shipment-methods input').invoke('observe', 'click', function() {
             $$('div.onestepcheckout-shipment-method-error').each(function(item) {
                 new Effect.Fade(item);
@@ -908,6 +921,9 @@ document.observe('dom:loaded', function() {
         }
     }
 
+
+  
+    
    get_separate_save_methods_function(url)();
 
 <?php if($this->differentShippingAvailable()): ?>
