@@ -45,18 +45,19 @@ class Expressdecor_Shipp_Model_Total_Signature extends Mage_Sales_Model_Quote_Ad
  		$signature_fee =Mage::getStoreConfig('sales/signature_shipping/amount');
  		$items = $this->_getAddressItems($address);
  	 
-        if (     $signature_enabled && $signature_requred || $signature_enabled &&$signature_apply)  {     
+        if (     $signature_enabled && $signature_requred || $signature_enabled && $signature_apply)  {     
         	 
-        	if (   $signature_apply) {
+        	//if (   $signature_apply) {
+        	 
         		$address->setSignatureRequired($signature_fee)->save();
         		$signature_requred=$signature_fee;
         		$this->_setAmount($signature_fee);
         		$this->_setBaseAmount($signature_fee);
-        	}
-        		 
+        //	}
+         
         }        
                 
-         
+        
         
         if (is_int($signature_requred) && $signature_requred==0 && $signature_enabled) {
         	 
@@ -76,14 +77,14 @@ class Expressdecor_Shipp_Model_Total_Signature extends Mage_Sales_Model_Quote_Ad
     	  if (     $signature_enabled && $signature_requred|| $signature_enabled && $signature_apply)  {     
     		 
     		if ($address->getData('address_type')=='billing') return $this;
-    		if (   $signature_apply) {
+    		//if (   $signature_apply) {
         	$signature_fee =Mage::getStoreConfig('sales/signature_shipping/amount');
         	$address->addTotal(array(
             	    'code'=>$this->getCode(),
                 	'title'=>Mage::helper('Shipping')->__('Signature at delivery'),
                 	'value'=> $signature_fee  
         	));
-    		}
+    	//	}
     	}
         return $this;
     }

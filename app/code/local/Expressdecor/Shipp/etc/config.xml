@@ -69,7 +69,7 @@
        </resources>
   	   <fieldsets>
 	  		<sales_convert_quote_address>
-  				<signature><to_order_address>*</to_order_address></signature>
+  				<signature_required><to_order_address>*</to_order_address></signature_required>
   			</sales_convert_quote_address>
   	   </fieldsets>              	   
   </global>
