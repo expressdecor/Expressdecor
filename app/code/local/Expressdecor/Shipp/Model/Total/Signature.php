@@ -44,8 +44,9 @@ class Expressdecor_Shipp_Model_Total_Signature extends Mage_Sales_Model_Quote_Ad
  		 
  		$signature_fee =Mage::getStoreConfig('sales/signature_shipping/amount');
  		$items = $this->_getAddressItems($address);
- 		 
-        if (     $signature_enabled && $signature_requred)  {     
+ 	 
+        if (     $signature_enabled && $signature_requred || $signature_enabled &&$signature_apply)  {     
+        	 
         	if (   $signature_apply) {
         		$address->setSignatureRequired($signature_fee)->save();
         		$signature_requred=$signature_fee;
@@ -72,7 +73,7 @@ class Expressdecor_Shipp_Model_Total_Signature extends Mage_Sales_Model_Quote_Ad
     	$signature_requred=$address->getSignatureRequired();
     	$signature_apply=$address->getSignatureApply();
     	
-    	  if (     $signature_enabled && $signature_requred)  {     
+    	  if (     $signature_enabled && $signature_requred|| $signature_enabled && $signature_apply)  {     
     		 
     		if ($address->getData('address_type')=='billing') return $this;
     		if (   $signature_apply) {

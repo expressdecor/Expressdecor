@@ -315,7 +315,7 @@ $helper = Mage::helper('onestepcheckout/checkout');
             </div>
             </div>
         <?php endif; ?>
-
+     
         <?php if($this->settings['enable_newsletter'] && $this->settings['enable_terms']): ?>
             <div class="onestepcheckout-enable-newsletter">
                 <input type="checkbox" id="id_subscribe_newsletter" name="subscribe_newsletter" value="1" <?php if($this->settings['newsletter_default_checked']): ?>checked="checked"<?php endif; ?> />
@@ -460,9 +460,12 @@ $helper = Mage::helper('onestepcheckout/checkout');
         <div class="onestepcheckout-place-order">
         <a name="trustlink" href="http://secure.trust-guard.com/certificates/7713" target="_blank" onclick="var nonwin=navigator.appName!='Microsoft Internet Explorer'?'yes':'no'; window.open(this.href.replace('http', 'https'),'welcome','location='+nonwin+',scrollbars=yes,width=517,height='+screen.availHeight+',menubar=no,toolbar=no'); return false;" oncontextmenu="var d = new Date(); alert('Copying Prohibited by Law - This image and all included logos are copyrighted by trust-guard \251 '+d.getFullYear()+'.'); return false;"><img name="trustseal" alt="Security Verified" style="border: 0;" src="https://c674753.ssl.cf2.rackcdn.com/security-7713-small-gray.gif" /></a>   &nbsp;
             <a id="onestepcheckout-place-order" href="#" class="large orange onestepcheckout-button"><?php echo $this->__('Place order now'); ?></a>
+ 
         </div>
 
-
+		<div class="onestepcheckout-conditions" style="margin-top:-29px; width:182px; margin-left:112px;">            
+                <div><?php echo $this->__('By placing an order you agree to our '); ?><a style="color:#F26222;text-decoration:none;" href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>/terms-and-conditions.html" target="_blank" ><?php echo $this->__("Terms and Conditions");?></a></div>
+        </div>  
 
         <?php if($this->settings['enable_newsletter'] && !$this->settings['enable_terms']): ?>
             <div class="onestepcheckout-enable-newsletter-bottom">
