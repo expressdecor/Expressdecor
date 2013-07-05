@@ -39,7 +39,7 @@ class Expressdecor_Shipp_Model_Total_Signature extends Mage_Sales_Model_Quote_Ad
  			$address_quote=Mage::getModel("sales/quote_address")->load($address->getId());
  			$signature_requred=$address_quote->getSignatureRequired();
  		}
- 		
+ 	 
  		$signature_apply=$address->getSignatureApply();
  		 
  		$signature_fee =Mage::getStoreConfig('sales/signature_shipping/amount');
@@ -48,7 +48,7 @@ class Expressdecor_Shipp_Model_Total_Signature extends Mage_Sales_Model_Quote_Ad
    		$req = Mage::app()->getRequest();
    		$full_action_name=$req->getModuleName()."_".$req->getControllerName();//."_".$req->getActionName();
   
-        if (     $signature_enabled && $signature_requred || $signature_enabled && $signature_apply && $full_action_name!="onestepcheckout_ajax" )  {     
+        if (     $signature_enabled && $signature_apply || $signature_enabled &&  $signature_requred && $full_action_name!="onestepcheckout_ajax"  )  {     
         	 
         	//if (   $signature_apply) {
         	 
@@ -60,7 +60,7 @@ class Expressdecor_Shipp_Model_Total_Signature extends Mage_Sales_Model_Quote_Ad
          
         }        
                 
-        
+          
         
         if (is_int($signature_requred) && $signature_requred==0 && $signature_enabled) {
         	 
@@ -79,7 +79,7 @@ class Expressdecor_Shipp_Model_Total_Signature extends Mage_Sales_Model_Quote_Ad
     	$req = Mage::app()->getRequest();
     	$full_action_name=$req->getModuleName()."_".$req->getControllerName();//."_".$req->getActionName();
     	
-    	  if (     $signature_enabled && $signature_requred|| $signature_enabled && $signature_apply && $full_action_name!="onestepcheckout_ajax"  )  {     
+    	  if (     $signature_enabled &&  $signature_apply || $signature_enabled &&  $signature_requred && $full_action_name!="onestepcheckout_ajax"  )  {     
     		 
     		if ($address->getData('address_type')=='billing') return $this;
     		//if (   $signature_apply) {
